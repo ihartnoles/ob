@@ -1,0 +1,1 @@
+json.extract! @modules_available, :id, :znumber, :netid, :welcome, :deposit, :account, :communication, :immunization, :finaid, :housingfee, :residency, :housingmealplan, :aleks, :oars, :learning_comm, :orientation, :registration, :emergency, :faualert, :owlcard, :bookadvance, :tution, :vehiclereg, :created_at, :updated_at

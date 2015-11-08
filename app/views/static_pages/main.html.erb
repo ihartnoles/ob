@@ -1,0 +1,179 @@
+<div class="page-box">
+<div class="page-box-content">
+  
+  <div id="top-box">
+   
+  </div><!-- #top-box -->
+
+  <%= render 'static_pages/header' %>
+
+
+ <div class="container">
+    <div class="row">
+
+    <!-- <form class="form-box login-form form-validator bv-form" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+            <h3 class="title">Onboarding Student Login</h3>
+            <p>Please log in with your admissions application credentials</p>
+            
+            <div class="form-group has-feedback">
+            <label>Email Address: <span class="required">*</span></label>
+            <input class="form-control" name="email" type="email" required="" data-bv-emailaddress-message="The input is not a valid email address" data-bv-field="email"><i class="form-control-feedback" data-bv-icon-for="email" style="display: none;"></i>
+                  <small class="help-block" data-bv-validator="emailAddress" data-bv-for="email" data-bv-result="NOT_VALIDATED" style="display: none;">The input is not a valid email address</small><small class="help-block" data-bv-validator="notEmpty" data-bv-for="email" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
+            </div>
+            
+            <div class="form-group has-feedback">
+            <label>Password: <span class="required">*</span></label>
+                    <input class="form-control" name="password" type="password" required="" data-bv-field="password"><i class="form-control-feedback" data-bv-icon-for="password" style="display: none;"></i>
+                  <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
+
+            </div>
+            
+                      
+            <div class="buttons-box clearfix">
+            <button class="btn btn-danger">Login</button>
+            <a href="shop-forgot.html" class="forgot">Forgot Your Password?</a>
+            <span class="required"><b>*</b> Required Field</span>
+            </div>
+    </form>
+ -->
+    
+   <section id="main" class="login-register">
+  <header class="page-header">
+    <div class="container">
+      <h3 class="title">FAU Student Onboarding Portal <br> Please Choose your Login Method</h3>
+    </div>  
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="content col-sm-12 col-md-12">
+    <div class="row filter-elements hidden">
+      <div class="col-sm-6  box login">
+      <div class="info-box col-sm-6 col-md-6">
+        
+        <header class="page-header">
+            <div class="container">
+        <h3 class="title col-sm-6 col-md-6">Method 1:<br> Use your FAU NetID</h3>
+            </div>
+        </header>
+
+        <p class="descriptions">If you have been assigned an FAU NetID you should login with this method.</p>
+        <button id="btnNetID" class="btn btn-danger filter-buttons">Login with NETID</button>
+      </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6 box login">
+     
+
+         <%= form_for @login, :url => do_manual_login_path, :method => "post", :html => {:class => 'form-box login-form form-validator bv-form'}  do |f| %>
+          
+          <header class="page-header">
+            <div class="container">
+            <h3 class="title col-sm-6 col-md-6">Method 2: <br> Use your Admissions Credentials</h3>
+            </div>
+          </header>
+                  <p>If you do NOT have an FAU NetID yet you can login with the same credentials you set up when applying to FAU</p>
+            
+
+            <div class="form-group has-feedback">
+              <label>Email Address: <span class="required">*</span></label>
+              <%#= f.label :email %><br>
+              <%#= f.text_field :email, class: 'form-control', 'type'=>'email',  'data-bv-emailaddress-message' => 'The input is not a valid email address', 'data-bv-field'=>'email'%>
+
+               <%= text_field_tag :email, params[:email] , class: 'form-control', 'required' => '', 'type'=>'email',  'data-bv-emailaddress-message' => 'The input is not a valid email address', 'data-bv-field'=>'email'%>
+              <i class="form-control-feedback" data-bv-icon-for="email" style="display: none;"></i>
+                        <small class="help-block" data-bv-validator="emailAddress" data-bv-for="email" data-bv-result="NOT_VALIDATED" style="display: none;">The input is not a valid email address</small><small class="help-block" data-bv-validator="notEmpty" data-bv-for="email" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
+              </div>
+
+            <div class="form-group has-feedback">
+              <label>Password: <span class="required">*</span></label>
+              
+             <%#= f.text_field :password, class: 'form-control'  %>
+             <%= text_field_tag :password, params[:password] , class: 'form-control', 'required' => '','type'=>'password', 'data-bv-field'=>'password'%>
+
+             <i class="form-control-feedback" data-bv-icon-for="password" style="display: none;"></i>
+                        <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
+
+            </div>
+            <div class="actions">
+              <%= f.submit  'Login', :class => "btn btn-danger" %>
+            </div>
+        <% end %>
+      </div>
+
+     
+
+     
+    </div>
+      </div>
+    </div>
+  </div><!-- .container -->
+</section><!-- #main -->
+
+
+<%#= request.server_name %>
+
+<hr>
+
+<%#= request.inspect %>
+
+<%#= render 'static_pages/footer' %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/assets/bootstrap.min.js"></script>
+<script src="/assets/price-regulator/jshashtable-2.1_src.js"></script>
+<script src="/assets/price-regulator/jquery.numberformatter-1.2.3.js"></script>
+<script src="/assets/price-regulator/tmpl.js"></script>
+<script src="/assets/price-regulator/jquery.dependClass-0.1.js"></script>
+<script src="/assets/price-regulator/draggable-0.1.js"></script>
+<script src="/assets/price-regulator/jquery.slider.js"></script>
+<script src="/assets/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script src="/assets/jquery.touchSwipe.min.js"></script>
+<script src="/assets/jquery.elevateZoom-3.0.8.min.js"></script>
+<script src="/assets/jquery.imagesloaded.min.js"></script>
+<script src="/assets/jquery.appear.js"></script>
+<script src="/assets/jquery.sparkline.min.js"></script>
+<script src="/assets/jquery.easypiechart.min.js"></script>
+<script src="/assets/jquery.easing.1.3.js"></script>
+<script src="/assets/jquery.fancybox.pack.js"></script>
+<script src="/assets/isotope.pkgd.min.js"></script>
+<script src="/assets/jquery.knob.js"></script>
+<script src="/assets/jquery.stellar.min.js"></script>
+<script src="/assets/jquery.selectBox.min.js"></script>
+<script src="/assets/jquery.royalslider.min.js"></script>
+<script src="/assets/jquery.tubular.1.0.js"></script>
+<script src="/assets/SmoothScroll.js"></script>
+<script src="/assets/country.js"></script>
+<script src="/assets/spin.min.js"></script>
+<script src="/assets/ladda.min.js"></script>
+<script src="/assets/masonry.pkgd.min.js"></script>
+<script src="/assets/morris.min.js"></script>
+<script src="/assets/raphael.min.js"></script>
+<script src="/assets/video.js"></script>
+<script src="/assets/pixastic.custom.js"></script>
+<script src="/assets/livicons-1.4.min.js"></script>
+<script src="/assets/layerslider/layerslider.transitions.js"></script>
+<script src="/assets/layerslider/layerslider.kreaturamedia.jquery.js"></script>
+<script src="/assets/revolution/jquery.themepunch.plugins.min.js"></script>
+<script src="/assets/revolution/jquery.themepunch.revolution.min.js"></script>
+<script src="/assets/bootstrapValidator.min.js"></script>
+<script src="/assets/bootstrap-datepicker.js"></script>
+<script src="/assets/jplayer/jquery.jplayer.min.js"></script>
+<script src="/assets/jplayer/jplayer.playlist.min.js"></script>
+<script src="/assets/jquery.scrollbar.min.js"></script>
+<script src="/assets/main.js"></script>
+
+
+
+<%= javascript_tag do %>
+
+  $("#btnNetID").click(function() {    
+   
+  <% if request.server_name.include?('10.16.9.208') || request.server_name.include?('10.16.9.129') || request.server_name.include?('localhost')  %>
+     window.location.replace("http://<%= request.server_name %>:<%= request.port %>/home");
+  <% else %>
+     window.location.replace("https://<%= request.server_name %>/home");      
+  <% end %>
+   
+  });
+
+<% end %>

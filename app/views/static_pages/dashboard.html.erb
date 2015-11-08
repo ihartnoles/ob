@@ -1,0 +1,161 @@
+<p>&nbsp;</p>
+
+<header class="page-header">
+    <div class="container">
+      <h3 class="title">Admin Dashboard</h1>
+    </div>  
+  </header>
+
+
+<div class="container">
+    <div class="row">
+
+    	<% if flash[:notice] %>
+			<div class="alert alert-info alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong><%= flash[:notice] %></strong>
+			</div>
+		<% end %>
+
+
+      <div class="sidebar col-sm-12 col-md-12" id="sidebar">
+		<aside class="widget menu">
+		  <header>
+			<h3 class="title">Student Queues</h3>
+		  </header>
+		  <nav>
+			<!--
+			<ul>
+			   <li class="active">
+		        <a href="/dashboard/ftic"><i class="fa fa-gears item-icon"></i>FTIC - (First Time In College)</a>
+		       </li>
+		       <li>
+		        <a href="shop-account-information.html"><i class="fa fa-user item-icon"></i>International Students</a>
+		       </li>
+		       <li>
+		        <a href="shop-account-address.html"><i class="fa fa-pencil-square-o item-icon"></i>Transfers</a>
+		       </li>     
+			</ul> -->
+
+			<div class="row services">
+			<div class="col-sm-4 col-md-4 service">
+			  <a href="/dashboard/ftic">
+				<div class="icon bg"><i class="fa fa-book"></i></div>
+				<h6 class="title">First Time In College</h6>
+				<div class="text-small">This queue contains all students who are classified as First Time in College (FTIC).</div>
+			  </a>
+			</div>
+			<div class="col-sm-4 col-md-4 service">
+			  <a href="/dashboard/intl">
+				<div class="icon bg"><i class="fa fa-flag"></i></div>
+				<h6 class="title">International</h6>
+				<div class="text-small">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</div>
+			  </a>
+			</div>
+			<div class="col-sm-4 col-md-4 service">
+				<a href="/dashboard/transfer">
+				<div class="icon bg"><i class="fa fa-truck"></i></div>
+				<h6 class="title">Transfers</h6>
+				<div class="text-small">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</div>
+			  </a>
+			</div>
+		<!-- 
+		<div class="col-sm-4 col-md-4 service">
+		  <a href="#">
+			<div class="icon bg"><i class="fa fa-gears"></i></div>
+			<h6 class="title">Development</h6>
+			<div class="text-small">Excepteur sint occaecat cupidatat. Duis aute irure dolor in reprehend voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+		  </a>
+		</div>
+		<div class="col-sm-4 col-md-4 service">
+		  <a href="#">
+			<div class="icon bg"><i class="fa fa-shopping-cart"></i></div>
+			<h6 class="title">Production</h6>
+			<div class="text-small">It is a long established fact that reader. The standard chunk of Lorem Ipsum used since the 1500s is reprod below for those intereste.</div>
+		  </a>
+		</div>
+		<div class="col-sm-4 col-md-4 service">
+		  <a href="#">
+			<div class="icon bg"><i class="fa fa-volume-up"></i></div>
+			<h6 class="title">Promotion</h6>
+			<div class="text-small">The point of using. Duis aute irure dolor reprehenderit in voluptate velit esse cillum.The readable content of a page when looking at its layout.</div>
+		  </a>
+		</div> 
+	-->
+	  </div>
+		  </nav>
+		</aside><!-- .menu-->
+	  </div>
+	 </div>
+
+	 <p>&nbsp;</p>
+
+	  <div class="row">
+      <article class="col-sm-12 col-md-12 content">
+		<div class="my-account margin-top">
+			<div class="title-box">
+	        <h2 class="title"><%= @table_label %></h2>
+	      </div>
+	      <div class="table-responsive">
+			<table id="ftictable" class="table table-striped table-bordered text-left my-orders-table">
+             <thead>
+	          <tr >
+	            <th>Netid</th>
+	            <th>Z#</th>
+	            <th>First</th>
+	            <th>Last</th>
+	            <th>Status</th>
+	            <th>Actions</th>  	            
+	                      
+	          </tr>
+	        </thead>
+       		 <tbody>
+       		 <% @modules_availables.each do |modules_available| %>
+             <tr>
+              <td><%= modules_available.netid %></td>
+	              <td><%= modules_available.znumber %></td>
+	              <td><%= modules_available.f_name %></td>
+	              <td><%= modules_available.l_name %></td>
+	              <td class="text-warning"><em>Pending</em></td>
+	              <td>
+	              	 <div class="btn-group">
+	              	 	<!-- <a href="/moduledetail/<%= modules_available.id %>/<%= modules_available.znumber %>"  target="_blank">Details</a> | -->
+	                 	<%= link_to 'Modules', edit_ftic_modules_available_path(modules_available, :znum => "#{modules_available.znumber}" ), :target => "_blank" %> |
+	                 	<a href="/home?znum=<%= modules_available.znumber %>" target="_blank">Proxy</a> |
+	                 	<a href="/activity_log/<%= modules_available.znumber %>"  target="_blank">Log</a> |
+	                 	<a href="/messages/new/<%= modules_available.znumber %>" target="_blank">Send Message</a>                
+	             	</div>
+	              </td>
+              </tr>
+              <% end %>
+
+        	</tbody>
+      	</table>
+
+         </div><!-- .responsive -->
+		</div>
+      </article><!-- .content -->
+	  
+	
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+   $('#ftictable').dataTable( {
+    "scrollX": true,
+    "aoColumns": [
+      null,
+      { "asSorting": [ "asc" ] },
+      { "bSortable": false },
+      { "bSortable": false },
+      { "bSortable": false },
+      { "bSortable": false }
+      
+    ] } );
+});
+</script>

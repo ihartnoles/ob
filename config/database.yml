@@ -1,0 +1,67 @@
+# development:
+#   adapter: sqlserver
+#   dataserver: boc22mssqloit.ad.fau.edu
+#   database: Medicine
+#   username: FAU\ihartstein
+#   password: ikeFAU60
+
+
+
+# production:
+#    adapter: sqlserver
+#    dataserver: mssql.fau.edu
+#    database: Medicine
+#    username: FAU\ihartstein
+#    password: ikeFAU60
+
+
+# banner:
+#    adapter: oracle_enhanced
+#    database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=bannerprd.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=FAUP)))"
+#    username: MEDSRCHUSR
+#    password: mEyUvXCaelk8qoIVImQL
+
+
+# development:
+#    adapter: oracle_enhanced
+#    database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=odsprod.fau.edu)(PORT=1550)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=FAUDW)))"
+#    username: ihartstein
+#    password: ikeFAUDW1358
+
+
+development:
+  adapter: sqlserver
+  dataserver: boc22mssqloit.ad.fau.edu
+  database: onboarding_test
+  username: FAU\ihartstein
+  password: ikeFAU61
+
+
+production:
+   adapter: sqlserver
+   dataserver: boc22mssqloit.ad.fau.edu
+   database: onboarding_prod
+   username: FAU\ihartstein
+   password: ikeFAU61
+
+
+
+faudw:
+   adapter: oracle_enhanced
+   database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=odsprod.fau.edu)(PORT=1550)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=FAUDW)))"
+   username: ihartstein
+   password: ikeFAUDW1358
+
+
+bannertest:
+   adapter: oracle_enhanced
+   database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=banoradev.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=TEST)))"
+   username: ihartstein
+   password: ikeORACLE60
+
+
+ugapp:
+   adapter: oracle_enhanced
+   database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=boc22ora03.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=MSOP)))"
+   username: newundergrad_prod
+   password: WQbYCtdR3wIXqwfF7gNY

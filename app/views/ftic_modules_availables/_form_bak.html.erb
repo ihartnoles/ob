@@ -1,0 +1,268 @@
+
+   <%= form_for(@modules_available,  :html => { :class => "form-horizontal"}) do |f| %>
+
+        <% if @modules_available.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@modules_available.errors.count, "error") %> prohibited this modules_available from being saved:</h2>
+
+            <ul>
+            <% @modules_available.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <h3 class="title"><i class="fa fa-user"></i> Student Info </h3>
+        <div id="success"></div>
+         <%= f.label :znumber  %>
+         <%= f.text_field :znumber , :class=>'form-control', :disabled => true %>
+         <%= f.label :netid , "NetID"%>    
+         <%= f.text_field :netid , :class=>'form-control', :disabled => true %>
+
+         <hr>
+          <h3 class="title"><i class="fa fa-dashboard"></i> Module Availability Settings</h3>
+
+         <%= f.label :welcome, "Welcome" %><br> 
+         <%= f.radio_button :welcome, 1 %>  Unlock <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :welcome, 0 %>  Lock &nbsp; <i class="fa fa-lock"></i><hr><br>       
+        
+         <div class="row">
+              <div class="col-sm-6 ">
+                <%= f.label :deposit, "Pay Deposit" %><br>
+                <%= f.radio_button :deposit, 1 %> Unlock <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :deposit, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :depositbypass, "Bypass" %><br>
+                <%= f.radio_button :depositbypass, 1 %>  On <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :depositbypass, 0 %> Off <i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+            <div class="col-sm-6 ">
+                <%= f.label :account , "Create Account"  %><br>  
+                <%= f.radio_button :account, 1 %> Unlock <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :account, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :accountbypass, "Bypass" %><br>
+                <%= f.radio_button :accountbypass, 1 %>  On <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :accountbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+            <div class="col-sm-6 ">
+             <%= f.label :communication, "Communication Preference"  %><br>    
+             <%= f.radio_button :communication, 1 %> Unlock <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :communication, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+
+             <div class="col-sm-6 ">
+                 <%= f.label :communicationbypass, "Bypass"  %><br>    
+                <%= f.radio_button :communicationbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :communicationbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+             <%= f.label :immunization, "Immunization Hold"  %><br>  
+             <%= f.radio_button :immunization, 1 %> Unlock <i class="fa fa-unlock-alt"></i>  &nbsp; <%= f.radio_button :immunization, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+
+             <div class="col-sm-6 ">
+                 <%= f.label :immunizationbypass, "Bypass"  %><br>    
+                <%= f.radio_button :immunizationbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :immunizationbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+             <%= f.label :finaid, "Financial Aid Checklist"  %><br>    
+             <%= f.radio_button :finaid, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :finaid, 0 %> Lock<i class="fa fa-lock"></i>
+              </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :finaidbypass, "Bypass"  %><br>    
+                <%= f.radio_button :finaidbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :finaidbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+                <%= f.label :housingfee, "Housing Fee"  %><br>    
+                <%= f.radio_button :housingfee, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :housingfee, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+              </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :housingfeebypass, "Bypass"  %><br>    
+                <%= f.radio_button :housingfeebypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :housingfeebypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+        <div class="row">
+             <div class="col-sm-6 ">
+                <%= f.label :residency, "Residency Validation"  %><br>    
+                <%= f.radio_button :residency, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :residency, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+               </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :residencybypass, "Bypass"  %><br>    
+                <%= f.radio_button :residencybypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :residencybypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+             <%= f.label :housingmealplan, "Housing and Meal Plans" %><br>  
+             <%= f.radio_button :housingmealplan, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :housingmealplan, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+            </div>
+             <div class="col-sm-6 ">
+                <%= f.label :housingmealplanbypass, "Bypass"  %><br>    
+                <%= f.radio_button :housingmealplanbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :housingmealplanbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+        <div class="row">
+             <div class="col-sm-6 ">
+                <%= f.label :aleks, "Math Placement Exam - ALEKS"  %><br>
+                <%= f.radio_button :aleks, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :aleks, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :aleksbypass, "Bypass"  %><br>    
+                <%= f.radio_button :aleksbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :aleksbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+             <%= f.label :orientation, "Orientation"  %><br>    
+             <%= f.radio_button :orientation, 1 %> Unlock <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :orientation, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :orientationbypass, "Bypass"  %><br>    
+                <%= f.radio_button :orientationbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :orientationbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+                <%= f.label :learning_comm, "Learning Communities"  %><br>    
+                <%= f.radio_button :learning_comm, 1 %> Unlock <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :learning_comm, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+              </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :learning_commbypass, "Bypass"  %><br>    
+                <%= f.radio_button :learning_commbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :learning_commbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+             <%= f.label :oars, "Online Advising & Resource System - OARS"  %><br>   
+             <%= f.radio_button :oars, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :oars, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+
+             <div class="col-sm-6 ">
+                <%= f.label :oarsbypass, "Bypass"  %><br>    
+                <%= f.radio_button :oarsbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :oarsbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+        
+        <div class="row">
+             <div class="col-sm-6 ">
+                <%= f.label :registration, "Registration"  %><br>
+                <%= f.radio_button :registration, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :registration, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+             <div class="col-sm-6 ">
+                <%= f.label :registrationbypass, "Bypass"  %><br>    
+                <%= f.radio_button :registrationbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :registrationbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+
+        <div class="row">
+             <div class="col-sm-6 ">
+             <%= f.label :emergency, "Emergency Contacts"  %><br> 
+             <%= f.radio_button :emergency, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :emergency, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+             <div class="col-sm-6 ">
+                <%= f.label :emergencybypass, "Bypass"  %><br>    
+                <%= f.radio_button :emergencybypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :emergencybypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+                <%= f.label :faualert  %><br> 
+                <%= f.radio_button :faualert, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :faualert, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+              </div>
+              <div class="col-sm-6 ">
+                <%= f.label :faualertbypass, "Bypass"  %><br>    
+                <%= f.radio_button :faualertbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :faualertbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+               <%= f.label :owlcard, "Owl Card"  %><br>      
+               <%= f.radio_button :owlcard, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :owlcard, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+              </div>
+              <div class="col-sm-6 ">
+                <%= f.label :owlcardbypass, "Bypass"  %><br>    
+                <%= f.radio_button :owlcardbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :owlcardbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+         <div class="row">
+             <div class="col-sm-6 ">
+                <%= f.label :bookadvance, "Book Advance Program"  %><br>     
+                <%= f.radio_button :bookadvance, 1 %> Unlock <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :bookadvance, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+             <div class="col-sm-6 ">
+                <%= f.label :bookadvancebypass, "Bypass"  %><br>    
+                <%= f.radio_button :bookadvancebypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :bookadvancebypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+        <div class="row">
+             <div class="col-sm-6 ">
+             <%= f.label :tution, "Tuition Payment"  %><br>      
+             <%= f.radio_button :tution, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :tution, 0 %> Lock &nbsp; <i class="fa fa-lock"></i>
+             </div>
+             <div class="col-sm-6 ">
+                <%= f.label :tuitionbypass, "Bypass"  %><br>    
+                <%= f.radio_button :tuitionbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :tuitionbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+
+         <div class="row">
+             <div class="col-sm-6 ">
+                 <%= f.label :vehiclereg, "Register Your Vehicle"  %><br>     
+                 <%= f.radio_button :vehiclereg, 1 %> Unlock <i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :vehiclereg, 0 %> Lock  &nbsp; <i class="fa fa-lock"></i>
+               </div>
+               <div class="col-sm-6 ">
+                <%= f.label :vehicleregbypass, "Bypass"  %><br>    
+                <%= f.radio_button :vehicleregbypass, 1 %> On <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :vehicleregbypass, 0 %> Off  &nbsp;<i class="fa fa-times-circle"></i>
+             </div>
+             <br><hr>
+        </div>
+           
+        <div class="clearfix"></div>
+        
+
+        <div class="buttons-box clearfix">
+          <%= f.submit  'Save' , :class => 'btn btn-default'  %>
+        </div>
+      </form>
+  
+
+<% end %>
+  
+  </div>
+</div>
+
+
+

@@ -1,0 +1,878 @@
+
+<p>&nbsp;</p>
+
+<div class="container">
+
+<% @ma.each do |m| %>   
+    <header class="page-header">
+            <div class="container">
+              <h3 class="title">Student Information for <%= m.f_name%>  <%= m.l_name%> (<%=m.znumber %>) </h1>
+            </div>  
+    </header> 
+
+
+   <%= form_for(@modules_available,  :html => { :class => "form-horizontal"}) do |f| %>
+
+        <% if @modules_available.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@modules_available.errors.count, "error") %> prohibited this modules_available from being saved:</h2>
+
+            <ul>
+            <% @modules_available.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+       
+
+       
+       
+
+          <div class="row">
+              <!-- <div class="sidebar col-sm-12 col-md-12" id="sidebar"> -->
+                
+                
+                
+                <div class="col-sm-4 col-md-4 service alert alert-border">
+                  
+                    <div class="icon bg"> <% if m.welcome == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
+
+                    <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Welcome</h6></a>
+                    <div class="text-small">
+                        <div class="text-warning"><em><b>pending</b></em></div><br>
+                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+                       
+                       <br><br>
+                         <div class="row">
+                            <div class="col-sm-6 ">
+                               <%= f.label :welcome, "Availability" %><br>
+                               <%= f.radio_button :welcome, 1 %>  <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :welcome, 0 %> <i class="fa fa-lock"></i>                        
+                            </div>
+                            <div class="col-sm-6 "> 
+                               <%= f.label :depositbypass, "By-pass" %><br>
+                               <%= f.radio_button :depositbypass, 1 %> <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :depositbypass, 0 %>  <i class="fa fa-times-circle"></i>  
+                            </div>
+                        </div>
+                    </div>  
+                     
+                </div> <!-- END OF WELCOME -->
+
+                <div class="col-sm-4 col-md-4 service alert alert-border">
+                 
+                    <div class="icon bg">
+                        <% if m.deposit == 1 %>
+                          <%#= image_tag('/assets/Check_16x16.png')  %>
+                            <% if m.depositbypass == 1 %>
+                               <div class="icon icon-20 text-warning">
+                            <% else %>
+                              <div class="icon icon-20 text-danger">
+                            <% end %>                     
+                              <i class="fa fa-unlock-alt"></i>
+                            </div>
+                        <% else %>
+                          <%#= image_tag('/assets/Delete_16x16.png')  %>
+                            <% if m.depositbypass == 1 %>
+                               <div class="icon icon-20 text-warning">
+                           <% else %>
+                                <div class="icon icon-20 text-error"> 
+                           <% end %>
+
+                            <i class="fa fa-lock"></i>
+                          </div>
+                        <% end %>
+                    </div>
+                     <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Deposit</h6></a> 
+                    <div class="text-small">
+                         
+                         <% if @deposit_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+
+                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.     
+                        
+                        <br><br>
+
+                        <div class="row">
+                            <div class="col-sm-6 ">
+                                <%= f.label :deposit, "Availability" %><br>
+                                <%= f.radio_button :deposit, 1 %> <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :deposit, 0 %> &nbsp; <i class="fa fa-lock"></i>    
+                            </div>
+
+                             <div class="col-sm-6 ">                        
+
+                                <%= f.label :depositbypass, "By-pass" %><br>
+                                <%= f.radio_button :depositbypass, 1 %>  <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :depositbypass, 0 %> <i class="fa fa-times-circle"></i>    
+                             </div>  
+                       </div>
+                    </div>
+                                
+                </div><!-- END OF DEPOSIT -->
+
+                   <div class="col-sm-4 col-md-4 service alert alert-border">
+                     
+                        <div class="icon bg"><% if m.account == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Account</h6></a>
+                        <div class="text-small">
+                            
+                          <% if @account_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                 <%= f.label :account , "Availability"  %><br>  
+                                 <%= f.radio_button :account, 1 %> <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :account, 0 %> <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :accountbypass, "Bypass" %><br>
+                                    <%= f.radio_button :accountbypass, 1 %>  <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :accountbypass, 0 %>   &nbsp;<i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                     
+                        <div class="icon bg"><% if m.communication == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Communication Preference</h6></a>
+                        <div class="text-small">
+                            <div class="text-warning"><em><b>pending</b></em></div><br>
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                <%= f.label :communication, "Availability"  %><br>    
+                                <%= f.radio_button :communication, 1 %> <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :communication, 0 %> <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :communicationbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :communicationbypass, 1 %>  <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :communicationbypass, 0 %> <i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                     
+                        <div class="icon bg"><% if m.immunization == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Immunization Holds</h6></a>
+                        <div class="text-small">
+                          <% if @immunization_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                   <%= f.label :immunization, "Availability"  %><br>  
+                                    <%= f.radio_button :immunization, 1 %><i class="fa fa-unlock-alt"></i>  &nbsp; <%= f.radio_button :immunization, 0 %> <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :immunizationbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :immunizationbypass, 1 %> <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :immunizationbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.residency == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Residency Validation</h6> </a>
+                        <div class="text-small">
+                          <% if @residency_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                     <%= f.label :residency, "Availability"  %><br>    
+                                     <%= f.radio_button :residency, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :residency, 0 %><i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :residencybypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :residencybypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :residencybypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                     
+
+
+
+                         <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.finaid == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Financial Aid</h6></a>
+                        <div class="text-small">
+                            
+                           <% if @finaid_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :finaid, "Availability"  %><br>    
+                                    <%= f.radio_button :finaid, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :finaid, 0 %><i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :finaidbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :finaidbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :finaidbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.housingfee == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Housing Fee</h6></a>
+                        <div class="text-small">
+                            <div class="text-warning"><em><b>pending</b></em></div><br>
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :housingfee, "Availability"  %><br>    
+                                    <%= f.radio_button :housingfee, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :housingfee, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :housingfeebypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :housingfeebypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :housingfeebypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.housingmealplan == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Housing & Meal Plans</h6></a>
+                        <div class="text-small">
+                            <div class="text-warning"><em><b>pending</b></em></div><br>
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :housingmealplan, "Availability" %><br>  
+                                    <%= f.radio_button :housingmealplan, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :housingmealplan, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :housingmealplanbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :housingmealplanbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :housingmealplanbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                       <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.aleks == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">ALEKS</h6></a>
+                        <div class="text-small">
+                            
+                          <% if @aleks_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :aleks, "Availability"  %><br>
+                                    <%= f.radio_button :aleks, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :aleks, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :aleksbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :aleksbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :aleksbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.orientation == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Orientation</h6></a>
+                        <div class="text-small">
+                          
+                          <% if @orientation_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :orientation, "Availability"  %><br>    
+                                    <%= f.radio_button :orientation, 1 %><i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :orientation, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :orientationbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :orientationbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :orientationbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.learning_comm == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Learning Communities</h6></a>
+                        <div class="text-small">
+                            <div class="text-warning"><em><b>pending</b></em></div><br>
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                     <%= f.label :learning_comm, "Availability"  %><br>    
+                                     <%= f.radio_button :learning_comm, 1 %><i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :learning_comm, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :learning_commbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :learning_commbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :learning_commbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                       <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.oars == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">OARS</h6></a>
+                        <div class="text-small">
+
+                          <% if @oars_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+                            
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :oars, "Availability"  %><br>   
+                                    <%= f.radio_button :oars, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :oars, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :oarsbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :oarsbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :oarsbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      </a>
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.registration == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Registration</h6></a>
+                        <div class="text-small">
+                          
+                          <% if @reg_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :registration, "Availability"  %><br>
+                                    <%= f.radio_button :registration, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :registration, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :registrationbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :registrationbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :registrationbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                     
+                        <div class="icon bg"><% if m.tution == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Tuition Payment</h6></a>
+                        <div class="text-small">
+                          
+                          <% if @tuition_complete == 1 %>
+                              <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :tution, "Availability"  %><br>      
+                                    <%= f.radio_button :tution, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :tution, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                   <%= f.label :tuitionbypass, "Bypass"  %><br>    
+                                   <%= f.radio_button :tuitionbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :tuitionbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                       <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.emergency == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Emergency Contacts</h6></a>
+                        <div class="text-small">
+                            
+                          <% if @deposit_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :emergency, "Availability"  %><br> 
+                                    <%= f.radio_button :emergency, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :emergency, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :emergencybypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :emergencybypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :emergencybypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                    
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.faualert == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">FAU Alert</h6> </a>
+                        <div class="text-small">
+
+                          <% if @fau_alert_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :faualert, "Availability"  %><br> 
+                                    <%= f.radio_button :faualert, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :faualert, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :faualertbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :faualertbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :faualertbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                     
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.owlcard == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Owl Card</h6></a>
+                        <div class="text-small">
+                          
+                          <% if @owlcard_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :owlcard, "Availability"  %><br>      
+                                    <%= f.radio_button :owlcard, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :owlcard, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :owlcardbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :owlcardbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :owlcardbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+                      <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.bookadvance == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Book Advance</h6></a>
+                        <div class="text-small">
+                          
+                          <% if @bookadvance_complete == 1 %>
+                              <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :bookadvance, "Availability"  %><br>     
+                                    <%= f.radio_button :bookadvance, 1 %><i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :bookadvance, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :bookadvancebypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :bookadvancebypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :bookadvancebypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+
+                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.vehiclereg == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Vehicle Registration</h6></a>
+                        <div class="text-small">
+                          
+                          <% if @vehicle_reg_complete == 1 %>
+                              <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :vehiclereg, "Availability"  %><br>     
+                                    <%= f.radio_button :vehiclereg, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :vehiclereg, 0 %>  &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :vehicleregbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :vehicleregbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :vehicleregbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      
+
+                     
+                    </div><!-- END OF ROW -->
+                    
+                 
+
+                  
+
+
+
+
+          
+        <!-- </div>  --><!--.row -->
+
+              <div class="actions">
+                <%= f.submit "Save" , :class => 'btn btn-primary'%>
+              </div>
+
+             
+         
+         
+        
+
+        <% end %><! -- end of form -->
+  
+  <!-- </div> -->
+
+  <% end %>
+
+<!-- </div> -->
+
+
+  </div><!-- .container -->
+
