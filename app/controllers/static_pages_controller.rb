@@ -173,8 +173,21 @@ class StaticPagesController < ApplicationController
           # @vehicle_reg_available = 1
 
           #module completion flags
-
           
+          #BEGIN: account_status check
+          account_status = Oim.accountstatus_by_netid(session[:cas_user].upcase)
+    
+          account_status.each do |as| 
+              if as['status'] == 'N' || as['status'].nil?
+                    @account_complete = 0
+                  else
+                    @account_complete = 1
+              end 
+           end     
+
+
+          #END: account status check
+
           immunization_status = Banner.immunization_status(@znum)
           residency_status = Banner.residency_status(@znum)
           finaid_status = Banner.fin_aid_docs(@znum)
@@ -252,7 +265,7 @@ class StaticPagesController < ApplicationController
                @aleks_complete = 0
                @deposit_complete ||= 0
                @dep_complete_flag = 0
-               @account_complete = 0
+               #@account_complete = 0
                @emergency_complete = 0
             else
                 get_multistatus.each do |o|
@@ -271,11 +284,11 @@ class StaticPagesController < ApplicationController
                   end 
 
                   #this needs to be changed to hit up OIM
-                  if o['gobtpac_external_user'].nil?
-                    @account_complete = 0
-                  else
-                    @account_complete = 1
-                  end 
+                  # if o['gobtpac_external_user'].nil?
+                  #   @account_complete = 0
+                  # else
+                  #   @account_complete = 1
+                  # end 
 
                   if o['spremrg_contact_name'].nil?
                     @emergency_complete = 0

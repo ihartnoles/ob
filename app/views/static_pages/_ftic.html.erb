@@ -402,26 +402,36 @@ Hello, <%= session[:cas_user] %>!
 			
 			<div id="step-3" class="collapse">
 			  <div class="step-content">
-			  	<h3 class="title">Claiming Your Account <%= @account_complete %></h3>
+			  	<h3 class="title">Claiming Your Account</h3>
 			  		
 			  		<% if @account_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
+
 					<% else %>
 
+						
 				  		 <p>The FAUNet ID is the account name you will use to login to many of the systems you will utilize in your daily life at Florida Atlantic University. It is a part of your official FAU e-mail address (e.g., FAUNetID@fau.edu). All students, faculty and staff are automatically granted a FAUNet ID and may claim their account by logging into the MyFAU portal. While many online services provided by the University require a separate password, OIT is working to synchronize these passwords while striving to improve the security of the system.</p>
 
+				  		<% if @account_complete == 1 %>
+
+				  			<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
+								<button data-dismiss="alert" class="close" type="button">×</button>
+								<p>
+								<strong>Congrats on claiming your account! You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
+								</p>					
+					        </div>
+
+
+
+						<% else %>
 				  		 <p>
 				  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu" target="_blank" id="claimAccountBut">[Start claiming your account]</a>
-				  		 </p>
-				  		<!-- 
-				  		<div class="buttons-box clearfix">
-							<button class="btn btn-default" id="claimAccountBut">Claim Account</button>
-						</div> 
-					    -->
+				  		 </p>			  		
 
 				  		 <div class="buttons-box text-right">
 						  <button type="button" class="btn btn-danger" id="accountBut">Continue</button>						 
 						</div>
+						<% end %>
 					<% end %>
 			  </div>
 			</div>

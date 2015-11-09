@@ -59,6 +59,11 @@ bannertest:
    username: ihartstein
    password: ikeORACLE60
 
+oimdev:
+   adapter: oracle_enhanced
+   database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=boc22ora06.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=OIMD)))"
+   username: dev_ihartstein
+   password: n8sdxsydvki2
 
 ugapp:
    adapter: oracle_enhanced
