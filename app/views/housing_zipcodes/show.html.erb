@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @housing_zipcode.zip %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @housing_zipcode.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @housing_zipcode.state %>
+</p>
+
+<p>
+  <strong>County:</strong>
+  <%= @housing_zipcode.county %>
+</p>
+
+<p>
+  <strong>Campus:</strong>
+  <%= @housing_zipcode.campus %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @housing_zipcode.distance %>
+</p>
+
+<%= link_to 'Edit', edit_housing_zipcode_path(@housing_zipcode) %> |
+<%= link_to 'Back', housing_zipcodes_path %>

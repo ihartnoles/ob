@@ -1,0 +1,41 @@
+<%= form_for(@housing_zipcode) do |f| %>
+  <% if @housing_zipcode.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@housing_zipcode.errors.count, "error") %> prohibited this housing_zipcode from being saved:</h2>
+
+      <ul>
+      <% @housing_zipcode.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :zip %><br>
+    <%= f.number_field :zip %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_area :city %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_area :state %>
+  </div>
+  <div class="field">
+    <%= f.label :county %><br>
+    <%= f.text_area :county %>
+  </div>
+  <div class="field">
+    <%= f.label :campus %><br>
+    <%= f.text_area :campus %>
+  </div>
+  <div class="field">
+    <%= f.label :distance %><br>
+    <%= f.text_field :distance %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

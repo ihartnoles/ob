@@ -1,0 +1,37 @@
+<h1>Listing housing_zipcodes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Zip</th>
+      <th>City</th>
+      <th>State</th>
+      <th>County</th>
+      <th>Campus</th>
+      <th>Distance</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @housing_zipcodes.each do |housing_zipcode| %>
+      <tr>
+        <td><%= housing_zipcode.zip %></td>
+        <td><%= housing_zipcode.city %></td>
+        <td><%= housing_zipcode.state %></td>
+        <td><%= housing_zipcode.county %></td>
+        <td><%= housing_zipcode.campus %></td>
+        <td><%= housing_zipcode.distance %></td>
+        <td><%= link_to 'Show', housing_zipcode %></td>
+        <td><%= link_to 'Edit', edit_housing_zipcode_path(housing_zipcode) %></td>
+        <td><%= link_to 'Destroy', housing_zipcode, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Housing zipcode', new_housing_zipcode_path %>

@@ -153,6 +153,7 @@ DEPENDENCIES
   jquery-rails
   multi_json
   paperclip
+  rack (~> 1.4, >= 1.4.7)
   rails (= 3.2.13)
   ruby-oci8 (~> 2.1.0)
   rubycas-client!
