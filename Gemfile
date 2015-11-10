@@ -8,7 +8,7 @@ gem 'rails', '3.2.13'
 gem 'activesupport'
 gem 'actionpack'
 gem 'multi_json'
-gem 'rack', '~> 1.4', '>= 1.4.7'
+gem 'rack', '~> 1.4.7'
 
 gem 'strong_parameters'
 
