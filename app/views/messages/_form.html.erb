@@ -1,0 +1,49 @@
+   <div class="row">
+    &nbsp;
+   </div>
+  <div class="container">
+    <div class="row">
+      <article class="col-sm-12 col-md-12 content">
+    <div class="my-account margin-top">
+      
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+        <div class="title-box">
+          <h2 class="title">Send a Message</h2>
+        </div>
+
+
+<%= form_for :message, :url => {:action => :create} do |f| %>
+  <div class="field">
+     <%= f.label :to %><br>
+     <%= f.text_field :to , :class=>'form-control'%>
+  </div>
+  <div class="field">
+    <%= f.label :from %><br>
+    <%= f.text_field :from , :class=>'form-control'%>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br>
+    <%#= f.text_field :message %>
+     <%= f.cktext_area :message, :value => 'Default value', :id => 'sometext' %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit 'Send Message',:class => 'btn btn-default' %>
+  </div>
+<% end %>
+
+
+
+        
+        </div>        
+      </div>
+      
+      
+      </form>
+    </div>
+      </article><!-- .content -->
+    
+    
+    </div>
+  </div>

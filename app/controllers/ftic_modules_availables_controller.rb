@@ -27,6 +27,8 @@ class FticModulesAvailablesController < ApplicationController
 
   # GET /modules_availables/1/edit
   def edit
+    @modules_available = FticModulesAvailable.find(params[:id])
+    #@modules_available =FticModulesAvailable.where(:znumber => params[:znum]) 
     @ma = FticModulesAvailable.where(:id =>  params[:id] )
 
     #BEGIN: To-Dos
@@ -234,8 +236,16 @@ class FticModulesAvailablesController < ApplicationController
   # PATCH/PUT /modules_availables/1
   # PATCH/PUT /modules_availables/1.json
   def update
+
+    @modules_available = FticModulesAvailable.find(params[:id])
+
+    model_params = params[:ftic_modules_available].permit( :znumber, :netid, :f_name, :l_name, :welcome, :deposit, :account, :communication, :immunization, :finaid, :housingfee, :residency,
+                  :housingmealplan, :aleks, :oars, :learning_comm, :orientation, :registration, :emergency, :faualert, :owlcard, :bookadvance, :tuition,
+                  :vehiclereg, :isactive )
+
     respond_to do |format|
-      if @modules_available.update(ftic_modules_available_params)
+      #if @modules_available.update(ftic_modules_available_params)
+      if @modules_available.update_attributes(model_params)
         format.html { redirect_to '/dashboard/ftic', notice: 'Record updated!' }
         format.json { head :no_content }
       else

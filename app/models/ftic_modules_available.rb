@@ -1,5 +1,9 @@
 class FticModulesAvailable < ActiveRecord::Base
 
+      #attr_accessible :znumber, :netid, :f_name, :l_name, :welcome, :deposit, :account, :communication, :immunization, :finaid, :housingfee, :residency,
+      #            :housingmealplan, :aleks, :oars, :learning_comm, :orientation, :registration, :emergency, :faualert, :owlcard, :bookadvance, :tuition,
+      #            :vehiclereg, :isactive
+
 	def self.sync
       @Bannerstuds = Banner.find_newstudents
 

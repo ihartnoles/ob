@@ -10,6 +10,8 @@ gem 'actionpack'
 gem 'multi_json'
 gem 'rack', '~> 1.4', '>= 1.4.7'
 
+gem 'strong_parameters'
+
 gem 'paperclip'
 
 gem 'ckeditor', github: 'galetahub/ckeditor'

@@ -1,0 +1,65 @@
+  <header class="page-header">
+    <div class="container">
+      <h4 class="title">Send Message</h4>
+    </div>	
+  </header>
+  <div class="container">
+    <div class="row">
+      <article class="col-sm-12 col-md-12 content">
+		<div class="my-account margin-top">
+		  <form novalidate="novalidate" class="form-validator bv-form"><button style="display: none; width: 0px; height: 0px;" class="bv-hidden-submit" type="submit"></button>
+			<div class="row">
+			  <div class="col-sm-12 col-md-12">
+				<div class="title-box">
+				  <h2 class="title">Message Details</h2>
+				</div>
+				<%#= form_tag "/my_controller/update2" do %>
+					<%#= cktext_area :page, :info, :cols => 40, :ckeditor => {:toolbar => 'mini'} %>
+					
+
+				<%# end %>
+
+				#method="post" action="/messages"
+				
+
+				<%= form_for  @message, :url => { :controller => "messages", :action => "create" }  do |f| %>  
+					  <div class="field">
+					    <%= f.label :to %><br>
+					    <%= f.text_field :to , :class=>'form-control'%>
+					  </div>
+					  <div class="field">
+					    <%= f.label :from %><br>
+					    <%= f.text_field :from , :class=>'form-control'%>
+					  </div>
+					  <div class="field">
+					    <%= f.label :message %><br>
+					    <%#= f.text_field :message %>
+					    <%= f.cktext_area :message, :value => 'Default value', :id => 'sometext' %>
+					  </div>
+					  <div class="actions">
+					    <%= f.submit %>
+					  </div>
+				<% end %>
+
+
+				<br>
+				
+				<div class="buttons-box clearfix">
+			  		<button class="btn btn-default">Save</button>
+				    <span class="required"><b>*</b> Required Field</span>
+				</div>
+
+		
+
+				
+			  </div>			  
+			</div>
+		  
+			
+		  </form>
+		</div>
+      </article><!-- .content -->
+	  
+	  
+    </div>
+  </div>
