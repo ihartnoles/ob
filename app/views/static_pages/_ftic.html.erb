@@ -161,13 +161,13 @@ Hello, <%= session[:cas_user] %>!
 
 		    <li class="panel">
 		  	
-		  	<% if  @deposit_available == 1 && @deposit_complete== 0 %>
-				<a href="#step-1A" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
-			<% elsif  (@deposit_available == 1 && @deposit_complete == 1 ) || @deposit_bypass == 1 %>
-				<a href="#step-1A" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
-			<% else %>
-				<a href="#step-1A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
-			<% end %>
+		  	<%# if  @deposit_available == 1 && @deposit_complete== 0 %>
+				<a href="#step-1A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle">
+			<%# elsif  (@deposit_available == 1 && @deposit_complete == 1 ) || @deposit_bypass == 1 %>
+				<!-- <a href="#step-1A" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle"> -->
+			<%# else %>
+				<!-- <a href="#step-1A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="studentvisatitle"> -->
+			<%# end %>
 
 
 			  <div class="number"><!-- Step 2 --><%= get_statusicon(@deposit_available, @deposit_complete, @deposit_bypass) %> </div>
@@ -178,9 +178,9 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">
 			  	<h3 class="title">International Student Visa Processing</h3>
 			 
-						<% if @deposit_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-						<% else %>
+						<%# if @deposit_bypass == 1 %>			  		
+							<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
+						<%# else %>
 
 					  		<p>Congratulations and Welcome to FAU! International students who wish to study in the U.S. must obtain the appropriate visa classification in order to engage in full-time study (F-1 visa or J-1 visa). International Student and Scholar Services (ISSS) assists international students in obtaining the Certification of Eligibility (I-20 or DS-2019), required to obtain the F-1 or J-1 visa classification.</p> 
 							
@@ -206,7 +206,7 @@ Hello, <%= session[:cas_user] %>!
 							<p>If you are applying for permanent residence (‘green card’) or hold other types of immigration classifications (i.e., Deferred Action, political asylum, temporary protected status, etc.) you do not need to supply documentation to ISSS. Please contact Admissions directly at <a href="mailto:admissions@fau.edu">admissions@fau.edu</a>. Once your record is updated with the appropriate information, you will no longer see the International Student Visa Processing information in your account.</p>
 
 	
-			   			  <% end %>
+			   			  <%# end %>
 
                          <div class="buttons-box text-right">
 						  <button type="button" class="btn btn-danger" id="depositBut">Continue</button>						 
@@ -619,13 +619,13 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		  <li class="panel">
-		  <% if @emergency_available == 1 && @emergency_complete == 0 %>
-		  	<a href="#step-5A" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% elsif (@emergency_available == 1 && @emergency_complete == 1) || @emergencybypass == 1 %>
-		  	<a href="#step-5A" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% else %>
-		    <a href="#step-5A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
-		  <% end %>
+		  <%# if @emergency_available == 1 && @emergency_complete == 0 %>
+		  	<a href="#step-5A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  <%# elsif (@emergency_available == 1 && @emergency_complete == 1) || @emergencybypass == 1 %>
+		  	<!-- <a href="#step-5A" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse"> -->
+		  <%# else %>
+		    <!-- <a href="#step-5A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" -->
+		  <%# end %>
 
 			  <div class="number"><!-- Step 15 --> <%= get_statusicon(@emergency_available, @emergency_complete, @emergencybypass) %></div>
 			  <h6>International Student Medical Insurance</h6>
@@ -636,9 +636,9 @@ Hello, <%= session[:cas_user] %>!
 		  		<h3 class="title">International Student Medical Insurance</h3>
 				<!-- <p> Please be on the lookout for the FAU Alert and Statement of Responsibility forms/screens when you login to Self Service for the first time. You  must verify and submit both before the respective holds are lifted and access is granted to Self Service.</p> -->
 
-				<% if @emergencybypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+				<%# if @emergencybypass == 1 %>			  		
+						<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
+				<%# else %>
 					
 					 <p>
 					 	All international students are permitted to register for classes at Florida Atlantic University (FAU) only after demonstrating that they hold medical insurance coverage which meets the guidelines set by the Florida Board of Governors Regulation BOG 6.009 and FAU Regulation 4.009 International students with F-1 and J-1 status are required to maintain continuous insurance coverage throughout the entire duration of their association with FAU (including any period authorized for academic training or authorized vacation or leave).  International students beginning enrollment in the fall semester must show proof of insurance for the full academic year, including the summer semester.  Students beginning enrollment in the spring or summer semesters, must have coverage extending from at least the beginning of the term to the third week of August. Misrepresenting or willfully failing to maintain appropriate medical insurance coverage will result in serious consequences for the student.
@@ -655,9 +655,9 @@ Hello, <%= session[:cas_user] %>!
 							Students who wish to seek medical insurance coverage under a non-FAU plan must submit the <a href="http://www.fau.edu/shs/PDFs/Alternate_Insurance_Form_2015_2016.pdf" target="_blank">Alternate Insurance Compliance Form</a> in lieu of purchasing the FAU insurance plan for international students.
 					 </p>
 					 <p>
-					 	<em><b>MM hold is manually removed by Student Health Services.</b></em>
+					 	<!-- <em><b>MM hold is manually removed by Student Health Services.</b></em> -->
 					 </p>
-				<% end %>
+				<%# end %>
 			  </div>			
 			</div>
 		  </li>
@@ -1060,13 +1060,13 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 
-		   	<% if @orientation_available == 1 && @orientation_complete == 0 || @orientation_complete.nil? %>
-				<a href="#step-13A" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif  (@orientation_available == 1 && @orientation_complete == 1) || @orientationbypass == 1 %>
-				<a href="#step-13A" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% else %>
-				<a href="#step-13A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
-			<% end %>
+		   	<%# if @orientation_available == 1 && @orientation_complete == 0 || @orientation_complete.nil? %>
+				<a href="#step-13A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<%# elsif  (@orientation_available == 1 && @orientation_complete == 1) || @orientationbypass == 1 %>
+				<!-- <a href="#step-13A" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse"> -->
+			<%# else %>
+				<!-- <a href="#step-13A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
+			<%# end %>
 
 			  <div class="number"><!-- Step 13 --><%= get_statusicon(@orientation_available, @orientation_complete, @orientationbypass) %></div>
 			  <h6>International Student Orientation</h6>
@@ -1076,9 +1076,9 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">International Student Orientation</h3>
 
-		  		<% if @orientationbypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+		  		<%# if @orientationbypass == 1 %>			  		
+						<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
+				<%# else %>
 
 					<p>
 						In addition to the university-wide student orientation, international students holding F-1 or J-1 visa classification must also register for mandatory immigration check-in and international orientation. 
@@ -1096,7 +1096,7 @@ Hello, <%= session[:cas_user] %>!
 						<a title="FAU Orientation" href="http://www.fau.edu/orientation/about/HowDoISignup.php" target="_blank">[More Information]</a>
 					</p> -->
 
-				<% end %>
+				<%# end %>
 			  </div>			
 			</div>
 		  </li>
