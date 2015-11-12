@@ -59,8 +59,7 @@ class StaticPagesController < ApplicationController
 			    	
           session_config
 
-          modules_available
-         
+          modules_available         
 
           #module flags
           # @welcome_available = 1
@@ -283,7 +282,7 @@ class StaticPagesController < ApplicationController
 
               if @whc_student == 'Y' #check if they are a wilkes honors college student
                 #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
-                housing_fee_required = HousingZipcode.where(:zip => @zipcode, :campus => 'Jupiter')
+                housing_fee_required = 1
               else
                 #check zipcode radius for Boca Campus              
                 housing_fee_required = HousingZipcode.where(:zip => @zipcode, :campus => 'Boca Raton')

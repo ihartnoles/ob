@@ -15,9 +15,9 @@ class Banner < ActiveRecord::Base
 		 	get = connection.exec_query("select distinct SUBSTR( SPRADDR_ZIP, 1 , 5 ) as ZIP FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
 		end
 
-		def self.age_calculation(netid)
-			get = connection.exec_query("select floor(months_between(SYSDATE, SPBPERS_BIRTH_DATE) /12) as AGE FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(netid)} AND rownum = 1")
-		end
+		# def self.age_calculation(netid)
+		# 	get = connection.exec_query("select floor(months_between(SYSDATE, SPBPERS_BIRTH_DATE) /12) as AGE FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(netid)} AND rownum = 1")
+		# end
 
 		def self.additional_housing_reqs(id)
 			get = connection.exec_query("select floor(months_between(SYSDATE, SPBPERS_BIRTH_DATE) /12) as AGE, SPBPERS_MRTL_CODE, WHC_STUDENT FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
@@ -40,9 +40,9 @@ class Banner < ActiveRecord::Base
 			get = connection.exec_query("SELECT sarchkl_admr_code, sarchkl_receive_date FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
-		def self.account_claimed_status(id)
-			get = connection.exec_query("SELECT spremrg_first_name, spremrg_last_name FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
-		end
+		# def self.account_claimed_status(id)
+		# 	get = connection.exec_query("SELECT spremrg_first_name, spremrg_last_name FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
+		# end
 
 		#BEGIN: a test to consolidate aleks tution and account claim status
 			# presence of gobtpac_external_user means they have their netid;

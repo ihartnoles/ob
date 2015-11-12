@@ -77,7 +77,7 @@ Hello, <%= session[:cas_user] %>!
     <div class="container">
       <article class="content col-sm-9">	
 	      <h4 class="title">
-	      	Welcome to FAU <%= get_fullname(@znum) %>! Let's get started!</h4>
+	      	Welcome to FAU <%= get_fullname(znum) %>! Let's get started!</h4>
 
 	      <p>We want your transition to college life to be as smooth as possible. Below is a checklist of things to keep in mind and tasks you will need to complete prior to your arrival on campus.</p><br>
 	     <% if params[:links] %>
@@ -116,7 +116,7 @@ Hello, <%= session[:cas_user] %>!
 					
 					<a name="raptors"></a>
 
-					<p>Congratulations on your acceptance to Florida Atlantic University for <%= @term_display %> <%= @year_display %>!  We are so excited to have you join the Owl family!  This is an exciting time, with lots of steps to prepare for your first day on campus.  Please read through these pages carefully, as there is a lot of information to know before you arrive on campus. <a title="Welcome to FAU!" href="#divForm" class="lightbox" id="btnForm">[More Information]</a></p>
+					<p>Congratulations on your acceptance to Florida Atlantic University for <%= term_display %> <%= year_display %>!  We are so excited to have you join the Owl family!  This is an exciting time, with lots of steps to prepare for your first day on campus.  Please read through these pages carefully, as there is a lot of information to know before you arrive on campus. <a title="Welcome to FAU!" href="#divForm" class="lightbox" id="btnForm">[More Information]</a></p>
 
 					<!-- <p>
 						<a href="#divForm" class="gallery-images" id="btnForm">[More Information]</a>
@@ -170,7 +170,7 @@ Hello, <%= session[:cas_user] %>!
 			<%# end %>
 
 
-			  <div class="number"><!-- Step 2 --><%= get_statusicon(@deposit_available, @deposit_complete, @deposit_bypass) %> </div>
+			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
 			  <h6>International Student Visa Processing</h6>
 			</a>
 			
@@ -279,16 +279,16 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		  	
-		  	<% if  @deposit_available == 1 && @deposit_complete== 0 %>
+		  	<% if  deposit_available == 1 && deposit_complete== 0 %>
 				<a href="#step-2" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
-			<% elsif  (@deposit_available == 1 && @deposit_complete == 1 ) || @deposit_bypass == 1 %>
+			<% elsif  (deposit_available == 1 && deposit_complete == 1 ) || deposit_bypass == 1 %>
 				<a href="#step-2" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
 			<% else %>
 				<a href="#step-2" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
 			<% end %>
 
 
-			  <div class="number"><!-- Step 2 --><%= get_statusicon(@deposit_available, @deposit_complete, @deposit_bypass) %> </div>
+			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
 			  <h6>Pay Deposit</h6>
 			</a>
 			
@@ -311,7 +311,7 @@ Hello, <%= session[:cas_user] %>!
 								<button data-dismiss="alert" class="close" type="button">×</button>
 								<p>
 									<strong>
-										<%= get_tuition_deposit_status(@znum) %>
+										<%= get_tuition_deposit_status(znum) %>
 									</strong>
 								</p>					
 			   			    </div>
@@ -388,15 +388,15 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		  	
-		  	<% if  @account_available == 1 && @account_complete== 0 %>
+		  	<% if  account_available == 1 && account_complete== 0 %>
 				<a href="#step-3" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
-			<% elsif  (@account_available == 1 && @account_complete == 1) || @account_bypass == 1 %>
+			<% elsif  (account_available == 1 && account_complete == 1) || account_bypass == 1 %>
 				<a href="#step-3" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
 			<% else %>
 				<a href="#step-3" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="accounttitle">
 			<% end %>
 
-			  <div class="number"><!-- Step 3 --> <%= get_statusicon(@account_available, @account_complete, @account_bypass) %></div>
+			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
 			  <h6>Create Account</h6>
 			</a>
 			
@@ -404,7 +404,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">
 			  	<h3 class="title">Claiming Your Account</h3>
 			  		
-			  		<% if @account_bypass == 1 %>			  		
+			  		<% if account_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 
 					<% else %>
@@ -412,7 +412,7 @@ Hello, <%= session[:cas_user] %>!
 						
 				  		 <p>The FAUNet ID is the account name you will use to login to many of the systems you will utilize in your daily life at Florida Atlantic University. It is a part of your official FAU e-mail address (e.g., FAUNetID@fau.edu). All students, faculty and staff are automatically granted a FAUNet ID and may claim their account by logging into the MyFAU portal. While many online services provided by the University require a separate password, OIT is working to synchronize these passwords while striving to improve the security of the system.</p>
 
-				  		<% if @account_complete == 1 %>
+				  		<% if account_complete == 1 %>
 
 				  			<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
 								<button data-dismiss="alert" class="close" type="button">×</button>
@@ -439,15 +439,15 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 
-		  	<% if @communication_available == 1 && @communication_complete == 0 %>
+		  	<% if communication_available == 1 && communication_complete == 0 %>
 				<a id="communicationhref" href="#step-4" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif  (@communication_available == 1 && @communication_complete == 1) || @communication_bypass == 1 %>
+			<% elsif  (communication_available == 1 && communication_complete == 1) || communication_bypass == 1 %>
 				<a id="communicationhref" href="#step-4" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="communicationhref" href="#step-4" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 4 --> <%= get_statusicon(@communication_available, @communication_complete, @communication_bypass) %> </div>
+			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
 			  <h6>Communication Preference</h6>
 			</a>
 			
@@ -455,7 +455,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">
 			  	<h3 class="title">How do you want to be contacted?</h3>
 			  	
-			  		<% if @communication_bypass == 1 %>			  		
+			  		<% if communication_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 					<% else %>
 				  		 <p>Stay up to date with FAU news, updates and the latest information about the entire Florida Atlantic community.</p>
@@ -549,15 +549,15 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 		  
 		  <li class="panel">
-		  <% if @immunization_available == 1 && @immunization_complete == 0 %>
+		  <% if immunization_available == 1 && immunization_complete == 0 %>
 			<a href="#step-5" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% elsif (@immunization_available == 1 && @immunization_complete == 1) || @immunization_bypass == 1 %>
+		  <% elsif (immunization_available == 1 && immunization_complete == 1) || immunization_bypass == 1 %>
 		  	<a href="#step-5" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a href="#step-5" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-			  <div class="number"><!-- Step 5 --> <%= get_statusicon(@immunization_available, @immunization_complete, @immunization_bypass) %></div>
+			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, immunization_complete,immunization_bypass) %></div>
 			  <h6>Immunization Holds</h6>
 			</a>
 			
@@ -569,7 +569,7 @@ Hello, <%= session[:cas_user] %>!
 			  		
 		  		<h3 class="title">Immunization Policy</h3>
 
-		  		<% if @immunization_bypass == 1 %>			  		
+		  		<% if immunization_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -579,7 +579,7 @@ Hello, <%= session[:cas_user] %>!
 		  			
 		  			<strong>		  				
 		  				<div class="alert alert-info">
-				 			<%= get_immunization_status(@znum) %><br>
+				 			<%= get_immunization_status(znum) %><br>
 						</div>
 		  			</strong>
 		  		</p> -->
@@ -590,7 +590,7 @@ Hello, <%= session[:cas_user] %>!
 					<button data-dismiss="alert" class="close" type="button">×</button>
 					<p>
 						<strong>
-							<%= get_immunization_status(@znum) %>
+							<%= get_immunization_status(znum) %>
 						</strong>
 					</p>					
    			    </div>
@@ -619,15 +619,15 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		  <li class="panel">
-		  <%# if @emergency_available == 1 && @emergency_complete == 0 %>
+		  <%# if emergency_available == 1 && emergency_complete == 0 %>
 		  	<a href="#step-5A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <%# elsif (@emergency_available == 1 && @emergency_complete == 1) || @emergencybypass == 1 %>
+		  <%# elsif (emergency_available == 1 && emergency_complete == 1) || emergencybypass == 1 %>
 		  	<!-- <a href="#step-5A" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse"> -->
 		  <%# else %>
 		    <!-- <a href="#step-5A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" -->
 		  <%# end %>
 
-			  <div class="number"><!-- Step 15 --> <%= get_statusicon(@emergency_available, @emergency_complete, @emergencybypass) %></div>
+			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
 			  <h6>International Student Medical Insurance</h6>
 			</a>
 			
@@ -636,7 +636,7 @@ Hello, <%= session[:cas_user] %>!
 		  		<h3 class="title">International Student Medical Insurance</h3>
 				<!-- <p> Please be on the lookout for the FAU Alert and Statement of Responsibility forms/screens when you login to Self Service for the first time. You  must verify and submit both before the respective holds are lifted and access is granted to Self Service.</p> -->
 
-				<%# if @emergencybypass == 1 %>			  		
+				<%# if emergencybypass == 1 %>			  		
 						<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
 				<%# else %>
 					
@@ -664,15 +664,15 @@ Hello, <%= session[:cas_user] %>!
 
 	   <li class="panel">
 
-		  <% if @residency_available == 1 && @residency_complete == 0 %>
+		  <% if residency_available == 1 && residency_complete == 0 %>
 			<a href="#step-7" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% elsif (@residency_available == 1 && @residency_complete == 1) || @residency_bypass == 1 %>
+		  <% elsif (residency_available == 1 && residency_complete == 1) || residency_bypass == 1 %>
 		  	<a href="#step-7" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a href="#step-7" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-			  <div class="number"><!-- Step 7 --> <%= get_statusicon(@residency_available, @residency_complete, @residency_bypass) %> </div>
+			  <div class="number"><!-- Step 7 --> <%= get_statusicon(residency_available, residency_complete, residency_bypass) %> </div>
 			  <h6>Residency Validation</h6>
 			</a>
 			
@@ -683,7 +683,7 @@ Hello, <%= session[:cas_user] %>!
 			  		
 		  		<h3 class="title">Residency for tuition purposes</h3>
 
-		  		<% if @residency_bypass == 1 %>			  		
+		  		<% if residency_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -700,7 +700,7 @@ Hello, <%= session[:cas_user] %>!
 							<button data-dismiss="alert" class="close" type="button">×</button>
 		                    <p>
 		                    	<strong>
-		                    		<%= get_residency_status(@znum) %><br>
+		                    		<%= get_residency_status(znum) %><br>
 		                    	</strong>
 		                    <p>
 	                    </div>
@@ -793,22 +793,22 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 		  
 		  <li class="panel">
-		  	<% if @finaid_available == 1 && @finaid_complete == 0 %>
+		  	<% if finaid_available == 1 && finaid_complete == 0 %>
 			   <a href="#step-6" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif (@finaid_available == 1 && @finaid_complete == 1) || @finaid_bypass == 1 %>
+			<% elsif (finaid_available == 1 && finaid_complete == 1) || finaid_bypass == 1 %>
 			   <a href="#step-6" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
                <a href="#step-6" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 6 --><%= get_statusicon(@finaid_available, @finaid_complete, @finaid_bypass) %> </div>
+			  <div class="number"><!-- Step 6 --><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> </div>
 			  <h6>Financial Aid</h6>
 			</a>
 			
 			<div id="step-6" class="collapse">
 			  <div class="step-content">
 
-			  	<% if @finaid_bypass == 1 %>			  		
+			  	<% if finaid_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -843,7 +843,7 @@ Hello, <%= session[:cas_user] %>!
 						  				</tr>
 						  			</thead>
 
-						  				<%= fin_aid_docs(@znum) %>
+						  				<%= fin_aid_docs(znum) %>
 						  		</table>
 						  		<br>
 
@@ -859,7 +859,7 @@ Hello, <%= session[:cas_user] %>!
 						  				</tr>
 						  			</thead>
 
-						  				<%= fin_aid_awards(@znum) %>
+						  				<%= fin_aid_awards(znum) %>
 						  		</table>
 						  		<br>
 
@@ -878,15 +878,15 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 
-		  	<% if @housing_fee_available == 1 && @housing_fee_complete ==0 %>
+		  	<% if housing_fee_available == 1 && housing_fee_complete ==0 %>
 				<a href="#step-8" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif (@housing_fee_available == 1 && @housing_fee_complete ==1) || @housingfee_bypass == 1 %>
+			<% elsif (housing_fee_available == 1 && housing_fee_complete ==1) || housingfee_bypass == 1 %>
 				<a href="#step-8" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a href="#step-8" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 8 --> <%= get_statusicon(@housing_fee_available, @housing_fee_complete, @housingfee_bypass) %> </div>
+			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, housing_fee_complete, housingfee_bypass) %> </div>
 			  <h6>Housing Fee</h6>
 			</a>
 			
@@ -897,7 +897,7 @@ Hello, <%= session[:cas_user] %>!
 			  		
 		  		<h3 class="title">On-Campus Housing </h3>
 
-		  		<% if @housingfee_bypass == 1 %>			  		
+		  		<% if housingfee_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -912,7 +912,7 @@ Hello, <%= session[:cas_user] %>!
 			  		<button data-dismiss="alert" class="close" type="button">×</button>
 		             <p>
 		             	<strong>
-		             		  <% if @housing_fee_required == 1 %>			  	
+		             		  <% if housing_fee_required == 1 %>			  	
 				                    Our records indicate you meet one or more of the following criteria:
 
 				                    <br>Your residential address is OUTSIDE the 30-mile commutable radius of the campus. 
@@ -942,15 +942,15 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		  <li class="panel">
-		  	<% if @housing_meal_plans_available == 1 && @housing_meal_plans_complete == 0 %>
+		  	<% if housing_meal_plans_available == 1 && housing_meal_plans_complete == 0 %>
 				<a href="#step-9" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif (@housing_meal_plans_available == 1 && @housing_meal_plans_complete == 1) ||  @housingmealplanbypass == 1 %>
+			<% elsif (housing_meal_plans_available == 1 && housing_meal_plans_complete == 1) ||  @housingmealplanbypass == 1 %>
 				<a href="#step-9" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a href="#step-9" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 9 --> <%= get_statusicon(@housing_meal_plans_available, @housing_meal_plans_complete, @housingmealplanbypass) %></div>
+			  <div class="number"><!-- Step 9 --> <%= get_statusicon(housing_meal_plans_available, housing_meal_plans_complete, housingmealplanbypass) %></div>
 			  <h6>Housing & Meal Plans</h6>
 			</a>
 			
@@ -958,7 +958,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">Housing & Meal Plans</h3>
 
-		  		<% if @housingmealplanbypass == 1 %>			  		
+		  		<% if housingmealplanbypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 		  			<p>Freshmen must live in university housing and purchase a meal plan (exceptions may apply-contact housing for details). It is highly recommended that you apply for on-campus housing early as residence halls quickly fill to capacity. To apply, submit a housing contract and deposit to the Department of Housing and Residential Life. Apply online at www.fau.edu/housing</p>			
@@ -969,15 +969,15 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 
-		  <% if @aleks_available == 1 && @aleks_complete == 0 %>
+		  <% if aleks_available == 1 && aleks_complete == 0 %>
 			<a href="#step-10" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% elsif (@aleks_available == 1 && @aleks_complete == 1) || @aleksbypass == 1%>
+		  <% elsif (aleks_available == 1 && aleks_complete == 1) || aleksbypass == 1%>
 		  	<a href="#step-10" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a href="#step-10" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-			  <div class="number"><!-- Step 10 --> <%= get_statusicon(@aleks_available, @aleks_complete, @aleksbypass) %></div>
+			  <div class="number"><!-- Step 10 --> <%= get_statusicon(aleks_available, aleks_complete, aleksbypass) %></div>
 			  <h6>Math Placement Exam - ALEKS</h6>
 			</a>
 			
@@ -985,7 +985,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">ALEKS</h3>
 
-		  		<% if @aleksbypass == 1 %>			  		
+		  		<% if aleksbypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -998,7 +998,7 @@ Hello, <%= session[:cas_user] %>!
 					 <div class="alert alert-border alert-danger text-center fade in alert-dismissable">
 							<button data-dismiss="alert" class="close" type="button">×</button>
 							<strong>
-								<%= aleks_status(@znum) %>
+								<%= aleks_status(znum) %>
 							</strong>
 					 </div>
 
@@ -1015,15 +1015,15 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 
-		   	<% if @orientation_available == 1 && @orientation_complete == 0 || @orientation_complete.nil? %>
+		   	<% if orientation_available == 1 && orientation_complete == 0 || orientation_complete.nil? %>
 				<a href="#step-13" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif  (@orientation_available == 1 && @orientation_complete == 1) || @orientationbypass == 1 %>
+			<% elsif  (orientation_available == 1 && orientation_complete == 1) || orientationbypass == 1 %>
 				<a href="#step-13" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a href="#step-13" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 13 --><%= get_statusicon(@orientation_available, @orientation_complete, @orientationbypass) %></div>
+			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
 			  <h6>Orientation</h6>
 			</a>
 			
@@ -1031,7 +1031,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">New Student Orientation</h3>
 
-		  		<% if @orientationbypass == 1 %>			  		
+		  		<% if orientationbypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -1044,7 +1044,7 @@ Hello, <%= session[:cas_user] %>!
 							<button data-dismiss="alert" class="close" type="button">×</button>
 							<p>
 							<strong>
-								<%= orientation_status(@znum)%>
+								<%= orientation_status(znum)%>
 							</strong>
 							</p>
 					</div>
@@ -1060,15 +1060,15 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 
-		   	<%# if @orientation_available == 1 && @orientation_complete == 0 || @orientation_complete.nil? %>
+		   	<%# if orientation_available == 1 && orientation_complete == 0 || orientation_complete.nil? %>
 				<a href="#step-13A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<%# elsif  (@orientation_available == 1 && @orientation_complete == 1) || @orientationbypass == 1 %>
+			<%# elsif  (orientation_available == 1 && orientation_complete == 1) || orientationbypass == 1 %>
 				<!-- <a href="#step-13A" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse"> -->
 			<%# else %>
 				<!-- <a href="#step-13A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
 			<%# end %>
 
-			  <div class="number"><!-- Step 13 --><%= get_statusicon(@orientation_available, @orientation_complete, @orientationbypass) %></div>
+			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
 			  <h6>International Student Orientation</h6>
 			</a>
 			
@@ -1076,7 +1076,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">International Student Orientation</h3>
 
-		  		<%# if @orientationbypass == 1 %>			  		
+		  		<%# if orientationbypass == 1 %>			  		
 						<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
 				<%# else %>
 
@@ -1103,15 +1103,15 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 		  
-		  <% if @learning_comm_available == 1  %>
+		  <% if learning_comm_available == 1  %>
 			<a href="#step-12" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% elsif  (@learning_comm_available == 1 || @learning_comm_available == 0) && @learning_commbypass == 1 %>
+		  <% elsif  (learning_comm_available == 1 || learning_comm_available == 0) && learning_commbypass == 1 %>
 		   	<a href="#step-12" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a href="#step-12" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-			  <div class="number"><!-- Step 12 --> <%= get_statusicon(@learning_comm_available, @learning_comm_complete, @learning_commbypass) %>
+			  <div class="number"><!-- Step 12 --> <%= get_statusicon(learning_comm_available, learning_comm_complete, learning_commbypass) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  </div>
 			  <h6>Learning Communities</h6>
@@ -1120,7 +1120,7 @@ Hello, <%= session[:cas_user] %>!
 			<div id="step-12" class="collapse">				   
 			  <div class="step-content">			 
 
-			  	<% if @learning_commbypass == 1 %>			  		
+			  	<% if learning_commbypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -1151,23 +1151,23 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		   <li class="panel">
-		   	<% if @oars_available == 1 && @oars_complete == 0 %>
+		   	<% if oars_available == 1 && oars_complete == 0 %>
 				<a href="#step-11" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif (@oars_available == 1 && @oars_complete == 1) || @oars_bypass == 1 %>
+			<% elsif (oars_available == 1 && oars_complete == 1) || oars_bypass == 1 %>
 				<a href="#step-11" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a href="#step-11" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 
-			  <div class="number"><!-- Step 11 --> <%= get_statusicon(@oars_available, @oars_complete, @oars_bypass) %></div>
+			  <div class="number"><!-- Step 11 --> <%= get_statusicon(oars_available, oars_complete, oars_bypass) %></div>
 			  <h6>Online Advising & Resource System - OARS</h6>
 			</a>
 			
 			<div id="step-11" class="collapse">				   
 			  <div class="step-content">	
 
-			  	<% if @oars_bypass == 1 %>			  		
+			  	<% if oars_bypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -1183,7 +1183,7 @@ Hello, <%= session[:cas_user] %>!
 					 <div class="alert alert-border alert-danger text-center fade in alert-dismissable">
 							<button data-dismiss="alert" class="close" type="button">×</button>
 							<strong>					
-								<%= oars_status(@znum) %>
+								<%= oars_status(znum) %>
 							</strong>
 					 </div>
 
@@ -1203,16 +1203,16 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		   	
-		   	<% if @reg_available == 1 && @reg_complete == 0 %>		   	
+		   	<% if reg_available == 1 && reg_complete == 0 %>		   	
 
-		   		<!-- @dep_complete_flag : <%#= @dep_complete_flag %>
-		   		@account_complete :<%#= @account_complete %>
-		   		@oars_complete_flag : <%#= @oars_complete_flag %>
-				@immunization_complete : <%#= @immunization_complete %> -->
+		   		<!-- dep_complete_flag : <%#= dep_complete_flag %>
+		   		account_complete :<%#= account_complete %>
+		   		oars_complete_flag : <%#= oars_complete_flag %>
+				immunization_complete : <%#= immunization_complete %> -->
 
 
 
-		   		<% if  (@dep_complete_flag == 0 || @account_complete == 0 || @oars_complete_flag == 0 || @immunization_complete == 0) %>
+		   		<% if  (dep_complete_flag == 0 || account_complete == 0 || oars_complete_flag == 0 || immunization_complete == 0) %>
 		   			<a href="#step-14" class="collapsed step-title warning" data-parent="#checkoutsteps" data-toggle="collapse">
 		   		<% else %>
 		   			<a href="#step-14" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
@@ -1220,13 +1220,13 @@ Hello, <%= session[:cas_user] %>!
 		   		
 		   
 		   		<!-- <a href="#step-14" class="collapsed step-title warning" data-parent="#checkoutsteps" data-toggle="collapse"> -->
-		   	<% elsif  (@reg_available == 1 && @reg_complete == 1) || @registrationbypass == 1 %>
+		   	<% elsif  (reg_available == 1 && reg_complete == 1) || registrationbypass == 1 %>
 		   		<a href="#step-14" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 		   	<% else %>
 		   		<a href="#step-14" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   	<% end %>
 
-			  <div class="number"><!-- Step 14 --><%= get_statusicon(@reg_available, @reg_complete, @registrationbypass) %></div>
+			  <div class="number"><!-- Step 14 --><%= get_statusicon(reg_available, reg_complete, registrationbypass) %></div>
 			  <h6>Registration</h6>
 			</a>
 			
@@ -1234,29 +1234,29 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">Register for Classes</h3>
 
-		  		<% if @registrationbypass == 1 %>			  		
+		  		<% if registrationbypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
 
-			  		<% if  @dep_complete_flag == 0 || @account_complete == 0 || @oars_complete_flag == 0 || @immunization_complete == 0  %>
+			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete_flag == 0 || immunization_complete == 0  %>
 			  			
 			  			<p>You have holds on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
 			  			<ol>
-			  				<% if @dep_complete_flag == 0 %>
+			  				<% if dep_complete_flag == 0 %>
 			  					<li>You must confirm your intention to enroll and secure your space in the class with a $200.00 non-refundable deposit.</li>
 			  				<% end %>
 
-			  				<% if @account_complete == 0 %>
+			  				<% if account_complete == 0 %>
 			  					<li>You must claim your FAU NetID.</li>
 			  				<% end %>
 
-			  				<% if @oars_complete_flag == 0 %>
+			  				<% if oars_complete_flag == 0 %>
 			  					<li>You must complete Online Advising (OARS).</li>
 			  				<% end %>
 
-			  				<% if @immunization_complete == 0 %>
+			  				<% if immunization_complete == 0 %>
 			  					<li>You must provide proof of immunizations and vaccinations.</li>
 			  				<% end %>
 
@@ -1290,7 +1290,7 @@ Hello, <%= session[:cas_user] %>!
 								  				</tr>
 								  			</thead>
 											<strong>
-												<%= registered_hours(@znum)%>
+												<%= registered_hours(znum)%>
 											</strong>
 										</table>
 									
@@ -1316,21 +1316,21 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		  	
-		  	<% if @tuition_available == 1 && @tuition_complete == 0 %>
+		  	<% if tuition_available == 1 && tuition_complete == 0 %>
 				
-				<% if  @reg_complete == 0 || @residency_complete == 0 || @housing_meal_plans_complete == 0  %>
+				<% if  reg_complete == 0 || residency_complete == 0 || housing_meal_plans_complete == 0  %>
 		   			<a href="#step-19" class="collapsed step-title warning" data-parent="#checkoutsteps" data-toggle="collapse">
 		   		<% else %>
 		   			<a href="#step-19" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
 		   		<% end %>
 
-			<% elsif (@tuition_available == 1 && @tuition_complete == 1) || @tuition_bypass == 1 %>
+			<% elsif (tuition_available == 1 && tuition_complete == 1) || tuition_bypass == 1 %>
 				<a href="#step-19" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a href="#step-19" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 19 --> <%= get_statusicon(@tuition_available, @tuition_complete, @tuition_bypass) %></div>
+			  <div class="number"><!-- Step 19 --> <%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></div>
 			  <h6>Tuition Payment</h6>
 			</a>
 			
@@ -1338,25 +1338,25 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">Tuition and Billing Services</h3>
 
-		  		<% if @tuition_bypass == 1 %>			  		
+		  		<% if tuition_bypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-						<% if  @reg_complete = 0 || @residency_complete = 0 || @housing_meal_plans_complete = 0   %>
+						<% if  reg_complete = 0 || residency_complete = 0 || housing_meal_plans_complete = 0   %>
 	                         
 
 								<p>You have holds on your record which are preventing you from completing your tution payment. The holds are listed below:</p>
 
 					  			<ol>
-					  				<%# if @reg_complete = 0 %>
+					  				<%# if reg_complete = 0 %>
 					  					<li>You must be registered for 12 or more credits in any semester.</li>
 					  				<%# end %>
 
-					  				<%# if @residency_complete = 0 %>
+					  				<%# if residency_complete = 0 %>
 					  					<li>You must complete the Residency Classification for Tuition Purposes and submit the required documentation.</li>
 					  				<%# end %>
 
-					  				<%# if @housing_meal_plans_complete = 0 && @housing_fee_required == 1  %>
+					  				<%# if housing_meal_plans_complete = 0 && housing_fee_required == 1  %>
 					  					<li>You must submit a housing contract and deposit to the Department of Housing and Residential Life.</li>
 					  				<%# end %>
 					  				
@@ -1427,15 +1427,15 @@ Hello, <%= session[:cas_user] %>!
 
 
 		  <li class="panel">
-		  <% if @emergency_available == 1 && @emergency_complete == 0 %>
+		  <% if emergency_available == 1 && emergency_complete == 0 %>
 		  	<a href="#step-15" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% elsif (@emergency_available == 1 && @emergency_complete == 1) || @emergencybypass == 1 %>
+		  <% elsif (emergency_available == 1 && emergency_complete == 1) || emergencybypass == 1 %>
 		  	<a href="#step-15" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a href="#step-15" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-			  <div class="number"><!-- Step 15 --> <%= get_statusicon(@emergency_available, @emergency_complete, @emergencybypass) %></div>
+			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
 			  <h6>Emergency Contacts</h6>
 			</a>
 			
@@ -1444,11 +1444,11 @@ Hello, <%= session[:cas_user] %>!
 		  		<h3 class="title">Emergency Contacts</h3>
 				<!-- <p> Please be on the lookout for the FAU Alert and Statement of Responsibility forms/screens when you login to Self Service for the first time. You  must verify and submit both before the respective holds are lifted and access is granted to Self Service.</p> -->
 
-				<% if @emergencybypass == 1 %>			  		
+				<% if emergencybypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 					
-					 <p>Your emergency contact on file is: <b><%= @emergency_contact %></b></p>
+					 <p>Your emergency contact on file is: <b><%= emergency_contact %></b></p>
 
 
 				 	<br><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> [View Your Emergency Contact Information]</a>
@@ -1458,15 +1458,15 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		   <li class="panel">
-		   <% if @fau_alert_available == 1 && @fau_alert_complete == 0 %>
+		   <% if fau_alert_available == 1 && fau_alert_complete == 0 %>
 			<a href="#step-16" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-		   <% elsif (@fau_alert_available == 1 && @fau_alert_complete == 1) ||  @faualertbypass == 1%>
+		   <% elsif (fau_alert_available == 1 && fau_alert_complete == 1) ||  faualertbypass == 1%>
 		   	<a href="#step-16" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 		   <% else %>
 		    <a href="#step-16" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   <% end %>
 
-			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(@fau_alert_available, @fau_alert_complete, @faualertbypass) %></div>
+			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></div>
 			  <h6>FAU Alert Information</h6>
 			</a>
 			
@@ -1474,7 +1474,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">FAU Alert and Notification System</h3>
 
-		  		<% if @faualertbypass == 1 %>			  		
+		  		<% if faualertbypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -1489,15 +1489,15 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		   <li class="panel">
-		    <% if @owlcard_available == 1  %>
+		    <% if owlcard_available == 1  %>
 				<a href="#step-17" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif  (@owlcard_available == 1 || @owlcard_available == 0) && @owlcard_bypass == 1 %>
+			<% elsif  (owlcard_available == 1 || owlcard_available == 0) && owlcard_bypass == 1 %>
 		   		<a href="#step-17" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a href="#step-17" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 17 -->  <%= get_statusicon(@owlcard_available, @owlcard_complete, @owlcard_bypass) %>
+			  <div class="number"><!-- Step 17 -->  <%= get_statusicon(owlcard_available, owlcard_complete, owlcard_bypass) %>
 			  <!-- 	information <i class='fa fa-info'></i> -->
 			  </div>
 			  <h6>Owl Card</h6>
@@ -1507,7 +1507,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">Get Your Owl Card</h3>
 
-		  		<% if @owlcard_bypass == 1 %>			  		
+		  		<% if owlcard_bypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -1526,15 +1526,15 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 
-		  <% if @bookadvance_available == 1 %>
+		  <% if bookadvance_available == 1 %>
 			<a href="#step-18" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% elsif  (@bookadvance_available == 1 || @bookadvance_available == 0) && @bookadvance_bypass == 1 %>
+		  <% elsif  (bookadvance_available == 1 || bookadvance_available == 0) && bookadvance_bypass == 1 %>
 		   	<a href="#step-18" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a href="#step-18" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-			  <div class="number"><!-- Step 18 --> <%= get_statusicon(@bookadvance_available, @bookadvance_complete, @bookadvance_bypass) %> <!-- information <i class='fa fa-info'></i> -->
+			  <div class="number"><!-- Step 18 --> <%= get_statusicon(bookadvance_available, bookadvance_complete, bookadvance_bypass) %> <!-- information <i class='fa fa-info'></i> -->
 			  </div>
 			  <h6>Book Advance Program</h6>
 			</a>
@@ -1544,7 +1544,7 @@ Hello, <%= session[:cas_user] %>!
 		  		<h3 class="title">Book Advance Program</h3>
 
 
-		  		<% if @bookadvance_bypass == 1 %>			  		
+		  		<% if bookadvance_bypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 					<p>A University monetary  is advance available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees.</p>
@@ -1581,17 +1581,17 @@ Hello, <%= session[:cas_user] %>!
 		 
 		  <li class="panel">
 		  	
-		  	<% if @vehicle_reg_available == 1 %>
+		  	<% if vehicle_reg_available == 1 %>
 				<a href="#step-20" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif  (@vehicle_reg_available == 1 || @vehicle_reg_available == 0) && @vehicleregbypass == 1 %>
+			<% elsif  (vehicle_reg_available == 1 || vehicle_reg_available == 0) && vehicleregbypass == 1 %>
 		   		<a href="#step-20" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a href="#step-20" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 19 --> <%#= get_statusicon(@tuition_available, @tuition_complete) %>
+			  <div class="number"><!-- Step 19 --> <%#= get_statusicon(tuition_available, tuition_complete) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
-			  	<%= get_statusicon(@vehicle_reg_available, 1, @vehicleregbypass) %>
+			  	<%= get_statusicon(vehicle_reg_available, 1, vehicleregbypass) %>
 			  </div>
 			  <h6>Register Your Vehicle</h6>
 			</a>
@@ -1600,7 +1600,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">			  		
 		  		<h3 class="title">Register your vehicle</h3>
 				  
-				 <% if @vehicleregbypass == 1 %>			  		
+				 <% if vehicleregbypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
@@ -1687,66 +1687,66 @@ Hello, <%= session[:cas_user] %>!
 		  <ul class="progress-list">
 			<!-- <li id="welcomenav"><a href="#welcometitle" class="edit">information <i class='fa fa-info'></i> </a>Welcome</li> -->
 			
-			<% if  @deposit_available == 1 && @dep_complete_flag == 0 %>
+			<% if  @deposit_available == 1 && dep_complete_flag == 0 %>
 				<li id="depositnav"><a href="#" class="edit"></a> Pay Deposit</li>
 			<% end %>
 
-			<% if  @account_available == 1 &&  @account_complete == 0 %>
-				<li id="accountnav"><a href="#" class="edit"><%= get_statusicon(@account_available, @account_complete) %></a> Create Account</li>
+			<% if  account_available == 1 &&  account_complete == 0 %>
+				<li id="accountnav"><a href="#" class="edit"><%= get_statusicon(account_available, account_complete) %></a> Create Account</li>
 			<% end %>
 			
-			<% if  @communication_available == 1 &&  @communication_complete == 0 %>
-				<li id="commnav"><a href="#" class="edit"><%= get_statusicon(@communication_available, @communication_complete, @communication_bypass) %></a> Communication Preference</li>
+			<% if  communication_available == 1 &&  communication_complete == 0 %>
+				<li id="commnav"><a href="#" class="edit"><%= get_statusicon(communication_available, communication_complete, communication_bypass) %></a> Communication Preference</li>
 			<% end %>
 
-			<% if  @immunization_available == 1 && @immunization_complete == 0 %>
-				<li id="immunenav"><a href="#" class="edit"><%= get_statusicon(@immunization_available, @immunization_complete, @immunization_bypass) %></a> Immunization Holds</li>
+			<% if  immunization_available == 1 && immunization_complete == 0 %>
+				<li id="immunenav"><a href="#" class="edit"><%= get_statusicon(immunization_available, immunization_complete, immunization_bypass) %></a> Immunization Holds</li>
 			<% end %>
 
-			<% if  @residency_available == 1 && @residency_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(@residency_available, @residency_complete, @residency_bypass) %></a> Residency Validation</li>
+			<% if  residency_available == 1 && residency_complete == 0 %>
+				<li><a href="#" class="edit"><%= get_statusicon(residency_available, residency_complete, residency_bypass) %></a> Residency Validation</li>
 			<% end %>
 
-			<% if  @finaid_available == 1 && @finaid_complete == 0 %>
-			<li id="finaidnav"><a href="#" class="edit"><%= get_statusicon(@finaid_available, @finaid_complete, @finaid_bypass) %></a> Financial Aid</li>
+			<% if  finaid_available == 1 && finaid_complete == 0 %>
+			<li id="finaidnav"><a href="#" class="edit"><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %></a> Financial Aid</li>
 			<% end %>
 
-			<% if  @housing_fee_available == 1 && @housing_fee_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(@housing_fee_available, @housing_fee_complete, @housingfee_bypass) %></a> Housing Fee</li>
+			<% if  housing_fee_available == 1 && housing_fee_complete == 0 %>
+				<li><a href="#" class="edit"><%= get_statusicon(housing_fee_available, housing_fee_complete, housingfee_bypass) %></a> Housing Fee</li>
 			<% end %>
 
-			<% if  @housing_meal_plans_available == 1 && @housing_meal_plans_complete == 0 %>
-			<li><a href="#" class="edit"><%= get_statusicon(@housing_meal_plans_available, @housing_meal_plans_complete,@housingmealplanbypass) %></a> Housing & Meal Plans</li>
+			<% if  housing_meal_plans_available == 1 && housing_meal_plans_complete == 0 %>
+			<li><a href="#" class="edit"><%= get_statusicon(housing_meal_plans_available, housing_meal_plans_complete,housingmealplanbypass) %></a> Housing & Meal Plans</li>
 			<% end %>
 
-			<% if  @aleks_available == 1 && @aleks_complete == 0 %>
-			<li><a href="#" class="edit"><%= get_statusicon(@aleks_available, @aleks_complete, @aleksbypass) %></a> Math Placement Exam </li>
+			<% if  aleks_available == 1 && aleks_complete == 0 %>
+			<li><a href="#" class="edit"><%= get_statusicon(aleks_available, aleks_complete, aleksbypass) %></a> Math Placement Exam </li>
 			<% end %>
 
 
-			<% if  @orientation_available == 1 && @orientation_complete == 0 %>
-			<li><a href="#" class="edit"><%= get_statusicon(@orientation_available, @orientation_complete, @orientationbypass) %></a> Orientation</li>
+			<% if  orientation_available == 1 && orientation_complete == 0 %>
+			<li><a href="#" class="edit"><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></a> Orientation</li>
 			<% end %>
 
 			<li><a href="#" class="edit">information <i class='fa fa-info'></i></a> Learning Communities</li>
 			
-			<% if  @oars_available == 1 && @oars_complete_flag == 0 %>
-			<li><a href="#" class="edit"><%= get_statusicon(@oars_available, @oars_complete, @oars_bypass) %></a> Online Advising & Resource System</li>
+			<% if  oars_available == 1 && oars_complete_flag == 0 %>
+			<li><a href="#" class="edit"><%= get_statusicon(oars_available, oars_complete, oars_bypass) %></a> Online Advising & Resource System</li>
 			<% end %>
 
 
-			<% if  @reg_available == 1 && @reg_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(@reg_available, @reg_complete, @registrationbypass) %></a> Registration</li>
+			<% if  reg_available == 1 && reg_complete == 0 %>
+				<li><a href="#" class="edit"><%= get_statusicon(reg_available, reg_complete, registrationbypass) %></a> Registration</li>
 			<% end %>
 
-			<% if  @tuition_available == 1 && @tuition_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(@tuition_available, @tuition_complete, @tuition_bypass) %></a> Tuition Payment</li>
+			<% if  tuition_available == 1 && tuition_complete == 0 %>
+				<li><a href="#" class="edit"><%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></a> Tuition Payment</li>
 			<% end %>
-			<% if  @emergency_available == 1 && @emergency_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(@emergency_available, @emergency_complete, @emergencybypass) %></a> Emergency Contacts</li>
+			<% if  emergency_available == 1 && emergency_complete == 0 %>
+				<li><a href="#" class="edit"><%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></a> Emergency Contacts</li>
 			<% end %>
-			<% if  @fau_alert_available == 1 && @fau_alert_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(@fau_alert_available, @fau_alert_complete, @faualertbypass) %></a> FAU Alert Info</li>
+			<% if  fau_alert_available == 1 && fau_alert_complete == 0 %>
+				<li><a href="#" class="edit"><%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></a> FAU Alert Info</li>
 			<% end %>
 
 			<li><a href="#" class="edit">information <i class='fa fa-info'></i></a> Owl Card</li>

@@ -269,9 +269,9 @@ class FticModulesAvailablesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_ftic_modules_available
-      @modules_available = FticModulesAvailable.find(params[:id])
-    end
+    # def set_ftic_modules_available
+    #   @modules_available = FticModulesAvailable.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ftic_modules_available_params

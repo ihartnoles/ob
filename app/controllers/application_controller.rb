@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
 
         output.each do |o| 
             @znum = o['z_number']      
-            znum =  o['z_number']                  
+            znum =  o['z_number']       
+                  
         end     
       
         record_activity("User Login")
