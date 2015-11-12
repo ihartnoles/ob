@@ -13,6 +13,9 @@
  
    <%= form_for(@modules_available,  :html => { :class => "form-horizontal"}) do |f| %>
 
+        <%= f.hidden_field :znumber, :value => params[:znum] %>
+        <%= f.hidden_field :netid,   :value => m.netid %>
+
         <% if @modules_available.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@modules_available.errors.count, "error") %> prohibited this modules_available from being saved:</h2>
