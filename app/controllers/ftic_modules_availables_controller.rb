@@ -243,6 +243,8 @@ class FticModulesAvailablesController < ApplicationController
         :orientation, :orientationbypass, 
         :registrationbypass, :registration, :emergency, :emergencybypass, :faualert,  :faualertbypass, :owlcard, :owlcardbypass, :bookadvance, :bookadvancebypass ,:tution, :tuitionbypass, :vehiclereg, :vehicleregbypass )
 
+    record_activity("Module Update")
+
     respond_to do |format|
       #if @modules_available.update(ftic_modules_available_params)
       if @modules_available.update_attributes(model_params)

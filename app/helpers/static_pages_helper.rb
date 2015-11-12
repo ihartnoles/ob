@@ -1,5 +1,6 @@
 module StaticPagesHelper
-
+  
+  
 	def orientation_status(znum)
     	output = Faudw.orientation_status(znum)
 

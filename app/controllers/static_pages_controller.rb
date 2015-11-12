@@ -56,56 +56,10 @@ class StaticPagesController < ApplicationController
   end
 
 	def home		
-		# @title      = 'Home'
-  		# @description = 'What would you like to do?'		
-		
-    	session[:usertype]  = nil
-      @znum = nil
-      
-      if !session[:cas_user].nil?
-         @displayname = session[:cas_user]
-      # else
-      #   if !session[:fullname].nil?
-      #    session[:fullname].each do |fn|
-      #      @displayname = "#{fn['fullname']}"
-      #    end
-      #   else
-      #     @displayname = 'TAMAS'
-      #   end
-      else
-         @displayname = 'N/A'
-      end
-      
-      if params[:znum] 
-        #this is to allow impersonation
-        @znum = params[:znum]
-        znum = params[:znum]
-        record_activity("Proxy Login")
-      else
-		 
-		    # puts YAML::dump(' *** BEGIN CAS USER  ***')      
-	      # puts YAML::dump(session[:cas_user])
-        # puts YAML::dump('*** END CAS USER ***')      
-      
-        # @znum = 'Z23122293'
-        output = Banner.find_student_by_netid(session[:cas_user])
-         
-        znum = nil
+			    	
+      session_config
 
-        output.each do |o| 
-    		  	@znum = o['z_number']      
-            znum =  o['z_number']                  
-    	  end			
-      
-        record_activity("User Login")
-      end
-
-
-      if znum.nil? || znum.empty? || znum.blank?
-        #we can't find you in the system peaches
-        redirect_to unauthorized_path
-      else 
-
+     
           availability = FticModulesAvailable.where(:znumber => @znum)
 
           availability.each do |a|
@@ -484,33 +438,7 @@ class StaticPagesController < ApplicationController
           @owlcard_complete = 0
           @bookadvance_complete = 1
           @tuition_complete = 0
-          @vehicle_reg_complete = 0
-
-          #Z23001699 ;  Z23292493
-
-          #@fullname = Faudw.fullname('Z23001699')
-
-          #@fullname = view_context.get_fullname(@znum)
-
-
-          # puts YAML::dump('begin fullname')
-          # puts YAML::dump(@fullname)
-
-          #@orientation = Faudw.orientation_status('Z23001699')
-
-          # puts YAML::dump('begin orientation')
-          # puts YAML::dump(@orientation)
-
-
-          # @oars= Faudw.oars_status('Z23001699')
-
-          # puts YAML::dump('begin oars')
-          # puts YAML::dump(@oars)
-
-
-      end #END: znum.nil?
-
-    
+          @vehicle_reg_complete = 0   
     	
     end
 
@@ -629,6 +557,9 @@ class StaticPagesController < ApplicationController
       puts YAML::dump(distance)
       render :nothing => true
   end
+
+
+   
 
   # protected
 

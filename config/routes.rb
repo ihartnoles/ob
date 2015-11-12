@@ -1,26 +1,18 @@
 Ob::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
-  
-
   #root 'static_pages#login'
   root :to => 'static_pages#main'
-
   resources :messages
-
   mount Ckeditor::Engine => '/ckeditor'
-  resources :housing_zipcodes
-
+  #resources :housing_zipcodes
   resources :activity_logs
   get       '/activity_log/:znum',  to: 'activity_logs#znumber'
-
   resources :ftic_modules_availables , :path => "fticadmin"
-
   #static actions
    get    '/main',             to: 'static_pages#main'
    get    '/home',             to: 'static_pages#home'
-   get    '/unauthorized',     to: 'static_pages#unauthorized'  
+   get    '/unauthorized',     to: 'static_pages#unauthorized'
    get    '/gatewayed_home',   to: 'static_pages#gatewayed_home'
    get    '/login',            to: 'login#login'
    match  '/do_manual_login',  to: 'login#do_manual_login', via: 'post'

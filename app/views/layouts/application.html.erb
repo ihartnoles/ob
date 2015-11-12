@@ -11,10 +11,8 @@
   <title>Onboarding</title>
   <%#= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%#= javascript_include_tag "application", "data-turbolinks-track" => true %>
-
   <!-- Font -->
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
-
   <!-- Plagins CSS -->
   <%= stylesheet_link_tag "css/buttons/buttons.css" %>
   <%= stylesheet_link_tag "css/buttons/social-icons.css" %>
@@ -33,99 +31,70 @@
   <%= stylesheet_link_tag "css/datepicker.css" %>
   <%= stylesheet_link_tag "css/jquery.scrollbar.css" %>
   <%= stylesheet_link_tag "css/datatables.min.css" %>
-  
-  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
 
   <%= javascript_include_tag 'ckeditor/ckeditor.js' %>
-  
-
   <!-- Theme CSS -->
   <%= stylesheet_link_tag "css/style.css" %>
-
   <!-- Responsive CSS -->
   <%= stylesheet_link_tag "css/responsive.css" %>
-  
-  <!-- Custom CSS -->
+    <!-- Custom CSS -->
   <%= stylesheet_link_tag "css/customizer/pages.css" %>
   <%= stylesheet_link_tag "css/customizer/shop-pages-customizer.css" %>
-
   <!-- IE Styles-->
   <%= stylesheet_link_tag "css/ie/ie.css" %>
-  
-  <!--[if lt IE 9]>
+    <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" %></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" %></script>
 	<link rel='stylesheet' href="css/ie/ie8.css" %>
   <![endif]-->
-
   <style type="text/css">
    .spinner {
- 
-  width: 100%;
+   width: 100%;
   height: 40px;
   text-align: center;
   font-size: 10px;
   color:#00457C;
-
 }
-
 .spinner > div {
   background-color: #00457C;
   height: 100%;
   width: 6px;
   display: inline-block;
-  
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
-
 .spinner .rect2 {
   -webkit-animation-delay: -1.1s;
   animation-delay: -1.1s;
 }
-
 .spinner .rect3 {
   -webkit-animation-delay: -1.0s;
   animation-delay: -1.0s;
 }
-
 .spinner .rect4 {
   -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
 }
-
 .spinner .rect5 {
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
 }
-
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4)}  
   20% { -webkit-transform: scaleY(1.0) }
 }
-
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% { 
-    transform: scaleY(0.4);
-    -webkit-transform: scaleY(0.4);
-  }  20% { 
-    transform: scaleY(1.0);
-    -webkit-transform: scaleY(1.0);
+  0%, 40%, 100% { transform: scaleY(0.4);webkit-transform: scaleY(0.4);}20%{ 
+    transform: scaleY(1.0);-webkit-transform: scaleY(1.0);
   }
 }
-  </style>
-
-
- 
-  <%= csrf_meta_tags %>
+</style>
+<%= csrf_meta_tags %>
 </head>
-
 <body class="fixed-header">
-
   <%= yield %>
-
   <noscript>Either your browser does not support JavaScript or you have disabled Javascript! Either switch to a different browser or enable Javascript on your current browser.</noscript>
-
 </body>
 </html>
