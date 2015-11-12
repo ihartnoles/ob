@@ -169,9 +169,9 @@
   $("#btnNetID").click(function() {    
    
   <% if request.server_name.include?('10.16.9.208') || request.server_name.include?('10.16.9.129') || request.server_name.include?('localhost')  %>
-     window.location.replace("http://<%= request.server_name %>:<%= request.port %>/home");
+     window.location.replace("http://localhost:<%= request.port %>/home");
   <% else %>
-     window.location.replace("https://boc22webdev1.fau.edu/home");      
+     window.location.replace("https://<%= USE_THIS_SERVER %>/home");      
   <% end %>
    
   });
