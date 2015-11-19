@@ -64,6 +64,11 @@ class ApplicationController < ActionController::Base
             @housingfee_bypass = a.housingfeebypass
             @residency_available = a.residency
             @residency_bypass = a.residencybypass
+
+            # puts YAML::dump('*** BEGIN: residency_available ***')
+            # puts YAML::dump(@residency_available)
+            # puts YAML::dump('*** END: residency_available ***')
+
             @housing_meal_plans_available = a.housingmealplan
             @housingmealplanbypass = a.housingmealplanbypass
             @aleks_available = a.aleks

@@ -61,6 +61,9 @@ class StaticPagesController < ApplicationController
 
           modules_available         
 
+          @isInternationalStudent = 0
+
+
           #module flags
           # @welcome_available = 1
           # @deposit_available = 1
@@ -326,7 +329,7 @@ class StaticPagesController < ApplicationController
 
 
           #@residency_complete = 0
-          if residency_status.blank?
+          if residency_status.count <= 0
                @residency_complete = 0
           else
             residency_status.each do |o|
@@ -339,8 +342,7 @@ class StaticPagesController < ApplicationController
           end
 
           @housing_meal_plans_complete = 0
-
-            
+         
 
 
           #@oars_complete = 1

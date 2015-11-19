@@ -159,6 +159,9 @@ Hello, <%= session[:cas_user] %>!
 			</div>
 		  </li>
 
+
+	<% if @isInternationalStudent == 1 %>	
+
 		    <li class="panel">
 		  	
 		  	<%# if  @deposit_available == 1 && @deposit_complete== 0 %>
@@ -276,7 +279,9 @@ Hello, <%= session[:cas_user] %>!
 			  </div>
 			</div>
 		  </li>
-		  
+	
+	<% end %>
+
 		  <li class="panel">
 		  	
 		  	<% if  deposit_available == 1 && deposit_complete== 0 %>
@@ -618,6 +623,8 @@ Hello, <%= session[:cas_user] %>!
 			</div>
 		  </li>
 
+
+<% if @isInternationalStudent == 1 %>	
 		  <li class="panel">
 		  <%# if emergency_available == 1 && emergency_complete == 0 %>
 		  	<a href="#step-5A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
@@ -661,6 +668,7 @@ Hello, <%= session[:cas_user] %>!
 			  </div>			
 			</div>
 		  </li>
+<% end %>
 
 	   <li class="panel">
 
@@ -1058,6 +1066,9 @@ Hello, <%= session[:cas_user] %>!
 			</div>
 		  </li>
 
+
+	<% if @isInternationalStudent == 1 %>	
+
 		   <li class="panel">
 
 		   	<%# if orientation_available == 1 && orientation_complete == 0 || orientation_complete.nil? %>
@@ -1100,6 +1111,9 @@ Hello, <%= session[:cas_user] %>!
 			  </div>			
 			</div>
 		  </li>
+
+	<% end %>
+
 
 		  <li class="panel">
 		  
