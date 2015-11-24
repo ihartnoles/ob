@@ -163,6 +163,74 @@ Hello, <%= session[:cas_user] %>!
 			</div>
 		  </li>
 
+		   <li class="panel">
+		  	
+		  
+			<a href="#step-verify" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
+			
+
+			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
+			  <h6>Verify Your Information</h6>
+			</a>
+			
+			<div id="step-verify" class="collapse">
+			  <div class="step-content">
+			  	<h3 class="title">Please verify your information</h3>
+			  		
+			  		<p>Please take a moment to verify your personal details. The information you see below is what we have in our official records.</p>
+
+			  		<% if account_bypass == 1 %>			  		
+							<p> An administrator has bypassed (overridden) this section for you.</p>
+
+					<% else %>
+
+						<table class="table responsive text-left order-details">
+								<thead>                    		
+	                    		<tr>
+	                    			<th>Your Details</th>
+	                    			<th>&nbsp;</th>	                    			
+	                    		</tr>
+	                    		</thead>
+						  		<tr>
+						  			<td>Your Name:</td><td><%= @fname %> <%= @mname %> <%= @lname %></td>						  			
+						  		</tr>
+						  		<tr>
+						  			<td>Your Address:</td><td><%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %></td>						  			
+						  		</tr>
+						  		<tr>
+						  			<td>Your Major:</td><td><%= @major %></td>						  			
+						  		</tr>
+						  		<tr>
+						  			<td>Acceptance Term:</td><td><%= @term %></td>						  			
+						  		</tr>
+						  		<tr>
+						  			<td>Do you intend to enroll at FAU for your acceptance term?</td>
+						  			<td>
+						  				<div class="col-sm-6 col-md-6">
+									  	<label class="radio-inline">
+											<input type="radio" name="enroll" value="Yes"> Yes
+									  	</label>
+
+									  
+									  	<label class="radio-inline">
+											<input type="radio" name="enroll" value="No"> No
+									  	</label>
+									   </div>
+								   </td>						  			
+						  		</tr>
+						</table>
+						
+				  						  		
+				  		
+				  		 <div class="buttons-box text-right">
+						  <button type="button" class="btn btn-danger" id="verifyBut">Continue</button>						 
+						</div>
+						
+					<% end %>
+			  </div>
+			</div>
+		  </li>
+
 
 	<% if @isInternationalStudent == 1 %>	
 
@@ -934,7 +1002,8 @@ Hello, <%= session[:cas_user] %>!
 				                    <br>As such you are required to live in University Housing.	
 
 				                    <p>
-		  							 	<a title="FAU Housing" href="https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=<%=params[:znum]%>" target="_blank">[Sign up here]</a>
+		  							 	<!-- <a title="FAU Housing" href="https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=<%=params[:znum]%>" target="_blank">[Sign up here]</a> -->
+		  							 	<%= get_housing_deposit(znum) %>
 		  							</p>	                    	
 			                 <% else %>
 			                 		Our records indicate you meet at least one of the following criteria:

@@ -17,6 +17,23 @@ class ApplicationController < ActionController::Base
         #this is to allow impersonation
         @znum = params[:znum]
         znum = params[:znum]
+
+        output = Banner.find_student_by_z(params[:znum])
+
+        output.each do |o| 
+            @znum = o['z_number']      
+            znum =  o['z_number']  
+            @fname = o['f_name']     
+            @mname = o['m_name']
+            @lname = o['l_name']
+            @term  = o['saradap_term_code_entry']
+            @major = o['sgbstdn_majr_code_1']     
+            @street = o['spraddr_street_line1']
+            @city = o['spraddr_city']      
+            @state = o['spraddr_stat_code'] 
+            @zip = o['spraddr_zip'] 
+        end     
+
         record_activity("Proxy Login")
       else
            
@@ -27,8 +44,16 @@ class ApplicationController < ActionController::Base
 
         output.each do |o| 
             @znum = o['z_number']      
-            znum =  o['z_number']       
-                  
+            znum =  o['z_number']  
+            @fname = o['f_name']   
+            @mname = o['m_name']  
+            @lname = o['l_name']
+            @term  = o['saradap_term_code_entry']
+            @major = o['sgbstdn_majr_code_1']     
+            @street = o['spraddr_street_line1']
+            @city = o['spraddr_city']      
+            @state = o['spraddr_stat_code'] 
+            @zip = o['spraddr_zip'] 
         end     
       
         record_activity("User Login")

@@ -8,7 +8,11 @@ class Banner < ActiveRecord::Base
 
 	#BEGIN: QUERIES TO BANINST1.AWS_ONBOARDING_MAIN
 		def self.find_student_by_netid(id)
-		 	get = connection.exec_query("select distinct Z_NUMBER, L_NAME, F_NAME, GOBTPAC_EXTERNAL_USER  FROM BANINST1.AWS_ONBOARDING_MAIN WHERE GOBTPAC_EXTERNAL_USER=#{connection.quote(id)} AND rownum = 1")
+		 	get = connection.exec_query("select distinct Z_NUMBER, SARADAP_TERM_CODE_ENTRY, L_NAME, M_NAME, F_NAME, SGBSTDN_MAJR_CODE_1, SPRADDR_STREET_LINE1 ,SPRADDR_CITY ,SPRADDR_STAT_CODE, SPRADDR_ZIP, GOBTPAC_EXTERNAL_USER  FROM BANINST1.AWS_ONBOARDING_MAIN WHERE GOBTPAC_EXTERNAL_USER=#{connection.quote(id)} AND rownum = 1")
+		end
+
+		def self.find_student_by_z(id)
+		 	get = connection.exec_query("select distinct Z_NUMBER, SARADAP_TERM_CODE_ENTRY, L_NAME, M_NAME, F_NAME, SGBSTDN_MAJR_CODE_1, SPRADDR_STREET_LINE1 ,SPRADDR_CITY ,SPRADDR_STAT_CODE, SPRADDR_ZIP, GOBTPAC_EXTERNAL_USER  FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
 		end
 
 		def self.find_student_zip_by_z(id)

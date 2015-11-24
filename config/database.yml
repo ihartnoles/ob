@@ -70,3 +70,11 @@ ugapp:
    database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=boc22ora03.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=MSOP)))"
    username: newundergrad_prod
    password: WQbYCtdR3wIXqwfF7gNY
+
+
+housing:
+   adapter: sqlserver
+   dataserver: boc22mssqlfau.ad.fau.edu
+   database: TheHousingDirector
+   username: FAU\ihartstein
+   password: ikeFAU61

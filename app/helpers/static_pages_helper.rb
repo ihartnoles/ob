@@ -288,4 +288,25 @@ module StaticPagesHelper
 
   	 end
 
+     def get_housing_deposit(znum)
+      output = Housing.get_housing_deposit(znum)
+
+      if output.count > 0
+        output.each do |o| 
+
+         if !o['deposit_received'].nil?
+           tmp =  "Your housing deposit was received on #{o['deposit_received'].strftime('%x')}."
+         else
+           tmp =  "Your housing deposit has NOT been paid yet!  <br>            
+               <a title='FAU Housing' href='https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=#{znum}' target='_blank'>[Sign up here]</a>"
+         end
+         
+         return tmp.html_safe
+
+         end
+      else
+        return "Your housing deposit has NOT been paid yet!  <br>            
+               <a title='FAU Housing' href='https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=#{znum}' target='_blank'>[Sign up here]</a>".html_safe
+      end 
+     end
 end
