@@ -88,9 +88,13 @@ Hello, <%= session[:cas_user] %>!
 		      <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">Registration</a><br>
               <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank">  Emergency Contacts</a><br>
               <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank"> FAU Alert</a><br>
-             <!--  <a href="https://sctformsalt.fau.edu:8070/TESTdad/twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" target="_blank">Fin. Aid. Info</a><br> -->
+             
+              <!-- <a href="https://sctformsalt.fau.edu:8070/TESTdad/twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" target="_blank">Fin. Aid. Info</a><br> -->
+             
               <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" target="_blank">Fin. Aid. Info</a><br>
               <a href="http://www.fau.edu/finaid/resources/forms.php" target="_blank"> Fin aid Forms</a><br>
+
+
           </p>
           <hr>
           <% end %>
@@ -821,16 +825,17 @@ Hello, <%= session[:cas_user] %>!
 				<% else %>
 
 			  				<h3 class="title">The Financial Aid Steps</h3>
+			  				
 			  				<p>
 			  					<ol>
-			  						<li><a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a> </li>
-			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Eligibility Requirements</a></li>
-			  						<li>Complete Your Financial Aid Package</li>
-			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a></li>
-			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a></li>
+			  						<li><a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a> &nbsp; <i class="fa fa-check-square-o"></i> </li>
+			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Eligibility Requirements</a> &nbsp; <i class="fa fa-check-square-o"></i> </li>
+			  						<li>Complete Your Financial Aid Package &nbsp; <i class="fa fa-check-square-o"></i> </li>
+			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; <i class="fa fa-check-square-o"></i> </</li>
+			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp; <i class="fa fa-check-square-o"></i> </li>
 			  					</ol>
-			  				</p>
-
+			  				</p> 
+			  			    
 
 					  		<h3 class="title">Your Financial Aid Documents</h3>
 
@@ -1241,7 +1246,7 @@ Hello, <%= session[:cas_user] %>!
 		   	<% end %>
 
 			  <div class="number"><!-- Step 14 --><%= get_statusicon(reg_available, reg_complete, registrationbypass) %></div>
-			  <h6>Registration</h6>
+			  <h6>Registration & Holds</h6>
 			</a>
 			
 			<div id="step-14" class="collapse">				   

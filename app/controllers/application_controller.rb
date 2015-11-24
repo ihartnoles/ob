@@ -19,11 +19,7 @@ class ApplicationController < ActionController::Base
         znum = params[:znum]
         record_activity("Proxy Login")
       else
-     
-        # puts YAML::dump(' *** BEGIN CAS USER  ***')      
-        # puts YAML::dump(session[:cas_user])
-        # puts YAML::dump('*** END CAS USER ***')      
-      
+           
         # @znum = 'Z23122293'
         output = Banner.find_student_by_netid(session[:cas_user])
          
@@ -37,7 +33,7 @@ class ApplicationController < ActionController::Base
       
         record_activity("User Login")
 
-        if znum.nil? || znum.empty? || znum.blank?
+       if znum.nil? || znum.empty? || znum.blank?
         #we can't find you in the system peaches
           redirect_to unauthorized_path
         end 
