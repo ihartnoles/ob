@@ -62,6 +62,32 @@
                      
                 </div> <!-- END OF WELCOME -->
 
+
+                 <div class="col-sm-4 col-md-4 service alert alert-border">
+                  
+                    <div class="icon bg"> <% if m.verify == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
+
+                    <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Verify Information</h6></a>
+                    <div class="text-small">
+                        <div class="text-warning"><em><b>pending</b></em></div><br>
+                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+                       
+                       <br><br>
+                         <div class="row">
+                            <div class="col-sm-6 ">
+                               <%= f.label :verify, "Availability" %><br>
+                               <%= f.radio_button :verify, 1 %>  <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :verify, 0 %> <i class="fa fa-lock"></i>                        
+                            </div>
+                            <div class="col-sm-6 "> 
+                               <%= f.label :verifybypass, "By-pass" %><br>
+                               <%= f.radio_button :verifybypass, 1 %> <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :verifybypass, 0 %>  <i class="fa fa-times-circle"></i>  
+                            </div>
+                        </div>
+                    </div>  
+                     
+                </div> <!-- END OF WELCOME -->
+
+
                 <div class="col-sm-4 col-md-4 service alert alert-border">
                  
                     <div class="icon bg">

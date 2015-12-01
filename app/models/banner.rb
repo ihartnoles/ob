@@ -94,6 +94,14 @@ class Banner < ActiveRecord::Base
 			get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
+		def self.fin_aid_checkboxes(id)
+			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
+		end
+
+		def self.fin_aid_acceptance(id)
+			get = connection.exec_query("SELECT rpratrm_accept_date from BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)}")
+		end
+
 		def self.immunization_status(id)
 			get = connection.exec_query("SELECT IMM_HOLD_FLG from BANINST1.AWS_ONBOARDING_FINAID WHERE Z_NUMBER=#{connection.quote(id)}")
 		end

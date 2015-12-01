@@ -71,6 +71,8 @@ class ApplicationController < ActionController::Base
 
           availability.each do |a|
             @welcome_available = a.welcome
+            @verify_available = a.verify
+            @verify_bypass = a.verifybypass
             @deposit_available = a.deposit
             @deposit_bypass = a.depositbypass
             @account_available = a.account

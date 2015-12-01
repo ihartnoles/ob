@@ -105,6 +105,8 @@ class StaticPagesController < ApplicationController
           immunization_status = Banner.immunization_status(@znum)
           residency_status = Banner.residency_status(@znum)
           finaid_status = Banner.fin_aid_docs(@znum)
+          finaid_checks = Banner.fin_aid_checkboxes(@znum)
+
           #pull the student's zip
           student_zip = Banner.find_student_zip_by_z(@znum)
 
@@ -236,6 +238,65 @@ class StaticPagesController < ApplicationController
             end 
           end
          end
+
+
+          #begin finaidcheckboxes
+            finaidchecks = []
+
+            finaid_checks.each do |o|
+
+               if o['rtvtreq_code'] == 'TERMS' && o['rrrareq_sat_ind'] == 'Y'
+                   #tc_complete = 1
+                   finaidchecks.push('TC1')
+               end
+       
+             
+               if o['rtvtreq_code'] == 'ISIR' && o['rrrareq_sat_ind'] == 'Y'
+                   #application_complete = 1
+                    finaidchecks.push('APP1')
+               end
+
+
+               if  finaidchecks.include? 'TC0'
+                  @tc_complete = 0
+                elsif finaidchecks.empty?
+                   @tc_complete = 1
+                else
+                  @tc_complete = 1
+                end 
+
+
+                if  finaidchecks.include? 'APP0'
+                  @application_complete = 0
+                elsif finaidchecks.empty?
+                   @application_complete = 1
+                else
+                  @application_complete = 1
+                end 
+
+
+            end
+
+            # puts YAML::dump('**********BEGIN**********')
+            # puts YAML::dump(finaidchecks)
+            # puts YAML::dump('**********END**********')
+
+          #end
+
+          #begin finaidacceptance
+            fin_aid_acceptance = Banner.fin_aid_acceptance(@znum)
+
+            puts YAML::dump('**********BEGIN fin_aid_acceptance**********')
+            puts YAML::dump(fin_aid_acceptance)
+            puts YAML::dump('**********END**********')
+
+            if fin_aid_acceptance.nil? || fin_aid_acceptance.blank?
+              @fin_aid_acceptance = 0
+            else 
+              @fin_aid_acceptance = 1
+            end
+
+          #end finaidacceptance
 
 
           #begin finaidflags

@@ -165,8 +165,15 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		  	
-		  
-			<a href="#step-verify" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
+		  	<!-- <a href="#step-verify" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">-->
+
+			<% if  @verify_available == 1 %>
+				<a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">
+			<% elsif  (@verify_available == 1 || @verify_bypass == 1) %>
+				<a href="#step-verify" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">
+			<% else %>
+				<a href="#step-verify" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="verify">
+			<% end %>	
 			
 
 			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
@@ -177,12 +184,13 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">
 			  	<h3 class="title">Please verify your information</h3>
 			  		
-			  		<p>Please take a moment to verify your personal details. The information you see below is what we have in our official records.</p>
 
-			  		<% if account_bypass == 1 %>			  		
+			  		<% if verify_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 
 					<% else %>
+
+						<p>Please take a moment to verify your personal details. The information you see below is what we have in our official records.</p>
 
 						<table class="table responsive text-left order-details">
 								<thead>                    		
@@ -287,67 +295,7 @@ Hello, <%= session[:cas_user] %>!
 						  <button type="button" class="btn btn-danger" id="depositBut">Continue</button>						 
 						</div>
 				
-				<!-- <form class="row no-margin">
-				  <div class="col-sm-6 col-md-6">
-					<label>First Name: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>Last Name: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-6 col-md-6">
-					<label>Company:</label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>Email Address: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-6 col-md-6">
-					<label>Address: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>City</label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-6 col-md-6">
-					<label>Telephone: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>Fax:</label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-6 col-md-6">
-					<label>Password: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>Confirm Password: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-12 buttons-box text-right">
-					<button type="button" class="btn btn-danger">Continue</button>
-					<span class="required"><b>*</b> Required Field</span>
-				  </div>
-				</form> -->
+				
 			  </div>
 			</div>
 		  </li>
@@ -398,67 +346,7 @@ Hello, <%= session[:cas_user] %>!
 						  <button type="button" class="btn btn-danger" id="depositBut">Continue</button>						 
 						</div>
 				
-				<!-- <form class="row no-margin">
-				  <div class="col-sm-6 col-md-6">
-					<label>First Name: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>Last Name: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-6 col-md-6">
-					<label>Company:</label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>Email Address: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-6 col-md-6">
-					<label>Address: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>City</label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-6 col-md-6">
-					<label>Telephone: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>Fax:</label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-6 col-md-6">
-					<label>Password: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  <div class="col-sm-6 col-md-6">
-					<label>Confirm Password: <span class="required">*</span></label>
-					<input class="form-control" type="text">
-				  </div>
-				  
-				  <div class="clearfix"></div>
-				  
-				  <div class="col-sm-12 buttons-box text-right">
-					<button type="button" class="btn btn-danger">Continue</button>
-					<span class="required"><b>*</b> Required Field</span>
-				  </div>
-				</form> -->
+				
 			  </div>
 			</div>
 		  </li>
@@ -896,11 +784,12 @@ Hello, <%= session[:cas_user] %>!
 			  				
 			  				<p>
 			  					<ol>
-			  						<li><a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a> &nbsp; <i class="fa fa-check-square-o"></i> </li>
+			  						<li><a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a> &nbsp;
+			  						 <% if @application_complete == 1 %><i class="fa fa-check-square-o"></i><% else %><i class="fa fa-square-o"></i><% end %></i> </li>
 			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Eligibility Requirements</a> &nbsp; <i class="fa fa-check-square-o"></i> </li>
 			  						<li>Complete Your Financial Aid Package &nbsp; <i class="fa fa-check-square-o"></i> </li>
-			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; <i class="fa fa-check-square-o"></i> </</li>
-			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp; <i class="fa fa-check-square-o"></i> </li>
+			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; <% if @tc_complete == 1 %><i class="fa fa-check-square-o"></i><% else %><i class="fa fa-square-o"></i><% end %></li>
+			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp; <% if @fin_aid_acceptance == 1 %><i class="fa fa-check-square-o"></i><% else %><i class="fa fa-square-o"></i><% end %></li>
 			  					</ol>
 			  				</p> 
 			  			    
