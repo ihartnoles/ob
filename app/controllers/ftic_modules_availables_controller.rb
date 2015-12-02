@@ -79,6 +79,20 @@ class FticModulesAvailablesController < ApplicationController
                   else
                     @emergency_complete = 1
                     @emergency_contact = o['spremrg_contact_name']
+                    @emergency_street = o['spremrg_street_line1']
+                    @emergency_city = o['spremrg_city']
+                    @emergency_state = o['spremrg_stat_code']
+                    @emergency_zip = o['spremrg_zip']
+
+                     puts YAML::DUMP('***************BEGIN*************************************')
+                     puts YAML::DUMP(@emergency_contact)
+                     puts YAML::DUMP(@emergency_street)
+                     puts YAML::DUMP(@emergency_city)
+                     puts YAML::DUMP(@emergency_state)
+                     puts YAML::DUMP(@emergency_zip)
+                     puts YAML::DUMP('***************END***************************************')
+
+
                   end 
 
                   @term_display = o['term']

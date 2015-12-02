@@ -82,7 +82,7 @@ class Banner < ActiveRecord::Base
 									           ELSE ''
 									      END as finaidyear,
 									      
-									      aleks_taken, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, sarchkl_admr_code, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
+									      aleks_taken, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, sarchkl_admr_code, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name, spremrg_street_line1, spremrg_city, spremrg_stat_code, spremrg_natn_code, spremrg_zip, spremrg_phone_area, spremrg_phone_number FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 		#END: a test to consolidate aleks tution and account claim status
 

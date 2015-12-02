@@ -1425,10 +1425,15 @@ Hello, <%= session[:cas_user] %>!
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 					
-					 <p>Your emergency contact on file is: <b><%= emergency_contact %></b></p>
+					 <p>Your emergency contact on file is:<br>
+					 	<br>
+					 	<b><%= emergency_contact %></b><br><b><%= emergency_street %><br><%=  emergency_city %>, <%= emergency_state %> <%= emergency_zip %></b>
+					 	<br>
+					 	<b>(<%= emergency_phone_area %>) <%= emergency_phone_number %></b>
+					 </p>
+					
 
-
-				 	<br><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> [View Your Emergency Contact Information]</a>
+				 	<br><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> [Edit Your Emergency Contact Information]</a>
 				<% end %>
 			  </div>			
 			</div>

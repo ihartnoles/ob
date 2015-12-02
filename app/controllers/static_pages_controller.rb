@@ -211,6 +211,12 @@ class StaticPagesController < ApplicationController
                   else
                     @emergency_complete = 1
                     @emergency_contact = o['spremrg_contact_name']
+                    @emergency_street = o['spremrg_street_line1']
+                    @emergency_city = o['spremrg_city']
+                    @emergency_state = o['spremrg_stat_code']
+                    @emergency_zip = o['spremrg_zip']
+                    @emergency_phone_area = o['spremrg_phone_area']
+                    @emergency_phone_number = o['spremrg_phone_number']
                   end 
 
                   @term_display = o['term']
