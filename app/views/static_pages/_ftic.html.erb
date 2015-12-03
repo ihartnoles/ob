@@ -1263,7 +1263,7 @@ Hello, <%= session[:cas_user] %>!
 										<table class="table table-striped text-left order-details">	
 											<thead>
 								  				<tr>
-								  					<th class="product-name">Your registered credit hours</th><th class="product-total">Term</th>
+								  					<th class="product-name">CRN</th><th class="product-name">COURSE</th><th class="product-name">CREDIT HOURS</th><th class="product-total">TERM</th>
 								  				</tr>
 								  			</thead>
 											<strong>
@@ -1319,23 +1319,23 @@ Hello, <%= session[:cas_user] %>!
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-						<% if  reg_complete = 0 || residency_complete = 0 || housing_meal_plans_complete = 0   %>
+						<% if reg_complete == 0 || residency_complete == 0 || housing_meal_plans_complete == 0 %>
 	                         
 
 								<p>You have holds on your record which are preventing you from completing your tution payment. The holds are listed below:</p>
 
 					  			<ol>
-					  				<%# if reg_complete = 0 %>
+					  				<% if reg_complete == 0 %>
 					  					<li>You must be registered for 12 or more credits in any semester.</li>
-					  				<%# end %>
+					  				<% end %>
 
-					  				<%# if residency_complete = 0 %>
+					  				<% if residency_complete == 0 %>
 					  					<li>You must complete the Residency Classification for Tuition Purposes and submit the required documentation.</li>
-					  				<%# end %>
+					  				<% end %>
 
-					  				<%# if housing_meal_plans_complete = 0 && housing_fee_required == 1  %>
+					  				<% if housing_meal_plans_complete == 0 && housing_fee_required == 1  %>
 					  					<li>You must submit a housing contract and deposit to the Department of Housing and Residential Life.</li>
-					  				<%# end %>
+					  				<% end %>
 					  				
 					  			</ol>
 						

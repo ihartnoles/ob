@@ -74,6 +74,7 @@ class FticModulesAvailablesController < ApplicationController
                     @account_complete = 1
                   end 
 
+
                   if o['spremrg_contact_name'].nil?
                     @emergency_complete = 0
                   else
@@ -82,25 +83,13 @@ class FticModulesAvailablesController < ApplicationController
                     @emergency_street = o['spremrg_street_line1']
                     @emergency_city = o['spremrg_city']
                     @emergency_state = o['spremrg_stat_code']
-                    @emergency_zip = o['spremrg_zip']
-
-                     puts YAML::DUMP('***************BEGIN*************************************')
-                     puts YAML::DUMP(@emergency_contact)
-                     puts YAML::DUMP(@emergency_street)
-                     puts YAML::DUMP(@emergency_city)
-                     puts YAML::DUMP(@emergency_state)
-                     puts YAML::DUMP(@emergency_zip)
-                     puts YAML::DUMP('***************END***************************************')
-
-
+                    @emergency_zip = o['spremrg_zip']       
                   end 
 
                   @term_display = o['term']
                   @year_display = o['year']
-
                   @finaidyear = o['finaidyear']
-
-                  
+                 
                 end
             end
 
@@ -155,9 +144,11 @@ class FticModulesAvailablesController < ApplicationController
      
      if immunization_status.blank?
               @immunization_complete = 0
+              #for testing i'm setting this to 1
+              #@immunization_complete = 1
          else
-          immunization_status.each do |o|
-             if o['imm_hold_flg'] == 'N' || o['imm_hold_flg'].nil?
+         immunization_status.each do |o|
+             if o['imm_hold_flg'] == 'Y' || o['imm_hold_flg'].nil?
               @immunization_complete = 0
             else
               @immunization_complete = 1
@@ -210,15 +201,26 @@ class FticModulesAvailablesController < ApplicationController
       if registration_status.blank?
                 @reg_complete = 0
           else 
-            registration_status.each do |o|
+            
+            total_hours = Banner.total_hours(@znum)
+
+            total_hours.each do |o|
               if o['sfrstcr_credit_hr'] >= 12
                 @reg_complete = 1
               else
                 @reg_complete = 0
               end
+            end  
 
-              @sfrstcr_credit_hr = o['sfrstcr_credit_hr']
-            end
+            # registration_status.each do |o|
+            #   if o['sfrstcr_credit_hr'] >= 12
+            #     @reg_complete = 1
+            #   else
+            #     @reg_complete = 0
+            #   end
+
+            #   @sfrstcr_credit_hr = o['sfrstcr_credit_hr']
+            # end
           end
 
       # END: Registration Check

@@ -234,10 +234,10 @@ class StaticPagesController < ApplicationController
          @communication_complete = 0
           
          if immunization_status.blank?
-              @immunization_complete = 0
+             @immunization_complete = 0
          else
           immunization_status.each do |o|
-             if o['imm_hold_flg'] == 'N' || o['imm_hold_flg'].nil?
+            if o['imm_hold_flg'] == 'Y' || o['imm_hold_flg'].nil?
               @immunization_complete = 0
             else
               @immunization_complete = 1
@@ -292,9 +292,9 @@ class StaticPagesController < ApplicationController
           #begin finaidacceptance
             fin_aid_acceptance = Banner.fin_aid_acceptance(@znum)
 
-            puts YAML::dump('**********BEGIN fin_aid_acceptance**********')
-            puts YAML::dump(fin_aid_acceptance)
-            puts YAML::dump('**********END**********')
+            # puts YAML::dump('**********BEGIN fin_aid_acceptance**********')
+            # puts YAML::dump(fin_aid_acceptance)
+            # puts YAML::dump('**********END**********')
 
             if fin_aid_acceptance.nil? || fin_aid_acceptance.blank?
               @fin_aid_acceptance = 0
@@ -408,7 +408,8 @@ class StaticPagesController < ApplicationController
             end
           end
 
-          @housing_meal_plans_complete = 0
+          #TO DO: make this dynamic
+          @housing_meal_plans_complete = 1
          
 
 
@@ -447,15 +448,27 @@ class StaticPagesController < ApplicationController
           if registration_status.blank?
                 @reg_complete = 0
           else 
-            registration_status.each do |o|
+
+            total_hours = Banner.total_hours(@znum)
+
+            total_hours.each do |o|
               if o['sfrstcr_credit_hr'] >= 12
                 @reg_complete = 1
               else
                 @reg_complete = 0
               end
+            end  
 
-              @sfrstcr_credit_hr = o['sfrstcr_credit_hr']
-            end
+            # registration_status.each do |o|
+            #   if o['sfrstcr_credit_hr'] >= 12
+            #     @reg_complete = 1
+            #   else
+            #     @reg_complete = 0
+            #   end
+
+            #   @sfrstcr_credit_hr = o['sfrstcr_credit_hr']
+            # end
+
           end
 
 
