@@ -63,7 +63,8 @@ class StaticPagesController < ApplicationController
 
           @isInternationalStudent = 0
 
-          @isHonorsCollege = 1
+          #TO DO: Query for WHC_STUDENT
+          #@isHonorsCollege = 1
 
 
 
@@ -188,6 +189,14 @@ class StaticPagesController < ApplicationController
                @emergency_complete = 0
             else
                 get_multistatus.each do |o|
+
+                   if o['whc_student'] == 'N' || o['whc_student'].nil?
+                    @isHonorsCollege = 0
+                  else
+                    @isHonorsCollege = 1
+                  end 
+
+
                   if o['aleks_taken'] == 'N' || o['aleks_taken'].nil?
                     @aleks_complete = 0
                   else
