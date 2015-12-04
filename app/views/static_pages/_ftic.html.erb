@@ -1499,7 +1499,18 @@ Hello, <%= session[:cas_user] %>!
 					
 
 					<p>
-						To obtain your OWL Card, visit the <a href="http://www.fau.edu/business-services/owl-card/locations.php" target="_blank">OWL Card Center</a> on Florida Atlantic University's Boca Raton or Davie campus. Bring with you a photo ID, either your driver's license, military ID or passport. You must also be registered for classes within the current semester or have a current FAU employment contract or LLS membership card. <a href="http://www.fau.edu/business-services/owl-card/request.php" target="_blank">[More Information]</a>
+						<% if @isHonorsCollege %>
+							Jupiter Campus Location:<br>
+							SR Building, Room 139<br>
+
+							Hours:<br>
+							Monday – Friday, 9:00 a.m. – 12 noon and 2:00 p.m. – 4:30 p.m.<br>
+
+							Contact:<br>
+							Phone: 561-799-8697<br>
+						<% else %>
+							To obtain your OWL Card, visit the <a href="http://www.fau.edu/business-services/owl-card/locations.php" target="_blank">OWL Card Center</a> on Florida Atlantic University's Boca Raton or Davie campus. Bring with you a photo ID, either your driver's license, military ID or passport. You must also be registered for classes within the current semester or have a current FAU employment contract or LLS membership card. <a href="http://www.fau.edu/business-services/owl-card/request.php" target="_blank">[More Information]</a>
+						<% end %>
 					</p>
 				 <% end %>
 			  </div>			

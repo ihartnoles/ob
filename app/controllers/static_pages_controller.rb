@@ -63,6 +63,9 @@ class StaticPagesController < ApplicationController
 
           @isInternationalStudent = 0
 
+          @isHonorsCollege = 1
+
+
 
           #module flags
           # @welcome_available = 1
@@ -449,17 +452,19 @@ class StaticPagesController < ApplicationController
                 @reg_complete = 0
           else 
 
-            total_hours = Banner.total_hours(@znum)
+               total_hours = Banner.total_hours(@znum)
+              
+                total_hours.each do |o|
+                  if o['totalhours'].nil?
+                    @reg_complete = 0
+                  elsif o['totalhours'] >= 12
+                    @reg_complete = 1
+                  else
+                    @reg_complete = 0
+                  end
+                end
 
-            total_hours.each do |o|
-              if o['sfrstcr_credit_hr'] >= 12
-                @reg_complete = 1
-              else
-                @reg_complete = 0
-              end
-            end  
-
-            # registration_status.each do |o|
+           # registration_status.each do |o|
             #   if o['sfrstcr_credit_hr'] >= 12
             #     @reg_complete = 1
             #   else

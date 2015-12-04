@@ -143,6 +143,31 @@ module StaticPagesHelper
      end
 
 
+     def total_hours(znum)
+
+        output = Banner.total_hours(znum)
+
+        if output.count > 0
+          
+          output.each do |o| 
+             if o['sfrstcr_credit_hr'] >= 12
+              
+              return true
+             
+             else
+             
+              return false
+
+             end
+          end
+
+        else
+          return false
+        end
+
+     end
+
+
   	 def oars_status(znum)
   	 	output = Faudw.oars_status(znum)
 

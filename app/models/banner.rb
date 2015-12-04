@@ -99,7 +99,7 @@ class Banner < ActiveRecord::Base
 
 
 		def self.total_hours(id)
-			get = connection.exec_query("SELECT SUM(sfrstcr_credit_hr) as sfrstcr_credit_hr from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT SUM(sfrstcr_credit_hr) as totalhours from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 
