@@ -550,8 +550,8 @@ class StaticPagesController < ApplicationController
          newstudent = FticModulesAvailable.new
          newstudent.znumber = bs['z_number']
          newstudent.netid   = bs['gobtpac_external_user']
-         newstudent.fname = bs['f_name']
-         newstudent.lname = bs['l_name']
+         newstudent.f_name = bs['f_name']
+         newstudent.l_name = bs['l_name']
          newstudent.welcome = 1
          newstudent.deposit = 1
          newstudent.account = 0
