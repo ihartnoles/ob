@@ -245,7 +245,7 @@ class StaticPagesController < ApplicationController
 
          @communication_complete = 0
           
-         if immunization_status.blank?
+         if immunization_status.blank? || immunization_status.count == 0
              @immunization_complete = 0
          else
           immunization_status.each do |o|
