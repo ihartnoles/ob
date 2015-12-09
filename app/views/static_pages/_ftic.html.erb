@@ -371,10 +371,7 @@ Hello, <%= session[:cas_user] %>!
 			  		
 			  		<% if account_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
-
-					<% else %>
-
-						
+					<% else %>						
 				  		 <p>The FAUNet ID is the account name you will use to login to many of the systems you will utilize in your daily life at Florida Atlantic University. It is a part of your official FAU e-mail address (e.g., FAUNetID@fau.edu). All students, faculty and staff are automatically granted a FAUNet ID and may claim their account by logging into the MyFAU portal. While many online services provided by the University require a separate password, OIT is working to synchronize these passwords while striving to improve the security of the system.</p>
 
 				  		<% if account_complete == 1 %>
@@ -385,10 +382,7 @@ Hello, <%= session[:cas_user] %>!
 								<strong>Congrats on claiming your account! You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
 								</p>					
 					        </div>
-
-
-
-						<% else %>
+					     <% else %>
 				  		 <p>
 				  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu" target="_blank" id="claimAccountBut">[Start claiming your account]</a>
 				  		 </p>			  		
@@ -404,9 +398,9 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 
-		  	<% if communication_available == 1 && communication_complete == 0 || (account_complete == 1) %>
+		  	<% if (communication_available == 1 && communication_complete == 0) || (communication_complete == 0  && account_complete == 1) %>
 				<a id="communicationhref" href="#step-4" class="collapsed step-title incomplete" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif  (communication_available == 1 && communication_complete == 1) || communication_bypass == 1 %>
+			<% elsif  (communication_available == 1 && communication_complete == 1) || (communication_complete == 1  && account_complete == 1) || communication_bypass == 1 %>
 				<a id="communicationhref" href="#step-4" class="collapsed step-title complete" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="communicationhref" href="#step-4" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
@@ -786,8 +780,8 @@ Hello, <%= session[:cas_user] %>!
 			  					<ol>
 			  						<li><a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a> &nbsp;
 			  						 <% if @application_complete == 1 %><i class="fa fa-check-square-o"></i><% else %><i class="fa fa-square-o"></i><% end %></i> </li>
-			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Eligibility Requirements</a> &nbsp; <i class="fa fa-check-square-o"></i> </li>
-			  						<li>Complete Your Financial Aid Package &nbsp; <i class="fa fa-check-square-o"></i> </li>
+			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Eligibility Requirements</a> &nbsp; <% if @eligibility_reqs_complete == 1 %><i class="fa fa-check-square-o"></i><% else %><i class="fa fa-square-o"></i><% end %></li>
+			  						<li>Complete Your Financial Aid Package &nbsp; <% if @finaid_package_complete == 1 %><i class="fa fa-check-square-o"></i><% else %><i class="fa fa-square-o"></i><% end %> </li>
 			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; <% if @tc_complete == 1 %><i class="fa fa-check-square-o"></i><% else %><i class="fa fa-square-o"></i><% end %></li>
 			  						<li><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp; <% if @fin_aid_acceptance == 1 %><i class="fa fa-check-square-o"></i><% else %><i class="fa fa-square-o"></i><% end %></li>
 			  					</ol>

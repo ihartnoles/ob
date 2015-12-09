@@ -275,6 +275,20 @@ class StaticPagesController < ApplicationController
                end
 
 
+               if o['rorstat_pckg_comp_date'].nil?
+                  @finaid_package_complete = 0
+               else
+                  @finaid_package_complete = 1
+               end
+
+              
+               if o['rorstat_all_req_comp_date'].nil?
+                  @eligibility_reqs_complete = 0
+               else
+                  @eligibility_reqs_complete = 1
+               end
+
+
                if  finaidchecks.include? 'TC0'
                   @tc_complete = 0
                 elsif finaidchecks.empty?
@@ -308,7 +322,7 @@ class StaticPagesController < ApplicationController
             # puts YAML::dump(fin_aid_acceptance)
             # puts YAML::dump('**********END**********')
 
-            if fin_aid_acceptance.nil? || fin_aid_acceptance.blank?
+            if fin_aid_acceptance.nil? || fin_aid_acceptance.blank? || fin_aid_acceptance.count == 0
               @fin_aid_acceptance = 0
             else 
               @fin_aid_acceptance = 1
