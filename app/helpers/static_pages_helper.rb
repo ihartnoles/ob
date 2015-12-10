@@ -58,7 +58,7 @@ module StaticPagesHelper
         output.each do |o| 
              if !o.nil?              
 
-               tmp <<  "<tr><td>#{o['rfrbase_fund_title']}</td><td>#{o['term']} #{o['year']}</td><td>#{number_to_currency(o['rpratrm_offer_amt'])}</td><td>#{o['offerdate']}</td></tr>"
+               tmp <<  "<tr><td>#{o['rfrbase_fund_title']}</td><td>#{o['term']} #{o['year']}</td><td>#{number_to_currency(o['rpratrm_offer_amt'])}</td><td>#{o['offerdate']}</td><td>#{o['acceptdate']}</td></tr>"
              else
                tmp =  "<tr><td colspan='4'>You DO NOT have award information on file.</td></tr>"
              end        
@@ -92,7 +92,7 @@ module StaticPagesHelper
                     doc_status = "undetermined"
                 end
 
-               tmp <<  "<tr><td>#{o['rtvtreq_long_desc']}</td><td>#{doc_status}</td></tr>"
+               tmp <<  "<tr><td>#{o['rtvtreq_long_desc']}</td><td>#{o['term']} #{o['finaidyear']}</td><td>#{doc_status}</td></tr>"
              else
                tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
              end        

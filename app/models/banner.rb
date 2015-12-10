@@ -114,7 +114,15 @@ class Banner < ActiveRecord::Base
 
 		def self.fin_aid_docs(id)
 			#get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind  from BANINST1.AWS_ONBOARDING_FINAID WHERE Z_NUMBER=#{connection.quote(id)}")
-			get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
+									      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+									             WHEN '01' THEN 'Spring'
+									             WHEN '08' THEN 'Fall'
+									             WHEN '05' THEN 'Summer'
+									          ELSE ''
+									      END as term ,
+
+									      SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as finaidyear  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.fin_aid_checkboxes(id)
@@ -144,7 +152,7 @@ class Banner < ActiveRecord::Base
 									          ELSE ''
 									      END as term,
 									
-									    RPRATRM_OFFER_AMT, TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)} ORDER BY RPRATRM_PERIOD, RFRBASE_FUND_TITLE")
+									    RPRATRM_OFFER_AMT, TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)} ORDER BY RPRATRM_PERIOD, RFRBASE_FUND_TITLE")
 		end
 
 	#END:QUERIES TO BANINST1.AWS_ONBOARDING_FINAID

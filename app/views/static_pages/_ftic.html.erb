@@ -803,7 +803,7 @@ Hello, <%= session[:cas_user] %>!
 						  		<table class="table table-striped text-left order-details">
 						  			<thead>
 						  				<tr>
-						  					<th class="product-name">FAFSA Document</th><th class="product-total">Status</th>
+						  					<th class="product-name">FAFSA Document</th><th class="product-total">Term</th><th class="product-total">Status</th>
 						  				</tr>
 						  			</thead>
 
@@ -819,7 +819,7 @@ Hello, <%= session[:cas_user] %>!
 					  			<table class="table table-striped text-left order-details">
 						  			<thead>
 						  				<tr>
-						  					<th class="product-name">Award</th><th class="product-total">Term</th><th class="product-total">Amount</th><th class="product-total">Offer Date</th>
+						  					<th class="product-name">Award</th><th class="product-total">Term</th><th class="product-total">Amount</th><th class="product-total">Offer Date</th><th class="product-total">Acceptance Date</th>
 						  				</tr>
 						  			</thead>
 
@@ -969,7 +969,7 @@ Hello, <%= session[:cas_user] %>!
 
 					 <p>
 					 	
-					 	<a title="ALEKS information" href="https://secure.aleks.com/fau/?znumber=<%=params[:znum] %>myfau_username&=sbauer6" target="_blank">[Aleks Sign-up]</a>
+					 	<a title="ALEKS information" href="https://secure.aleks.com/fau/?znumber=<%=params[:znum] %>&myfau_username=sbauer6" target="_blank">[Aleks Sign-up]</a>
 					 </p>
 
 				 <% end %>

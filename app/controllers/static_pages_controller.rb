@@ -289,21 +289,21 @@ class StaticPagesController < ApplicationController
                end
 
 
-               if  finaidchecks.include? 'TC0'
-                  @tc_complete = 0
-                elsif finaidchecks.empty?
-                   @tc_complete = 1
-                else
+               if  finaidchecks.include? 'TC1'
                   @tc_complete = 1
+                elsif finaidchecks.empty?
+                   @tc_complete = 0
+                else
+                  @tc_complete = 0
                 end 
 
 
-                if  finaidchecks.include? 'APP0'
-                  @application_complete = 0
-                elsif finaidchecks.empty?
-                   @application_complete = 1
-                else
+                if  finaidchecks.include? 'APP1'
                   @application_complete = 1
+                elsif finaidchecks.empty?
+                   @application_complete = 0
+                else
+                  @application_complete = 0
                 end 
 
 
@@ -325,7 +325,14 @@ class StaticPagesController < ApplicationController
             if fin_aid_acceptance.nil? || fin_aid_acceptance.blank? || fin_aid_acceptance.count == 0
               @fin_aid_acceptance = 0
             else 
-              @fin_aid_acceptance = 1
+               fin_aid_acceptance.each do |fa|
+                 if fa['rpratrm_accept_date'].nil?
+                  @fin_aid_acceptance = 0
+                 else 
+                  @fin_aid_acceptance = 1
+                 end
+               end 
+              
             end
 
           #end finaidacceptance
