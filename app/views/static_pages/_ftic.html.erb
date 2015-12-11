@@ -110,7 +110,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="number"><!-- Step 1 --> <%#= get_statusicon(@welcome_available, @welcome_complete) %>
 			  		information <i class='fa fa-info'></i>
 			  </div>
-			  <h6>Welcome</h6>
+			  <h6><b>WELCOME</b></h6>
 			</a>
 			
 			<div id="step-1" class="collapse in">
@@ -176,8 +176,8 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>	
 			
 
-			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
-			  <h6>Verify Your Information</h6>
+			  <div class="number"><!-- Step 3 --><%= get_statusicon(account_available, account_complete, account_bypass) %></div>
+			  <h6><b>VERIFY YOUR INFORMATION</b></h6>
 			</a>
 			
 			<div id="step-verify" class="collapse">
@@ -254,7 +254,7 @@ Hello, <%= session[:cas_user] %>!
 
 
 			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
-			  <h6>International Student Visa Processing</h6>
+			  <h6><b>INTERNATIONAL STUDENT VISA PROCESSING</b></h6>
 			</a>
 			
 			<div id="step-1A" class="collapse">
@@ -314,7 +314,7 @@ Hello, <%= session[:cas_user] %>!
 
 
 			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
-			  <h6>Pay Deposit</h6>
+			  <h6><b>PAY DEPOSIT</b></h6>
 			</a>
 			
 			<div id="step-2" class="collapse">
@@ -362,7 +362,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
-			  <h6>Create Account</h6>
+			  <h6><b>CREATE ACCOUNT</b></h6>
 			</a>
 			
 			<div id="step-3" class="collapse">
@@ -407,7 +407,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
-			  <h6>Communication Preference</h6>
+			  <h6><b>COMMUNICATION PREFERENCE</b></h6>
 			</a>
 			
 			<div id="step-4" class="collapse">
@@ -517,7 +517,7 @@ Hello, <%= session[:cas_user] %>!
 		  <% end %>
 
 			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, immunization_complete,immunization_bypass) %></div>
-			  <h6>Immunization Holds</h6>
+			  <h6><b>IMMUNIZATION HOLDS</b></h6>
 			</a>
 			
 			<div id="step-5" class="collapse">
@@ -589,7 +589,7 @@ Hello, <%= session[:cas_user] %>!
 		  <%# end %>
 
 			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
-			  <h6>International Student Medical Insurance</h6>
+			  <h6><b>INTERNATIONAL STUDENT MEDICAL INSURANCE</b></h6>
 			</a>
 			
 			<div id="step-5A" class="collapse">				   
@@ -635,7 +635,7 @@ Hello, <%= session[:cas_user] %>!
 		  <% end %>
 
 			  <div class="number"><!-- Step 7 --> <%= get_statusicon(residency_available, residency_complete, residency_bypass) %> </div>
-			  <h6>Residency Validation</h6>
+			  <h6><b>RESIDENCY VALIDATION</b></h6>
 			</a>
 			
 			<div id="step-7" class="collapse">	
@@ -764,7 +764,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			  <div class="number"><!-- Step 6 --><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> </div>
-			  <h6>Financial Aid</h6>
+			  <h6><b>FINANCIAL AID</b></h6>
 			</a>
 			
 			<div id="step-6" class="collapse">
@@ -852,7 +852,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, housing_fee_complete, housingfee_bypass) %> </div>
-			  <h6>Housing Fee</h6>
+			  <h6><b>HOUSING FEE</b></h6>
 			</a>
 			
 			<div id="step-8" class="collapse">	
@@ -917,7 +917,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			  <div class="number"><!-- Step 9 --> <%= get_statusicon(housing_meal_plans_available, housing_meal_plans_complete, housingmealplanbypass) %></div>
-			  <h6>Housing & Meal Plans</h6>
+			  <h6><b>HOUSING & MEAL PLANS</b></h6>
 			</a>
 			
 			<div id="step-9" class="collapse">				   
@@ -944,7 +944,7 @@ Hello, <%= session[:cas_user] %>!
 		  <% end %>
 
 			  <div class="number"><!-- Step 10 --> <%= get_statusicon(aleks_available, aleks_complete, aleksbypass) %></div>
-			  <h6>Math Placement Exam - ALEKS</h6>
+			  <h6><b>MATH PLACEMENT EXAM - ALEKS</b></h6>
 			</a>
 			
 			<div id="step-10" class="collapse">				   
@@ -990,7 +990,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
-			  <h6>Orientation</h6>
+			  <h6><b>ORIENTATION</b></h6>
 			</a>
 			
 			<div id="step-13" class="collapse">				   
@@ -1038,7 +1038,7 @@ Hello, <%= session[:cas_user] %>!
 			<%# end %>
 
 			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
-			  <h6>International Student Orientation</h6>
+			  <h6><b>INTERNATIONAL STUDENT ORIENTATION</b></h6>
 			</a>
 			
 			<div id="step-13A" class="collapse">				   
@@ -1086,7 +1086,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="number"><!-- Step 12 --> <%= get_statusicon(learning_comm_available, learning_comm_complete, learning_commbypass) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  </div>
-			  <h6>Learning Communities</h6>
+			  <h6><b>LEARNING COMMUNITIES</b></h6>
 			</a>
 			
 			<div id="step-12" class="collapse">				   
@@ -1133,7 +1133,7 @@ Hello, <%= session[:cas_user] %>!
 
 
 			  <div class="number"><!-- Step 11 --> <%= get_statusicon(oars_available, oars_complete, oars_bypass) %></div>
-			  <h6>Online Advising & Resource System - OARS</h6>
+			  <h6><b>ONLINE ADVISING & RESOURCE SYSTEM - OARS</b></h6>
 			</a>
 			
 			<div id="step-11" class="collapse">				   
@@ -1199,7 +1199,7 @@ Hello, <%= session[:cas_user] %>!
 		   	<% end %>
 
 			  <div class="number"><!-- Step 14 --><%= get_statusicon(reg_available, reg_complete, registrationbypass) %></div>
-			  <h6>Registration & Holds</h6>
+			  <h6><b>REGISTRATION & HOLDS</b></h6>
 			</a>
 			
 			<div id="step-14" class="collapse">				   
@@ -1303,7 +1303,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			  <div class="number"><!-- Step 19 --> <%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></div>
-			  <h6>Tuition Payment</h6>
+			  <h6><b>TUITION PAYMENT</b></h6>
 			</a>
 			
 			<div id="step-19" class="collapse">				   
@@ -1408,7 +1408,7 @@ Hello, <%= session[:cas_user] %>!
 		  <% end %>
 
 			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
-			  <h6>Emergency Contacts</h6>
+			  <h6><b>EMERGENCY CONTACTS</b></h6>
 			</a>
 			
 			<div id="step-15" class="collapse">				   
@@ -1444,7 +1444,7 @@ Hello, <%= session[:cas_user] %>!
 		   <% end %>
 
 			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></div>
-			  <h6>FAU Alert Information</h6>
+			  <h6><b>FAU ALERT INFORMATION</b></h6>
 			</a>
 			
 			<div id="step-16" class="collapse">				   
@@ -1477,12 +1477,12 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="number"><!-- Step 17 -->  <%= get_statusicon(owlcard_available, owlcard_complete, owlcard_bypass) %>
 			  <!-- 	information <i class='fa fa-info'></i> -->
 			  </div>
-			  <h6>Owl Card</h6>
+			  <h6><b>OWL CARD</b></h6>
 			</a>
 			
 			<div id="step-17" class="collapse">				   
 			  <div class="step-content">			  		
-		  		<h3 class="title">Get Your Owl Card</h3>
+		  		<h3 class="title">Get Your Owl Card</b></h3>
 
 		  		<% if owlcard_bypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
@@ -1524,7 +1524,7 @@ Hello, <%= session[:cas_user] %>!
 
 			  <div class="number"><!-- Step 18 --> <%= get_statusicon(bookadvance_available, bookadvance_complete, bookadvance_bypass) %> <!-- information <i class='fa fa-info'></i> -->
 			  </div>
-			  <h6>Book Advance Program</h6>
+			  <h6><b>BOOK ADVANCE PROGRAM</b></h6>
 			</a>
 			
 			<div id="step-18" class="collapse">				   
@@ -1581,7 +1581,7 @@ Hello, <%= session[:cas_user] %>!
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  	<%= get_statusicon(vehicle_reg_available, 1, vehicleregbypass) %>
 			  </div>
-			  <h6>Register Your Vehicle</h6>
+			  <h6><b>REGISTER YOUR VEHICLE</b></h6>
 			</a>
 			
 			<div id="step-20" class="collapse">				   
@@ -1670,76 +1670,14 @@ Hello, <%= session[:cas_user] %>!
        <div id="sidebar" class="col-sm-3 sidebar checkout-progress">
        	<aside class="widget">
 		  <header>
-			<h3 class="title">To Do List</h3>
+			<h3 class="title">FAU Support</h3>
 		  </header>
 		  <ul class="progress-list">
 			<!-- <li id="welcomenav"><a href="#welcometitle" class="edit">information <i class='fa fa-info'></i> </a>Welcome</li> -->
+			<p>Have questions? We are here to help. Get support by phone or email. Here are some useful online resources.</p>
+
+			<p>Lord Vader, I should have known. Only you could be so bold. The Imperial Senate will not sit for this, when they hear you've attacked a diplomatic... Don't play games with me, Your Highness. You weren't on any mercy mission this time. You passed directly through a restricted system. Several transmissions were beamed to this ship by Rebel spies. I want to know what happened to the plans they sent you. I don't know what you're talking about. I'm a member of the Imperial Senate on a diplomatic mission to Alderaan... You're a part of the Rebel Alliance...and a traitor. Take her away!</p>
 			
-			<% if  @deposit_available == 1 && dep_complete_flag == 0 %>
-				<li id="depositnav"><a href="#" class="edit"></a> Pay Deposit</li>
-			<% end %>
-
-			<% if  account_available == 1 &&  account_complete == 0 %>
-				<li id="accountnav"><a href="#" class="edit"><%= get_statusicon(account_available, account_complete) %></a> Create Account</li>
-			<% end %>
-			
-			<% if  communication_available == 1 &&  communication_complete == 0 %>
-				<li id="commnav"><a href="#" class="edit"><%= get_statusicon(communication_available, communication_complete, communication_bypass) %></a> Communication Preference</li>
-			<% end %>
-
-			<% if  immunization_available == 1 && immunization_complete == 0 %>
-				<li id="immunenav"><a href="#" class="edit"><%= get_statusicon(immunization_available, immunization_complete, immunization_bypass) %></a> Immunization Holds</li>
-			<% end %>
-
-			<% if  residency_available == 1 && residency_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(residency_available, residency_complete, residency_bypass) %></a> Residency Validation</li>
-			<% end %>
-
-			<% if  finaid_available == 1 && finaid_complete == 0 %>
-			<li id="finaidnav"><a href="#" class="edit"><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %></a> Financial Aid</li>
-			<% end %>
-
-			<% if  housing_fee_available == 1 && housing_fee_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(housing_fee_available, housing_fee_complete, housingfee_bypass) %></a> Housing Fee</li>
-			<% end %>
-
-			<% if  housing_meal_plans_available == 1 && housing_meal_plans_complete == 0 %>
-			<li><a href="#" class="edit"><%= get_statusicon(housing_meal_plans_available, housing_meal_plans_complete,housingmealplanbypass) %></a> Housing & Meal Plans</li>
-			<% end %>
-
-			<% if  aleks_available == 1 && aleks_complete == 0 %>
-			<li><a href="#" class="edit"><%= get_statusicon(aleks_available, aleks_complete, aleksbypass) %></a> Math Placement Exam </li>
-			<% end %>
-
-
-			<% if  orientation_available == 1 && orientation_complete == 0 %>
-			<li><a href="#" class="edit"><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></a> Orientation</li>
-			<% end %>
-
-			<li><a href="#" class="edit">information <i class='fa fa-info'></i></a> Learning Communities</li>
-			
-			<% if  oars_available == 1 && oars_complete_flag == 0 %>
-			<li><a href="#" class="edit"><%= get_statusicon(oars_available, oars_complete, oars_bypass) %></a> Online Advising & Resource System</li>
-			<% end %>
-
-
-			<% if  reg_available == 1 && reg_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(reg_available, reg_complete, registrationbypass) %></a> Registration</li>
-			<% end %>
-
-			<% if  tuition_available == 1 && tuition_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></a> Tuition Payment</li>
-			<% end %>
-			<% if  emergency_available == 1 && emergency_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></a> Emergency Contacts</li>
-			<% end %>
-			<% if  fau_alert_available == 1 && fau_alert_complete == 0 %>
-				<li><a href="#" class="edit"><%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></a> FAU Alert Info</li>
-			<% end %>
-
-			<li><a href="#" class="edit">information <i class='fa fa-info'></i></a> Owl Card</li>
-			<li><a href="#" class="edit">information <i class='fa fa-info'></i></a> Book Advance Program</li>
-			<li><a href="#" class="edit"><a href="#raptors" class="edit">information <i class='fa fa-info'></i></a> Car Registration</li>
 		  </ul>
 		</aside>
       </div> 

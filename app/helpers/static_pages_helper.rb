@@ -302,7 +302,7 @@ module StaticPagesHelper
       	 		when available == 0 && ( completed == 0 || completed.nil?)
       	 			return "locked <i class='fa fa-ban'></i>".html_safe
       	 		when available == 1 && ( completed == 0 || completed.nil?)
-      	 			return "incomplete  <i class='fa fa-times'></i>".html_safe
+      	 			return "incomplete <i class='fa fa-times'></i>".html_safe
       	 		when  completed == 1  	 			
       	 			return "completed <i class='fa fa-check'></i>".html_safe
            
