@@ -300,11 +300,11 @@ module StaticPagesHelper
        else
          	case 
       	 		when available == 0 && ( completed == 0 || completed.nil?)
-      	 			return "locked <i class='fa fa-ban'></i>".html_safe
+      	 			return "<span class='badge badge-important'>locked <i class='fa fa-ban'></i></span>".html_safe
       	 		when available == 1 && ( completed == 0 || completed.nil?)
-      	 			return "incomplete <i class='fa fa-times'></i>".html_safe
+      	 			return " <span class='badge badge-important label label-danger'>incomplete <i class='fa fa-times'></i></span>".html_safe
       	 		when  completed == 1  	 			
-      	 			return "completed <i class='fa fa-check'></i>".html_safe
+      	 			return "<span class='badge badge-important label label-success'>completed <i class='fa fa-check'></i></span>".html_safe
            
       	 	else
       	 		return "N/A <i class='fa fa-ban'></i>".html_safe

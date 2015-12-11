@@ -105,12 +105,12 @@ Hello, <%= session[:cas_user] %>!
     <div class="row">
       <article class="content col-sm-9">
 		<ul id="checkoutsteps" class="clearfix panel-group">
-		  <li class="panel">
+		  <li class="panel-title">
 			<a href="#step-1" class="step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="welcometitle">
 			  <div class="number"><!-- Step 1 --> <%#= get_statusicon(@welcome_available, @welcome_complete) %>
-			  		information <i class='fa fa-info'></i>
+			  		information <span class="badge badge-important label label-danger"> <i class='fa fa-info'></i></span><!-- <i class='fa fa-info'></i> -->		  		
 			  </div>
-			  <h6><b>WELCOME</b></h6>
+			 <h6><b>WELCOME</b></h6>
 			</a>
 			
 			<div id="step-1" class="collapse in">
