@@ -108,7 +108,7 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel-title">
 			<a href="#step-1" class="step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="welcometitle">
 			  <div class="number"><!-- Step 1 --> <%#= get_statusicon(@welcome_available, @welcome_complete) %>
-			  		information <span class="badge badge-important label label-danger"> <i class='fa fa-info'></i></span><!-- <i class='fa fa-info'></i> -->		  		
+			  		<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span><!-- <i class='fa fa-info'></i> -->		  		
 			  </div>
 			 <h6><b>WELCOME</b></h6>
 			</a>
@@ -1474,8 +1474,8 @@ Hello, <%= session[:cas_user] %>!
 				<a href="#step-17" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			  <div class="number"><!-- Step 17 -->  <%= get_statusicon(owlcard_available, owlcard_complete, owlcard_bypass) %>
-			  <!-- 	information <i class='fa fa-info'></i> -->
+			  <div class="number"><!-- Step 17 -->  <%#= get_statusicon(owlcard_available, owlcard_complete, owlcard_bypass) %>
+			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>			 
 			  </div>
 			  <h6><b>OWL CARD</b></h6>
 			</a>
@@ -1522,7 +1522,9 @@ Hello, <%= session[:cas_user] %>!
 		    <a href="#step-18" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-			  <div class="number"><!-- Step 18 --> <%= get_statusicon(bookadvance_available, bookadvance_complete, bookadvance_bypass) %> <!-- information <i class='fa fa-info'></i> -->
+			  <div class="number"><!-- Step 18 --> 
+			  	<%#= get_statusicon(bookadvance_available, bookadvance_complete, bookadvance_bypass) %>
+			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>
 			  </div>
 			  <h6><b>BOOK ADVANCE PROGRAM</b></h6>
 			</a>
@@ -1579,7 +1581,8 @@ Hello, <%= session[:cas_user] %>!
 
 			  <div class="number"><!-- Step 19 --> <%#= get_statusicon(tuition_available, tuition_complete) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
-			  	<%= get_statusicon(vehicle_reg_available, 1, vehicleregbypass) %>
+			  	<%#= get_statusicon(vehicle_reg_available, 1, vehicleregbypass) %>
+			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>
 			  </div>
 			  <h6><b>REGISTER YOUR VEHICLE</b></h6>
 			</a>
@@ -1633,6 +1636,41 @@ Hello, <%= session[:cas_user] %>!
 			</div>
 		  </li>
 
+		   <li class="panel">
+		  	
+		  	<% if vehicle_reg_available == 1 %>
+				<a href="#step-21" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<% elsif  (vehicle_reg_available == 1 || vehicle_reg_available == 0) && vehicleregbypass == 1 %>
+		   		<a href="#step-21" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<% else %>
+				<a href="#step-21" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+			<% end %>
+
+			  <div class="number"><!-- Step 19 --> <%#= get_statusicon(tuition_available, tuition_complete) %>
+			  	<!-- information <i class='fa fa-info'></i> -->
+			  	<%#= get_statusicon(vehicle_reg_available, 1, vehicleregbypass) %>
+			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>
+			  </div>
+			  <h6><b>CONGRATULATIONS!</b></h6>
+			</a>
+			
+			<div id="step-21" class="collapse">				   
+			  <div class="step-content">			  		
+		  		<h3 class="title">You're "OWL" done!</h3>
+				  
+				 <% if 1 == 0 %>			  		
+						<p> An administrator has bypassed (overridden) this section for you.</p>
+				<% else %>
+
+					  <p>
+	                 	You are ready to begin this next exciting stage of development and growth at Florida Atlantic University. You should be very proud of yourself. This is an exciting event that you have planned and dreamed about for many years!
+	                  </p>
+	                  
+	                  
+	              	<% end %>
+				</div>			
+			</div>
+		  </li>
 
 		  
 
