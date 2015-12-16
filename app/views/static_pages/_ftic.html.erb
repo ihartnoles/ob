@@ -355,16 +355,15 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		  	
-		  	<% if  (account_available == 1 && account_complete == 0) || ( account_complete == 0 &&  deposit_complete == 1) %>
+		  	<% if  (account_available == 1 && deposit_complete == 1) || account_bypass == 1%>
 				<a href="#step-3" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
-			<% elsif  (account_available == 1 && account_complete == 1) || ( account_complete == 1 &&  deposit_complete == 1) || account_bypass == 1 %>
-				<a href="#step-3" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
+			
 			<% else %>
 				<a href="#step-3" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="accounttitle">
 			<% end %>
 
 			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
-			  <h6><b>CREATE ACCOUNT</b></h6>
+			  <h6><b>CREATE ACCOUNT</b> <!-- AA:<%#= @account_available %>    AC:<%#= @account_complete %>  DC  <%#= @deposit_complete %> --></h6>
 			</a>
 			
 			<div id="step-3" class="collapse">
@@ -400,10 +399,8 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 
-		  	<% if (communication_available == 1 && communication_complete == 0) || (communication_complete == 0  && account_complete == 1) %>
-				<a id="communicationhref" href="#step-4" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif  (communication_available == 1 && communication_complete == 1) || (communication_complete == 1  && account_complete == 1) || communication_bypass == 1 %>
-				<a id="communicationhref" href="#step-4" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  	<% if (communication_available == 1 && account_complete == 1) || communication_bypass == 1 %>
+				<a id="communicationhref" href="#step-4" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
 			<% else %>
 				<a id="communicationhref" href="#step-4" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
