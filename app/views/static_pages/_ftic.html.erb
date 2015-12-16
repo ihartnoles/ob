@@ -205,13 +205,15 @@ Hello, <%= session[:cas_user] %>!
 						  		<tr>
 						  			<td>Your Address:</td><td><%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %></td>						  			
 						  		</tr>
+						  		<!-- 
 						  		<tr>
 						  			<td>Your Major:</td><td><%= @major %></td>						  			
-						  		</tr>
+						  		</tr> 
+						  	    -->
 						  		<tr>
 						  			<td>Acceptance Term:</td><td><%= @term %> <%= @year %></td>						  			
 						  		</tr>
-						  		<tr>
+						  		<!-- <tr>
 						  			<td>Do you intend to enroll at FAU for your acceptance term?</td>
 						  			<td>
 						  				<div class="col-sm-6 col-md-6">
@@ -225,7 +227,7 @@ Hello, <%= session[:cas_user] %>!
 									  	</label>
 									   </div>
 								   </td>						  			
-						  		</tr>
+						  		</tr> -->
 						</table>
 						
 				  						  		
@@ -1665,7 +1667,14 @@ Hello, <%= session[:cas_user] %>!
 					  <p>
 	                 	You are ready to begin this next exciting stage of development and growth at Florida Atlantic University. You should be very proud of yourself. This is an exciting event that you have planned and dreamed about for many years!
 	                  </p>
+
+	                  <p>
+	                   <div align="center">
+	                  		<img src="/assets/trophy.png">
+	                   </div>
+	                  </p>
 	                  
+
 	                  
 	              	<% end %>
 				</div>			
