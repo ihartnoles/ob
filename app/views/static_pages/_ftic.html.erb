@@ -1721,11 +1721,11 @@ Hello, <%= session[:cas_user] %>!
 			<!-- <li id="welcomenav"><a href="#welcometitle" class="edit">information <i class='fa fa-info'></i> </a>Welcome</li> -->
 			<p>I've decided to not attend FAU for the following reason:</p><br>
 			
-			<%= form_tag('/decline') do %>
+			<%= form_tag('/save_decline') do %>
 			    <%= hidden_field_tag :znumber, @znum %>
-			    <%= options_for_select(["Free", "Basic", "Advanced", "Super Platinum"], selected: "Free", disabled: "Super Platinum") %>
-
-			    <%= select_tag :phone_type, options_for_select([["Select One", ""], "I am enrolling at another in-state institution", "I am enrolling at an out-of-state institution", "I was offered a scholarship at another institution", "I cannot afford the tuition"]), :class => 'form-control' %>
+			    <%= hidden_field_tag :netid, @displayname %>
+			    
+			    <%= select_tag :reason, options_for_select([["Select One", ""], "I am enrolling at another in-state institution", "I am enrolling at an out-of-state institution", "I was offered a scholarship at another institution", "I cannot afford the tuition"]), :class => 'form-control' %>
 
 				<div><%= submit_tag 'Save' %></div>
 			<% end %>

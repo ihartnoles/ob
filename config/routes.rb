@@ -23,4 +23,6 @@ Ob::Application.routes.draw do
    get    '/dashboard/:type',  to: 'static_pages#dashboard'
    get    '/messages/new/:znum',    to: 'messages#new'
    get    '/moduledetail/:id/:znum',    to: 'ftic_modules_availables#moduledetail'
+
+   post   '/save_decline',     to: 'declines#save_decline'
 end

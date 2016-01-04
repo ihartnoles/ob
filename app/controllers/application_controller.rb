@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  layout "application"
   protect_from_forgery
 
 
@@ -133,6 +134,7 @@ class ApplicationController < ActionController::Base
     @activity.action = action_name 
     @activity.params = params.inspect
     @activity.save
-  end
+  end  
+
 
 end #end of class
