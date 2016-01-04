@@ -40,7 +40,8 @@ class ApplicationController < ActionController::Base
            
         # @znum = 'Z23122293'
         output = Banner.find_student_by_netid(session[:cas_user])
-         
+        
+        @znum = nil
         znum = nil
 
         output.each do |o| 

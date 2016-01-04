@@ -1693,25 +1693,13 @@ Hello, <%= session[:cas_user] %>!
 		  <div class="title-box">
 			<h2 class="title">Your Progress</h2>
 		  </div>
-		  <!-- <div data-appear-progress-animation="80%" class="progress progress-striped active">
-			<div class="progress-bar progress-bar-warning" style="width: 80%; text-indent: 10px;">Web Design 80%</div>
-		  </div> -->
+		 
 		  
 		  <div id="metercontainer" data-appear-progress-animation="0%" class="progress progress-striped active">
 			<div id="meterdisplay" class="progress-bar progress-bar-fau" style="width: 0%; text-indent: 5px;">0% completed</div>
 		  </div>
 		  
-		  <!-- <div data-appear-progress-animation="40%" class="progress progress-striped hover">
-			<div class="progress-bar progress-bar-success" style="width: 40%; text-indent: 10px;">Opencart 40%</div>
-		  </div>
-		  
-		  <div data-appear-progress-animation="90%" class="progress">
-			<div class="progress-bar" style="width: 90%; text-indent: 10px;">Graphic Design 90%</div>
-		  </div>
-		  
-		  <div data-appear-progress-animation="58%" class="progress progress-striped active hover">
-			<div class="progress-bar progress-bar-info" style="width: 58%; text-indent: 10px;">WordPress 58%</div>
-		  </div> -->
+		
 		</div>
 
        <div id="sidebar" class="col-sm-3 sidebar checkout-progress">
@@ -1722,13 +1710,43 @@ Hello, <%= session[:cas_user] %>!
 		  <ul class="progress-list">
 			<!-- <li id="welcomenav"><a href="#welcometitle" class="edit">information <i class='fa fa-info'></i> </a>Welcome</li> -->
 			<p>Have questions? We are here to help. Get support by phone or email. Here are some useful online resources.</p>
-
-			<p>Lord Vader, I should have known. Only you could be so bold. The Imperial Senate will not sit for this, when they hear you've attacked a diplomatic... Don't play games with me, Your Highness. You weren't on any mercy mission this time. You passed directly through a restricted system. Several transmissions were beamed to this ship by Rebel spies. I want to know what happened to the plans they sent you. I don't know what you're talking about. I'm a member of the Imperial Senate on a diplomatic mission to Alderaan... You're a part of the Rebel Alliance...and a traitor. Take her away!</p>
-			
 		  </ul>
-		</aside>
+		 </aside>
+
+		 <aside class="widget">
+		  	<header>
+		 		<h3 class="title">Changed Your Mind?</h3>
+		  	</header>
+		  	<ul class="progress-list">
+			<!-- <li id="welcomenav"><a href="#welcometitle" class="edit">information <i class='fa fa-info'></i> </a>Welcome</li> -->
+			<p>I've decided to not attend FAU for the following reason:</p><br>
+			
+			<%= form_tag('/decline') do %>
+			    <%= hidden_field_tag :znumber, @znum %>
+			    <%= options_for_select(["Free", "Basic", "Advanced", "Super Platinum"], selected: "Free", disabled: "Super Platinum") %>
+
+			    <%= select_tag :phone_type, options_for_select([["Select One", ""], "I am enrolling at another in-state institution", "I am enrolling at an out-of-state institution", "I was offered a scholarship at another institution", "I cannot afford the tuition"]), :class => 'form-control' %>
+
+				<div><%= submit_tag 'Save' %></div>
+			<% end %>
+
+
+
+		  </ul>
+		 </aside>
       </div> 
 
+     
+       <!-- <div id="sidebar" class="col-sm-3 sidebar checkout-progress">
+       	<aside class="widget">
+		  <header>
+			<h3 class="title">Changed Your Mind?</h3>
+		  </header>
+		  <ul class="progress-list">
+			<p>Have questions? We are here to help. Get support by phone or email. Here are some useful online resources.</p>			
+		  </ul>
+		</aside>
+      </div>  -->
   
     
     </div>
@@ -1990,7 +2008,7 @@ Hello, <%= session[:cas_user] %>!
 	  */
 	  $('#step-account').collapse('show');
 	  $('#step-account').prev().removeClass('collapsed');
-	  
+
 	  clearNavBar();
 	  updateNavBar('#depositnav');
 	  updateMeter('5');
