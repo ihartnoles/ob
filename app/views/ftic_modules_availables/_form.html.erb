@@ -63,6 +63,47 @@
                 </div> <!-- END OF WELCOME -->
 
 
+                   <div class="col-sm-4 col-md-4 service alert alert-border">
+                     
+                        <div class="icon bg"><% if m.account == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Account</h6></a>
+                        <div class="text-small">
+                            
+                          <% if @account_complete == 1 %>
+                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                 <%= f.label :account , "Availability"  %><br>  
+                                 <%= f.radio_button :account, 1 %> <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :account, 0 %> <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :accountbypass, "Bypass" %><br>
+                                    <%= f.radio_button :accountbypass, 1 %>  <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :accountbypass, 0 %>   &nbsp;<i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>   <!-- end of ACCOUNT -->
+
                  <div class="col-sm-4 col-md-4 service alert alert-border">
                   
                     <div class="icon bg"> <% if m.verify == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
@@ -84,6 +125,8 @@
                             </div>
                         </div>
                     </div>  
+
+
                      
                 </div> <!-- END OF WELCOME -->
 
@@ -142,46 +185,7 @@
                                 
                 </div><!-- END OF DEPOSIT -->
 
-                   <div class="col-sm-4 col-md-4 service alert alert-border">
-                     
-                        <div class="icon bg"><% if m.account == 1 %>
-                              <%#= image_tag('/assets/Check_16x16.png')  %>
-                               <div class="icon icon-20"> 
-                                <i class="fa fa-unlock-alt"></i>
-                              </div>
-                            <% else %>
-                              <%#= image_tag('/assets/Delete_16x16.png')  %>
-                              <div class="icon icon-20 text-error"> 
-                                <i class="fa fa-lock"></i>
-                              </div>
-                            <% end %></div>
-                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Account</h6></a>
-                        <div class="text-small">
-                            
-                          <% if @account_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
-                          <% else %>
-                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
-                          <% end %>
-
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
-
-                            <br><br>
-                             <div class="row">
-                                <div class="col-sm-6 ">
-                                 <%= f.label :account , "Availability"  %><br>  
-                                 <%= f.radio_button :account, 1 %> <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :account, 0 %> <i class="fa fa-lock"></i>
-                                </div>
-
-                                 <div class="col-sm-6 "> 
-                                    <%= f.label :accountbypass, "Bypass" %><br>
-                                    <%= f.radio_button :accountbypass, 1 %>  <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :accountbypass, 0 %>   &nbsp;<i class="fa fa-times-circle"></i>
-                                </div>  
-                             </div>
-
-                            </div>
-                        </div>  
+                <!-- account was here -->
                       
 
 

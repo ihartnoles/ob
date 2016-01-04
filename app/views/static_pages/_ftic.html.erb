@@ -165,6 +165,50 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		  	
+		  	<% if  account_available == 1 || account_bypass == 1%>
+				<a href="#step-account" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
+			
+			<% else %>
+				<a href="#step-account" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="accounttitle">
+			<% end %>
+
+			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
+			  <h6><b>CREATE ACCOUNT</b> <!-- AA:<%#= @account_available %>    AC:<%#= @account_complete %>  DC  <%#= @deposit_complete %> --></h6>
+			</a>
+			
+			<div id="step-account" class="collapse">
+			  <div class="step-content">
+			  	<h3 class="title">Claiming Your Account</h3>
+			  		
+			  		<% if account_bypass == 1 %>			  		
+							<p> An administrator has bypassed (overridden) this section for you.</p>
+					<% else %>						
+				  		 <p>The FAUNet ID is the account name you will use to login to many of the systems you will utilize in your daily life at Florida Atlantic University. It is a part of your official FAU e-mail address (e.g., FAUNetID@fau.edu). All students, faculty and staff are automatically granted a FAUNet ID and may claim their account by logging into the MyFAU portal. While many online services provided by the University require a separate password, OIT is working to synchronize these passwords while striving to improve the security of the system.</p>
+
+				  		<% if account_complete == 1 %>
+
+				  			<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
+								<button data-dismiss="alert" class="close" type="button">×</button>
+								<p>
+								<strong>Congrats on claiming your account! You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
+								</p>					
+					        </div>
+					     <% else %>
+				  		 <p>
+				  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu" target="_blank" id="claimAccountBut">[Start claiming your account]</a>
+				  		 </p>			  		
+
+				  		 <div class="buttons-box text-right">
+						  <button type="button" class="btn btn-danger" id="accountBut">Continue</button>						 
+						</div>
+						<% end %>
+					<% end %>
+			  </div>
+			</div>
+		  </li>
+
+		   <li class="panel">
+		  	
 		  	<!-- <a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">-->
 
 			<% if  @verify_available == 1 %>
@@ -353,49 +397,7 @@ Hello, <%= session[:cas_user] %>!
 			</div>
 		  </li>
 		  
-		  <li class="panel">
-		  	
-		  	<% if  (account_available == 1 && deposit_complete == 1) || account_bypass == 1%>
-				<a href="#step-3" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
-			
-			<% else %>
-				<a href="#step-3" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="accounttitle">
-			<% end %>
-
-			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
-			  <h6><b>CREATE ACCOUNT</b> <!-- AA:<%#= @account_available %>    AC:<%#= @account_complete %>  DC  <%#= @deposit_complete %> --></h6>
-			</a>
-			
-			<div id="step-3" class="collapse">
-			  <div class="step-content">
-			  	<h3 class="title">Claiming Your Account</h3>
-			  		
-			  		<% if account_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-					<% else %>						
-				  		 <p>The FAUNet ID is the account name you will use to login to many of the systems you will utilize in your daily life at Florida Atlantic University. It is a part of your official FAU e-mail address (e.g., FAUNetID@fau.edu). All students, faculty and staff are automatically granted a FAUNet ID and may claim their account by logging into the MyFAU portal. While many online services provided by the University require a separate password, OIT is working to synchronize these passwords while striving to improve the security of the system.</p>
-
-				  		<% if account_complete == 1 %>
-
-				  			<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-								<button data-dismiss="alert" class="close" type="button">×</button>
-								<p>
-								<strong>Congrats on claiming your account! You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
-								</p>					
-					        </div>
-					     <% else %>
-				  		 <p>
-				  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu" target="_blank" id="claimAccountBut">[Start claiming your account]</a>
-				  		 </p>			  		
-
-				  		 <div class="buttons-box text-right">
-						  <button type="button" class="btn btn-danger" id="accountBut">Continue</button>						 
-						</div>
-						<% end %>
-					<% end %>
-			  </div>
-			</div>
-		  </li>
+		 
 		  
 		  <li class="panel">
 
@@ -1122,10 +1124,10 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		   <li class="panel">
-		   	<% if oars_available == 1 && oars_complete == 0 %>
+		   	<% if oars_available == 1 %>
 				<a href="#step-11" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif (oars_available == 1 && oars_complete == 1) || oars_bypass == 1 %>
-				<a href="#step-11" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<%# elsif (oars_available == 1 && oars_complete == 1) || oars_bypass == 1 %>
+				<!-- <a href="#step-11" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
 			<% else %>
 				<a href="#step-11" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
@@ -1982,8 +1984,13 @@ Hello, <%= session[:cas_user] %>!
 	$('#welcomeBut').click(function () {
 	  $('#step-1').collapse('hide');
 	  $('#step-1').prev().addClass('collapsed');
+	  /*
 	  $('#step-2').collapse('show');
 	  $('#step-2').prev().removeClass('collapsed');
+	  */
+	  $('#step-account').collapse('show');
+	  $('#step-account').prev().removeClass('collapsed');
+	  
 	  clearNavBar();
 	  updateNavBar('#depositnav');
 	  updateMeter('5');
