@@ -89,6 +89,7 @@ class FticModulesAvailablesController < ApplicationController
                   @term_display = o['term']
                   @year_display = o['year']
                   @finaidyear = o['finaidyear']
+                  
                  
                 end
             end

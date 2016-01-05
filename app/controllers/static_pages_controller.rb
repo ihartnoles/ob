@@ -235,8 +235,9 @@ class StaticPagesController < ApplicationController
                   @year_display = o['year']
 
                   @finaidyear = o['finaidyear']
-
-                  
+                  @email      = o['goremal_email_address']
+                  @phone_area      = o['sprtele_phone_area']
+                  @phone_number      = o['sprtele_phone_number']
                 end
             end
 

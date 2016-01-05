@@ -433,7 +433,7 @@ Hello, <%= session[:cas_user] %>!
 			  		<% if communication_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 					<% else %>
-				  		 <p>Stay up to date with FAU news, updates and the latest information about the entire Florida Atlantic community.</p>
+				  		 <p>Stay up to date with the student onboarding process. Receive notifications about outstanding issues or items which require your attention.</p>
 
 				  		 <p>Please select all that apply below</p>
 			
@@ -448,7 +448,7 @@ Hello, <%= session[:cas_user] %>!
 
 						  <div class="col-sm-6 col-md-6">
 						  	<label class="checkbox">
-								<input type="checkbox" name="communicationpref" value="email"> Email
+								<input type="checkbox" name="communicationpref" value="email"> Email (<b><%= @email %></b>)
 						  	</label>
 
 						  
@@ -473,7 +473,7 @@ Hello, <%= session[:cas_user] %>!
 
 								  <div class="form-group">
 									<label>Mobile number: <span class="required">*</span></label>
-									<input type="tel" class="form-control" name="mobilenumber"
+									<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @phone_area %><%= @phone_number %>"
 									  data-bv-trigger="blur"
 									  data-bv-message="The mobile number is not valid"
 									  required data-bv-notempty-message="The mobile number is required and cannot be empty"
@@ -1951,6 +1951,7 @@ Hello, <%= session[:cas_user] %>!
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/assets/jquery.maskedinput.min.js"></script>
 <script src="/assets/bootstrap.min.js"></script>
 <script src="/assets/price-regulator/jshashtable-2.1_src.js"></script>
 <script src="/assets/price-regulator/jquery.numberformatter-1.2.3.js"></script>
@@ -2004,6 +2005,21 @@ Hello, <%= session[:cas_user] %>!
     	$('#loadingmessage').html('<h4>FAU Onboarding Modules Loading</h4>');
         $('#cover').delay(700).fadeOut(1500);     
  	})
+
+ 	$("#mobilenumber").mask("(999) 999-9999");
+
+ 	$("#mobilenumber").on("blur", function() {
+	    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+	    
+	    if( last.length == 3 ) {
+	        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
+	        var lastfour = move + last;
+	        
+	        var first = $(this).val().substr( 0, 9 );
+	        
+	        $(this).val( first + '-' + lastfour );
+	    }
+	});
 
 	 $(function() {
 	 	$('.page-box-content').css('visibility','visible').delay(700).hide().fadeIn(700);
