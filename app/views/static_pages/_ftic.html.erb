@@ -841,9 +841,12 @@ Hello, <%= session[:cas_user] %>!
 			  					<ol>
 			  						<li> <% if @application_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li>
 
-			  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Eligibility Requirements</a></li>
+			  						<!-- <li><%# if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%#=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Eligibility Requirements</a></li> -->
 
-			  						<li><% if @finaid_package_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp; Complete Your Financial Aid Package </li>
+			  						<!-- <li><%# if @finaid_package_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp; Complete Your Financial Aid Package </li> -->
+
+			  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Complete Your Financial Aid Requirements</a></li>
+
 			  						<li><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; </li>
 			  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp; </li>
 			  					</ol>
