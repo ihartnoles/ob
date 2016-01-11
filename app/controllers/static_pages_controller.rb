@@ -111,6 +111,26 @@ class StaticPagesController < ApplicationController
           finaid_status = Banner.fin_aid_docs(@znum)
           finaid_checks = Banner.fin_aid_checkboxes(@znum)
 
+
+          comm_preferences = Communication.where(:znumber => @znum)
+          
+          #puts YAML::dump('**********AYYEEEEE**********')
+          
+          if comm_preferences.blank?
+              @contact_id = 0
+              @contact_email_flag =  ''
+              @contact_mobile_flag = ''
+              @contact_mobile_number = ''
+          else
+            comm_preferences.each do |cp|
+              @contact_id = cp['id']
+              @contact_email_flag =  cp['contactByEmail']
+              @contact_mobile_flag = cp['contactByPhone']
+              @contact_mobile_number = cp['contactMobileNumber']
+              #puts YAML::dump(@contact_mobile_number)
+            end
+          end
+
           #pull the student's zip
           student_zip = Banner.find_student_zip_by_z(@znum)
 
