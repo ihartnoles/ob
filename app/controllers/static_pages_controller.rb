@@ -103,6 +103,7 @@ class StaticPagesController < ApplicationController
               end 
            end     
 
+  Communication.find(:all, :conditions => ["znumber = ? AND contactByEmail = ? OR contactByPhone = ? ", 'Z23175814', 1, 1])
 
           #END: account status check
 
@@ -113,7 +114,6 @@ class StaticPagesController < ApplicationController
 
 
           comm_preferences = Communication.where(:znumber => @znum)
-          
           #puts YAML::dump('**********AYYEEEEE**********')
           
           if comm_preferences.blank?
@@ -131,6 +131,16 @@ class StaticPagesController < ApplicationController
             end
           end
 
+          #pull the commmunication pref. data for the particular znumber
+          communication_data = Communication.find(:all, :conditions => ["znumber = ? AND (contactByEmail = ? OR contactByPhone = ?) ", @znum, 1, 1])
+
+          #set the flag appropriate
+          if communication_data.count > 0
+            @communication_complete = 1
+          else
+            @communication_complete = 0
+          end
+          
 
           lc_preferences = Community.where(:znumber => @znum)
 
@@ -287,7 +297,7 @@ class StaticPagesController < ApplicationController
 
           # END temporarily comment these out to test get_multistatus
 
-         @communication_complete = 0
+        
           
          if immunization_status.blank? || immunization_status.count == 0
              @immunization_complete = 0
