@@ -26,4 +26,5 @@ Ob::Application.routes.draw do
 
    post   '/save_decline',           to: 'declines#save_decline'
    post   '/save_communication',     to: 'communications#save_communication'
+   post   '/save_lc',                to: 'communities#save_lc'
 end

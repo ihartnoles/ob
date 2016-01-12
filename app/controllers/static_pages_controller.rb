@@ -131,6 +131,29 @@ class StaticPagesController < ApplicationController
             end
           end
 
+
+          lc_preferences = Community.where(:znumber => @znum)
+
+          if lc_preferences.blank?
+              @lc_id = 0
+              @join_lc =  ''
+              @lc_choice = ''
+              @cclc_type = ''
+              @isSigned = ''
+              @signature = ''
+          else
+            lc_preferences.each do |lc|
+              @lc_id = lc['id']
+              @join_lc =  lc['join_lc']
+              @lc_choice = lc['lc_choice']
+              @cclc_type = lc['cclc_type']
+              @isSigned = lc['isSigned']
+              @signature = lc['signature']
+             
+            end
+          end
+
+
           #pull the student's zip
           student_zip = Banner.find_student_zip_by_z(@znum)
 

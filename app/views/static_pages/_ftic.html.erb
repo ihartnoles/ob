@@ -1177,13 +1177,12 @@ Hello, <%= session[:cas_user] %>!
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-			  		<h3 class="title">Connect with other students</h3>
-					<p>
-						Learning Communities help you make a fast, smooth, and easy transition to FAU! Connect with 20-24 other students who share similar interests by taking the same classes together your freshman year. Learning Communities make it easier to meet people, make friends and form study groups while connecting you through shared experiences and themed activities. <a title="FAU Learning Commmunities" href="http://www.fau.edu/class/learning-community/" target="_blank">[More Information]</a>
-					</p>	
+			  		<h3 class="title">Learning Community Information</h3>
+					<p>Learning Communities help you make a fast, smooth, and easy transition to FAU!</p>
+					<p>Connect with 20-24 other students who share similar interests by taking your core classes together your freshman year. Learning Communities make it easier to meet people, make friends and form study groups while connecting you through shared experiences and themed activities.</p>	
 
 					<p>
-						<strong>
+						
 						 In a Learning Community you will:<br>
 							<ul>
 							    <li>Get to know people and make friends in your major or area of interest from the 1st day</li>
@@ -1194,12 +1193,72 @@ Hello, <%= session[:cas_user] %>!
 							    <li>Develop a supportive network consisting of other students, peer mentors, and professors</li>
 							    <li>Have fun!</li>
 							</ul>
-						</strong>
+						
 					</p>			
 
-				<% end %>
+					<p><strong>Two program options to choose from!</strong></p>
 
-			  </div>			
+					<p><strong>Residential Learning Community (RLC) Program</strong></p> 
+					<ul>
+						<li>The RLC program is for students who live on-campus. Students in RLCs are connected through blocks of 3-4 classes (8-11 credits*) based on their major or interest. RLC students have the benefit of living and studying together in Glades Park Towers (GPT) on the same floor as the rest of their learning community</li>
+					</ul>
+
+					<br>
+
+					<p><strong>Commuting Connections Learning Community (CCLC) Program </strong></p>
+					<ul>
+						<li>The CCLC is a program for students who live off-campus and commute to campus. CCLC students are connected through blocks of 3-4 classes (8-11 credits*) based on their major or interest.</li>
+					</ul>
+
+					<br>
+
+				
+			
+					<p><strong>Would you like to join one of FAU’s Learning Communities for the Fall 2016 – Spring 2017 academic year?</strong></p>
+
+								
+						<%= form_tag('/save_lc', {:class => 'form-horizontal', :role => 'form'}) do %>
+
+							
+							    <%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :id, @lc_id %>
+							     <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+							    <% if params[:znum] %>
+							    	<%= hidden_field_tag :znum, @znum %>									    
+							    <% end %>
+
+							    
+		    				    <div class="radio">
+		    				    	<%= radio_button_tag 'join_lc', 'Yes', !!(@join_lc.nil? || @join_lc == 'Yes') %>Yes<br>
+								</div>
+								
+							    <div class="radio">
+							    	<%= radio_button_tag 'join_lc', 'No' , !!(@join_lc.nil? || @join_lc == 'No')%>Not at this time. You can come back and join at any time. <br>Please remember…Learning Communities fill on a first come first serve basis and they fill up quickly.  The priority application closes on May 1st and applications are accepted until July 20th.<br>
+							    </div>
+
+
+							    <div id="lc_options" <% if @join_lc == 'Yes' %> <% else %> style="display:none" <% end %>>
+								    <br><strong>Please select one below:</strong>
+								    <div class="radio">
+								    	<%= radio_button_tag 'lc_choice', 'RLC', !!(@lc_choice.nil? || @lc_choice == 'RLC') %>I choose to participate in the RLC program for the Fall 2016-Spring 2017 semesters (application must be filled out through your Housing Contract). If you have already filled out your RLC application through your housing contract, select this option.<br>
+								    </div>
+
+								    <div class="radio">
+								    	<%= radio_button_tag 'lc_choice', 'CCLC', !!(@lc_choice.nil? || @lc_choice == 'CCLC') %>I choose to participate in a CCLC for the Fall 2016-Spring 2017 semesters.  By selecting a community you will be agreeing to the CCLC Program Agreement and joining the CCLC program for the Fall 206-Spring 2017 academic year.</p>
+
+								    </div>
+								</div>
+								
+								<br>
+
+								<%= submit_tag 'Save' %>
+							
+						<% end %>
+				<% end %>
+				
+
+			  </div>
 			</div>
 		  </li>
 
@@ -2078,7 +2137,18 @@ Hello, <%= session[:cas_user] %>!
 
 	    } 
 	});
-      
+
+
+	 /* Begin: Learning Communities radio button selections */
+	 $('input[type=radio][name=join_lc]').change(function() {
+        if (this.value == 'Yes') {
+           $("#lc_options").show();
+        }
+        else if (this.value == 'No') {
+            $("#lc_options").hide();
+        }
+    });
+	 /* End: Learning Communities radio button selections */
 
 
 	 $(function() {
@@ -2234,6 +2304,16 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#communicationhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-4').removeClass('collapse').addClass('collapse in');
+		}
+
+
+	/* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-12") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#lc_href').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-12').removeClass('collapse').addClass('collapse in');
 		}
 	 });
 
