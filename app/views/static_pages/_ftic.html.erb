@@ -719,7 +719,7 @@ Hello, <%= session[:cas_user] %>!
 	                    <div class="alert alert-border alert-danger text-center fade in alert-dismissable">
 							<button data-dismiss="alert" class="close" type="button">×</button>
 		                    <p>
-		                    	<strong>
+		                    	<strong>F
 		                    		<%= get_residency_status(znum) %><br>
 		                    	</strong>
 		                    <p>
@@ -1167,7 +1167,7 @@ Hello, <%= session[:cas_user] %>!
 		  <% end %>
 
 		  <% if learning_comm_available == 1  %>
-			  <div class="number"><!-- Step 12 --> <%= get_statusicon(learning_comm_available, learning_comm_complete, learning_commbypass) %>
+			  <div class="number"><!-- Step 12 --> <%= get_statusicon(learning_comm_available,  learning_comm_complete, learning_commbypass) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  </div>
 		  <% end %>

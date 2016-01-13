@@ -139,16 +139,24 @@ class StaticPagesController < ApplicationController
             @communication_complete = 0
           end
 
-
+          #query for learning community data for the student
           lc_preferences = Community.where(:znumber => @znum)
 
+          #has the user entered any information about learning communities?
+          if lc_preferences.count > 0
+            @learning_comm_complete = 1
+          else
+            @learning_comm_complete = 0
+          end
+
+          #set the learning community variables used in the front-end form
           if lc_preferences.blank?
               @lc_id = 0
               @join_lc =  ''
               @lc_choice = ''
               @cclc_type = ''
               @isSigned = ''
-              @signature = ''
+              @signature = ''              
           else
             lc_preferences.each do |lc|
               @lc_id = lc['id']
@@ -156,8 +164,7 @@ class StaticPagesController < ApplicationController
               @lc_choice = lc['lc_choice']
               @cclc_type = lc['cclc_type']
               @isSigned = lc['isSigned']
-              @signature = lc['signature']
-             
+              @signature = lc['signature']                           
             end
           end
 
@@ -514,9 +521,7 @@ class StaticPagesController < ApplicationController
             end
           end
 
-
-          @learning_comm_complete = 0
-
+        
           if orientation_status.blank?
               @orientation_complete = 0
           else
