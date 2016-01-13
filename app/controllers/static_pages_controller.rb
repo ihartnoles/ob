@@ -103,9 +103,7 @@ class StaticPagesController < ApplicationController
               end 
            end     
 
-  Communication.find(:all, :conditions => ["znumber = ? AND contactByEmail = ? OR contactByPhone = ? ", 'Z23175814', 1, 1])
-
-          #END: account status check
+           #END: account status check
 
           immunization_status = Banner.immunization_status(@znum)
           residency_status = Banner.residency_status(@znum)
@@ -140,7 +138,7 @@ class StaticPagesController < ApplicationController
           else
             @communication_complete = 0
           end
-          
+
 
           lc_preferences = Community.where(:znumber => @znum)
 

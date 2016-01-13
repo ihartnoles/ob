@@ -851,7 +851,12 @@ Hello, <%= session[:cas_user] %>!
 			  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp; </li>
 			  					</ol>
 			  				</p> 
-			  			    
+
+			  				<h3 class="title">Financial Aid Calendar</h3>
+			  				
+			  				<p>
+			  				  Please take note of the <a href="http://www.fau.edu/finaid/resources/dates.php" target="_blank">Financial Aid Dates and Deadlines</a>.  You will find important information regarding Financial Aid availabilty.
+			  			    </p>
 
 					  		<h3 class="title">Your Financial Aid Documents</h3>
 
@@ -1816,7 +1821,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="number"><!-- Step 19 --> <%#= get_statusicon(tuition_available, tuition_complete) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  	<%#= get_statusicon(vehicle_reg_available, 1, vehicleregbypass) %>
-			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>
+			  	<!-- <span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span> -->
 			  </div>
 			  <h6><b>CONGRATULATIONS!</b></h6>
 			</a>

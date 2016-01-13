@@ -223,9 +223,17 @@ module StaticPagesHelper
         if output.count > 0
           output.each do |o| 
              if o['sgbstdn_resd_code'].include?('T') || o['sgbstdn_resd_code'].include?('F') || o['sgbstdn_resd_code'].include?('R') || o['sgbstdn_resd_code'].include?('O')
+               #let them know they are classified as a resident
                tmp =  "You are classified as a RESIDENT. <br> Because of this classification you will pay $518.55 <i>LESS</i> per credit hour than non-residents!"
              else
-               tmp =  "You are classified as a NON-RESIDENT. <br>  Because of this classification You will pay $518.55 more per credit hour than residents!"
+
+               if o['spraddr_stat_code'] == 'FL'
+                #alert the FL resident that they might be incorrectly classified
+                tmp =  "You are classified as a NON-RESIDENT. <br>  Because of this classification You will pay $518.55 more per credit hour than residents!"
+               else
+                #don't taunt the NON-RESIDENTS with the cost of tution!
+                tmp =  "You are classified as a NON-RESIDENT."
+               end
              end
              return tmp.html_safe
            end
