@@ -1011,7 +1011,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, housing_fee_complete, housingfee_bypass) %> </div>
 			<% end %>
 
-			  <h6><b>HOUSING FEE</b></h6>
+			  <h6><b>HOUSING CONTRACT</b></h6>
 			</a>
 			
 			<div id="step-8" class="collapse">	
@@ -1027,8 +1027,8 @@ Hello, <%= session[:cas_user] %>!
 
 
 		  		<p>
-		  		   All full-time freshmen are required to live in University Housing. Exemptions are made for students residing with their parent or legal guardian within a 30-mile commutable radius of the campus, students who
-		  		   are at least 21 years of age, or students who are married. Students who wish to be exempt must apply prior to the start of the acadmeic year.
+		  		   All full-time freshmen are required to live in University Housing. Exemptions are made for students residing with their parent or legal guardian within a 30-mile commutable radius of the campus or students who
+		  		   are at least 21 years of age. Students who wish to be exempt must apply prior to the start of the acadmeic year.
 		  		 <a title="FAU Housing" href="http://www.fau.edu/housing/" target="_blank">[More Information]</a> 
 		  		</p>
 
@@ -1041,7 +1041,7 @@ Hello, <%= session[:cas_user] %>!
 
 				                    <br>Your residential address is OUTSIDE the 30-mile commutable radius of the campus. 
 				                    <br>You are under the age of 21.
-				                	<br>Your marital status is: single.<br>
+				                	<!-- <br>Your marital status is: single.<br> -->
 				                    <br>As such you are required to live in University Housing.	
 
 				                    <p>
@@ -1052,7 +1052,7 @@ Hello, <%= session[:cas_user] %>!
 			                 		Our records indicate you meet at least one of the following criteria:
 			                 		<br>Your residential address is within a 30-mile commutable radius of the campus, 
 			                 		<br>You are over the age of 21.
-			                 		<br>Your marital status is: married.<br> 
+			                 		<!-- <br>Your marital status is: married.<br>  -->
 			                 		<br>As such you are NOT required to live in University Housing.
 			                 <% end %>
 	              		</strong>
@@ -1080,7 +1080,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="number"><!-- Step 9 --> <%= get_statusicon(housing_meal_plans_available, housing_meal_plans_complete, housingmealplanbypass) %></div>
 			<% end %>
 
-			  <h6><b>HOUSING & MEAL PLANS</b></h6>
+			  <h6><b>HOUSING & RESIDENTIAL MEAL PLANS</b></h6>
 			</a>
 			
 			<div id="step-9" class="collapse">				   
