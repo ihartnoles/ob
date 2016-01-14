@@ -291,8 +291,7 @@ class StaticPagesController < ApplicationController
 
                   @term_display = o['term']
                   @year_display = o['year']
-
-                  @finaidyear = o['finaidyear']
+                  
                   @email      = o['goremal_email_address']
                   @phone_area      = o['sprtele_phone_area']
                   @phone_number      = o['sprtele_phone_number']
@@ -401,7 +400,6 @@ class StaticPagesController < ApplicationController
           finaidflags = []
 
           finaid_status.each do |o|
-            
             if o['rrrareq_sat_ind'] == 'N' || o['rrrareq_sat_ind'].nil?
               #@finaid_complete = 0
               finaidflags.push('0')
@@ -409,6 +407,8 @@ class StaticPagesController < ApplicationController
               #@finaid_complete = 1
               finaidflags.push('1')
             end
+
+            @finaidyear = o['finaidyear']
           end
 
          

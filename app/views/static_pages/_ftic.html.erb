@@ -855,8 +855,94 @@ Hello, <%= session[:cas_user] %>!
 			  				<h3 class="title">Financial Aid Calendar</h3>
 			  				
 			  				<p>
-			  				  Please take note of the <a href="http://www.fau.edu/finaid/resources/dates.php" target="_blank">Financial Aid Dates and Deadlines</a>.  You will find important information regarding Financial Aid availabilty.
+			  					*Dates are subject to change without notice.  Please see <a href="http://www.fau.edu/finaid/resources/dates.php" target="_blank">Important Financial Aid Dates & Deadlines</a> for more details.
+			  				  <table class="table table-striped text-left order-details">
+						  			<thead>
+						  				<tr>
+						  					<th class="product-name">&nbsp;</th><th class="product-total">Fall 2015*</th><th class="product-total">Spring 2016*</th><th class="product-total" nowrap>Summer 2016*</th>
+						  				</tr>
+						  			</thead>
+						  			
+						  			<tr>
+						  				<td><strong>First day to apply for Short Term Advance for purchasing <br>textbooks and other unanticipated expenses</strong></td>
+						  				<td>August 3, 2015</td>
+						  				<td>December 18, 2015</td>
+						  				<td>April 25, 2016</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Barnes & Noble Book Voucher Program is available <br>to eligible students</strong></td>
+						  				<td>August 10, 2015</td>
+						  				<td>December 14, 2015</td>
+						  				<td>TBD</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>The Free Application for Federal Student Aid (FAFSA)<br> is available for the upcoming 2016-2017 academic year</strong></td>
+						  				<td>&nbsp;</td>
+						  				<td>January 1, 2016</td>
+						  				<td>&nbsp;</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Disbursement of Short Term Advance Begins</strong></td>
+						  				<td>August 11, 2015</td>
+						  				<td>January 5, 2016</td>
+						  				<td>May 10, 2016 <br> June 23,2016</br>(Term 3 Only)</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Semester Begins</strong></td>
+						  				<td>August 17, 2015</td>
+						  				<td>January 11, 2016</td>
+						  				<td>May 16, 2016 <br>(Terms 1 & 2) <br><br> June 28,2016</br>(Term 3)</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Submit the Mandatory Course Entry Survey</strong></td>
+						  				<td>August 17, 2015</td>
+						  				<td>January 11, 2016</td>
+						  				<td>May 16, 2016 <br>(Terms 1 & 2) <br><br> June 28,2016</br>(Term 3)</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Last day to drop/add courses without consequences <br> (by 5:00 p.m.)</strong></td>
+						  				<td>August 21, 2015<br>August 22, 2015<br>(Saturday only courses)</td>
+						  				<td>January 15, 2016<br>January 16,2016<br>(Saturday only courses)</td>
+						  				<td>(Terms 1 & 2)<br> May 20, 2016 <br><br> May 22, 2016<br>(Saturday or Sunday only courses)</br><hr>(Term 3)<br>July 1, 2016<br><br> July 3, 2016 <br> (Saturday or Sunday only courses)</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Last day to pay fees for the current term</strong></td>
+						  				<td>August 24, 2015</td>
+						  				<td>January 19, 2016</td>
+						  				<td>May 23, 2016 <br>(Terms 1 & 2) <br><br> July 5,2016</br>(Term 3)</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Request for Summer Financial Aid is Available Online.</strong></td>
+						  				<td>&nbsp;</td>
+						  				<td>February 1, 2016</td>
+						  				<td>&nbsp;</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Last day to apply for Short Term Advance online for the semester</strong></td>
+						  				<td>September 14, 2015</td>
+						  				<td>February 8, 2016</td>
+						  				<td>July 19, 2016</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Financial Aid Priority Deadline</strong></td>
+						  				<td>&nbsp;</td>
+						  				<td>March 1, 2016</td>
+						  				<td>&nbsp;</td>
+						  			</tr>
+						  			<tr>
+						  				<td><strong>Semester ends</strong></td>
+						  				<td>December 11, 2015</td>
+						  				<td>May 6, 2016</td>
+						  				<td>June 27, 2016 <br>(Terms 2) <br><br>August 9, 2016</br>(Summer Terms 1 & 3)</td>
+						  			</tr>
+						  		</table> 
+						  		
 			  			    </p>
+
+			  			   
+                     
+
+                  <br>
 
 					  		<h3 class="title">Your Financial Aid Documents</h3>
 
@@ -873,7 +959,7 @@ Hello, <%= session[:cas_user] %>!
 						  		<table class="table table-striped text-left order-details">
 						  			<thead>
 						  				<tr>
-						  					<th class="product-name">FAFSA Document</th><th class="product-total">Term</th><th class="product-total">Status</th>
+						  					<th class="product-name">FAFSA Document</th><th class="product-total">Award Year</th><th class="product-total">Status</th>
 						  				</tr>
 						  			</thead>
 
@@ -1201,6 +1287,8 @@ Hello, <%= session[:cas_user] %>!
 						
 					</p>			
 
+					<hr>
+
 					<p><strong>Two program options to choose from!</strong></p>
 
 					<p><strong>Residential Learning Community (RLC) Program</strong></p> 
@@ -1218,6 +1306,7 @@ Hello, <%= session[:cas_user] %>!
 					<br>
 
 				
+					<hr>
 			
 					<p><strong>Would you like to join one of FAU’s Learning Communities for the Fall 2016 – Spring 2017 academic year?</strong></p>
 
@@ -1250,14 +1339,28 @@ Hello, <%= session[:cas_user] %>!
 								    </div>
 
 								    <div class="radio">
-								    	<%= radio_button_tag 'lc_choice', 'CCLC', !!(@lc_choice.nil? || @lc_choice == 'CCLC') %>I choose to participate in a CCLC for the Fall 2016-Spring 2017 semesters.  By selecting a community you will be agreeing to the CCLC Program Agreement and joining the CCLC program for the Fall 206-Spring 2017 academic year.</p>
+								    	<%= radio_button_tag 'lc_choice', 'CCLC', !!(@lc_choice.nil? || @lc_choice == 'CCLC') %>I choose to participate in a CCLC for the Fall 2016-Spring 2017 semesters.  By selecting a community you will be agreeing to the CCLC <a href="/16_17_CCLC_Program_Agreement.pdf" onClick="return popup(this,'Selecting Coursework', 800, 400)" target="_blank">Program Agreement</a> and joining the CCLC program for the Fall 2016-Spring 2017 academic year.  <b> By selecting this option, I confirm that I have read the <a href="/16_17_CCLC_Program_Agreement.pdf" onClick="return popup(this,'Selecting Coursework', 800, 400)" target="_blank">Program Agreement</a>, that I understand it and that I agree to be bound by it. </b></p>
 
 								    </div>
 								</div>
+
 								
+
+								<div id="cclc_options"  <% if @join_lc == 'Yes' && @lc_choice == 'CCLC' %> <% else %> style="display:none" <% end %>>
+									 <br>
+									<br><strong>Please select a CCLC community:</strong>
+									 <%= select_tag :cclc_type, options_for_select([["Select One", ""],"Arts & Letters", "Business", "Direct-Admit Nursing (only for students who have been accepted into the DA Nursing Program)", "Education" , "Engineering & Computer Science" , "Explore" , "Healthy Owls" , "Leadership" , "Pre-Health Professions (must have at least a 24 ACT or an 1100 Verbal/Math combined SAT score to join)", "Psychology" , "Science" , "Social Justice (for Criminal Justice, Public Safety, & Social Work majors)" , "The Urban Male Initiative" ], :selected => @cclc_type), :class => 'form-control' %>
+
+									 <br>
+
+									 <strong>Please type in your full name:</strong>
+									 <%= text_field_tag :signature, @signature, class: "form-control" %>
+									
+								</div>
+
 								<br>
 
-								<%= submit_tag 'Save' %>
+								<%= submit_tag 'Save' , :id=> "lcBut"%>
 							
 						<% end %>
 				<% end %>
@@ -1700,13 +1803,13 @@ Hello, <%= session[:cas_user] %>!
 			
 			<div id="step-18" class="collapse">				   
 			  <div class="step-content">			  		
-		  		<h3 class="title">Book Advance Program</h3>
+		  		<h3 class="title">Short Term Advance</h3>
 
 
 		  		<% if bookadvance_bypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
-					<p>A University monetary  is advance available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees.</p>
+					<p>A University monetary advance available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees</p>
 
 					<p>
 						Maximum loan amount is $750 with a non-refundable processing of $7.50 assessed. Students must meet additional eligibility criteria.
@@ -2144,6 +2247,41 @@ Hello, <%= session[:cas_user] %>!
 	});
 
 
+	 $('#lcBut').click(function (e) {
+	 	alert('lcBut clicked');
+
+	 	if(  $('input[type=radio][name=join_lc]:radio:checked').val() == "Yes" && $('input[type=radio][name=lc_choice]:radio:checked').val() == "CCLC" ) {
+	 		alert('they clicked YES and CCLC');
+
+	 		if ( $("#cclc_type").val().length <= 0 ) {
+	 			 alert('Please select your CCLC Community if you wish to join the Commuting Connections Learning Community (CCLC) Program');
+	 			 e.preventDefault();
+	 		}
+
+	 		if ( $("#signature").val().length <= 0 ) {
+	 			 alert('Please type in your full name if you wish to join the Commuting Connections Learning Community (CCLC) Program');
+	 			 e.preventDefault();
+	 		}
+
+
+	 	}
+
+	   
+	    // if($('#contactByPhone').is(':checked')) {
+	    	 
+	    // 	//alert('contactByPhone is CHECKED');
+
+	    // 	//alert( $('#mobilenumber').val().length );
+
+	    // 	if ( $("#mobilenumber").val().length <= 0 )  {
+	 			// alert('Please enter your valid phone number');
+	 			//  e.preventDefault();
+	    // 	}
+
+	    // } 
+	});
+
+
 	 /* Begin: Learning Communities radio button selections */
 	 $('input[type=radio][name=join_lc]').change(function() {
         if (this.value == 'Yes') {
@@ -2151,6 +2289,16 @@ Hello, <%= session[:cas_user] %>!
         }
         else if (this.value == 'No') {
             $("#lc_options").hide();
+            $("#cclc_options").hide();
+        }
+    });
+
+	  $('input[type=radio][name=lc_choice]').change(function() {
+        if (this.value == 'CCLC') {
+           $("#cclc_options").show();
+        }
+        else  {
+            $("#cclc_options").hide();
         }
     });
 	 /* End: Learning Communities radio button selections */

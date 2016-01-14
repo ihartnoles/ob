@@ -74,14 +74,8 @@ class Banner < ActiveRecord::Base
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
 									      END as term ,
-
-									      CASE SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 )
-									             WHEN '2016' THEN '1516'
-									             WHEN '2015' THEN '1415'
-									             WHEN '2014' THEN '1314'            
-									           ELSE ''
-									      END as finaidyear,
-									      
+											
+										  									      
 									      aleks_taken, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, sarchkl_admr_code, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name, 
 									      spremrg_street_line1, spremrg_city, spremrg_stat_code, spremrg_natn_code, spremrg_zip, sprtele_phone_area, sprtele_phone_number,spremrg_phone_area, spremrg_phone_number, whc_student, goremal_email_address 
 
@@ -122,7 +116,12 @@ class Banner < ActiveRecord::Base
 									          ELSE ''
 									      END as term ,
 
-									      SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as finaidyear  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}")
+									     CASE RORSTAT_AIDY_CODE 
+									     	WHEN '1617' THEN '2016-2017'
+									     	WHEN '1516' THEN '2015-2016'
+									     	WHEN '1415' THEN '2014-2015'
+
+									     END as finaidyear  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.fin_aid_checkboxes(id)
@@ -151,6 +150,8 @@ class Banner < ActiveRecord::Base
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
 									      END as term,
+
+									    RPRATRM_AIDY_CODE as finaidyear,
 									
 									    RPRATRM_OFFER_AMT, TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)} ORDER BY RPRATRM_PERIOD, RFRBASE_FUND_TITLE")
 		end

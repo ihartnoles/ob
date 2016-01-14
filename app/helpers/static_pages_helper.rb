@@ -92,7 +92,7 @@ module StaticPagesHelper
                     doc_status = "undetermined"
                 end
 
-               tmp <<  "<tr><td>#{o['rtvtreq_long_desc']}</td><td>#{o['term']} #{o['finaidyear']}</td><td>#{doc_status}</td></tr>"
+               tmp <<  "<tr><td>#{o['rtvtreq_long_desc']}</td><td>#{o['finaidyear']}</td><td>#{doc_status}</td></tr>"
              else
                tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
              end        

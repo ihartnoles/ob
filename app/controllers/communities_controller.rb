@@ -11,9 +11,9 @@ class CommunitiesController < ApplicationController
       @lc.znumber = params[:znumber]  
       @lc.join_lc = params[:join_lc] 
       @lc.lc_choice = params[:lc_choice]    
-      # @lc.cclc_type = params[:cclc_type]
+       @lc.cclc_type = params[:cclc_type]
       # @lc.isSigned = params[:isSigned]
-      # @lc.signature = params[:signature] 
+      @lc.signature = params[:signature] 
       @lc.save
     else
       #update existing record
@@ -22,9 +22,9 @@ class CommunitiesController < ApplicationController
       @lc.znumber = params[:znumber]  
       @lc.join_lc = params[:join_lc] 
       @lc.lc_choice = params[:lc_choice]     
-      # @lc.cclc_type = params[:cclc_type]
+      @lc.cclc_type = params[:cclc_type]
       # @lc.isSigned = params[:isSigned]
-      # @lc.signature = params[:signature]
+      @lc.signature = params[:signature]
       @lc.save
     end
 
