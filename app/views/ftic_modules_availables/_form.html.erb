@@ -362,7 +362,7 @@
                                 <i class="fa fa-lock"></i>
                               </div>
                             <% end %></div>
-                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Housing Fee</h6></a>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Housing</h6></a>
                         <div class="text-small">
                             <div class="text-warning"><em><b>pending</b></em></div><br>
                             The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
@@ -385,19 +385,19 @@
                       
 
 
-                        <div class="col-sm-4 col-md-4 service alert alert-border">
+                      <!--   <div class="col-sm-4 col-md-4 service alert alert-border">
                       
-                        <div class="icon bg"><% if m.housingmealplan == 1 %>
+                        <div class="icon bg"><%# if m.housingmealplan == 1 %>
                               <%#= image_tag('/assets/Check_16x16.png')  %>
                                <div class="icon icon-20"> 
                                 <i class="fa fa-unlock-alt"></i>
                               </div>
-                            <% else %>
+                            <%# else %>
                               <%#= image_tag('/assets/Delete_16x16.png')  %>
                               <div class="icon icon-20 text-error"> 
                                 <i class="fa fa-lock"></i>
                               </div>
-                            <% end %></div>
+                            <%# end %></div>
                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Housing & Meal Plans</h6></a>
                         <div class="text-small">
                             <div class="text-warning"><em><b>pending</b></em></div><br>
@@ -406,18 +406,18 @@
                             <br><br>
                              <div class="row">
                                 <div class="col-sm-6 ">
-                                    <%= f.label :housingmealplan, "Availability" %><br>  
-                                    <%= f.radio_button :housingmealplan, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :housingmealplan, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                    <%#= f.label :housingmealplan, "Availability" %><br>  
+                                    <%#= f.radio_button :housingmealplan, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :housingmealplan, 0 %> &nbsp; <i class="fa fa-lock"></i>
                                 </div>
 
                                  <div class="col-sm-6 "> 
-                                    <%= f.label :housingmealplanbypass, "Bypass"  %><br>    
-                                    <%= f.radio_button :housingmealplanbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :housingmealplanbypass, 0 %><i class="fa fa-times-circle"></i>
+                                    <%#= f.label :housingmealplanbypass, "Bypass"  %><br>    
+                                    <%#= f.radio_button :housingmealplanbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :housingmealplanbypass, 0 %><i class="fa fa-times-circle"></i>
                                 </div>  
                              </div>
 
                             </div>
-                        </div>  
+                        </div>   -->
                       
 
 

@@ -447,21 +447,29 @@ class StaticPagesController < ApplicationController
                 housing_fee_required = 1
               else
                 #check zipcode radius for Boca Campus              
-                housing_fee_required = HousingZipcode.where(:zip => @zipcode, :campus => 'Boca Raton')
+                housing_fee_required = HousingZipcode.where(:zip => @zipcode)
               end
 
 
-                # puts YAML::dump('BBHMM')
-                # puts YAML::dump(housing_fee_required.empty?)
+                 
+                
+                
 
                 #determine if housing fee is required
-                if housing_fee_required.count > 0            
-                    @housing_fee_required = 0
-                    @housing_fee_complete = 1           
-                else
+                if housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
                     @housing_fee_required = 1
-                    @housing_fee_complete = 0         
+                    @housing_fee_complete = 0           
+                else
+                    @housing_fee_required = 0
+                    @housing_fee_complete = 1        
                 end
+
+                 puts YAML::dump('***** START ******')
+                 puts YAML::dump(housing_fee_required.empty?)
+                 puts YAML::dump(housing_fee_required.count)
+                 puts YAML::dump(@housing_fee_required)
+                 puts YAML::dump(@zipcode)
+                 puts YAML::dump('****** END ********')
 
             end
           
