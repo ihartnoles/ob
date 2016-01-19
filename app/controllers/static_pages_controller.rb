@@ -449,10 +449,7 @@ class StaticPagesController < ApplicationController
                 #check zipcode radius for Boca Campus              
                 housing_fee_required = HousingZipcode.where(:zip => @zipcode)
               end
-
-
-                 
-                
+             
                 
 
                 #determine if housing fee is required
@@ -464,12 +461,12 @@ class StaticPagesController < ApplicationController
                     @housing_fee_complete = 1        
                 end
 
-                 puts YAML::dump('***** START ******')
-                 puts YAML::dump(housing_fee_required.empty?)
-                 puts YAML::dump(housing_fee_required.count)
-                 puts YAML::dump(@housing_fee_required)
-                 puts YAML::dump(@zipcode)
-                 puts YAML::dump('****** END ********')
+                 # puts YAML::dump('***** START ******')
+                 # puts YAML::dump(housing_fee_required.empty?)
+                 # puts YAML::dump(housing_fee_required.count)
+                 # puts YAML::dump(@housing_fee_required)
+                 # puts YAML::dump(@zipcode)
+                 # puts YAML::dump('****** END ********')
 
             end
           
