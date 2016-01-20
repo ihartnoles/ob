@@ -30,4 +30,6 @@ Ob::Application.routes.draw do
 
    post   'update_verify_module',  to: 'ftic_modules_availables#update_verify_module'
    post   'update_account_module',  to: 'ftic_modules_availables#update_account_module'
+   post   'update_deposit_module',  to: 'ftic_modules_availables#update_deposit_module'
+   post   'update_communication_module',  to: 'ftic_modules_availables#update_communication_module'
 end

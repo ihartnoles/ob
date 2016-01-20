@@ -299,6 +299,52 @@ class FticModulesAvailablesController < ApplicationController
   end
 
 
+   def update_deposit_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.deposit = params[:deposit]
+    @modules_available.communication = 1 #unlock communication preference
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-comm" #redirect to deposit
+     else
+        redirect_to "/home#step-comm"
+     end  
+  end
+
+  def update_communication_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.communication = params[:communication]
+    @modules_available.immunization = 1 #unlock immunization
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to deposit
+     else
+        redirect_to "/home#step-immunization"
+     end  
+  end
+
+  def update_immunization_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.immunization = params[:immunization]
+    @modules_available.residency = 1 #unlock residency
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to deposit
+     else
+        redirect_to "/home#step-immunization"
+     end  
+  end
+
+
   # DELETE /modules_availables/1
   # DELETE /modules_availables/1.json
   def destroy

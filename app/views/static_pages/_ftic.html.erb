@@ -424,11 +424,25 @@ Hello, <%= session[:cas_user] %>!
 								</p>					
 			   			    </div>
 			   			  <% end %>
+                        
 
-                         <div class="buttons-box text-right">
-						  <button type="button" class="btn btn-danger" id="depositBut">Continue</button>						 
-						</div>
-				
+						<% if  (@deposit_available == 1 || @deposit_available == 1) &&  @verify_complete == 1 %>
+				  		 	<div class="buttons-box text-right">
+				  		 		<%= form_tag('/update_deposit_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%= hidden_field_tag :znumber, @znum %>
+								    <%= hidden_field_tag :netid, @displayname %>
+								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%= hidden_field_tag :deposit, 1 %>
+								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+									<% if params[:znum] %>
+									   	<%= hidden_field_tag :znum, @znum %>									    
+									<% end %>
+							    	 <button type="submit" class="btn btn-danger" id="depositBut">Continue</button>		
+						 		<% end %>				 
+						 	</div>
+						 <% end %>						 
+						
+
 				
 			  </div>
 			</div>
@@ -438,10 +452,12 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 
-		  	<% if (communication_available == 1 && account_complete == 1) || communication_bypass == 1 %>
-				<a id="communicationhref" href="#step-4" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
+		  	<% if (communication_available == 1 && communication_complete == 0) %>
+				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
+			<% elsif  (communication_available == 1 && communication_complete == 1 ) || communication_bypass == 1 %>
+				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
 			<% else %>
-				<a id="communicationhref" href="#step-4" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			<% if communication_available == 1 %>
@@ -451,7 +467,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>COMMUNICATION PREFERENCE</b></h6>
 			</a>
 			
-			<div id="step-4" class="collapse">
+			<div id="step-comm" class="collapse">
 			  <div class="step-content">
 			  	<h3 class="title">How do you want to be contacted?</h3>
 			  	
@@ -566,12 +582,28 @@ Hello, <%= session[:cas_user] %>!
 
 						  <div class="clearfix"></div>					  
 				  			
+				  		  <!-- 
 				  		  <div class="buttons-box text-right">
-							  <!-- <button type="button" class="btn btn-danger" id="communicationSave">Save</button>	  -->
-							 <!--  <button type="submit" class="btn btn-danger" id="communicationSave">Save Preference</button> -->
-
 							  <button type="button" class="btn btn-danger" id="communicationBut">Continue</button>		
-						   </div>
+						  </div> 
+						  -->
+
+						  <% if  (communication_available == 1 && communication_complete == 1 ) && @deposit_complete == 1|| communication_bypass == 1 %>
+						   	
+						   	<div class="buttons-box text-right">
+				  		 		<%= form_tag('/update_communication_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%= hidden_field_tag :znumber, @znum %>
+								    <%= hidden_field_tag :netid, @displayname %>
+								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%= hidden_field_tag :communication, 1 %>
+								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+									<% if params[:znum] %>
+									   	<%= hidden_field_tag :znum, @znum %>									    
+									<% end %>
+							    	 <button type="submit" class="btn btn-danger" id="communicationBut">Continue</button>		
+						 		<% end %>				 
+						 	</div>
+						 <% end %>					
 					
 
 						<!-- </form>  -->
@@ -585,11 +617,11 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		  <% if immunization_available == 1 && immunization_complete == 0 %>
-			<a href="#step-5" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<a id="immunizationhref" href="#step-immunization" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% elsif (immunization_available == 1 && immunization_complete == 1) || immunization_bypass == 1 %>
-		  	<a href="#step-5" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
-		  	<a href="#step-5" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  <% if immunization_available == 1 %>
@@ -599,7 +631,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>IMMUNIZATION HOLDS</b></h6>
 			</a>
 			
-			<div id="step-5" class="collapse">
+			<div id="step-immunization" class="collapse">
 				
 
 			   
@@ -635,21 +667,30 @@ Hello, <%= session[:cas_user] %>!
 
 		  		<% end %>
 
-		  		<div class="buttons-box text-right">
+		  		<!-- <div class="buttons-box text-right">
 				  <button type="button" class="btn btn-danger" id="immunizationBut">Continue</button> 
-				</div>
+				</div> -->
+
+				 <% if  (immunization_available == 1 && immunization_complete == 1 ) || immunization_bypass == 1 %>
+						   	
+						   	<div class="buttons-box text-right">
+				  		 		<%= form_tag('/update_immunization_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%= hidden_field_tag :znumber, @znum %>
+								    <%= hidden_field_tag :netid, @displayname %>
+								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%= hidden_field_tag :residency, 1 %>
+								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+									<% if params[:znum] %>
+									   	<%= hidden_field_tag :znum, @znum %>									    
+									<% end %>
+							    	 <button type="submit" class="btn btn-danger" id="immunizationBut">Continue</button>		
+						 		<% end %>				 
+						 	</div>
+						 <% end %>
 					
-				<!--<form>
-				  <div>
-					<label class="radio"><input type="radio" name="register"> Checkout as Guest</label>
-					<label class="radio"><input type="radio" name="register"> Register</label>
-				  </div>
-				</form>
-				
-				<div class="buttons-box text-right">
-				  <button type="button" class="btn btn-danger">Continue</button>
-				  <span class="required"><b>*</b> Required Field</span>
-				</div>-->
+				<!-- communication pref and immunization holds -->
+
+
 
 			  </div> 
 			
@@ -2459,14 +2500,7 @@ Hello, <%= session[:cas_user] %>!
 	 }
 	 
 
-     /* fxn to parse URL params */
-	 if (window.location.href.indexOf("#step-4") > -1) {
-		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
-		    $('div .collapse').removeClass("collapse in").addClass('collapse');
-
-		    $('#communicationhref').removeClass('collapsed step-title').addClass('step-title');
-		    $('#step-4').removeClass('collapse').addClass('collapse in');
-		}
+    
 
 
 	/* fxn to parse URL params */
@@ -2506,6 +2540,28 @@ Hello, <%= session[:cas_user] %>!
 		    $('#deposithref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-deposit').removeClass('collapse').addClass('collapse in');
 		}
+
+
+	 /* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-comm") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#communicationhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-comm').removeClass('collapse').addClass('collapse in');
+		}
+
+
+	 /* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-immunization") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#immunizationhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-immunization').removeClass('collapse').addClass('collapse in');
+		}
+
+
 	 });
 
 </script>

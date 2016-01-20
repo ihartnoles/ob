@@ -42,10 +42,10 @@ class CommunicationsController < ApplicationController
     
     if params[:znum]
       #redirect for admin proxy
-      redirect_to "/home?znum=#{params[:znum]}#step-4"
+      redirect_to "/home?znum=#{params[:znum]}#step-comm"
     else
       #redirect for student
-      redirect_to "/home#step-4"
+      redirect_to "/home#step-comm"
     end
 
   end

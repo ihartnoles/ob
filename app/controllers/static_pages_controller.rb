@@ -102,8 +102,13 @@ class StaticPagesController < ApplicationController
                     @account_complete = 1
               end 
            end     
-
            #END: account status check
+
+
+           #BEGIN: verify complete check
+            #To DO: how do we determine if VERIFY has been completed?????  Maybe radio buttons?  Is this information correct  (Y/N)?
+            @verify_complete = 1
+           #END: verify complete
 
           immunization_status = Banner.immunization_status(@znum)
           residency_status = Banner.residency_status(@znum)
