@@ -168,10 +168,9 @@ Hello, <%= session[:cas_user] %>!
 		   <li class="panel">
 		  	
 		  	<% if  account_available == 1 || account_bypass == 1%>
-				<a href="#step-account" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">
-			
+				<a id="accounthref" href="#step-account" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">			
 			<% else %>
-				<a href="#step-account" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="accounttitle">
+				<a id="accounthref" href="#step-account" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="accounttitle">
 			<% end %>
 
 			
@@ -200,14 +199,27 @@ Hello, <%= session[:cas_user] %>!
 								<strong>Congrats on claiming your account! You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
 								</p>					
 					        </div>
+
+					        <div class="buttons-box text-right">
+				  		 		<%= form_tag('/update_account_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%= hidden_field_tag :znumber, @znum %>
+								    <%= hidden_field_tag :netid, @displayname %>
+								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%= hidden_field_tag :account, 1 %>
+								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+									<% if params[:znum] %>
+									   	<%= hidden_field_tag :znum, @znum %>									    
+									<% end %>
+							    	 <button type="submit" class="btn btn-danger" id="accountBut">Continue</button>		
+						 		<% end %>				 
+						 	</div>
+
 					     <% else %>
 				  		 <p>
 				  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu" target="_blank" id="claimAccountBut">[Start claiming your account]</a>
 				  		 </p>			  		
 
-				  		 <div class="buttons-box text-right">
-						  <button type="button" class="btn btn-danger" id="accountBut">Continue</button>						 
-						</div>
+				  		
 						<% end %>
 					<% end %>
 			  </div>
@@ -218,12 +230,12 @@ Hello, <%= session[:cas_user] %>!
 		  	
 		  	<!-- <a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">-->
 
-			<% if  @verify_available == 1 %>
-				<a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">
-			<% elsif  (@verify_available == 1 || @verify_bypass == 1) %>
-				<a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">
+			<% if  (@verify_available == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
+				<a id="verifyhref" href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" >
+			<%# elsif  (@verify_available == 1 || @verify_bypass == 1) %>
+				<!-- <a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify"> -->
 			<% else %>
-				<a href="#step-verify" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="verify">
+				<a id="verifyhref" href="#step-verify" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" >
 			<% end %>	
 			
 			<% if  @verify_available == 1 %>
@@ -285,9 +297,22 @@ Hello, <%= session[:cas_user] %>!
 						
 				  						  		
 				  		
-				  		 <div class="buttons-box text-right">
-						  <button type="button" class="btn btn-danger" id="verifyBut">Continue</button>						 
-						</div>
+						<% if  (@verify_available == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
+				  		 	<div class="buttons-box text-right">
+				  		 		<%= form_tag('/update_verify_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%= hidden_field_tag :znumber, @znum %>
+								    <%= hidden_field_tag :netid, @displayname %>
+								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%= hidden_field_tag :verify, 1 %>
+								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+									<% if params[:znum] %>
+									   	<%= hidden_field_tag :znum, @znum %>									    
+									<% end %>
+							    	 <button type="submit" class="btn btn-danger" id="verifyBut">Continue</button>		
+						 		<% end %>				 
+						 	</div>
+						 <% end %>						 
+						
 						
 					<% end %>
 			  </div>
@@ -360,11 +385,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 		  	
 		  	<% if  deposit_available == 1 && deposit_complete== 0 %>
-				<a href="#step-2" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
+				<a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
 			<% elsif  (deposit_available == 1 && deposit_complete == 1 ) || deposit_bypass == 1 %>
-				<a href="#step-2" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
+				<a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
 			<% else %>
-				<a href="#step-2" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
+				<a id="deposithref" href="#step-deposit" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
 			<% end %>
 
 			
@@ -375,7 +400,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>PAY DEPOSIT</b></h6>
 			</a>
 			
-			<div id="step-2" class="collapse">
+			<div id="step-deposit" class="collapse">
 			  <div class="step-content">
 			  	<h3 class="title">Paying Your Admisssions Tuition Deposit  </h3>
 			 
@@ -2202,6 +2227,17 @@ Hello, <%= session[:cas_user] %>!
 
 
  	
+	// $('#verifyBut').click(function () {
+	//   // $('#step-2').collapse('hide');
+	//   // $('#step-2').prev().addClass('collapsed');
+	//   // $('#step-3').collapse('show');
+	//   // $('#step-3').prev().removeClass('collapsed');
+	 
+	//   updateMeter('10');
+	// })
+
+
+ 	
 	 $('#contactBut').click(function (e) {
 	 	//alert('contactBut clicked');
 	    
@@ -2440,6 +2476,35 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#lc_href').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-12').removeClass('collapse').addClass('collapse in');
+		}
+	
+	/* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-account") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#accounthref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-account').removeClass('collapse').addClass('collapse in');
+		}
+
+
+	/* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-verify") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#verifyhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-verify').removeClass('collapse').addClass('collapse in');
+		}
+
+
+	/* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-deposit") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#deposithref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-deposit').removeClass('collapse').addClass('collapse in');
 		}
 	 });
 

@@ -267,6 +267,38 @@ class FticModulesAvailablesController < ApplicationController
     end
   end
 
+
+
+   def update_account_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.account = params[:account]
+    @modules_available.verify = 1 #unlock verify your information
+    @modules_available.save
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-verify" #redirect to verify your information
+     else
+        redirect_to "/home#step-verify"
+     end  
+  end
+
+
+  def update_verify_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.verify = params[:verify]
+    @modules_available.deposit = 1 #unlock deposit
+    @modules_available.save
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to deposit
+     else
+        redirect_to "/home#step-deposit"
+     end  
+  end
+
+
   # DELETE /modules_availables/1
   # DELETE /modules_availables/1.json
   def destroy

@@ -27,4 +27,7 @@ Ob::Application.routes.draw do
    post   '/save_decline',           to: 'declines#save_decline'
    post   '/save_communication',     to: 'communications#save_communication'
    post   '/save_lc',                to: 'communities#save_lc'
+
+   post   'update_verify_module',  to: 'ftic_modules_availables#update_verify_module'
+   post   'update_account_module',  to: 'ftic_modules_availables#update_account_module'
 end

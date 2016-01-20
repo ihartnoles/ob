@@ -74,6 +74,7 @@ class ApplicationController < ActionController::Base
   	 	  availability = FticModulesAvailable.where(:znumber => @znum)
 
           availability.each do |a|
+            @ftic_id = a.id
             @welcome_available = a.welcome
             @verify_available = a.verify
             @verify_bypass = a.verifybypass
