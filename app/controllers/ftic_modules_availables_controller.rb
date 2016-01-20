@@ -489,6 +489,53 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
+  def update_ftic_emergency_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.emergency = params[:emergency]
+    @modules_available.faualert = 1 #unlock fau alert
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-faualert" #redirect to deposit
+     else
+        redirect_to "/home#step-faualert"
+     end  
+  end
+
+
+   def update_ftic_alert_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.faualert = params[:faualert]
+    @modules_available.owlcard = 1 #unlock owlcard
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-owlcard" #redirect to deposit
+     else
+        redirect_to "/home#step-owlcard"
+     end  
+  end
+
+
+   def update_ftic_owlcard_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.owlcard = params[:owlcard]
+    @modules_available.bookadvance = 1 #unlock bookadvance
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-bookadvance" #redirect to deposit
+     else
+        redirect_to "/home#step-bookadvance"
+     end  
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     # def set_ftic_modules_available

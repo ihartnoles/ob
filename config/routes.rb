@@ -42,4 +42,7 @@ Ob::Application.routes.draw do
    post   'update_ftic_oars_module',  to: 'ftic_modules_availables#update_ftic_oars_module'
    post   'update_ftic_reg_module',  to: 'ftic_modules_availables#update_ftic_reg_module'
    post   'update_ftic_tuition_module',  to: 'ftic_modules_availables#update_ftic_tuition_module'
+   post   'update_ftic_emergency_module',  to: 'ftic_modules_availables#update_ftic_emergency_module'
+   post   'update_ftic_alert_module',  to: 'ftic_modules_availables#update_ftic_alert_module'
+   post   'update_ftic_owlcard_module',  to: 'ftic_modules_availables#update_ftic_owlcard_module'   
 end

@@ -1814,17 +1814,34 @@ Hello, <%= session[:cas_user] %>!
 
 				 	<br><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> [Edit Your Emergency Contact Information]</a>
 				<% end %>
+
+				  <% if  (emergency_available == 1 && emergency_complete == 1 ) || emergencybypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_emergency_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :emergency, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
 			  </div>			
 			</div>
 		  </li>
 
 		   <li class="panel">
 		   <% if fau_alert_available == 1 && fau_alert_complete == 0 %>
-			<a href="#step-16" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<a id="alerthref" href="#step-faualert" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   <% elsif (fau_alert_available == 1 && fau_alert_complete == 1) ||  faualertbypass == 1%>
-		   	<a href="#step-16" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   	<a id="alerthref" href="#step-faualert" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   <% else %>
-		    <a href="#step-16" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		    <a id="alerthref" href="#step-faualert" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   <% end %>
 
 		    <% if fau_alert_available == 1 %>
@@ -1834,7 +1851,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>FAU ALERT INFORMATION</b></h6>
 			</a>
 			
-			<div id="step-16" class="collapse">				   
+			<div id="step-faualert" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">FAU Alert and Notification System</h3>
 
@@ -1848,17 +1865,34 @@ Hello, <%= session[:cas_user] %>!
 	               <a title="FAU Alert" href="http://www.fau.edu/emergency/universityalerts.php" target="_blank">[More Information]</a> | <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">[Your FAU Alert Info]</a></p>
                <% end %>
 
+
+                 <% if  (fau_alert_available == 1 && fau_alert_complete == 1 ) || faualertbypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_alert_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :faualert, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
 			  </div>			
 			</div>
 		  </li>
 
 		   <li class="panel">
 		    <% if owlcard_available == 1  %>
-				<a href="#step-17" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a id="owlcardhref" href="#step-owlcard" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% elsif  (owlcard_available == 1 || owlcard_available == 0) && owlcard_bypass == 1 %>
-		   		<a href="#step-17" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   		<a id="owlcardhref" href="#step-owlcard" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-				<a href="#step-17" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a id="owlcardhref" href="#step-owlcard" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			<% if owlcard_available == 1  %>
@@ -1870,7 +1904,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>OWL CARD</b></h6>
 			</a>
 			
-			<div id="step-17" class="collapse">				   
+			<div id="step-owlcard" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">Get Your Owl Card</b></h3>
 
@@ -1898,6 +1932,22 @@ Hello, <%= session[:cas_user] %>!
 						<% end %>
 					</p>
 				 <% end %>
+
+				 <% if  (owlcard_available == 1 && owlcard_available == 1 ) || owlcard_bypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_owlcard_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :owlcard, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
 			  </div>			
 			</div>
 		  </li>
@@ -1905,11 +1955,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  <% if bookadvance_available == 1 %>
-			<a href="#step-18" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<a id="bookhref" href="#step-bookadvance" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% elsif  (bookadvance_available == 1 || bookadvance_available == 0) && bookadvance_bypass == 1 %>
-		   	<a href="#step-18" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   	<a id="bookhref" href="#step-bookadvance" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
-		    <a href="#step-18" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		    <a id="bookhref" href="#step-bookadvance" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
@@ -1923,7 +1973,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>BOOK ADVANCE PROGRAM</b></h6>
 			</a>
 			
-			<div id="step-18" class="collapse">				   
+			<div id="step-bookadvance" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">Short Term Advance</h3>
 
@@ -2728,6 +2778,31 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#emergencyhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-emergency').removeClass('collapse').addClass('collapse in');
+		}
+
+
+	if (window.location.href.indexOf("#step-faualert") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#alerthref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-faualert').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-owlcard") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#owlcardhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-owlcard').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-bookadvance") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#bookhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-bookadvance').removeClass('collapse').addClass('collapse in');
 		}
 
  });
