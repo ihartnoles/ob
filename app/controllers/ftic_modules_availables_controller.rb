@@ -374,6 +374,37 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
+   def update_ftic_housing_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.housingfee = params[:housingfee]
+    @modules_available.aleks = 1 #unlock aleks
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-aleks" #redirect to aleks
+     else
+        redirect_to "/home#step-aleks"
+     end  
+  end
+
+  def update_ftic_aleks_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.aleks = params[:aleks]
+    @modules_available.orientation = 1 #unlock orientation
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-orientation" #redirect to deposit
+     else
+        redirect_to "/home#step-orientation"
+     end  
+  end
+
+
   # DELETE /modules_availables/1
   # DELETE /modules_availables/1.json
   def destroy

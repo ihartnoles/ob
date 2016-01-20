@@ -1006,7 +1006,7 @@ Hello, <%= session[:cas_user] %>!
 								<% if params[:znum] %>
 								   	<%= hidden_field_tag :znum, @znum %>									    
 								<% end %>
-						    	 <button type="submit" class="btn btn-danger" id="housingfeeBut">Continue</button>		
+						    	 <button type="submit" class="btn btn-danger" id="finaidBut">Continue</button>		
 					 		<% end %>				 
 						</div>
 				<% end %>
@@ -1020,11 +1020,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	<% if housing_fee_available == 1 && housing_fee_complete ==0 %>
-				<a href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% elsif (housing_fee_available == 1 && housing_fee_complete ==1) || housingfee_bypass == 1 %>
-				<a href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-				<a href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
@@ -1035,7 +1035,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>HOUSING CONTRACT & RESIDENTIAL MEAL PLANS</b></h6>
 			</a>
 			
-			<div id="step-8" class="collapse">	
+			<div id="step-housing" class="collapse">	
 
 			   
 			  <div class="step-content">
@@ -1083,6 +1083,23 @@ Hello, <%= session[:cas_user] %>!
 		  		
 				<% end %>
 
+
+				 <% if  (housing_fee_available == 1 && housing_fee_complete == 1 ) || housingfee_bypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_housing_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :housingfee, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="housingfeeBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
 			  </div> 			
 			</div>
 		  </li>
@@ -1093,11 +1110,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  <% if aleks_available == 1 && aleks_complete == 0 %>
-			<a href="#step-10" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% elsif (aleks_available == 1 && aleks_complete == 1) || aleksbypass == 1%>
-		  	<a href="#step-10" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  	<a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
-		  	<a href="#step-10" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		  	<a id="alekshref" href="#step-aleks" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		   <% if aleks_available == 1 %>
@@ -1107,7 +1124,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>MATH PLACEMENT EXAM - ALEKS</b></h6>
 			</a>
 			
-			<div id="step-10" class="collapse">				   
+			<div id="step-aleks" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">ALEKS</h3>
 
@@ -1135,6 +1152,23 @@ Hello, <%= session[:cas_user] %>!
 
 				 <% end %>
 
+				  <% if  (aleks_available == 1 && aleks_complete == 1 ) || aleksbypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_aleks_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :aleks, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="aleksBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
+
 			  </div>			
 			</div>
 		  </li>
@@ -1142,11 +1176,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		   	<% if orientation_available == 1 && orientation_complete == 0 || orientation_complete.nil? %>
-				<a href="#step-13" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a id="orientationhref" href="#step-orientation" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% elsif  (orientation_available == 1 && orientation_complete == 1) || orientationbypass == 1 %>
-				<a href="#step-13" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a id="orientationhref" href="#step-orientation" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-				<a href="#step-13" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a id="orientationhref" href="#step-orientation" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			<% if orientation_available == 1 %>
@@ -2544,7 +2578,24 @@ Hello, <%= session[:cas_user] %>!
 		    $('#step-finaid').removeClass('collapse').addClass('collapse in');
 		}
 
-	
+
+	if (window.location.href.indexOf("#step-housing") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#housinghref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-housing').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-aleks") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#alekshref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-aleks').removeClass('collapse').addClass('collapse in');
+		}
+
+
  });
 
 </script>
