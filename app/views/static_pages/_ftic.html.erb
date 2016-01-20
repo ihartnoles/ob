@@ -1190,7 +1190,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>ORIENTATION</b></h6>
 			</a>
 			
-			<div id="step-13" class="collapse">				   
+			<div id="step-orientation" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">New Student Orientation</h3>
 
@@ -1217,6 +1217,23 @@ Hello, <%= session[:cas_user] %>!
 					</p> -->
 
 				<% end %>
+
+				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_orientation_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :orientation, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="orientationBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
 			  </div>			
 			</div>
 		  </li>
@@ -1273,11 +1290,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 		  
 		  <% if learning_comm_available == 1  %>
-			<a href="#step-12" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<a id="learninghref" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% elsif  (learning_comm_available == 1 || learning_comm_available == 0) && learning_commbypass == 1 %>
-		   	<a href="#step-12" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   	<a id="learninghref" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
-		    <a href="#step-12" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		    <a id="learninghref" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  <% if learning_comm_available == 1  %>
@@ -2593,6 +2610,14 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#alekshref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-aleks').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-orientation") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#orientationhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-orientation').removeClass('collapse').addClass('collapse in');
 		}
 
 

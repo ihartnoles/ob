@@ -37,5 +37,6 @@ Ob::Application.routes.draw do
    post   'update_ftic_finaid_module',  to: 'ftic_modules_availables#update_ftic_finaid_module'
    post   'update_ftic_housing_module',  to: 'ftic_modules_availables#update_ftic_housing_module'
    post   'update_ftic_aleks_module',  to: 'ftic_modules_availables#update_ftic_aleks_module'
-   
+   post   'update_ftic_orientation_module',  to: 'ftic_modules_availables#update_ftic_orientation_module'
+
 end

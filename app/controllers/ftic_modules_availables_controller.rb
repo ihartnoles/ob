@@ -414,6 +414,21 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
+  def update_ftic_orientation_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.orientation = params[:orientation]
+    @modules_available.learning_comm = 1 #unlock learning communities
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-orientation" #redirect to deposit
+     else
+        redirect_to "/home#step-orientation"
+     end  
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
