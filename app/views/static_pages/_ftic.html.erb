@@ -1290,11 +1290,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 		  
 		  <% if learning_comm_available == 1  %>
-			<a id="learninghref" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% elsif  (learning_comm_available == 1 || learning_comm_available == 0) && learning_commbypass == 1 %>
-		   	<a id="learninghref" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<a id="lc_href" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  <% elsif  (learning_comm_available == 1 || learning_comm_complete == 0) && learning_commbypass == 1 %>
+		   	<a id="lc_href" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
-		    <a id="learninghref" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		    <a id="lc_href" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  <% if learning_comm_available == 1  %>
@@ -1306,7 +1306,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>LEARNING COMMUNITIES</b></h6>
 			</a>
 			
-			<div id="step-12" class="collapse">				   
+			<div id="step-learning" class="collapse">				   
 			  <div class="step-content">			 
 
 			  	<% if learning_commbypass == 1 %>			  		
@@ -1409,6 +1409,23 @@ Hello, <%= session[:cas_user] %>!
 							
 						<% end %>
 				<% end %>
+
+				 <% if  (learning_comm_available == 1 && learning_comm_complete == 1 ) || learning_commbypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_learning_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :learning_comm, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
 				
 
 			  </div>
@@ -1417,11 +1434,11 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		   	<% if oars_available == 1 %>
-				<a href="#step-11" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<%# elsif (oars_available == 1 && oars_complete == 1) || oars_bypass == 1 %>
-				<!-- <a href="#step-11" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
+				<a id="oarshref" href="#step-oars" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<% elsif (oars_available == 1 && oars_complete == 0) || oars_bypass == 1 %>
+				<a id="oarshref" href="#step-oars" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-				<a href="#step-11" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a id="oarshref" href="#step-oars" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			<% if oars_available == 1 %>
@@ -1431,7 +1448,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>ONLINE ADVISING & RESOURCE SYSTEM - OARS</b></h6>
 			</a>
 			
-			<div id="step-11" class="collapse">				   
+			<div id="step-oars" class="collapse">				   
 			  <div class="step-content">	
 
 			  	<% if oars_bypass == 1 %>			  		
@@ -1453,12 +1470,26 @@ Hello, <%= session[:cas_user] %>!
 								<%= oars_status(znum) %>
 							</strong>
 					 </div>
-
-			  		<p>
-						<a href="http://www.fau.edu/uas/oars.php" target="_blank">[More Information]</a>
-			  		</p>
-
+			  		
 			  	 <% end %>
+
+
+			  	  <% if  (oars_available == 1 && oars_complete == 1 ) || oars_bypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_oars_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :oars, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
 
 			  </div>			
 			</div>
@@ -1479,18 +1510,18 @@ Hello, <%= session[:cas_user] %>!
 
 
 
-		   		<% if  (dep_complete_flag == 0 || account_complete == 0 || oars_complete_flag == 0 || immunization_complete == 0) %>
-		   			<a href="#step-14" class="collapsed step-title warning" data-parent="#checkoutsteps" data-toggle="collapse">
+		   		<% if  (dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0) %>
+		   			<a id="reg_href" href="#step-registration" class="collapsed step-title warning" data-parent="#checkoutsteps" data-toggle="collapse">
 		   		<% else %>
-		   			<a href="#step-14" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   			<a id="reg_href" href="#step-registration" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   		<% end %>
 		   		
 		   
-		   		<!-- <a href="#step-14" class="collapsed step-title warning" data-parent="#checkoutsteps" data-toggle="collapse"> -->
+		   		<!-- <a id="reg_href" href="#step-registration" class="collapsed step-title warning" data-parent="#checkoutsteps" data-toggle="collapse"> -->
 		   	<% elsif  (reg_available == 1 && reg_complete == 1) || registrationbypass == 1 %>
-		   		<a href="#step-14" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   		<a id="reg_href" href="#step-registration" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   	<% else %>
-		   		<a href="#step-14" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		   		<a id="reg_href" href="#step-registration" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   	<% end %>
 
 		   	
@@ -1501,7 +1532,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>REGISTRATION & HOLDS</b></h6>
 			</a>
 			
-			<div id="step-14" class="collapse">				   
+			<div id="step-registration" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">Register for Classes</h3>
 
@@ -1510,7 +1541,7 @@ Hello, <%= session[:cas_user] %>!
 				<% else %>
 
 
-			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete_flag == 0 || immunization_complete == 0  %>
+			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 || @reg_complete == 0  %>
 			  			
 			  			<p>You have holds on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
@@ -1529,6 +1560,10 @@ Hello, <%= session[:cas_user] %>!
 
 			  				<% if immunization_complete == 0 %>
 			  					<li>You must provide proof of immunizations and vaccinations.</li>
+			  				<% end %>
+
+			  				<% if @reg_complete == 0 %>
+			  					<li>You must be registered for at least 12 credit hours to be considered a Full-time student! <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Register Now]</a></li>
 			  				<% end %>
 
 			  			</ol>
@@ -1551,21 +1586,30 @@ Hello, <%= session[:cas_user] %>!
 
 								<p>Your registration status:</p>
 
-								<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-										<button data-dismiss="alert" class="close" type="button">×</button>
-										<br>
-										<table class="table table-striped text-left order-details">	
-											<thead>
-								  				<tr>
-								  					<th class="product-name">CRN</th><th class="product-name">COURSE</th><th class="product-name">CREDIT HOURS</th><th class="product-total">TERM</th>
-								  				</tr>
-								  			</thead>
-											<strong>
-												<%= registered_hours(znum)%>
-											</strong>
-										</table>
-									
-								</div>
+								<% if @reg_complete == 1 %>
+
+									<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
+											<button data-dismiss="alert" class="close" type="button">×</button>
+											<br>
+											<table class="table table-striped text-left order-details">	
+												<thead>
+									  				<tr>
+									  					<th class="product-name">CRN</th><th class="product-name">COURSE</th><th class="product-name">CREDIT HOURS</th><th class="product-total">TERM</th>
+									  				</tr>
+									  			</thead>
+												<strong>
+													<%= registered_hours(znum)%>
+												</strong>
+											</table>									
+									</div>
+								<% else %>
+
+									<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
+										You must be registered for at least 12 credit hours to be considered a Full-time student!<br>
+										<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Register Now]</a>
+									</div>
+
+								<% end %>
 
 
 					
@@ -2304,8 +2348,7 @@ Hello, <%= session[:cas_user] %>!
 
 
 	 $('#lcBut').click(function (e) {
-	 	alert('lcBut clicked');
-
+	 	
 	 	if(  $('input[type=radio][name=join_lc]:radio:checked').val() == "Yes" && $('input[type=radio][name=lc_choice]:radio:checked').val() == "CCLC" ) {
 	 		alert('they clicked YES and CCLC');
 
@@ -2318,7 +2361,6 @@ Hello, <%= session[:cas_user] %>!
 	 			 alert('Please type in your full name if you wish to join the Commuting Connections Learning Community (CCLC) Program');
 	 			 e.preventDefault();
 	 		}
-
 
 	 	}
 
@@ -2521,14 +2563,7 @@ Hello, <%= session[:cas_user] %>!
     
 
 
-	/* fxn to parse URL params */
-	 if (window.location.href.indexOf("#step-12") > -1) {
-		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
-		    $('div .collapse').removeClass("collapse in").addClass('collapse');
-
-		    $('#lc_href').removeClass('collapsed step-title').addClass('step-title');
-		    $('#step-12').removeClass('collapse').addClass('collapse in');
-		}
+	
 	
 	/* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-account") > -1) {
@@ -2618,6 +2653,31 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#orientationhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-orientation').removeClass('collapse').addClass('collapse in');
+		}
+
+	/* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-learning") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#lc_href').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-learning').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-oars") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#oarshref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-oars').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-registration") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#reg_href').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-registration').removeClass('collapse').addClass('collapse in');
 		}
 
 
