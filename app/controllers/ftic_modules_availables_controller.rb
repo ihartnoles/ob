@@ -245,7 +245,6 @@ class FticModulesAvailablesController < ApplicationController
   # PATCH/PUT /modules_availables/1
   # PATCH/PUT /modules_availables/1.json
   def update
-
     @modules_available = FticModulesAvailable.find(params[:id])
 
     model_params = params[:ftic_modules_available].permit( :znumber, :netid, :f_name, :l_name, :welcome, :deposit, :depositbypass, :account, :accountbypass, :communication, :communicationbypass, :immunization, :immunizationbypass, :finaid, :finaidbypass, :housingfee, :housingfeebypass, :residency, :residencybypass, :housingmealplan, :housingmealplanbypass, :aleks, :aleksbypass, :oars, :oarsbypass, :learning_comm,  :learning_commbypass, 
@@ -257,7 +256,7 @@ class FticModulesAvailablesController < ApplicationController
 
     respond_to do |format|
       #if @modules_available.update(ftic_modules_available_params)
-      if @modules_available.update_ftic_attributes(model_params)
+      if @modules_available.update_attributes(model_params)
         format.html { redirect_to '/dashboard/ftic', notice: 'Record updated!' }
         format.json { head :no_content }
       else
@@ -265,9 +264,20 @@ class FticModulesAvailablesController < ApplicationController
         format.json { render json: @modules_available.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
 
+
+  # DELETE /modules_availables/1
+  # DELETE /modules_availables/1.json
+  def destroy
+    @modules_available.destroy
+    respond_to do |format|
+      format.html { redirect_to modules_availables_url }
+      format.json { head :no_content }
+    end
+  end
 
    def update_ftic_account_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
@@ -405,16 +415,6 @@ class FticModulesAvailablesController < ApplicationController
   end
 
 
-  # DELETE /modules_availables/1
-  # DELETE /modules_availables/1.json
-  def destroy
-    @modules_available.destroy
-    respond_to do |format|
-      format.html { redirect_to modules_availables_url }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     # def set_ftic_modules_available
@@ -427,4 +427,5 @@ class FticModulesAvailablesController < ApplicationController
         :orientation, :orientationbypass, 
         :registrationbypass, :registration, :emergency, :emergencybypass, :faualert,  :faualertbypass, :owlcard, :owlcardbypass, :bookadvance, :bookadvancebypass ,:tution, :tuitionbypass, :vehiclereg, :vehicleregbypass)
     end
+
 end
