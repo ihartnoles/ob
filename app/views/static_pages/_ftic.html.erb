@@ -1615,14 +1615,30 @@ Hello, <%= session[:cas_user] %>!
 					
 
 						
-						<p>
+						<!-- <p>
 							<a href="http://www.fau.edu/uas/registration.php" target="_blank">[More Information]</a> |  <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Your Registration Info]</a>
-						</p>
+						</p> -->
 
 				  		<% end %>
 
 
 		  		<% end %>
+
+		  		  <% if  (reg_available == 1 && reg_complete == 1 ) || registrationbypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_reg_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :registration, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
 
 			  </div>			
 			</div>
@@ -1634,15 +1650,15 @@ Hello, <%= session[:cas_user] %>!
 		  	<% if tuition_available == 1 && tuition_complete == 0 %>
 				
 				<% if  reg_complete == 0 || residency_complete == 0 || housing_meal_plans_complete == 0  %>
-		   			<a href="#step-19" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   			<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   		<% else %>
-		   			<a href="#step-19" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   			<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   		<% end %>
 
 			<% elsif (tuition_available == 1 && tuition_complete == 1) || tuition_bypass == 1 %>
-				<a href="#step-19" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-				<a href="#step-19" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
@@ -1653,7 +1669,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>TUITION PAYMENT</b></h6>
 			</a>
 			
-			<div id="step-19" class="collapse">				   
+			<div id="step-tuition" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">Tuition and Billing Services</h3>
 
@@ -1740,6 +1756,23 @@ Hello, <%= session[:cas_user] %>!
 						
 						<% end %>
 	              <% end %>
+
+	               <% if  (tuition_available == 1 && tuition_complete == 1 ) || tuition_bypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_tuition_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :tution, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
 				</div>			
 			</div>
 		  </li>
@@ -1747,11 +1780,11 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 		  <% if emergency_available == 1 && emergency_complete == 0 %>
-		  	<a href="#step-15" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  	<a id="emergencyhref" href="#step-emergency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% elsif (emergency_available == 1 && emergency_complete == 1) || emergencybypass == 1 %>
-		  	<a href="#step-15" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  	<a id="emergencyhref" href="#step-emergency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
-		    <a href="#step-15" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		    <a id="emergencyhref" href="#step-emergency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
@@ -1762,7 +1795,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>EMERGENCY CONTACTS</b></h6>
 			</a>
 			
-			<div id="step-15" class="collapse">				   
+			<div id="step-emergency" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">Emergency Contacts</h3>
 				<!-- <p> Please be on the lookout for the FAU Alert and Statement of Responsibility forms/screens when you login to Self Service for the first time. You  must verify and submit both before the respective holds are lifted and access is granted to Self Service.</p> -->
@@ -2681,6 +2714,21 @@ Hello, <%= session[:cas_user] %>!
 		}
 
 
- });
+	if (window.location.href.indexOf("#step-tuition") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
+		    $('#tuitionhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-tuition').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-emergency") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#emergencyhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-emergency').removeClass('collapse').addClass('collapse in');
+		}
+
+ });
 </script>

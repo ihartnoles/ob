@@ -40,4 +40,6 @@ Ob::Application.routes.draw do
    post   'update_ftic_orientation_module',  to: 'ftic_modules_availables#update_ftic_orientation_module'
    post   'update_ftic_learning_module',  to: 'ftic_modules_availables#update_ftic_learning_module'
    post   'update_ftic_oars_module',  to: 'ftic_modules_availables#update_ftic_oars_module'
+   post   'update_ftic_reg_module',  to: 'ftic_modules_availables#update_ftic_reg_module'
+   post   'update_ftic_tuition_module',  to: 'ftic_modules_availables#update_ftic_tuition_module'
 end

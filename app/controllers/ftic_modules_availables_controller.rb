@@ -459,6 +459,35 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
+  def update_ftic_reg_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.registration = params[:registration]
+    @modules_available.tution = 1 #unlock tuition
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-tuition" #redirect to deposit
+     else
+        redirect_to "/home#step-tuition"
+     end  
+  end
+
+  def update_ftic_tuition_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.tution = params[:tution]
+    @modules_available.emergency = 1 #unlock emergency contacts
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-emergency" #redirect to deposit
+     else
+        redirect_to "/home#step-emergency"
+     end  
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
