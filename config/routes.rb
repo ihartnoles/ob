@@ -45,4 +45,6 @@ Ob::Application.routes.draw do
    post   'update_ftic_emergency_module',  to: 'ftic_modules_availables#update_ftic_emergency_module'
    post   'update_ftic_alert_module',  to: 'ftic_modules_availables#update_ftic_alert_module'
    post   'update_ftic_owlcard_module',  to: 'ftic_modules_availables#update_ftic_owlcard_module'   
+   post   'update_ftic_book_module',  to: 'ftic_modules_availables#update_ftic_book_module'   
+   post   'update_ftic_vehicle_module',  to: 'ftic_modules_availables#update_ftic_vehicle_module'   
 end

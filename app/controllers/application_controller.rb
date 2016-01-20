@@ -121,6 +121,7 @@ class ApplicationController < ActionController::Base
             @tuition_bypass = a.tuitionbypass
             @vehicle_reg_available = a.vehiclereg
             @vehicleregbypass = a.vehicleregbypass
+            @congrats_available = a.congrats
           end  	
   end #end of modules available
 

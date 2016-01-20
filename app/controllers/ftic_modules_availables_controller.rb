@@ -536,6 +536,37 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
+
+  def update_ftic_book_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.bookadvance = params[:bookadvance]
+    @modules_available.vehiclereg = 1 #unlock register your vehicle
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-vehicle" #redirect to deposit
+     else
+        redirect_to "/home#step-step-vehicle"
+     end  
+  end
+
+  def update_ftic_vehicle_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.vehiclereg = params[:vehiclereg]
+    @modules_available.congrats = 1 #unlock congratulations
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-congrats" #redirect to deposit
+     else
+        redirect_to "/home#step-step-congrats"
+     end  
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     # def set_ftic_modules_available

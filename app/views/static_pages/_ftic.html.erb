@@ -2003,6 +2003,22 @@ Hello, <%= session[:cas_user] %>!
 					</p>
 				 <% end %>
 
+				  <% if  (bookadvance_available == 1 && bookadvance_available == 1 ) || bookadvance_bypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_book_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :bookadvance, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
 			  </div>			
 			</div>
 
@@ -2016,11 +2032,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 		  	
 		  	<% if vehicle_reg_available == 1 %>
-				<a href="#step-20" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a id="vehiclehref" href="#step-vehicle" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% elsif  (vehicle_reg_available == 1 || vehicle_reg_available == 0) && vehicleregbypass == 1 %>
-		   		<a href="#step-20" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   		<a id="vehiclehref" href="#step-vehicle" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-				<a href="#step-20" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a id="vehiclehref" href="#step-vehicle" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			 <% if vehicle_reg_available == 1 %>
@@ -2034,7 +2050,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>REGISTER YOUR VEHICLE</b></h6>
 			</a>
 			
-			<div id="step-20" class="collapse">				   
+			<div id="step-vehicle" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">Register your vehicle</h3>
 				  
@@ -2079,18 +2095,32 @@ Hello, <%= session[:cas_user] %>!
 	              	   	</div>
 	              	   </p>
 	              	<% end %>
+
+	              	 <% if  vehicle_reg_available == 1 || vehicleregbypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_vehicle_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :vehiclereg, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
 				</div>			
 			</div>
 		  </li>
 
 		   <li class="panel">
 		  	
-		  	<% if vehicle_reg_available == 1 %>
-				<a href="#step-21" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% elsif  (vehicle_reg_available == 1 || vehicle_reg_available == 0) && vehicleregbypass == 1 %>
-		   		<a href="#step-21" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  	<% if congrats_available == 1 %>
+				<a id="congratshref" href="#step-congrats" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-				<a href="#step-21" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a id="congratshref" href="#step-congrats" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			  <div class="number"><!-- Step 19 --> <%#= get_statusicon(tuition_available, tuition_complete) %>
@@ -2101,13 +2131,12 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>CONGRATULATIONS!</b></h6>
 			</a>
 			
-			<div id="step-21" class="collapse">				   
+			<div id="step-congrats" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">You're "OWL" done!</h3>
 				  
-				 <% if 1 == 0 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+				 <% if congrats_available == 1 %>			  		
+						
 
 					  <p>
 	                 	You are ready to begin this next exciting stage of development and growth at Florida Atlantic University. You should be very proud of yourself. This is an exciting event that you have planned and dreamed about for many years!
@@ -2120,9 +2149,10 @@ Hello, <%= session[:cas_user] %>!
 	                   </div>
 	                  </p>
 	                  
-
+	              <% else %>
 	                  
-	              	<% end %>
+	              	<p>You have NOT yet completed the Student Onboarding process. Please go back and take care of any outstanding issues.</p>
+	              <% end %>
 				</div>			
 			</div>
 		  </li>
@@ -2803,6 +2833,22 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#bookhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-bookadvance').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-vehicle") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#vehiclehref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-vehicle').removeClass('collapse').addClass('collapse in');
+		}
+
+	if (window.location.href.indexOf("#step-congrats") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#congratshref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-congrats').removeClass('collapse').addClass('collapse in');
 		}
 
  });
