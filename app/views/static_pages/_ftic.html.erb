@@ -201,7 +201,7 @@ Hello, <%= session[:cas_user] %>!
 					        </div>
 
 					        <div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_account_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		<%= form_tag('/update_ftic_account_module' , {:class => 'register-form form-validator'})  do %>
 				  		 		 	<%= hidden_field_tag :znumber, @znum %>
 								    <%= hidden_field_tag :netid, @displayname %>
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
@@ -299,7 +299,7 @@ Hello, <%= session[:cas_user] %>!
 				  		
 						<% if  (@verify_available == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
 				  		 	<div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_verify_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		<%= form_tag('/update_ftic_verify_module' , {:class => 'register-form form-validator'})  do %>
 				  		 		 	<%= hidden_field_tag :znumber, @znum %>
 								    <%= hidden_field_tag :netid, @displayname %>
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
@@ -428,7 +428,7 @@ Hello, <%= session[:cas_user] %>!
 
 						<% if  (@deposit_available == 1 || @deposit_available == 1) &&  @verify_complete == 1 %>
 				  		 	<div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_deposit_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		<%= form_tag('/update_ftic_deposit_module' , {:class => 'register-form form-validator'})  do %>
 				  		 		 	<%= hidden_field_tag :znumber, @znum %>
 								    <%= hidden_field_tag :netid, @displayname %>
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
@@ -591,7 +591,7 @@ Hello, <%= session[:cas_user] %>!
 						  <% if  (communication_available == 1 && communication_complete == 1 ) && @deposit_complete == 1|| communication_bypass == 1 %>
 						   	
 						   	<div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_communication_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		<%= form_tag('/update_ftic_communication_module' , {:class => 'register-form form-validator'})  do %>
 				  		 		 	<%= hidden_field_tag :znumber, @znum %>
 								    <%= hidden_field_tag :netid, @displayname %>
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
@@ -674,11 +674,11 @@ Hello, <%= session[:cas_user] %>!
 				 <% if  (immunization_available == 1 && immunization_complete == 1 ) || immunization_bypass == 1 %>
 						   	
 						   	<div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_immunization_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		<%= form_tag('/update_ftic_immunization_module' , {:class => 'register-form form-validator'})  do %>
 				  		 		 	<%= hidden_field_tag :znumber, @znum %>
 								    <%= hidden_field_tag :netid, @displayname %>
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%= hidden_field_tag :residency, 1 %>
+								    <%= hidden_field_tag :immunization, 1 %>
 								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 									<% if params[:znum] %>
 									   	<%= hidden_field_tag :znum, @znum %>									    
@@ -747,11 +747,11 @@ Hello, <%= session[:cas_user] %>!
 	   <li class="panel">
 
 		  <% if residency_available == 1 && residency_complete == 0 %>
-			<a href="#step-7" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			<a id="residencyhref" href="#step-residency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% elsif (residency_available == 1 && residency_complete == 1) || residency_bypass == 1 %>
-		  	<a href="#step-7" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
-		  	<a href="#step-7" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
@@ -762,7 +762,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>RESIDENCY VALIDATION</b></h6>
 			</a>
 			
-			<div id="step-7" class="collapse">	
+			<div id="step-residency" class="collapse">	
 
 			   
 			  <div class="step-content">
@@ -785,94 +785,33 @@ Hello, <%= session[:cas_user] %>!
 	                    <div class="alert alert-border alert-danger text-center fade in alert-dismissable">
 							<button data-dismiss="alert" class="close" type="button">×</button>
 		                    <p>
-		                    	<strong>F
+		                    	<strong>
 		                    		<%= get_residency_status(znum) %><br>
 		                    	</strong>
 		                    <p>
 	                    </div>
 
-                  <!--   <div class="alert alert-border alert-info text-center fade in alert-dismissable">
-                    	<button data-dismiss="alert" class="close" type="button">×</button>
-                    	<div class="table-responsive">
-                    	<h3 class="title">Resident vs Non-Resident Tuition Comparison</h3>
-                    	<table class="table table-striped text-left order-details">
-                    		<thead>                    		
-                    		<tr>
-                    			<th>Fees Per Credit Hour</th>
-                    			<th>Undergrad - Resident</th>
-                    			<th>Undergrad - Non-Resident</th>
-                    		</tr>
-                    		</thead>
-                    		<tbody>
-                    			<tr>
-        							<td>Tuition</td>
-        							<td>$105.07</td>
-        							<td>$105.07</td>
-        						</tr>
-        						<tr>
-        							<td>Non Resident fee</td>
-        							<td class="text-primary">$0.00</td>
-        							<td class="text-danger">$493.86</td>
-        						</tr>
-        						<tr>
-        							<td>Tuition Differential</td>
-        							<td>$40.13</td>
-        							<td>$40.13</td>
-        						</tr>
-        						<tr>
-        							<td>Capital Improvement Fee</td>
-        							<td>$6.76</td>
-        							<td>$6.76</td>
-        						</tr>
-        						<tr>
-        							<td>Financial Aid Fee</td>
-        							<td class="text-primary">$5.16</td>
-        							<td class="text-danger">$29.85</td>
-        						</tr>
-        						<tr>
-        							<td>Activity and Service Fee</td>
-        							<td>$12.32</td>
-        							<td>$12.32</td>
-        						</tr>
-        						<tr>
-        							<td>Athletic Fee</td>
-        							<td>$17.27</td>
-        							<td>$17.27</td>
-        						</tr>
-        						<tr>
-        							<td>Health Fee</td>
-        							<td>$9.42</td>
-        							<td>$9.42</td>
-        						</tr>
-        						<tr>
-        							<td>Technology Fee</td>
-        							<td>$5.16</td>
-        							<td>$5.16</td>
-        						</tr>
-        						<tfoot>
-	        						<tr>
-	        							<th>Total</th>
-	        							<th>$201.29</th>
-	        							<th>$719.84</th>
-	        						</tr>
-        						</tfoot>
-                    		</tbody>
-                    	</table>
-                    </div>
-					</div> -->
-				<!--<form>
-				  <div>
-					<label class="radio"><input type="radio" name="register"> Checkout as Guest</label>
-					<label class="radio"><input type="radio" name="register"> Register</label>
-				  </div>
-				</form>
-				
-				<div class="buttons-box text-right">
-				  <button type="button" class="btn btn-danger">Continue</button>
-				  <span class="required"><b>*</b> Required Field</span>
-				</div>-->
+                 
 
 				 <% end %>
+
+				  <% if  (residency_available == 1 && residency_complete == 1 ) || residency_bypass == 1 %>
+						   	
+						   	<div class="buttons-box text-right">
+				  		 		<%= form_tag('/update_ftic_residency_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%= hidden_field_tag :znumber, @znum %>
+								    <%= hidden_field_tag :netid, @displayname %>
+								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%= hidden_field_tag :residency, 1 %>
+								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+									<% if params[:znum] %>
+									   	<%= hidden_field_tag :znum, @znum %>									    
+									<% end %>
+							    	 <button type="submit" class="btn btn-danger" id="residencyBut">Continue</button>		
+						 		<% end %>				 
+						 	</div>
+				<% end %>
+
 			  </div> 
 			
 			</div>
@@ -880,11 +819,11 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		  	<% if finaid_available == 1 && finaid_complete == 0 %>
-			   <a href="#step-6" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			   <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% elsif (finaid_available == 1 && finaid_complete == 1) || finaid_bypass == 1 %>
-			   <a href="#step-6" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+			   <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-               <a href="#step-6" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+               <a id="finaidhref" href="#step-finaid" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			<% if finaid_available == 1 %>
@@ -894,7 +833,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>FINANCIAL AID</b></h6>
 			</a>
 			
-			<div id="step-6" class="collapse">
+			<div id="step-finaid" class="collapse">
 			  <div class="step-content">
 
 			  	<% if finaid_bypass == 1 %>			  		
@@ -1052,8 +991,24 @@ Hello, <%= session[:cas_user] %>!
 					  		</p>
 
 								
-				<button type="button" class="btn btn-danger">Continue</button>
+				<!-- <button type="button" class="btn btn-danger">Continue</button> -->
 
+				<% end %>
+
+				 <% if  (finaid_available == 1 && finaid_complete == 1 ) || finaid_bypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :finaid, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="housingfeeBut">Continue</button>		
+					 		<% end %>				 
+						</div>
 				<% end %>
 
 			  </div>
@@ -1065,11 +1020,11 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	<% if housing_fee_available == 1 && housing_fee_complete ==0 %>
-				<a href="#step-8" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% elsif (housing_fee_available == 1 && housing_fee_complete ==1) || housingfee_bypass == 1 %>
-				<a href="#step-8" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
-				<a href="#step-8" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+				<a href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
@@ -2500,6 +2455,18 @@ Hello, <%= session[:cas_user] %>!
 	 }
 	 
 
+	 // function findplace(stepname, href) {
+
+	 // 	 if (window.location.href.indexOf("#"+ stepname) > -1) {
+		//     $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		//     $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		//     $("#"+href).removeClass('collapsed step-title').addClass('step-title');
+		//     $("#"+ stepname).removeClass('collapse').addClass('collapse in');
+		// }
+
+	 // }
+
     
 
 
@@ -2561,7 +2528,23 @@ Hello, <%= session[:cas_user] %>!
 		    $('#step-immunization').removeClass('collapse').addClass('collapse in');
 		}
 
+	 if (window.location.href.indexOf("#step-residency") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
-	 });
+		    $('#residencyhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-residency').removeClass('collapse').addClass('collapse in');
+		}
+
+	 if (window.location.href.indexOf("#step-finaid") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#finaidhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-finaid').removeClass('collapse').addClass('collapse in');
+		}
+
+	
+ });
 
 </script>

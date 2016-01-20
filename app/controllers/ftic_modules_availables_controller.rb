@@ -257,7 +257,7 @@ class FticModulesAvailablesController < ApplicationController
 
     respond_to do |format|
       #if @modules_available.update(ftic_modules_available_params)
-      if @modules_available.update_attributes(model_params)
+      if @modules_available.update_ftic_attributes(model_params)
         format.html { redirect_to '/dashboard/ftic', notice: 'Record updated!' }
         format.json { head :no_content }
       else
@@ -269,7 +269,7 @@ class FticModulesAvailablesController < ApplicationController
 
 
 
-   def update_account_module
+   def update_ftic_account_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.account = params[:account]
     @modules_available.verify = 1 #unlock verify your information
@@ -284,7 +284,7 @@ class FticModulesAvailablesController < ApplicationController
   end
 
 
-  def update_verify_module
+  def update_ftic_verify_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.verify = params[:verify]
     @modules_available.deposit = 1 #unlock deposit
@@ -299,7 +299,7 @@ class FticModulesAvailablesController < ApplicationController
   end
 
 
-   def update_deposit_module
+   def update_ftic_deposit_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.deposit = params[:deposit]
     @modules_available.communication = 1 #unlock communication preference
@@ -314,7 +314,7 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
-  def update_communication_module
+  def update_ftic_communication_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.communication = params[:communication]
     @modules_available.immunization = 1 #unlock immunization
@@ -329,7 +329,7 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
-  def update_immunization_module
+  def update_ftic_immunization_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.immunization = params[:immunization]
     @modules_available.residency = 1 #unlock residency
@@ -338,12 +338,41 @@ class FticModulesAvailablesController < ApplicationController
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
      if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to deposit
+         redirect_to "/home?znum=#{params[:znum]}#step-residency" #redirect to deposit
      else
-        redirect_to "/home#step-immunization"
+        redirect_to "/home#step-residency"
      end  
   end
 
+  def update_ftic_residency_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.residency = params[:residency]
+    @modules_available.finaid = 1 #unlock financial aid
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect to deposit
+     else
+        redirect_to "/home#step-finaid"
+     end  
+  end
+
+  def update_ftic_finaid_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.finaid = params[:finaid]
+    @modules_available.housingfee = 1 #unlock housing
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-housing" #redirect to deposit
+     else
+        redirect_to "/home#step-housing"
+     end  
+  end
 
   # DELETE /modules_availables/1
   # DELETE /modules_availables/1.json

@@ -28,8 +28,11 @@ Ob::Application.routes.draw do
    post   '/save_communication',     to: 'communications#save_communication'
    post   '/save_lc',                to: 'communities#save_lc'
 
-   post   'update_verify_module',  to: 'ftic_modules_availables#update_verify_module'
-   post   'update_account_module',  to: 'ftic_modules_availables#update_account_module'
-   post   'update_deposit_module',  to: 'ftic_modules_availables#update_deposit_module'
-   post   'update_communication_module',  to: 'ftic_modules_availables#update_communication_module'
+   post   'update_ftic_verify_module',  to: 'ftic_modules_availables#update_ftic_verify_module'
+   post   'update_ftic_account_module',  to: 'ftic_modules_availables#update_ftic_account_module'
+   post   'update_ftic_deposit_module',  to: 'ftic_modules_availables#update_ftic_deposit_module'
+   post   'update_ftic_communication_module',  to: 'ftic_modules_availables#update_ftic_communication_module'
+   post   'update_ftic_immunization_module',  to: 'ftic_modules_availables#update_ftic_immunization_module'
+   post   'update_ftic_residency_module',  to: 'ftic_modules_availables#update_ftic_residency_module'
+   post   'update_ftic_finaid_module',  to: 'ftic_modules_availables#update_ftic_finaid_module'
 end
