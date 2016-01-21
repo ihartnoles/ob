@@ -31,10 +31,10 @@ class CommunitiesController < ApplicationController
     
     if params[:znum]
       #redirect for admin proxy
-      redirect_to "/home?znum=#{params[:znum]}#step-12"
+      redirect_to "/home?znum=#{params[:znum]}#step-learning"
     else
       #redirect for student
-      redirect_to "/home#step-12"
+      redirect_to "/home#step-learning"
     end
 
   end
