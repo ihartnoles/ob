@@ -267,7 +267,7 @@ class StaticPagesController < ApplicationController
                   end 
 
                   if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
-                    @deposit_complete ||= 1
+                    @deposit_complete ||= 1   #change this back to 1
                     @dep_complete_flag = 1
                   else
                     @deposit_complete ||= 0
