@@ -250,6 +250,7 @@ class StaticPagesController < ApplicationController
                @dep_complete_flag = 0
                #@account_complete = 0
                @emergency_complete = 0
+               @fau_alert_complete = 0
             else
                 get_multistatus.each do |o|
 
@@ -293,6 +294,18 @@ class StaticPagesController < ApplicationController
                     @emergency_phone_area = o['spremrg_phone_area']
                     @emergency_phone_number = o['spremrg_phone_number']
                   end 
+
+                  #BEGIN: FAU Alert info
+                  if o['gwrr911_phone_area'].nil? || o['gwrr911_phone_number'].nil?
+                     @fau_alert_complete = 0
+                  else
+                    @fau_alert_complete = 1
+                    @fau_alert_phone_area = o['gwrr911_phone_area']
+                    @fau_alert_phone_number = o['gwrr911_phone_number']
+                    @fau_alert_tele_code = o['gwrr911_tele_code']
+                    @fau_alert_text_capable = o['gwrr911_text_capable']                    
+                  end 
+                  #END: FAU Alert Info
 
                   @term_display = o['term']
                   @year_display = o['year']
@@ -575,7 +588,7 @@ class StaticPagesController < ApplicationController
 
 
           #@emergency_complete = 0
-          @fau_alert_complete = 0
+          #@fau_alert_complete = 0
           @owlcard_complete = 0
           @bookadvance_complete = 1
           @tuition_complete = 0

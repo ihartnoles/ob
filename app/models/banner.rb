@@ -77,7 +77,9 @@ class Banner < ActiveRecord::Base
 											
 										  									      
 									      aleks_taken, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, sarchkl_admr_code, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name, 
-									      spremrg_street_line1, spremrg_city, spremrg_stat_code, spremrg_natn_code, spremrg_zip, sprtele_phone_area, sprtele_phone_number,spremrg_phone_area, spremrg_phone_number, whc_student, goremal_email_address 
+									      spremrg_street_line1, spremrg_city, spremrg_stat_code, spremrg_natn_code, spremrg_zip, sprtele_phone_area, sprtele_phone_number,spremrg_phone_area, spremrg_phone_number, 
+									      gwrr911_phone_area, gwrr911_phone_number, gwrr911_tele_code, gwrr911_text_capable,
+									      whc_student, goremal_email_address 
 
 									      FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 

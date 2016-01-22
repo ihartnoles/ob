@@ -1832,6 +1832,20 @@ Hello, <%= session[:cas_user] %>!
 
 					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. 
 	               
+					<% if fau_alert_complete == 1 %>
+						 <p>Your FAU Alert information on file is:<br>
+						 	<br>
+						 	<b>Primary Contact Number: (<%= @fau_alert_phone_area %>) <%= @fau_alert_phone_number %></b>
+						 	<br>						 	
+						 	<b></b>
+						 </p>
+					<% else %>
+						<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
+							You do not have any FAU Alert information on file!<br>							
+						</div>
+					<% end %>
+
+	               <br>
 
 	               <a title="FAU Alert" href="http://www.fau.edu/emergency/universityalerts.php" target="_blank">[More Information]</a> | <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">[Your FAU Alert Info]</a></p>
                <% end %>
