@@ -10,7 +10,7 @@ class Housing < ActiveRecord::Base
 	end
 
 	def self.get_housing_exemption(id)
-		get = connection.exec_query("SELECT * FROM [TheHousingDirector].[dbo].[VWTHDSTUDENTS] WHERE FIELD100 IS NOT NULL AND STUDENTNUMBER = #{connection.quote(id)}")
+		get = connection.exec_query("SELECT studentnumber, firstname, lastname, field100, TIMEFRAMENUMERICCODE FROM [TheHousingDirector].[dbo].[VWTHDSTUDENTS] WHERE FIELD100 IS NOT NULL AND STUDENTNUMBER = #{connection.quote(id)}")
 	end
-	
+
 end
