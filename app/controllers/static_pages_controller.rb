@@ -174,6 +174,36 @@ class StaticPagesController < ApplicationController
           end
 
 
+          #BEGIN verify your information question
+
+          #query for VERIFY INFO data for the student
+          verify_info = Verify.where(:znumber => @znum)
+
+          #has the user entered any information about VERIFYING THEIR INFO?
+          if verify_info.count > 0
+            @verify_info_complete = 1
+          else
+            @verify_info_complete = 0
+          end
+
+          #set the verify variables used in the front-end form
+          if verify_info.blank?
+              @verify_id = 0
+              @verify_info =  ''               
+          else
+            verify_info.each do |v|
+              @verify_id = v['id']
+              @verify_info =  v['verify_info']
+            end
+          end
+
+          #END verify your information question
+
+
+
+
+
+
           #pull the student's zip
           student_zip = Banner.find_student_zip_by_z(@znum)
 

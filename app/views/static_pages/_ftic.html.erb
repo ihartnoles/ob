@@ -239,7 +239,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>	
 			
 			<% if (@verify_available == 1 || @verify_bypass == 1) && ( account_available == 1 && account_complete == 1 )%>
-			  <div class="number"><!-- Step 3 --><%= get_statusicon(account_available, account_complete, account_bypass) %></div>
+			  <div class="number"><!-- Step 3 --><%= get_statusicon(@verify_available, @verify_info_complete, verify_bypass) %></div>
 			<% end %>
 
 			  <h6><b>VERIFY YOUR INFORMATION</b></h6>
@@ -261,14 +261,19 @@ Hello, <%= session[:cas_user] %>!
 								<thead>                    		
 	                    		<tr>
 	                    			<th>Your Details</th>
+	                    			<th>&nbsp;</th>	 
 	                    			<th>&nbsp;</th>	                    			
 	                    		</tr>
 	                    		</thead>
 						  		<tr>
-						  			<td>Your Name:</td><td><%= @fname %> <%= @mname %> <%= @lname %></td>						  			
+						  			<td>Your Name:</td>
+						  			<td><%= @fname %> <%= @mname %> <%= @lname %>&nbsp;</td>	
+						  			<td><% if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <% end %></td>					  			
 						  		</tr>
 						  		<tr>
-						  			<td>Your Address:</td><td><%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %></td>						  			
+						  			<td>Your Address:</td>
+						  			<td><%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %>&nbsp;</td>						  			
+						  			<td><% if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <% end %></td>
 						  		</tr>
 						  		<!-- 
 						  		<tr>
@@ -276,25 +281,41 @@ Hello, <%= session[:cas_user] %>!
 						  		</tr> 
 						  	    -->
 						  		<tr>
-						  			<td>Acceptance Term:</td><td><%= @term %> <%= @year %></td>						  			
+						  			<td>Acceptance Term:</td>
+						  			<td><%= @term %> <%= @year %></td>						  			
+						  			<td></td>
 						  		</tr>
-						  		<!-- <tr>
-						  			<td>Do you intend to enroll at FAU for your acceptance term?</td>
-						  			<td>
-						  				<div class="col-sm-6 col-md-6">
-									  	<label class="radio-inline">
-											<input type="radio" name="enroll" value="Yes"> Yes
-									  	</label>
-
-									  
-									  	<label class="radio-inline">
-											<input type="radio" name="enroll" value="No"> No
-									  	</label>
-									   </div>
-								   </td>						  			
-						  		</tr> -->
+						  		
+						  		
 						</table>
 						
+
+						<p><strong>Is your information correct?</strong></p>																
+							<%= form_tag('/save_verify_info', {:class => 'form-horizontal', :role => 'form'}) do %>
+								    <%= hidden_field_tag :znumber, @znum %>
+								    <%= hidden_field_tag :netid, @displayname %>
+								    <%= hidden_field_tag :id, @verify_id %>
+								     <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								    <% if params[:znum] %>
+								    	<%= hidden_field_tag :znum, @znum %>									    
+								    <% end %>
+								    
+								    <div class="radio">
+								    	<%= radio_button_tag 'verify_info', 'Yes', !!(@verify_info.nil? || @verify_info == 'Yes') %>Yes - my information is correct!<br>
+									</div>
+									
+								    <div class="radio">
+								    	<%= radio_button_tag 'verify_info', 'No' , !!(@verify_info.nil? || @verify_info == 'No')%>No - my information needs to be updated.<br>
+								    </div>
+
+									<div id="verify_options"  <% if @verify_info == 'Yes' %> <% else %> style="display:none" <% end %>>
+																
+									</div>
+
+									<br>
+									<%= submit_tag 'Save' , :id=> "verifySaveBut"%>										
+							<% end %>
+
 				  						  		
 				  		
 						<% if  (@verify_available == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
