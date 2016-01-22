@@ -351,7 +351,7 @@ module StaticPagesHelper
            tmp =  "Your housing deposit was received on #{o['deposit_received'].strftime('%x')}."
          else
            tmp =  "Your housing deposit has NOT been paid yet!  <br>            
-               <a title='FAU Housing' href='https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=#{znum}' target='_blank'>[Sign up here]</a>"
+               <a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>"
          end
          
          return tmp.html_safe
@@ -359,7 +359,7 @@ module StaticPagesHelper
          end
       else
         return "Your housing deposit has NOT been paid yet!  <br>            
-               <a title='FAU Housing' href='https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=#{znum}' target='_blank'>[Sign up here]</a>".html_safe
+               <a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>".html_safe
       end 
      end
 end
