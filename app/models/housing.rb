@@ -8,4 +8,9 @@ class Housing < ActiveRecord::Base
 	def self.get_housing_deposit(id)
 			get = connection.exec_query("SELECT  tblStudentApplications.deposit_received FROM  tblStudentApplications INNER JOIN  tblStudents ON tblStudentApplications.StudentID = tblStudents.StudentID WHERE StudentNumber = #{connection.quote(id)}")
 	end
+
+	def self.get_housing_exemption(id)
+		get = connection.exec_query("SELECT * FROM [TheHousingDirector].[dbo].[VWTHDSTUDENTS] WHERE FIELD100 IS NOT NULL AND STUDENTNUMBER = #{connection.quote(id)}")
+	end
+	
 end

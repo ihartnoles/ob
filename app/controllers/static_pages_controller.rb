@@ -439,75 +439,64 @@ class StaticPagesController < ApplicationController
           end 
           #end finaidflags
 
-          #begin housing fee
-
+          #BEGIN housing
+            housing_exemption = Housing.get_housing_exemption(@znum)
             housing_reqs = Banner.additional_housing_reqs(@znum)
 
-            if housing_reqs.blank?
-              @housing_fee_required = 0 #default to not-required; we can't find any info on them! YIKES!
-              @housing_fee_complete = 0 
-
+            if housing_exemption.count >= 1
+              #they have a housing exemption
+              @housing_exemption = 1
+              @housing_fee_required = 0
+              @housing_fee_complete = 1
             else
+              #BEGIN housing_reqs bcuz they don't have an exemption
+                 if housing_reqs.blank?
+                    @housing_fee_required = 0 #default to not-required; we can't find any info on them! YIKES!
+                    @housing_fee_complete = 0 
 
-              housing_reqs.each do |o| 
-                 @married = o['spbpers_mrtl_code']
-                 @whc_student = o['whc_student']    
-                 @age = o['age']               
-              end      
+                  else
 
-              if @married = 'M' ||  @age >= 21 #check if they are married or over the age of 21
-                 @housing_fee_required = 0
-                 @housing_fee_complete = 1 
-              end
+                    housing_reqs.each do |o| 
+                       @married = o['spbpers_mrtl_code']
+                       @whc_student = o['whc_student']    
+                       @age = o['age']               
+                    end      
 
-              if @whc_student == 'Y' #check if they are a wilkes honors college student
-                #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
-                housing_fee_required = 1
-              else
-                #check zipcode radius for Boca Campus              
-                housing_fee_required = HousingZipcode.where(:zip => @zipcode)
-              end
-             
-                
+                    if @married = 'M' ||  @age >= 21 #check if they are married or over the age of 21
+                       @housing_fee_required = 0
+                       @housing_fee_complete = 1 
+                    end
 
-                #determine if housing fee is required
-                if housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
-                    @housing_fee_required = 1
-                    @housing_fee_complete = 0           
-                else
-                    @housing_fee_required = 0
-                    @housing_fee_complete = 1        
-                end
+                    if @whc_student == 'Y' #check if they are a wilkes honors college student
+                      #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
+                      housing_fee_required = 1
+                    else
+                      #check zipcode radius for Boca Campus              
+                      housing_fee_required = HousingZipcode.where(:zip => @zipcode)
+                    end
+                   
+                      
 
-                 # puts YAML::dump('***** START ******')
-                 # puts YAML::dump(housing_fee_required.empty?)
-                 # puts YAML::dump(housing_fee_required.count)
-                 # puts YAML::dump(@housing_fee_required)
-                 # puts YAML::dump(@zipcode)
-                 # puts YAML::dump('****** END ********')
+                      #determine if housing fee is required
+                      if housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
+                          @housing_fee_required = 1
+                          @housing_fee_complete = 0           
+                      else
+                          @housing_fee_required = 0
+                          @housing_fee_complete = 1        
+                      end
 
-            end
-          
-         
+                       # puts YAML::dump('***** START ******')
+                       # puts YAML::dump(housing_fee_required.empty?)
+                       # puts YAML::dump(housing_fee_required.count)
+                       # puts YAML::dump(@housing_fee_required)
+                       # puts YAML::dump(@zipcode)
+                       # puts YAML::dump('****** END ********')
 
-            # begin: check the student's age 
-
-              # age_requirement = Banner.age_calculation(@znum)
-
-              # age_requirement.each do |o| 
-              #    # age = o['age']  
-              #    @age = o['age']                 
-              # end      
-
-              # if @age < 21 && @housing_fee_required == 1
-              #   @housing_fee_required = 1
-              # else
-              #   @housing_fee_required = 0
-              #   @housing_fee_complete = 1
-              # end
-            #end: chec the student's age 
-
-          #end housing housing_fee
+                  end
+              #END housing reqs
+            end 
+          #END housing
 
 
           #@residency_complete = 0
