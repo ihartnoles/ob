@@ -556,6 +556,7 @@ Hello, <%= session[:cas_user] %>!
 									    <%= hidden_field_tag :znumber, @znum %>
 									    <%= hidden_field_tag :netid, @displayname %>
 									    <%= hidden_field_tag :id, @contact_id %>
+									    <%= hidden_field_tag :ftic_id, @ftic_id %>
 
 									    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 									    <% if params[:znum] %>
@@ -597,7 +598,9 @@ Hello, <%= session[:cas_user] %>!
 
 										<div>
 											<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
-											<%= submit_tag "Save", :id=> "contactBut"  %>
+											<% if  (communication_available == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
+											<%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>
+											<% end %>
 										</div>
 									
 								  </div>
@@ -614,22 +617,22 @@ Hello, <%= session[:cas_user] %>!
 						  </div> 
 						  -->
 
-						  <% if  (communication_available == 1 && communication_complete == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
+						  <%# if  (communication_available == 1 && communication_complete == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
 						   	
-						   	<div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_ftic_communication_module' , {:class => 'register-form form-validator'})  do %>
-				  		 		 	<%= hidden_field_tag :znumber, @znum %>
-								    <%= hidden_field_tag :netid, @displayname %>
-								    <%= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%= hidden_field_tag :communication, 1 %>
+						   	<!-- <div class="buttons-box text-right"> -->
+				  		 		<%#= form_tag('/update_ftic_communication_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%#= hidden_field_tag :znumber, @znum %>
+								    <%#= hidden_field_tag :netid, @displayname %>
+								    <%#= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%#= hidden_field_tag :communication, 1 %>
 								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-									<% if params[:znum] %>
-									   	<%= hidden_field_tag :znum, @znum %>									    
-									<% end %>
-							    	 <button type="submit" class="btn btn-danger" id="communicationBut">Continue</button>		
-						 		<% end %>				 
-						 	</div>
-						 <% end %>					
+									<%# if params[:znum] %>
+									   	<%#= hidden_field_tag :znum, @znum %>									    
+									<%# end %>
+							    	<!--  <button type="submit" class="btn btn-danger" id="communicationBut">Continue</button> -->		
+						 		<%# end %>				 
+						 	<!-- </div> -->
+						 <%# end %>					
 					
 
 						<!-- </form>  -->
@@ -2736,7 +2739,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_available == 1 && communication_complete == 1 || communication_bypass == 1)  %>
+	<% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1)  %>
 	 /* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-immunization") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');

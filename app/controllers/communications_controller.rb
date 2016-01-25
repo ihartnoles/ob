@@ -39,14 +39,13 @@ class CommunicationsController < ApplicationController
       @communication.save
     end
 
-    
-    if params[:znum]
-      #redirect for admin proxy
-      redirect_to "/home?znum=#{params[:znum]}#step-comm"
-    else
-      #redirect for student
-      redirect_to "/home#step-comm"
-    end
+     update_ftic_communication_module(params[:ftic_id],params[:znumber], params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to immunization
+     else
+        redirect_to "/home#step-immunization"
+     end  
 
   end
  

@@ -301,20 +301,7 @@ class FticModulesAvailablesController < ApplicationController
   end
 
 
-  def update_ftic_verify_module
-    @modules_available = FticModulesAvailable.find(params[:ftic_id])
-    @modules_available.verify = params[:verify]
-    @modules_available.deposit = 1 #unlock deposit
-    @modules_available.save
-    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
-     # if params[:znum]
-     #     redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to deposit
-     # else
-     #    redirect_to "/home#step-deposit"
-     # end  
-      render :nothing => true, :status => 200
-  end
 
 
    def update_ftic_deposit_module
@@ -332,21 +319,7 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
-  def update_ftic_communication_module
-    @modules_available = FticModulesAvailable.find(params[:ftic_id])
-    @modules_available.communication = params[:communication]
-    @modules_available.immunization = 1 #unlock immunization
-    @modules_available.save
-
-    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
-
-     if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to deposit
-     else
-        redirect_to "/home#step-immunization"
-     end  
-  end
-
+ 
   def update_ftic_immunization_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.immunization = params[:immunization]
