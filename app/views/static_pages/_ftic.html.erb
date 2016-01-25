@@ -490,7 +490,7 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
 			<% end %>
 
-			  <h6><b>COMMUNICATION PREFERENCE</b></h6>
+			  <h6><b>COMMUNICATION PREFERENCE</b> <%= %> </h6>
 			</a>
 			
 			<div id="step-comm" class="collapse">
@@ -2004,7 +2004,7 @@ Hello, <%= session[:cas_user] %>!
 						Maximum loan amount is $750 with a non-refundable processing of $7.50 assessed. Students must meet additional eligibility criteria.
 					</p>
 
-					<p>
+					<!-- <p>
 						To access the online Short Term Advance Application:<br>
 
 						<ol>
@@ -2014,6 +2014,12 @@ Hello, <%= session[:cas_user] %>!
 						</ol>
 
 					</p>
+					 -->
+
+					 <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_short_term_adv.pwr_dispstaletr" target="_blank">Your Short Term Advance Status</a>
+					 <p>
+
+					 </p>
 
 					<p>
 						<a href="http://www.fau.edu/finaid/other/sta.php" target="_blank">[More Information]</a>
