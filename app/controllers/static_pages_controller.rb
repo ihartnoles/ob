@@ -1,5 +1,5 @@
 #require 'mapquest_api'
-
+require 'common_stuff'
 class StaticPagesController < ApplicationController
       
       #before_filter :get_session_info

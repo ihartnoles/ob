@@ -230,7 +230,7 @@ Hello, <%= session[:cas_user] %>!
 		  	
 		  	<!-- <a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">-->
 
-			<% if (@verify_available == 1 || @verify_bypass == 1) && ( account_available == 1 && account_complete == 1 ) %>
+			<% if (@verify_available == 1 || @verify_bypass == 1) && ( account_complete == 1 ) %>
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" >
 			<%# elsif  (@verify_available == 1 || @verify_bypass == 1) %>
 				<!-- <a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify"> -->
@@ -238,7 +238,7 @@ Hello, <%= session[:cas_user] %>!
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" >
 			<% end %>	
 			
-			<% if (@verify_available == 1 || @verify_bypass == 1) && ( account_available == 1 && account_complete == 1 )%>
+			<% if (@verify_available == 1 || @verify_bypass == 1) && ( account_complete == 1 )%>
 			  <div class="number"><!-- Step 3 --><%= get_statusicon(@verify_available, @verify_info_complete, verify_bypass) %></div>
 			<% end %>
 
@@ -295,6 +295,9 @@ Hello, <%= session[:cas_user] %>!
 								    <%= hidden_field_tag :znumber, @znum %>
 								    <%= hidden_field_tag :netid, @displayname %>
 								    <%= hidden_field_tag :id, @verify_id %>
+								    <%= hidden_field_tag :verify, 1 %>
+								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+
 								     <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 								    <% if params[:znum] %>
 								    	<%= hidden_field_tag :znum, @znum %>									    
@@ -313,26 +316,26 @@ Hello, <%= session[:cas_user] %>!
 									</div>
 
 									<br>
-									<%= submit_tag 'Save' , :id=> "verifySaveBut"%>										
+									<%= submit_tag 'Continue' , :id=> "verifySaveBut", class: "btn btn-danger"%>										
 							<% end %>
 
 				  						  		
 				  		
-						<% if  (@verify_available == 1 && @verify_info_complete == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
-				  		 	<div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_ftic_verify_module' , {:class => 'register-form form-validator'})  do %>
-				  		 		 	<%= hidden_field_tag :znumber, @znum %>
-								    <%= hidden_field_tag :netid, @displayname %>
-								    <%= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%= hidden_field_tag :verify, 1 %>
+						<% #if  (@verify_available == 1 && @verify_info_complete == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
+				  		 	<!-- <div class="buttons-box text-right">
+				  		 		<%#= form_tag('/update_ftic_verify_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%#= hidden_field_tag :znumber, @znum %>
+								    <%#= hidden_field_tag :netid, @displayname %>
+								    <%#= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%#= hidden_field_tag :verify, 1 %>
 								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-									<% if params[:znum] %>
-									   	<%= hidden_field_tag :znum, @znum %>									    
-									<% end %>
-							    	 <button type="submit" class="btn btn-danger" id="verifyBut">Continue</button>		
-						 		<% end %>				 
-						 	</div>
-						 <% end %>						 
+									<%# if params[:znum] %>
+									   	<%#= hidden_field_tag :znum, @znum %>									    
+									<%# end %>
+							    	<!--  <button type="submit" class="btn btn-danger" id="verifyBut">Continue</button> -->		
+						 		<%# end %>				 
+						 	<!-- </div> -->
+						 <%# end %>						 
 						
 						
 					<% end %>
@@ -410,14 +413,14 @@ Hello, <%= session[:cas_user] %>!
 		  	
 		  	<%#if  deposit_available == 1 && deposit_complete== 0 %>
 				<!-- <a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle"> -->
-			<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  (@verify_complete == 1 && @verify_available == 1) %>
+			<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) %>
 				<a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
 			<% else %>
 				<a id="deposithref" href="#step-deposit" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
 			<% end %>
 
 			
-			<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  (@verify_complete == 1 && @verify_available == 1) %>
+			<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  (  @verify_available == 1) %>
 			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
 			<% end %>
 
@@ -477,13 +480,13 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 
-		  	<% if  (communication_available == 1 || communication_bypass == 1 ) &&  (@deposit_available == 1 && @deposit_complete == 1 || @deposit_bypass == 1 )  %>
+		  	<% if  (communication_available == 1 || communication_bypass == 1 ) &&  ( @deposit_complete == 1 || @deposit_bypass == 1 )  %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
 			<% else %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (communication_available == 1 || communication_bypass == 1 ) &&  (@deposit_available == 1 && @deposit_complete == 1 || @deposit_bypass == 1 ) %>
+			<% if (communication_available == 1 || communication_bypass == 1 ) &&  ( @deposit_complete == 1 || @deposit_bypass == 1 ) %>
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
 			<% end %>
 
@@ -640,13 +643,13 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		 
-		  <% if (immunization_available == 1 || immunization_bypass == 1) && ( communication_available == 1 && communication_complete == 1 || communication_bypass == 1)  %>
+		  <% if (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1)  %>
 		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		  <% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_available == 1 && communication_complete == 1 || communication_bypass == 1) %>
+		  <% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1) %>
 			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, immunization_complete,immunization_bypass) %></div>
 		  <% end %>
 
@@ -771,14 +774,14 @@ Hello, <%= session[:cas_user] %>!
 	   <li class="panel">
 
 		  
-		  <% if (residency_available == 1  || residency_bypass == 1)  && (immunization_available == 1 && immunization_complete == 1 || immunization_bypass == 1 ) %>
+		  <% if (residency_available == 1  || residency_bypass == 1)  && (immunization_complete == 1 || immunization_bypass == 1 ) %>
 		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if (residency_available == 1  || residency_bypass == 1)  && (immunization_available == 1 && immunization_complete == 1 || immunization_bypass == 1 ) %>
+		  <% if (residency_available == 1  || residency_bypass == 1)  && (immunization_complete == 1 || immunization_bypass == 1 ) %>
 			  <div class="number"><!-- Step 7 --> <%= get_statusicon(residency_available, residency_complete, residency_bypass) %> </div>
 		  <% end %>
 
@@ -841,13 +844,13 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 		  
 		  <li class="panel">
-		  	<% if (finaid_available == 1 || finaid_bypass == 1)  && (residency_available == 1 && residency_complete == 1 || residency_bypass == 1 ) %>
+		  	<% if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
 			   <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
                <a id="finaidhref" href="#step-finaid" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (finaid_available == 1 || finaid_bypass == 1)  && (residency_available == 1 && residency_complete == 1 || residency_bypass == 1 ) %>
+			<% if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
 			  <div class="number"><!-- Step 6 --><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> </div>
 			<% end %>
 
@@ -1041,14 +1044,14 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_available == 1 && finaid_complete == 1 || finaid_bypass == 1 ) %>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && ( finaid_complete == 1 || finaid_bypass == 1 ) %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_available == 1 && finaid_complete == 1 || finaid_bypass == 1 ) %>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_complete == 1 || finaid_bypass == 1 ) %>
 			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, housing_fee_complete, housingfee_bypass) %> </div>
 			<% end %>
 
@@ -1135,13 +1138,13 @@ Hello, <%= session[:cas_user] %>!
 			<!-- <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
 		  <%# elsif (aleks_available == 1 && aleks_complete == 1) || aleksbypass == 1%>
 		  	<!-- <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
-		  <% if (aleks_available == 1 || aleksbypass == 1) && (housing_fee_available == 1 &&  housing_fee_complete == 1 || housingfee_bypass == 1 ) %>
+		  <% if (aleks_available == 1 || aleksbypass == 1) && ( housing_fee_complete == 1 || housingfee_bypass == 1 ) %>
 		    <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="alekshref" href="#step-aleks" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		   <% if (aleks_available == 1 || aleksbypass == 1) && (housing_fee_available == 1 &&  housing_fee_complete == 1 || housingfee_bypass == 1 ) %>
+		   <% if (aleks_available == 1 || aleksbypass == 1) && (housing_fee_complete == 1 || housingfee_bypass == 1 ) %>
 			  <div class="number"><!-- Step 10 --> <%= get_statusicon(aleks_available, aleks_complete, aleksbypass) %></div>
 		   <% end %>
 
@@ -1199,13 +1202,13 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 
-		   	<% if  (orientation_available == 1 || orientationbypass == 1) && (aleks_available == 1 && aleks_complete == 1 || aleksbypass == 1 ) %>
+		   	<% if  (orientation_available == 1 || orientationbypass == 1) && (aleks_complete == 1 || aleksbypass == 1 ) %>
 				<a id="orientationhref" href="#step-orientation" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="orientationhref" href="#step-orientation" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (orientation_available == 1 || orientationbypass == 1) && (aleks_available == 1 && aleks_complete == 1 || aleksbypass == 1 ) %>
+			<% if (orientation_available == 1 || orientationbypass == 1) && (aleks_complete == 1 || aleksbypass == 1 ) %>
 			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
 			<% end %>
 
@@ -1313,13 +1316,13 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 		  
-		  <% if  (learning_comm_available == 1 || learning_commbypass == 1) && ( orientation_available == 1 && orientation_complete == 1  || orientationbypass == 1 ) %>
+		  <% if  (learning_comm_available == 1 || learning_commbypass == 1) && ( orientation_complete == 1  || orientationbypass == 1 ) %>
 		   	<a id="lc_href" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="lc_href" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		  <% if (learning_comm_available == 1 || learning_commbypass == 1) && ( orientation_available == 1 && orientation_complete == 1  || orientationbypass == 1 ) %>
+		  <% if (learning_comm_available == 1 || learning_commbypass == 1) && ( orientation_complete == 1  || orientationbypass == 1 ) %>
 			  <div class="number"><!-- Step 12 --> <%= get_statusicon(learning_comm_available,  learning_comm_complete, learning_commbypass) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  </div>
@@ -1455,13 +1458,13 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		   <li class="panel">
-		   	<% if (oars_available == 1 || oars_bypass == 1) && ( learning_comm_available == 1 && learning_comm_complete == 1  || learning_commbypass == 1 ) %>
+		   	<% if (oars_available == 1 || oars_bypass == 1) && ( learning_comm_complete == 1  || learning_commbypass == 1 ) %>
 				<a id="oarshref" href="#step-oars" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
 			<% else %>
 				<a id="oarshref" href="#step-oars" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (oars_available == 1 || oars_bypass == 1) && ( learning_comm_available == 1 && learning_comm_complete == 1  || learning_commbypass == 1 ) %>
+			<% if (oars_available == 1 || oars_bypass == 1) && ( learning_comm_complete == 1  || learning_commbypass == 1 ) %>
 			  <div class="number"><!-- Step 11 --> <%= get_statusicon(oars_available, oars_complete, oars_bypass) %></div>
 			<% end %>
 
@@ -1521,7 +1524,7 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		   	
-		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_available == 1 && oars_complete == 1 || oars_bypass == 1 ) %>		   	
+		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>		   	
 
 		   		<!-- dep_complete_flag : <%#= dep_complete_flag %>
 		   		account_complete :<%#= account_complete %>
@@ -1534,7 +1537,7 @@ Hello, <%= session[:cas_user] %>!
 		   	<% end %>
 
 		   	
-		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_available == 1 && oars_complete == 1 || oars_bypass == 1 ) %>
+		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
 			  <div class="number"><!-- Step 14 --><%= get_statusicon(reg_available, reg_complete, registrationbypass) %></div>
 			<% end %>
 
@@ -1658,14 +1661,14 @@ Hello, <%= session[:cas_user] %>!
 		  	
 		  
 
-			<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_available == 1 && reg_complete == 1  || registrationbypass == 1 )  %>
+			<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_complete == 1  || registrationbypass == 1 )  %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_available == 1 && reg_complete == 1  || registrationbypass == 1 )  %>
+			<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_complete == 1  || registrationbypass == 1 )  %>
 			  <div class="number"><!-- Step 19 --> <%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></div>
 			<% end %>
 
@@ -1783,14 +1786,14 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 		  
-		  <% if (emergency_available == 1 || emergencybypass == 1) && ( tuition_available == 1 && tuition_complete == 1  || tuition_bypass == 1 ) %>
+		  <% if (emergency_available == 1 || emergencybypass == 1) && ( tuition_complete == 1  || tuition_bypass == 1 ) %>
 		  	<a id="emergencyhref" href="#step-emergency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="emergencyhref" href="#step-emergency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if (emergency_available == 1 || emergencybypass == 1) && ( tuition_available == 1 && tuition_complete == 1  || tuition_bypass == 1 ) %>
+		  <% if (emergency_available == 1 || emergencybypass == 1) && ( tuition_complete == 1  || tuition_bypass == 1 ) %>
 			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
 		  <% end %>
 
@@ -1839,13 +1842,13 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		  
-		   <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_available == 1 && emergency_complete == 1  || emergencybypass == 1 ) %>
+		   <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) %>
 		   	<a id="alerthref" href="#step-faualert" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   <% else %>
 		    <a id="alerthref" href="#step-faualert" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   <% end %>
 
-		    <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_available == 1 && emergency_complete == 1  || emergencybypass == 1 ) %>
+		    <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) %>
 			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></div>
 			<% end %>
 
@@ -1902,13 +1905,13 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 		   <li class="panel">
-		    <% if (owlcard_available == 1 || owlcard_bypass == 1) && ( fau_alert_available == 1  || faualertbypass == 1 ) %>
+		    <% if (owlcard_available == 1 || owlcard_bypass == 1) %>
 				<a id="owlcardhref" href="#step-owlcard" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="owlcardhref" href="#step-owlcard" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (owlcard_available == 1 || owlcard_bypass == 1) && ( fau_alert_available == 1  || faualertbypass == 1 )  %>
+			<% if (owlcard_available == 1 || owlcard_bypass == 1) %>
 			  <div class="number"><!-- Step 17 -->  <%#= get_statusicon(owlcard_available, owlcard_complete, owlcard_bypass) %>
 			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>			 
 			  </div>
@@ -1967,14 +1970,14 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 
-		  <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 )&& (owlcard_available == 1 || owlcard_bypass == 1) %>
+		  <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 ) %>
 		   	<a id="bookhref" href="#step-bookadvance" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="bookhref" href="#step-bookadvance" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 )&& (owlcard_available == 1 || owlcard_bypass == 1) %>
+		  <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 ) %>
 			  <div class="number"><!-- Step 18 --> 
 			  	<%#= get_statusicon(bookadvance_available, bookadvance_complete, bookadvance_bypass) %>
 			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>
@@ -2042,13 +2045,13 @@ Hello, <%= session[:cas_user] %>!
 		 
 		  <li class="panel">
 		  	
-		  	<% if (vehicle_reg_available == 1  || vehicleregbypass == 1) && ( bookadvance_available == 1  || bookadvance_bypass == 1) %>
+		  	<% if (vehicle_reg_available == 1  || vehicleregbypass == 1)%>
 				<a id="vehiclehref" href="#step-vehicle" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="vehiclehref" href="#step-vehicle" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			 <% if (vehicle_reg_available == 1  || vehicleregbypass == 1) && ( bookadvance_available == 1  || bookadvance_bypass == 1) %>
+			 <% if (vehicle_reg_available == 1  || vehicleregbypass == 1)%>
 			  <div class="number"><!-- Step 19 --> <%#= get_statusicon(tuition_available, tuition_complete) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  	<%#= get_statusicon(vehicle_reg_available, 1, vehicleregbypass) %>
@@ -2126,7 +2129,7 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		  	
-		  	<% if congrats_available == 1 && ( vehicle_reg_available == 1  || vehicleregbypass == 1) %>
+		  	<% if congrats_available == 1 && ( vehicleregbypass == 1) %>
 				<a id="congratshref" href="#step-congrats" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="congratshref" href="#step-congrats" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">

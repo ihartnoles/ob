@@ -308,11 +308,12 @@ class FticModulesAvailablesController < ApplicationController
     @modules_available.save
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
-     if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to deposit
-     else
-        redirect_to "/home#step-deposit"
-     end  
+     # if params[:znum]
+     #     redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to deposit
+     # else
+     #    redirect_to "/home#step-deposit"
+     # end  
+      render :nothing => true, :status => 200
   end
 
 

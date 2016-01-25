@@ -30,6 +30,8 @@ Ob::Application.routes.draw do
    post   '/save_lc',                to: 'communities#save_lc'
 
    post   'update_ftic_verify_module',  to: 'ftic_modules_availables#update_ftic_verify_module'
+   get    'update_ftic_verify_module',  to: 'ftic_modules_availables#update_ftic_verify_module'
+
    post   'update_ftic_account_module',  to: 'ftic_modules_availables#update_ftic_account_module'
    post   'update_ftic_deposit_module',  to: 'ftic_modules_availables#update_ftic_deposit_module'
    post   'update_ftic_communication_module',  to: 'ftic_modules_availables#update_ftic_communication_module'

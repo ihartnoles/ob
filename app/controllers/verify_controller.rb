@@ -1,3 +1,4 @@
+#require 'common_stuff'
 class VerifyController < ApplicationController
 
   def save_verify_info
@@ -18,14 +19,28 @@ class VerifyController < ApplicationController
     end
 
     
-    if params[:znum]
-      #redirect for admin proxy
-      redirect_to "/home?znum=#{params[:znum]}#step-verify"
+    update_ftic_verify_module(params[:ftic_id],params[:verify],params[:znumber], params[:netid])
+   
+ 
+    if  params[:verify_info] == "No"
+      #their information is NOT correct we have to send them back to verify
+      if params[:znum]
+        #redirect for admin proxy
+        redirect_to "/home?znum=#{params[:znum]}#step-verify"
+      else
+        #redirect for student
+        redirect_to "/home#step-verify"
+      end
     else
-      #redirect for student
-      redirect_to "/home#step-verify"
+       #their information is CORRECT we have to move them forward to DEPOSIT
+      if params[:znum]
+          redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to deposit
+      else
+         redirect_to "/home#step-deposit"
+      end  
     end
 
+   
   end
 
 end
