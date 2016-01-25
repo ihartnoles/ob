@@ -51,6 +51,7 @@ class FticModulesAvailablesController < ApplicationController
                @dep_complete_flag = 0
                @account_complete = 0
                @emergency_complete = 0
+               @isIntlStudent = 0
             else
                 get_multistatus.each do |o|
                   if o['aleks_taken'] == 'N' || o['aleks_taken'].nil?
@@ -66,6 +67,12 @@ class FticModulesAvailablesController < ApplicationController
                     @deposit_complete ||= 0
                     @dep_complete_flag = 0
                   end 
+
+                  if o['int_student'] == 'Y'
+                    @isIntlStudent = 1
+                  else
+                    @isIntlStudent = 0
+                  end
 
                   #this needs to be changed to hit up OIM
                   if o['gobtpac_external_user'].nil?

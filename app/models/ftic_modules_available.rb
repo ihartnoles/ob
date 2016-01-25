@@ -35,6 +35,16 @@ class FticModulesAvailable < ActiveRecord::Base
          newstudent.tution = 0
          newstudent.vehiclereg = 0 
          newstudent.isactive = 0
+         
+         if bs['int_student'] == 'Y'
+          newstudent.isInternational = 1
+         else
+          newstudent.isInternational = 0
+         end
+
+         newstudent.intl_medical = 0
+         newstudent.intl_visa = 0
+         newstudent.intl_orientation = 0
          newstudent.save(validate: false)   
         else
          student = FticModulesAvailable.find_by_znumber(bs['z_number'])       
@@ -42,7 +52,8 @@ class FticModulesAvailable < ActiveRecord::Base
           :netid => bs['gobtpac_external_user'],
           :znumber => bs['z_number'],
           :f_name => bs['f_name'],
-          :l_name => bs['l_name']
+          :l_name => bs['l_name'],
+          :isInternational => bs['int_student']
          ) 
         end
 

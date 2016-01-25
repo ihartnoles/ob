@@ -130,6 +130,30 @@
                      
                 </div> <!-- END OF WELCOME -->
 
+                <% if @isIntlStudent == 1 %>
+                 <div class="col-sm-4 col-md-4 service alert alert-border">                  
+                    <div class="icon bg"> <% if m.intl_visa == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
+
+                    <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">International Visa</h6></a>
+                    <div class="text-small">
+                        <div class="text-warning"><em><b>pending</b></em></div><br>
+                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+                       
+                       <br><br>
+                         <div class="row">
+                            <div class="col-sm-6 ">
+                               <%= f.label :intl_visa, "Availability" %><br>
+                               <%= f.radio_button :intl_visa, 1 %>  <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :intl_visa, 0 %> <i class="fa fa-lock"></i>                        
+                            </div>
+                            <div class="col-sm-6 "> 
+                               <%= f.label :intl_visa_bypass, "By-pass" %><br>
+                               <%= f.radio_button :intl_visa_bypass, 1 %> <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :intl_visa_bypass, 0 %>  <i class="fa fa-times-circle"></i>  
+                            </div>
+                        </div>
+                    </div>                     
+                </div> <!-- END OF INTL. VISA -->
+                <% end %>
+
 
                 <div class="col-sm-4 col-md-4 service alert alert-border">
                  
@@ -262,7 +286,30 @@
 
                             </div>
                         </div>  
-                      
+                
+                    <% if @isIntlStudent == 1 %>     
+                      <div class="col-sm-4 col-md-4 service alert alert-border">                  
+                          <div class="icon bg"> <% if m.intl_medical == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
+
+                          <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Intl. Medical Insurance</h6></a>
+                          <div class="text-small">
+                              <div class="text-warning"><em><b>pending</b></em></div><br>
+                              The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+                             
+                             <br><br>
+                               <div class="row">
+                                  <div class="col-sm-6 ">
+                                     <%= f.label :intl_medical, "Availability" %><br>
+                                     <%= f.radio_button :intl_medical, 1 %>  <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :intl_medical, 0 %> <i class="fa fa-lock"></i>                        
+                                  </div>
+                                  <div class="col-sm-6 "> 
+                                     <%= f.label :intl_medical_bypass, "By-pass" %><br>
+                                     <%= f.radio_button :intl_medical_bypass, 1 %> <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :intl_medical_bypass, 0 %>  <i class="fa fa-times-circle"></i>  
+                                  </div>
+                              </div>
+                          </div>     
+                      </div> <!-- END OF INTL. VISA -->
+                    <% end %>
 
 
                         <div class="col-sm-4 col-md-4 service alert alert-border">
@@ -503,6 +550,30 @@
                             </div>
                         </div>  
                       
+
+                    <% if @isIntlStudent == 1 %>
+                      <div class="col-sm-4 col-md-4 service alert alert-border">                  
+                        <div class="icon bg"> <% if m.intl_orientation == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
+
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Intl. Student Orientation</h6></a>
+                        <div class="text-small">
+                            <div class="text-warning"><em><b>pending</b></em></div><br>
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
+                           
+                           <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                   <%= f.label :intl_orientation, "Availability" %><br>
+                                   <%= f.radio_button :intl_orientation, 1 %>  <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :intl_orientation, 0 %> <i class="fa fa-lock"></i>                        
+                                </div>
+                                <div class="col-sm-6 "> 
+                                   <%= f.label :intl_orientation_bypass, "By-pass" %><br>
+                                   <%= f.radio_button :intl_orientation_bypass, 1 %> <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :intl_orientation_bypass, 0 %>  <i class="fa fa-times-circle"></i>  
+                                </div>
+                            </div>
+                        </div>     
+                    </div> <!-- END OF INTL. ORIENTATION -->
+                    <% end %>
 
 
                         <div class="col-sm-4 col-md-4 service alert alert-border">

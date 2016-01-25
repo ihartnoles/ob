@@ -318,7 +318,7 @@ Hello, <%= session[:cas_user] %>!
 
 				  						  		
 				  		
-						<% if  (@verify_available == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
+						<% if  (@verify_available == 1 && @verify_info_complete == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
 				  		 	<div class="buttons-box text-right">
 				  		 		<%= form_tag('/update_ftic_verify_module' , {:class => 'register-form form-validator'})  do %>
 				  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -354,7 +354,10 @@ Hello, <%= session[:cas_user] %>!
 			<%# end %>
 
 
-			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
+			  <div class="number"><!-- Step 2 -->
+			  	<%#= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> 
+			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i>
+			  </div>
 			  <h6><b>INTERNATIONAL STUDENT VISA PROCESSING</b></h6>
 			</a>
 			
@@ -727,7 +730,9 @@ Hello, <%= session[:cas_user] %>!
 		    <!-- <a href="#step-5A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" -->
 		  <%# end %>
 
-			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
+			  <div class="number"><!-- Step 15 --> <%#= get_statusicon(emergency_available, emergency_complete, emergencybypass) %>
+			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i>
+			  </div>
 			  <h6><b>INTERNATIONAL STUDENT MEDICAL INSURANCE</b></h6>
 			</a>
 			
@@ -1268,7 +1273,9 @@ Hello, <%= session[:cas_user] %>!
 				<!-- <a href="#step-13A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
 			<%# end %>
 
-			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
+			  <div class="number"><!-- Step 13 --><%#= get_statusicon(orientation_available, orientation_complete, orientationbypass) %>
+			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i>
+			  </div>
 			  <h6><b>INTERNATIONAL STUDENT ORIENTATION</b></h6>
 			</a>
 			

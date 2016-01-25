@@ -61,7 +61,7 @@ class StaticPagesController < ApplicationController
 
           modules_available         
 
-          @isInternationalStudent = 0
+          #@isInternationalStudent = 0
 
           #TO DO: Query for WHC_STUDENT
           #@isHonorsCollege = 1
@@ -281,14 +281,23 @@ class StaticPagesController < ApplicationController
                #@account_complete = 0
                @emergency_complete = 0
                @fau_alert_complete = 0
+               @isInternationalStudent = 0
             else
                 get_multistatus.each do |o|
 
-                   if o['whc_student'] == 'N' || o['whc_student'].nil?
+                  if o['whc_student'] == 'N' || o['whc_student'].nil?
                     @isHonorsCollege = 0
                   else
                     @isHonorsCollege = 1
                   end 
+
+
+                  if o['int_student'] == 'N' || o['int_student'].nil?
+                    @isInternationalStudent = 0
+                  else
+                    @isInternationalStudent = 1
+                  end 
+
 
 
                   if o['aleks_taken'] == 'N' || o['aleks_taken'].nil?
@@ -508,7 +517,7 @@ class StaticPagesController < ApplicationController
                       
 
                       #determine if housing fee is required
-                      if housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
+                      if housing_fee_required = 1 || housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
                           @housing_fee_required = 1
                           @housing_fee_complete = 0           
                       else
@@ -693,6 +702,14 @@ class StaticPagesController < ApplicationController
          newstudent.tution = 0
          newstudent.vehiclereg = 0 
          newstudent.isactive = 1
+         if bs['int_student'] == 'Y'
+          newstudent.isInternational = 1
+         else
+          newstudent.isInternational = 0
+         end
+         newstudent.intl_medical = 0
+         newstudent.intl_visa = 0
+         newstudent.intl_orientation = 0
          newstudent.save(validate: false)   
         else
          student = FticModulesAvailable.find_by_znumber(bs['z_number'])       
@@ -700,7 +717,8 @@ class StaticPagesController < ApplicationController
           :netid => bs['gobtpac_external_user'],
           :znumber => bs['z_number'],
           :f_name => bs['f_name'],
-          :l_name => bs['l_name']
+          :l_name => bs['l_name'],
+          :isInternational => bs['int_student']
          )
         end
 
