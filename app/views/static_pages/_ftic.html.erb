@@ -267,6 +267,11 @@ Hello, <%= session[:cas_user] %>!
 	                    		</tr>
 	                    		</thead>
 						  		<tr>
+						  			<td>Your ZNUMBER:</td>
+						  			<td><%= @znum %>&nbsp;</td>	
+						  			<td colspan="2"></td>					  			
+						  		</tr>
+						  		<tr>
 						  			<td>Your Name:</td>
 						  			<td><%= @fname %> <%= @mname %> <%= @lname %>&nbsp;</td>	
 						  			<td colspan="2"><% if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <% end %></td>					  			
@@ -2214,27 +2219,7 @@ Hello, <%= session[:cas_user] %>!
 		  </ul>
 		 </aside>
 
-		 <aside class="widget">
-		  	<header>
-		 		<h3 class="title">Changed Your Mind?</h3>
-		  	</header>
-		  	<ul class="progress-list">
-			<!-- <li id="welcomenav"><a href="#welcometitle" class="edit">information <i class='fa fa-info'></i> </a>Welcome</li> -->
-			<p>I've decided to not attend FAU for the following reason:</p><br>
-			
-			<%= form_tag('/save_decline') do %>
-			    <%= hidden_field_tag :znumber, @znum %>
-			    <%= hidden_field_tag :netid, @displayname %>
-			    
-			    <%= select_tag :reason, options_for_select([["Select One", ""], "I am enrolling at another in-state institution", "I am enrolling at an out-of-state institution", "I was offered a scholarship at another institution", "I cannot afford the tuition"]), :class => 'form-control' %>
-
-				<div><%= submit_tag 'Save' %></div>
-			<% end %>
-
-
-
-		  </ul>
-		 </aside>
+	
       </div> 
 
      
