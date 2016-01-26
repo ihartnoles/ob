@@ -193,8 +193,8 @@ Hello, <%= session[:cas_user] %>!
 
 				  		<% if account_complete == 1 %>
 
-				  			<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-								<button data-dismiss="alert" class="close" type="button">×</button>
+				  			<div class="alert alert-border <%if account_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+								<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 								<p>
 								<strong>Congrats on claiming your account! You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
 								</p>					
@@ -442,8 +442,8 @@ Hello, <%= session[:cas_user] %>!
 					 		
 					 		 <!-- <a href="https://epay.fau.edu:8443/C20081test_tsa/web/welcome.jsp" target="_blank">Pay Tuition Touchnet:</a> -->
 
-					 		<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-								<button data-dismiss="alert" class="close" type="button">×</button>
+					 		<div class="alert alert-border  <%if deposit_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+								<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 								<p>
 									<strong>
 										<%= get_tuition_deposit_status(znum) %>
@@ -683,9 +683,9 @@ Hello, <%= session[:cas_user] %>!
 		  		</p> -->
 
 
-		  		<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
+		  		<div class="alert alert-border <%if immunization_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
 					
-					<button data-dismiss="alert" class="close" type="button">×</button>
+					<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 					<p>
 						<strong>
 							<%= get_immunization_status(znum) %>
@@ -811,8 +811,8 @@ Hello, <%= session[:cas_user] %>!
 
 	                 </p>
 
-	                    <div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-							<button data-dismiss="alert" class="close" type="button">×</button>
+	                    <div class="alert alert-border <%if residency_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+							<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 		                    <p>
 		                    	<strong>
 		                    		<%= get_residency_status(znum) %><br>
@@ -1079,8 +1079,8 @@ Hello, <%= session[:cas_user] %>!
 		  		 <a title="FAU Housing" href="http://www.fau.edu/housing/" target="_blank">[More Information]</a> 
 		  		</p>
 
-		  		<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-			  		<button data-dismiss="alert" class="close" type="button">×</button>
+		  		<div class="alert alert-border <%if housing_fee_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+			  		<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 		             <p>
 		             	<strong>
 		             		  <% if @housing_exemption == 1 %>			  	
@@ -1168,8 +1168,8 @@ Hello, <%= session[:cas_user] %>!
 
 
 
-					 <div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-							<button data-dismiss="alert" class="close" type="button">×</button>
+					 <div class="alert alert-border <%if aleks_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+							<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 							<strong>
 								<%= aleks_status(znum) %>
 							</strong>
@@ -1231,8 +1231,8 @@ Hello, <%= session[:cas_user] %>!
 						<a href="http://www.fau.edu/orientation/" target="_blank">here</a>
 					</p>	
 
-					<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-							<button data-dismiss="alert" class="close" type="button">×</button>
+					<div class="alert alert-border <%if orientation_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+							<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 							<p>
 							<strong>
 								<%= orientation_status(znum)%>
@@ -1490,8 +1490,8 @@ Hello, <%= session[:cas_user] %>!
 					</p>	
 
 
-					 <div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-							<button data-dismiss="alert" class="close" type="button">×</button>
+					 <div class="alert alert-border <%if oars_complete == 1 %>alert-success<%else%>alert-danger<%end%>  text-center fade in">
+							<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 							<strong>					
 								<%= oars_status(znum) %>
 							</strong>
@@ -1603,8 +1603,8 @@ Hello, <%= session[:cas_user] %>!
 
 								<% if @reg_complete == 1 %>
 
-									<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-											<button data-dismiss="alert" class="close" type="button">×</button>
+									<div class="alert alert-border <%if reg_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+											<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 											<br>
 											<table class="table table-striped text-left order-details">	
 												<thead>
@@ -1619,7 +1619,7 @@ Hello, <%= session[:cas_user] %>!
 									</div>
 								<% else %>
 
-									<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
+									<div class="alert alert-border alert-danger text-center fade in">
 										You must be registered for at least 12 credit hours to be considered a Full-time student!<br>
 										<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Register Now]</a>
 									</div>
@@ -1661,8 +1661,7 @@ Hello, <%= session[:cas_user] %>!
 
 
 		   <li class="panel">
-		  	
-		  
+		  		  
 
 			<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_complete == 1  || registrationbypass == 1 )  %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
@@ -2680,7 +2679,10 @@ Hello, <%= session[:cas_user] %>!
 	  	$("#meterdisplay").attr("style",'width: ' + increment + '%; text-indent: 10px;');
 
 	 }
+
 	 
+	 
+	
 
 	 // function findplace(stepname, href) {
 
@@ -2700,6 +2702,14 @@ Hello, <%= session[:cas_user] %>!
 
 
 <%= javascript_tag do %>
+
+  function scrollToElement(ele) {
+		    //$(window).scrollTop(ele.offset().top).scrollLeft(ele.offset().left);
+		    $('html, body').animate({
+	        scrollTop: $("#"+ele).offset().top
+	    }, 2000);
+	 }
+
 	<% if ( account_available == 1 && @welcome_available == 1 )%>
 /* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-account") > -1) {
@@ -2708,6 +2718,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#accounthref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-account').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement($('#step-account'));
 		}
 	<% end %>
 
@@ -2719,6 +2731,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#verifyhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-verify').removeClass('collapse').addClass('collapse in');
+
+		     scrollToElement('#step-verify');
 		}
 	<% end %>
 
@@ -2731,6 +2745,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#deposithref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-deposit').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-deposit');
 		}
 	<% end %>
 
@@ -2742,6 +2758,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#communicationhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-comm').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-comm');
 		}
 	<% end %>
 
@@ -2753,6 +2771,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#immunizationhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-immunization').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-immunization');
 		}
 	<% end %>
 
@@ -2763,6 +2783,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#residencyhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-residency').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-residency');
 		}
 	<% end %>
 
@@ -2773,6 +2795,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#finaidhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-finaid').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-finaid');
 		}
 	<% end %>
 
@@ -2783,6 +2807,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#housinghref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-housing').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-housing');
 		}
 	<% end %>
 
@@ -2793,6 +2819,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#alekshref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-aleks').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-aleks');
 		}
 	<% end %>
 
@@ -2803,6 +2831,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#orientationhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-orientation').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-orientation');
 		}
     <% end %>
 
@@ -2814,6 +2844,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#lc_href').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-learning').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-learning');
 		}
 	<% end %>
 
@@ -2824,6 +2856,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#oarshref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-oars').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-oars');
 		}
 	<% end %>
 
@@ -2834,6 +2868,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#reg_href').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-registration').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-registration');
 		}
 	<% end %>
 
@@ -2844,6 +2880,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#tuitionhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-tuition').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-tuition');
 		}
 	<% end %>
 	
@@ -2854,6 +2892,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#emergencyhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-emergency').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-emergency');
 		}
 	<% end %>
 
@@ -2864,6 +2904,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#alerthref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-faualert').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-faualert');
 		}
 	<% end %>
 
@@ -2874,6 +2916,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#owlcardhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-owlcard').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement($('#step-owlcard'));
 		}
 	<% end %>
 
@@ -2884,6 +2928,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#bookhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-bookadvance').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-bookadvance');
 		}
 	<% end %>
 
@@ -2894,6 +2940,8 @@ Hello, <%= session[:cas_user] %>!
 
 		    $('#vehiclehref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-vehicle').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-vehicle');
 		}
 	<% end %>
 
