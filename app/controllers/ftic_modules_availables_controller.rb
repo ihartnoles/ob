@@ -349,6 +349,41 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
+  def update_ftic_orientation_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.orientation = params[:orientation]
+    @modules_available.learning_comm = 1 #unlock learning communities
+
+    if params[:intl] = 1
+      @modules_available.intl_orientation = 1 #unlock INTL. ORIENTATION        
+    end
+
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     # if params[:znum]
+     #     redirect_to "/home?znum=#{params[:znum]}#step-learning" #redirect to deposit
+     # else
+     #    redirect_to "/home#step-learning"
+     # end  
+     if params[:znum]
+        if params[:intl] == 0
+          redirect_to "/home?znum=#{params[:znum]}#step-learning" #redirect to deposit
+        else
+          redirect_to "/home?znum=#{params[:znum]}#step-intl-orientation"
+        end
+     else
+        if params[:intl] == 0
+          redirect_to "/home#step-learning"
+         else
+          redirect_to "/home#step-intl-orientation"
+         end
+     end  
+
+  end
+
+
   def update_ftic_residency_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.residency = params[:residency]
@@ -409,21 +444,7 @@ class FticModulesAvailablesController < ApplicationController
      end  
   end
 
-  def update_ftic_orientation_module
-    @modules_available = FticModulesAvailable.find(params[:ftic_id])
-    @modules_available.orientation = params[:orientation]
-    @modules_available.learning_comm = 1 #unlock learning communities
-    @modules_available.save
-
-    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
-
-     if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-learning" #redirect to deposit
-     else
-        redirect_to "/home#step-learning"
-     end  
-  end
-
+  
   def update_ftic_learning_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.learning_comm = params[:learning_comm]

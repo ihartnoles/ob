@@ -1131,7 +1131,7 @@ Hello, <%= session[:cas_user] %>!
 			                 		<br>As such you are NOT required to live in University Housing.
 
 			                 		<hr>
-			                 		
+
 			                 		<% if @housing_deposit_received == 1 %>
 			                 			<p>
 		  							 		<%= get_housing_deposit(znum) %>
@@ -1292,9 +1292,10 @@ Hello, <%= session[:cas_user] %>!
 							    <%= hidden_field_tag :netid, @displayname %>
 							    <%= hidden_field_tag :ftic_id, @ftic_id %>
 							    <%= hidden_field_tag :orientation, 1 %>
+							    <%= hidden_field_tag :intl, @isInternationalStudent %>
 							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 								<% if params[:znum] %>
-								   	<%= hidden_field_tag :znum, @znum %>									    
+								   	<%= hidden_field_tag :znum, @znum %>								    
 								<% end %>
 						    	 <button type="submit" class="btn btn-danger" id="orientationBut">Continue</button>		
 					 		<% end %>				 
@@ -1311,7 +1312,7 @@ Hello, <%= session[:cas_user] %>!
 		   <li class="panel">
 
 		   	<%# if orientation_available == 1 && orientation_complete == 0 || orientation_complete.nil? %>
-				<a href="#step-13A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+				<a id="intlorienthref" href="#step-intl-orientation" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<%# elsif  (orientation_available == 1 && orientation_complete == 1) || orientationbypass == 1 %>
 				<!-- <a href="#step-13A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
 			<%# else %>
@@ -1324,7 +1325,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>INTERNATIONAL STUDENT ORIENTATION</b></h6>
 			</a>
 			
-			<div id="step-13A" class="collapse">				   
+			<div id="step-intl-orientation" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">International Student Orientation</h3>
 
@@ -1349,6 +1350,11 @@ Hello, <%= session[:cas_user] %>!
 					</p> -->
 
 				<%# end %>
+
+				<div class="buttons-box text-right">
+						  <button type="button" class="btn btn-danger" id="intlOrientationBut">Continue</button>						 
+				</div>
+
 			  </div>			
 			</div>
 		  </li>
@@ -2653,6 +2659,17 @@ Hello, <%= session[:cas_user] %>!
 	  updateMeter('15');
 	})
 
+	
+
+	$('#intlOrientationBut').click(function () {
+	  $('#step-intl-orientation').collapse('hide');
+	  $('#step-intl-orientation').prev().addClass('collapsed');
+	  $('#step-learning').collapse('show');
+	  $('#step-learning').prev().removeClass('collapsed');
+	  updateMeter('20');
+	})
+
+
 
 	$('#depositBut').click(function () {
 	  $('#step-2').collapse('hide');
@@ -2796,6 +2813,19 @@ Hello, <%= session[:cas_user] %>!
 		    $('#step-intl-medical').removeClass('collapse').addClass('collapse in');
 
 		    scrollToElement('#step-intl-medical');
+		}
+	<% end %>
+
+	<% if (@intl_orientation_available == 1 || @intl_orientation_available == 1) %>
+	/* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-intl-orientation") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#intlorienthref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-intl-orientation').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-intl-orientation');
 		}
 	<% end %>
 
