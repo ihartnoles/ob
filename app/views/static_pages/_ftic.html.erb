@@ -780,6 +780,11 @@ Hello, <%= session[:cas_user] %>!
 					 	<!-- <em><b>MM hold is manually removed by Student Health Services.</b></em> -->
 					 </p>
 				<%# end %>
+
+					<div class="buttons-box text-right">
+						  <button type="button" class="btn btn-danger" id="medicalBut">Continue</button>						 
+					</div>
+
 			  </div>			
 			</div>
 		  </li>
@@ -2617,6 +2622,15 @@ Hello, <%= session[:cas_user] %>!
 	  $('#step-deposit').collapse('show');
 	  $('#step-deposit').prev().removeClass('collapsed');
 	  updateMeter('10');
+	})
+
+	
+	$('#medicalBut').click(function () {
+	  $('#step-intl-medical').collapse('hide');
+	  $('#step-intl-medical').prev().addClass('collapsed');
+	  $('#step-housing').collapse('show');
+	  $('#step-housing').prev().removeClass('collapsed');
+	  updateMeter('15');
 	})
 
 
