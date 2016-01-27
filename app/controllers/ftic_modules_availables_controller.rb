@@ -257,7 +257,7 @@ class FticModulesAvailablesController < ApplicationController
     model_params = params[:ftic_modules_available].permit( :znumber, :netid, :f_name, :l_name, :welcome, :deposit, :depositbypass, :account, :accountbypass, :communication, :communicationbypass, :immunization, :immunizationbypass, :finaid, :finaidbypass, :housingfee, :housingfeebypass, :residency, :residencybypass, :housingmealplan, :housingmealplanbypass, :aleks, :aleksbypass, :oars, :oarsbypass, :learning_comm,  :learning_commbypass, 
         :orientation, :orientationbypass, 
         :registrationbypass, :registration, :emergency, :emergencybypass, :faualert,  :faualertbypass, :owlcard, :owlcardbypass, :bookadvance, :bookadvancebypass ,:tution, :tuitionbypass, :vehiclereg, :vehicleregbypass,
-        :verify, :verifybypass )
+        :verify, :verifybypass, :intl_medical, :intl_medical_bypass, :intl_visa, :intl_visa_bypass, :intl_orientation, :intl_orientation_bypass )
 
     record_activity("Module Update | " + params[:ftic_modules_available][:znumber] + " | " + params[:ftic_modules_available][:netid])
 
@@ -324,7 +324,7 @@ class FticModulesAvailablesController < ApplicationController
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.immunization = params[:immunization]
     
-    if params[:intl] == 1
+    if params[:intl] = 1
       @modules_available.intl_medical = 1 #unlock MEDICAL for INTL. Students
       @modules_available.housingfee = 1 #unlock HOUSING for INTL. Students
     else
@@ -335,13 +335,13 @@ class FticModulesAvailablesController < ApplicationController
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
      if params[:znum]
-        if params[:intl] == 0
+        if params[:intl] = 0
           redirect_to "/home?znum=#{params[:znum]}#step-residency" #redirect to deposit
         else
           redirect_to "/home?znum=#{params[:znum]}#step-intl-medical"
         end
      else
-        if params[:intl] == 0
+        if params[:intl] = 0
           redirect_to "/home#step-residency"
          else
           redirect_to "/home#step-intl-medical"

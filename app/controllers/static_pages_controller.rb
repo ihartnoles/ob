@@ -481,6 +481,11 @@ class StaticPagesController < ApplicationController
           #BEGIN housing
             housing_exemption = Housing.get_housing_exemption(@znum)
             housing_reqs = Banner.additional_housing_reqs(@znum)
+            deposit_received = Housing.get_housing_deposit(@znum)
+
+            #set a default deposit received to 0
+            @housing_deposit_received = 0
+           
 
             if housing_exemption.count >= 1
               #they have a housing exemption
@@ -508,29 +513,33 @@ class StaticPagesController < ApplicationController
 
                     if @whc_student == 'Y' #check if they are a wilkes honors college student
                       #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
-                      housing_fee_required = 1
+                      housing_fee_required = 1                   
                     else
                       #check zipcode radius for Boca Campus              
                       housing_fee_required = HousingZipcode.where(:zip => @zipcode)
                     end
                    
-                      
+                    #determine if housing fee is required
+                    if housing_fee_required = 1 || housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
+                      @housing_fee_required = 1
+                      @housing_fee_complete = 0           
+                    else
+                      @housing_fee_required = 0
+                      @housing_fee_complete = 1        
+                    end
 
-                      #determine if housing fee is required
-                      if housing_fee_required = 1 || housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
-                          @housing_fee_required = 1
-                          @housing_fee_complete = 0           
-                      else
-                          @housing_fee_required = 0
-                          @housing_fee_complete = 1        
-                      end
-
-                       # puts YAML::dump('***** START ******')
-                       # puts YAML::dump(housing_fee_required.empty?)
-                       # puts YAML::dump(housing_fee_required.count)
-                       # puts YAML::dump(@housing_fee_required)
-                       # puts YAML::dump(@zipcode)
-                       # puts YAML::dump('****** END ********')
+                    if deposit_received.count >= 1
+                      @housing_fee_required = 0
+                      @housing_fee_complete = 1
+                      @housing_deposit_received = 1
+                    end
+                    
+                        # puts YAML::dump('***** START ******')
+                        # #puts YAML::dump(deposit_received.empty?)
+                        # puts YAML::dump(deposit_received.count)
+                        # puts YAML::dump(@housing_fee_required)
+                        # puts YAML::dump(@zipcode)
+                        # puts YAML::dump('****** END ********')
 
                   end
               #END housing reqs

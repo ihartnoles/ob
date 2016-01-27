@@ -1066,15 +1066,15 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && ( finaid_complete == 1 || finaid_bypass == 1 ) || @isInternationalStudent == 1 %>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && ( finaid_complete == 1 || finaid_bypass == 1 || @isInternationalStudent == 1)  %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_complete == 1 || finaid_bypass == 1 ) %>
-			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, housing_fee_complete, housingfee_bypass) %> </div>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_complete == 1 || finaid_bypass == 1 || @isInternationalStudent == 1) %>
+			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, @housing_fee_complete, housingfee_bypass) %> </div>
 			<% end %>
 
 			  <h6><b>HOUSING CONTRACT & RESIDENTIAL MEAL PLANS</b></h6>
@@ -1098,7 +1098,7 @@ Hello, <%= session[:cas_user] %>!
 		  		 <a title="FAU Housing" href="http://www.fau.edu/housing/" target="_blank">[More Information]</a> 
 		  		</p>
 
-		  		<div class="alert alert-border <%if housing_fee_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+		  		<div class="alert alert-border <%if @housing_fee_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
 			  		<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 		             <p>
 		             	<strong>
@@ -1112,16 +1112,36 @@ Hello, <%= session[:cas_user] %>!
 				                	<!-- <br>Your marital status is: single.<br> -->
 				                    <br>As such you are required to live in University Housing.	
 
+				                    <hr>
+
 				                    <p>
 		  							 	<!-- <a title="FAU Housing" href="https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=<%=params[:znum]%>" target="_blank">[Sign up here]</a> -->
 		  							 	<%= get_housing_deposit(znum) %>
-		  							</p>              	
+		  							</p>       
+
+		  							<p>
+		  								<a title="FAU Housing" href="https://talon.fau.edu/sso/housing" target="_blank">[Your Housing Information]</a> 
+		  								
+		  							</p>       	
 			                 <% else %>
 			                 		Our records indicate you meet at least one of the following criteria:
 			                 		<br>Your residential address is within a 30-mile commutable radius of the campus, 
 			                 		<br>You are over the age of 21.
 			                 		<!-- <br>Your marital status is: married.<br>  -->
 			                 		<br>As such you are NOT required to live in University Housing.
+
+			                 		<hr>
+			                 		
+			                 		<% if @housing_deposit_received == 1 %>
+			                 			<p>
+		  							 		<%= get_housing_deposit(znum) %>
+		  								</p>   
+			                 		<% end %>
+
+			                 		<p>
+		  								<a title="FAU Housing" href="https://talon.fau.edu/sso/housing" target="_blank">[Your Housing Information]</a> 
+		  								
+		  							</p>   
 			                 <% end %>
 	              		</strong>
 		              <p>
@@ -1131,7 +1151,7 @@ Hello, <%= session[:cas_user] %>!
 				<% end %>
 
 
-				 <% if  (housing_fee_available == 1 && housing_fee_complete == 1 ) || housingfee_bypass == 1 %>
+				 <% if  (housing_fee_available == 1 && housing_fee_complete == 1 ) || housingfee_bypass == 1 || @isInternationalStudent == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_housing_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
