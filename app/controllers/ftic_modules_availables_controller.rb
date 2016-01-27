@@ -323,15 +323,29 @@ class FticModulesAvailablesController < ApplicationController
   def update_ftic_immunization_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.immunization = params[:immunization]
-    @modules_available.residency = 1 #unlock residency
+    
+    if params[:intl] == 1
+      @modules_available.intl_medical = 1 #unlock MEDICAL for INTL. Students
+      @modules_available.housingfee = 1 #unlock HOUSING for INTL. Students
+    else
+      @modules_available.residency = 1 #unlock RESIDENCY VALIDATION
+    end
     @modules_available.save
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
      if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-residency" #redirect to deposit
+        if params[:intl] == 0
+          redirect_to "/home?znum=#{params[:znum]}#step-residency" #redirect to deposit
+        else
+          redirect_to "/home?znum=#{params[:znum]}#step-intl-medical"
+        end
      else
-        redirect_to "/home#step-residency"
+        if params[:intl] == 0
+          redirect_to "/home#step-residency"
+         else
+          redirect_to "/home#step-intl-medical"
+         end
      end  
   end
 

@@ -717,6 +717,7 @@ Hello, <%= session[:cas_user] %>!
 								    <%= hidden_field_tag :netid, @displayname %>
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
 								    <%= hidden_field_tag :immunization, 1 %>
+								    <%= hidden_field_tag :intl, @isInternationalStudent %>
 								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 									<% if params[:znum] %>
 									   	<%= hidden_field_tag :znum, @znum %>									    
@@ -739,7 +740,7 @@ Hello, <%= session[:cas_user] %>!
 <% if @isInternationalStudent == 1 %>	
 		  <li class="panel">
 		  <%# if emergency_available == 1 && emergency_complete == 0 %>
-		  	<a href="#step-5A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  	<a id="medicalhref" href="#step-intl-medical" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <%# elsif (emergency_available == 1 && emergency_complete == 1) || emergencybypass == 1 %>
 		  	<!-- <a href="#step-5A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
 		  <%# else %>
@@ -752,7 +753,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>INTERNATIONAL STUDENT MEDICAL INSURANCE</b></h6>
 			</a>
 			
-			<div id="step-5A" class="collapse">				   
+			<div id="step-intl-medical" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">International Student Medical Insurance</h3>
 				<!-- <p> Please be on the lookout for the FAU Alert and Statement of Responsibility forms/screens when you login to Self Service for the first time. You  must verify and submit both before the respective holds are lifted and access is granted to Self Service.</p> -->
@@ -1060,7 +1061,7 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && ( finaid_complete == 1 || finaid_bypass == 1 ) %>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && ( finaid_complete == 1 || finaid_bypass == 1 ) || @isInternationalStudent == 1 %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
@@ -2748,6 +2749,19 @@ Hello, <%= session[:cas_user] %>!
 		    $('#step-visa').removeClass('collapse').addClass('collapse in');
 
 		     scrollToElement('#step-visa');
+		}
+	<% end %>
+
+	<% if (@intl_medical_available == 1 || @intl_medical_bypass == 1) %>
+	/* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-intl-medical") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#medicalhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-intl-medical').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-intl-medical');
 		}
 	<% end %>
 

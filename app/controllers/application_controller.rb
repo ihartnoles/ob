@@ -156,6 +156,7 @@ class ApplicationController < ActionController::Base
     record_activity("Module Update | " + znumber + " | " + netid)   
   end
 
+  
 
   def update_ftic_communication_module(ftic_id,znumber,netid)
     @modules_available = FticModulesAvailable.find(ftic_id)
