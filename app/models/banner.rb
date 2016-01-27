@@ -14,7 +14,7 @@ class Banner < ActiveRecord::Base
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
-									      END as term , L_NAME, M_NAME, F_NAME, SGBSTDN_MAJR_CODE_1, SPRADDR_STREET_LINE1 ,SPRADDR_CITY ,SPRADDR_STAT_CODE, SPRADDR_ZIP, GOBTPAC_EXTERNAL_USER  FROM BANINST1.AWS_ONBOARDING_MAIN WHERE GOBTPAC_EXTERNAL_USER=#{connection.quote(id)} AND rownum = 1")
+									      END as term , L_NAME, M_NAME, F_NAME, MAJOR_DESC, SPRADDR_STREET_LINE1 ,SPRADDR_CITY ,SPRADDR_STAT_CODE, SPRADDR_ZIP, GOBTPAC_EXTERNAL_USER  FROM BANINST1.AWS_ONBOARDING_MAIN WHERE GOBTPAC_EXTERNAL_USER=#{connection.quote(id)} AND rownum = 1")
 		end
 
 		def self.find_student_by_z(id)
@@ -24,7 +24,7 @@ class Banner < ActiveRecord::Base
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
-									      END as term , L_NAME, M_NAME, F_NAME, SGBSTDN_MAJR_CODE_1, SPRADDR_STREET_LINE1 ,SPRADDR_CITY ,SPRADDR_STAT_CODE, SPRADDR_ZIP, GOBTPAC_EXTERNAL_USER  FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
+									      END as term , L_NAME, M_NAME, F_NAME, MAJOR_DESC, SPRADDR_STREET_LINE1 ,SPRADDR_CITY ,SPRADDR_STAT_CODE, SPRADDR_ZIP, GOBTPAC_EXTERNAL_USER  FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
 		end
 
 		def self.find_student_zip_by_z(id)

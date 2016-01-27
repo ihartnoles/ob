@@ -465,6 +465,12 @@ class StaticPagesController < ApplicationController
               finaidflags.push('1')
             end
 
+            if  o['fafsa_flg'] == 'N'
+              @fafsa_complete = 0
+            else
+              @fafsa_complete = 0
+            end
+
             @finaidyear = o['finaidyear']
           end
 

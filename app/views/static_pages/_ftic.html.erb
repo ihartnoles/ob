@@ -885,24 +885,40 @@ Hello, <%= session[:cas_user] %>!
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-			  				<h3 class="title">The Financial Aid Steps</h3>
 			  				
+							<% if @fafsa_complete == 0 %>
+			  					<div class="alert alert-border alert-danger text-center fade in">
+			  						Our records indicate you have not completed your Free Application for Federal Student Aid (FAFSA).<br>
+			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" target="_blank">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.
+
+			  					</div>
+			  				<% end %>
+
+			  				<% if @fafsa_complete == 1 %>
+
+			  				<h3 class="title">The Financial Aid Steps</h3>
 			  				<p>
 			  					<ol>
-			  						<li> <% if @application_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li>
+			  						<%# if @fafsa_complete == 0 %>
+			  							
+			  							<!-- <li> <img src="/assets/Delete_8x8.png" alt="" >&nbsp;<a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li> -->
 
-			  						<!-- <li><%# if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%#=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Eligibility Requirements</a></li> -->
+			  						<%# else %>
+			  						
+			  							<li> <% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li>
 
-			  						<!-- <li><%# if @finaid_package_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp; Complete Your Financial Aid Package </li> -->
+			  						
+				  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Complete Your Financial Aid Requirements</a></li>
 
-			  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Complete Your Financial Aid Requirements</a></li>
-
-			  						<li><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; </li>
-			  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp; </li>
+				  						<li><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; </li>
+				  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp;</li>
+				  					<% end %>
 			  					</ol>
+			  						
+			  						
 			  				</p> 
 
-			  				<h3 class="title">Financial Aid Calendar</h3>
+			  				<!-- <h3 class="title">Financial Aid Calendar</h3>
 			  				
 			  				<p>
 			  					*Dates are subject to change without notice.  Please see <a href="http://www.fau.edu/finaid/resources/dates.php" target="_blank">Important Financial Aid Dates & Deadlines</a> for more details.
@@ -989,14 +1005,15 @@ Hello, <%= session[:cas_user] %>!
 						  		
 			  			    </p>
 
-			  			   
+			  			    -->
                      
 
                   <br>
 
+                  	<% if @fafsa_complete == 1 %>
 					  		<h3 class="title">Your Financial Aid Documents</h3>
 
-					  		<p>Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" target="_blank">www.fau.edu/finaid</a> or call 561-297-3530. 
+					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" target="_blank">www.fau.edu/finaid</a> or call 561-297-3530. 
 					  			<!-- <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" target="_blank">[More Information]</a> | 
 					  			<a title="FAU Financial Aid Forms" href="http://www.fau.edu/finaid/resources/forms.php" target="_blank">[FAFSA Form Information]</a> | -->
 					  			
@@ -1040,13 +1057,16 @@ Hello, <%= session[:cas_user] %>!
 
 				<% end %>
 
-				 <% if  (finaid_available == 1 && finaid_complete == 1 ) || finaid_bypass == 1 %>
+			<% end %>
+
+				 <% if  (finaid_available == 1 && finaid_complete == 1 ) || finaid_bypass == 1 ||  @fafsa_complete == 0 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
 							    <%= hidden_field_tag :netid, @displayname %>
 							    <%= hidden_field_tag :ftic_id, @ftic_id %>
 							    <%= hidden_field_tag :finaid, 1 %>
+							    <%#= hidden_field_tag :intl, @isInternationalStudent %>
 							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 								<% if params[:znum] %>
 								   	<%= hidden_field_tag :znum, @znum %>									    
@@ -1066,14 +1086,14 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && ( finaid_complete == 1 || finaid_bypass == 1 || @isInternationalStudent == 1)  %>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && ( finaid_complete == 1 || finaid_bypass == 1 || @isInternationalStudent == 1 || @fafsa_complete == 0)  %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_complete == 1 || finaid_bypass == 1 || @isInternationalStudent == 1) %>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_complete == 1 || finaid_bypass == 1 || @isInternationalStudent == 1 || @fafsa_complete == 0) %>
 			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, @housing_fee_complete, housingfee_bypass) %> </div>
 			<% end %>
 
@@ -2893,7 +2913,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if  (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_available == 1 && finaid_complete == 1 || finaid_bypass == 1 ) %>
+	<% if  (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_available == 1 && finaid_complete == 1 || finaid_bypass == 1 || @fafsa_complete == 0) %>
 	if (window.location.href.indexOf("#step-housing") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
