@@ -6,7 +6,7 @@
 <% @ma.each do |m| %>   
     <header class="page-header">
             <div class="container">
-              <h3 class="title">Student Information for <%= m.f_name%>  <%= m.l_name%> (<%=m.znumber %>) </h1>
+              <h3 class="title">Student Information for <%= m.f_name%>  <%= m.l_name%> (<%=m.znumber %>)</h1>
             </div>  
     </header> 
 
@@ -130,7 +130,7 @@
                      
                 </div> <!-- END OF WELCOME -->
 
-                <% if @isIntlStudent == 1 %>
+                <% if @isInternationalStudent == 1 %>
                  <div class="col-sm-4 col-md-4 service alert alert-border">                  
                     <div class="icon bg"> <% if m.intl_visa == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
 
@@ -287,7 +287,7 @@
                             </div>
                         </div>  
                 
-                    <% if @isIntlStudent == 1 %>     
+                    <% if @isInternationalStudent == 1 %>     
                       <div class="col-sm-4 col-md-4 service alert alert-border">                  
                           <div class="icon bg"> <% if m.intl_medical == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
 
@@ -311,7 +311,8 @@
                       </div> <!-- END OF INTL. VISA -->
                     <% end %>
 
-
+                    <!-- hide RESIDENCY if it's an INTERNATIONAL STUDENT -->
+                    <% if @isInternationalStudent == 0 %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.residency == 1 %>
@@ -349,11 +350,13 @@
                              </div>
 
                             </div>
-                        </div>  
+                        </div> 
+
+                      <% end %> 
                      
 
-
-
+                      <!-- hide FIN AID if it's an INTERNATIONAL STUDENT -->
+                      <% if @isInternationalStudent == 0 %>
                          <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.finaid == 1 %>
@@ -393,7 +396,7 @@
 
                             </div>
                         </div>  
-                      
+                      <% end %>
 
 
                         <div class="col-sm-4 col-md-4 service alert alert-border">
@@ -551,7 +554,7 @@
                         </div>  
                       
 
-                    <% if @isIntlStudent == 1 %>
+                    <% if @isInternationalStudent == 1 %>
                       <div class="col-sm-4 col-md-4 service alert alert-border">                  
                         <div class="icon bg"> <% if m.intl_orientation == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
 

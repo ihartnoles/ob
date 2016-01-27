@@ -19,8 +19,7 @@ class VerifyController < ApplicationController
     end
 
     
-    update_ftic_verify_module(params[:ftic_id],params[:verify],params[:znumber], params[:netid])
-   
+    update_ftic_verify_module(params[:ftic_id],params[:verify],params[:znumber], params[:netid],params[:intl])
  
     if  params[:verify_info] == "No"
       #their information is NOT correct we have to send them back to verify
@@ -34,13 +33,28 @@ class VerifyController < ApplicationController
     else
        #their information is CORRECT we have to move them forward to DEPOSIT
       if params[:znum]
-          redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to deposit
+          if params[:intl] == 0
+            redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to deposit
+          else
+            redirect_to "/home?znum=#{params[:znum]}#step-visa" #redirect to VISA for international studs.
+          end
       else
-         redirect_to "/home#step-deposit"
+         if params[:intl] == 0
+          redirect_to "/home#step-deposit"
+         else
+          redirect_to "/home#step-visa"
+         end
       end  
     end
 
-   
+    # if params[:znum]
+    #   #redirect for admin proxy
+    #   redirect_to "/home?znum=#{params[:znum]}#step-verify"
+    # else
+    #   #redirect for student
+    #   redirect_to "/home#step-verify"
+    # end
+
   end
 
 end

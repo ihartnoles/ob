@@ -307,6 +307,7 @@ Hello, <%= session[:cas_user] %>!
 								    <%= hidden_field_tag :id, @verify_id %>
 								    <%= hidden_field_tag :verify, 1 %>
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%= hidden_field_tag :intl, @isInternationalStudent %>
 
 								     <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 								    <% if params[:znum] %>
@@ -355,11 +356,10 @@ Hello, <%= session[:cas_user] %>!
 
 
 	<% if @isInternationalStudent == 1 %>	
-
 		    <li class="panel">
 		  	
 		  	<%# if  @deposit_available == 1 && @deposit_complete== 0 %>
-				<a href="#step-1A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle">
+				<a id="visahref" href="#step-visa" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle">
 			<%# elsif  (@deposit_available == 1 && @deposit_complete == 1 ) || @deposit_bypass == 1 %>
 				<!-- <a href="#step-1A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle"> -->
 			<%# else %>
@@ -374,7 +374,7 @@ Hello, <%= session[:cas_user] %>!
 			  <h6><b>INTERNATIONAL STUDENT VISA PROCESSING</b></h6>
 			</a>
 			
-			<div id="step-1A" class="collapse">
+			<div id="step-visa" class="collapse">
 			  <div class="step-content">
 			  	<h3 class="title">International Student Visa Processing</h3>
 			 
@@ -409,7 +409,7 @@ Hello, <%= session[:cas_user] %>!
 			   			  <%# end %>
 
                          <div class="buttons-box text-right">
-						  <button type="button" class="btn btn-danger" id="depositBut">Continue</button>						 
+						  <button type="button" class="btn btn-danger" id="visaBut">Continue</button>						 
 						</div>
 				
 				
@@ -784,9 +784,9 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 <% end %>
 
-	   <li class="panel">
 
-		  
+	<% if @isInternationalStudent == 0 %>
+	   <li class="panel">		  
 		  <% if (residency_available == 1  || residency_bypass == 1)  && (immunization_complete == 1 || immunization_bypass == 1 ) %>
 		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
@@ -855,7 +855,9 @@ Hello, <%= session[:cas_user] %>!
 			
 			</div>
 		  </li>
-		  
+	<% end %>
+
+	<% if @isInternationalStudent == 0 %>  
 		  <li class="panel">
 		  	<% if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
 			   <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
@@ -1051,6 +1053,7 @@ Hello, <%= session[:cas_user] %>!
 			  </div>
 			</div>
 		  </li>
+		<% end %>
 
 		 
 		  
@@ -2215,7 +2218,7 @@ Hello, <%= session[:cas_user] %>!
 		  </header>
 		  <ul class="progress-list">
 			<!-- <li id="welcomenav"><a href="#welcometitle" class="edit">information <i class='fa fa-info'></i> </a>Welcome</li> -->
-			<p>Have questions? We are here to help. Get support by phone or email. Here are some useful online resources.</p>
+			<p>Have questions? We are here to help. Get support by phone or email. Here are some useful <a href="http://fau.edu/studentresources/" target="_blank">student resources</a>.</p>
 		  </ul>
 		 </aside>
 
@@ -2607,6 +2610,15 @@ Hello, <%= session[:cas_user] %>!
 	 
 	})
 
+	$('#visaBut').click(function () {
+	  $('#step-visa').collapse('hide');
+	  $('#step-visa').prev().addClass('collapsed');
+	  $('#step-deposit').collapse('show');
+	  $('#step-deposit').prev().removeClass('collapsed');
+	  updateMeter('10');
+	})
+
+
 	$('#depositBut').click(function () {
 	  $('#step-2').collapse('hide');
 	  $('#step-2').prev().addClass('collapsed');
@@ -2723,6 +2735,19 @@ Hello, <%= session[:cas_user] %>!
 		    $('#step-verify').removeClass('collapse').addClass('collapse in');
 
 		     scrollToElement('#step-verify');
+		}
+	<% end %>
+
+	<% if (@intl_visa_available == 1 || @intl_visa_bypass == 1) && (@verify_complete == 1) %>
+	/* fxn to parse URL params */
+	 if (window.location.href.indexOf("#step-visa") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#visahref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-visa').removeClass('collapse').addClass('collapse in');
+
+		     scrollToElement('#step-visa');
 		}
 	<% end %>
 

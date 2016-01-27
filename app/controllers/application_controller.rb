@@ -122,6 +122,12 @@ class ApplicationController < ActionController::Base
             @vehicle_reg_available = a.vehiclereg
             @vehicleregbypass = a.vehicleregbypass
             @congrats_available = a.congrats
+            @intl_visa_available = a.intl_visa
+            @intl_visa_bypass = a.intl_visa_bypass
+            @intl_orientation_available = a.intl_orientation
+            @intl_orientation_bypass = a.intl_orientation_bypass
+            @intl_medical_available = a.intl_medical
+            @intl_medical_bypass = a.intl_medical_bypass
           end  	
   end #end of modules available
 
@@ -139,10 +145,13 @@ class ApplicationController < ActionController::Base
   end  
 
 
-   def update_ftic_verify_module(ftic_id,verify,znumber,netid)
+   def update_ftic_verify_module(ftic_id,verify,znumber,netid,isIntl)
     @modules_available = FticModulesAvailable.find(ftic_id)
     @modules_available.verify = verify
     @modules_available.deposit = 1 #unlock deposit
+    if isIntl == 1
+        @modules_available.intl_visa = 1 #unlock VISA for INTL. Students
+    end
     @modules_available.save
     record_activity("Module Update | " + znumber + " | " + netid)   
   end

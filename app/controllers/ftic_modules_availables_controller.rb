@@ -38,20 +38,21 @@ class FticModulesAvailablesController < ApplicationController
       @tuition_complete = 0
       @vehicle_reg_complete = 0
       housing_fee_status = 0
+      # @isInternationalStudent = 5
     #END: To-Dos
 
     
 
     #BEGIN: multistatus check; just trying to limit the number of queries
-    get_multistatus = Banner.get_multistatus(@znum)
+    get_multistatus = Banner.get_multistatus(params[:znum])
 
-    if get_multistatus.blank?
+            if get_multistatus.blank?
                @aleks_complete = 0
                @deposit_complete ||= 0
                @dep_complete_flag = 0
                @account_complete = 0
                @emergency_complete = 0
-               @isIntlStudent = 0
+               @isInternationalStudent = 0
             else
                 get_multistatus.each do |o|
                   if o['aleks_taken'] == 'N' || o['aleks_taken'].nil?
@@ -68,10 +69,10 @@ class FticModulesAvailablesController < ApplicationController
                     @dep_complete_flag = 0
                   end 
 
-                  if o['int_student'] == 'Y'
-                    @isIntlStudent = 1
+                  if o['int_student'] == 'N' || o['int_student'].nil?
+                    @isInternationalStudent = 0
                   else
-                    @isIntlStudent = 0
+                    @isInternationalStudent = 1
                   end
 
                   #this needs to be changed to hit up OIM
@@ -81,7 +82,7 @@ class FticModulesAvailablesController < ApplicationController
                     @account_complete = 1
                   end 
 
-
+                   
                   if o['spremrg_contact_name'].nil?
                     @emergency_complete = 0
                   else
@@ -95,13 +96,12 @@ class FticModulesAvailablesController < ApplicationController
 
                   @term_display = o['term']
                   @year_display = o['year']
-                  @finaidyear = o['finaidyear']
-                  
+                  @finaidyear = o['finaidyear']      
                  
-                end
+                end #end of multistatus loop
             end
-
-    #END: multistatus check
+            #END: multistatus check
+     
 
 
     #BEGIN : FinAid Check
