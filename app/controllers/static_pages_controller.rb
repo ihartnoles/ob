@@ -61,6 +61,7 @@ class StaticPagesController < ApplicationController
 
           modules_available         
 
+
           #@isInternationalStudent = 0
 
           #TO DO: Query for WHC_STUDENT
@@ -468,7 +469,7 @@ class StaticPagesController < ApplicationController
             if  o['fafsa_flg'] == 'N'
               @fafsa_complete = 0
             else
-              @fafsa_complete = 0
+              @fafsa_complete = 1
             end
 
             @finaidyear = o['finaidyear']
@@ -636,7 +637,19 @@ class StaticPagesController < ApplicationController
           @bookadvance_complete = 1
           @tuition_complete = 0
           @vehicle_reg_complete = 0   
-    	
+
+          updateDaMeter
+          
+          # @start = 0
+
+          # if  @account_complete == 1
+          #   @start += 1
+          # end
+
+          # if @verify_complete == 1
+          #   @start += 1
+          # end
+    	 
     end
 
 	# def admin	

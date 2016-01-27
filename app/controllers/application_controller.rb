@@ -131,6 +131,74 @@ class ApplicationController < ActionController::Base
           end  	
   end #end of modules available
 
+  def updateDaMeter
+    @start = 0
+
+     if  @account_complete == 1
+           @start += 1
+     end
+
+     if @verify_complete == 1
+            @start += 1
+     end
+
+     if @deposit_complete == 1
+            @start += 1
+     end
+
+     if @communication_complete == 1
+            @start += 1
+     end
+
+     if @immunization_complete == 1
+            @start += 1
+     end
+
+     if @residency_complete == 1
+            @start += 1
+     end
+
+     if @finaid_complete == 1
+         @start += 1
+     end
+
+     if @housing_fee_complete == 1
+         @start += 1
+     end
+
+     if @aleks_complete == 1
+         @start += 1
+     end
+
+     if @orientation_complete == 1
+         @start += 1
+     end
+
+     if @learning_comm_complete == 1
+         @start += 1
+     end
+
+     if @oars_complete == 1
+         @start += 1
+     end
+
+     if @reg_complete == 1
+         @start += 1
+     end
+
+     if @tuition_complete == 1
+        @start += 1
+     end
+
+     if @emergency_complete == 1
+        @start += 1
+     end
+
+     if @fau_alert_complete == 1
+        @start += 1
+     end
+
+  end
 
   def record_activity(note)
     @activity = ActivityLog.new
@@ -171,5 +239,7 @@ class ApplicationController < ActionController::Base
      #    redirect_to "/home#step-immunization"
      # end  
   end
+
+
 
 end #end of class

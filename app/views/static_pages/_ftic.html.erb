@@ -918,6 +918,12 @@ Hello, <%= session[:cas_user] %>!
 			  						
 			  				</p> 
 
+			  				<h3 class="title">Financial Aid Calendar</h3>
+			  				
+			  				<p>
+			  					*Dates are subject to change without notice.  Please see <a href="http://www.fau.edu/finaid/resources/dates.php" target="_blank">Important Financial Aid Dates & Deadlines</a> for more details.
+			  				</p>
+			  				
 			  				<!-- <h3 class="title">Financial Aid Calendar</h3>
 			  				
 			  				<p>
@@ -2476,7 +2482,14 @@ Hello, <%= session[:cas_user] %>!
  
     $(window).load(function(){
     	$('#loadingmessage').html('<h4>FAU Onboarding Modules Loading</h4>');
-        $('#cover').delay(700).fadeOut(1500);     
+        $('#cover').delay(700).fadeOut(1500); 
+        
+   //      var increment =  (11/20 * 100);
+
+	 	// $("#metercontainer").attr("data-appear-progress-animation", parseInt(increment) + '%');
+	  // 	$('#meterdisplay').text(parseInt(increment) + '% Completed');
+	  // 	$("#meterdisplay").attr("style",'width: ' + parseInt(increment) + '%; text-indent: 10px;');
+
  	})
 
  	$("#mobilenumber").mask("(999) 999-9999");
@@ -2755,27 +2768,36 @@ Hello, <%= session[:cas_user] %>!
 	 }
 
 	 
-	 
-	
+	 // function progressMeter() {
+	 	 
+	 // 	var increment =  (11/20 * 100);
 
-	 // function findplace(stepname, href) {
-
-	 // 	 if (window.location.href.indexOf("#"+ stepname) > -1) {
-		//     $('.step-title').removeClass("step-title").addClass('collapsed step-title');
-		//     $('div .collapse').removeClass("collapse in").addClass('collapse');
-
-		//     $("#"+href).removeClass('collapsed step-title').addClass('step-title');
-		//     $("#"+ stepname).removeClass('collapse').addClass('collapse in');
-		// }
-
+	 // 	$("#metercontainer").attr("data-appear-progress-animation", increment + '%');
+	 //  	$('#meterdisplay').text(increment + '% Completed');
+	 //  	$("#meterdisplay").attr("style",'width: ' + increment + '%; text-indent: 10px;');
 	 // }
-
-    
+	     
  });
 </script>
 
 
 <%= javascript_tag do %>
+   
+    $(window).load(function(){
+    	//alert('DIPLO');
+    	
+    	var totalsteps = 16;
+        
+       var completed = <%=@start %>;
+
+    	var increment =  (parseInt(completed)/parseInt(totalsteps) * 100);
+
+	 	$("#metercontainer").attr("data-appear-progress-animation", parseInt(increment) + '%');
+	  	$('#meterdisplay').text(parseInt(increment) + '% Completed');
+	  	$("#meterdisplay").attr("style",'width: ' + parseInt(increment) + '%; text-indent: 10px;');
+
+ 	})
+
 
   function scrollToElement(ele) {
 		    //$(window).scrollTop(ele.offset().top).scrollLeft(ele.offset().left);
@@ -2783,6 +2805,8 @@ Hello, <%= session[:cas_user] %>!
 	        scrollTop: $("#"+ele).offset().top
 	    }, 2000);
 	 }
+
+
 
 	<% if ( account_available == 1 && @welcome_available == 1 )%>
 /* fxn to parse URL params */
