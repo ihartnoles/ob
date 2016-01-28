@@ -21,6 +21,11 @@ class VerifyController < ApplicationController
     
     update_ftic_verify_module(params[:ftic_id],params[:verify],params[:znumber], params[:netid],params[:intl])
  
+      puts YAML::dump('*** DUH HERRO ***')
+      puts YAML::dump(params[:intl])
+      puts YAML::dump(params[:znum].present?)
+
+
     if  params[:verify_info] == "No"
       #their information is NOT correct we have to send them back to verify
       if params[:znum]
@@ -33,13 +38,13 @@ class VerifyController < ApplicationController
     else
        #their information is CORRECT we have to move them forward to DEPOSIT
       if params[:znum]
-          if params[:intl] == 0
+          if params[:intl] == "0"
             redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to deposit
           else
             redirect_to "/home?znum=#{params[:znum]}#step-visa" #redirect to VISA for international studs.
           end
       else
-         if params[:intl] == 0
+         if params[:intl] == "0"
           redirect_to "/home#step-deposit"
          else
           redirect_to "/home#step-visa"
