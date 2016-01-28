@@ -324,7 +324,7 @@ class FticModulesAvailablesController < ApplicationController
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.immunization = params[:immunization]
     
-    if params[:intl] = 1
+    if params[:intl] == "1"
       @modules_available.intl_medical = 1 #unlock MEDICAL for INTL. Students
       @modules_available.housingfee = 1 #unlock HOUSING for INTL. Students
     else
@@ -334,14 +334,19 @@ class FticModulesAvailablesController < ApplicationController
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
+      puts YAML::dump('*** update_ftic_immunization ***')
+      puts YAML::dump(params[:intl])
+      puts YAML::dump(params[:intl].to_s)
+      puts YAML::dump(params[:znum].present?)
+
      if params[:znum]
-        if params[:intl] = 0
+        if params[:intl] == "0"
           redirect_to "/home?znum=#{params[:znum]}#step-residency" #redirect to deposit
         else
           redirect_to "/home?znum=#{params[:znum]}#step-intl-medical"
         end
      else
-        if params[:intl] = 0
+        if params[:intl] == "0"
           redirect_to "/home#step-residency"
          else
           redirect_to "/home#step-intl-medical"
@@ -354,7 +359,7 @@ class FticModulesAvailablesController < ApplicationController
     @modules_available.orientation = params[:orientation]
     @modules_available.learning_comm = 1 #unlock learning communities
 
-    if params[:intl] = 1
+    if params[:intl] == 1
       @modules_available.intl_orientation = 1 #unlock INTL. ORIENTATION        
     end
 
