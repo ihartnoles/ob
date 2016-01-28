@@ -21,9 +21,9 @@ class VerifyController < ApplicationController
     
     update_ftic_verify_module(params[:ftic_id],params[:verify],params[:znumber], params[:netid],params[:intl])
  
-      puts YAML::dump('*** DUH HERRO ***')
-      puts YAML::dump(params[:intl])
-      puts YAML::dump(params[:znum].present?)
+      # puts YAML::dump('*** DUH HERRO ***')
+      # puts YAML::dump(params[:intl])
+      # puts YAML::dump(params[:znum].present?)
 
 
     if  params[:verify_info] == "No"
