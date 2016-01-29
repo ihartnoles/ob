@@ -56,4 +56,6 @@ Ob::Application.routes.draw do
    post   'update_ftic_owlcard_module',  to: 'ftic_modules_availables#update_ftic_owlcard_module'   
    post   'update_ftic_book_module',  to: 'ftic_modules_availables#update_ftic_book_module'   
    post   'update_ftic_vehicle_module',  to: 'ftic_modules_availables#update_ftic_vehicle_module'   
+
+   get    'sms', to: 'static_pages#sms'
 end

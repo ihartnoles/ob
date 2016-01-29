@@ -32,6 +32,8 @@ gem 'tiny_tds', '~> 0.6.3.rc1'
 #'rubycas-client', :git => 'https://github.com/mp-dhorsak/rubycas-client'
 gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'
 
+gem 'rest-client'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
