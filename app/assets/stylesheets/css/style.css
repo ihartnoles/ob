@@ -5019,7 +5019,7 @@ blockquote small {
   width: 40px !important;
   -webkit-transition: background .3s linear;
   transition: background .3s linear;
-  -webkit-transition: opacity 0.2s ease-out; */
+  -webkit-transition: opacity 0.2s ease-out; 
   -webkit-transform: inherit;
   z-index: 50 !important;
 }
@@ -5280,7 +5280,7 @@ blockquote small {
 .sidebar .widget header .title,
 .sidebar .widget .title-block .title,
 .product-bottom .related-products header h3 {
-  color: # color: #11547F;
+  color: #11547F;
   font-size: 18px;
   font-weight: normal;
   line-height: 1;
