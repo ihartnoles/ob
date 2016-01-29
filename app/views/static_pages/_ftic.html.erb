@@ -247,53 +247,50 @@ Hello, <%= session[:cas_user] %>!
 			
 			<div id="step-verify" class="collapse">
 			  <div class="step-content">
-			  	<h3 class="title">Please verify your information</h3>
-			  		
+			  	<h3 class="title">Please verify your information</h3>  		
 
 			  		<% if verify_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 
 					<% else %>
 
-						<p>Please take a moment to verify your personal details. The information you see below is what we have in our official records.</p>
+						<br>Please take a moment to verify your personal details. The information you see below is what we have in our official records.<br>
 
 						<table class="table responsive text-left order-details">
 								<thead>                    		
 	                    		<tr>
-	                    			<th>Your Details</th>
+	                    			<th>&nbsp;</th>	 
 	                    			<th>&nbsp;</th>	 
 	                    			<th>&nbsp;</th>	           
 	                    			<th>&nbsp;</th>	         			
 	                    		</tr>
 	                    		</thead>
 						  		<tr>
-						  			<td>Your ZNUMBER:</td>
+						  			<td ><b>Your znumber:</b></td>
 						  			<td><%= @znum %>&nbsp;</td>	
-						  			<td colspan="2"></td>					  			
+						  			<td colspan="2"><em>Your Z number is a unique id assigned to you to protect your privacy.</em></td>					  			
 						  		</tr>
 						  		<tr>
-						  			<td>Your Name:</td>
+						  			<td><b>Your Name:</b></td>
 						  			<td><%= @fname %> <%= @mname %> <%= @lname %>&nbsp;</td>	
-						  			<td colspan="2"><% if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <% end %></td>					  			
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <%# end %></td>					  			
 						  		</tr>
 						  		<tr>
-						  			<td>Your Address:</td>
+						  			<td><b>Your Address:</b></td>
 						  			<td><%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %>&nbsp;</td>						  			
-						  			<td colspan="2"><% if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <% end %></td>
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
 						  		</tr>
 						  		
 						  		<tr>
-						  			<td>Your Major:</td>
+						  			<td><b>Your Major:</b></td>
 						  			<td><%= @major %></td>			
-						  			<td></td>
-						  			<td></td>			  			
+						  			<td colspan="2"><em>If your major is incorrect you will get the opportunity to update it later during this process.</em></td>			  			
 						  		</tr> 
 						  	    
 						  		<tr>
-						  			<td>Acceptance Term:</td>
+						  			<td><b>Acceptance Term:</b></td>
 						  			<td><%= @term %> <%= @year %></td>						  			
-						  			<td></td>
-						  			<td></td>
+						  			<td colspan="2"><a href="#" target="_blank">[Need This Link]</a> <%# end %></td>
 						  		</tr>
 						  		
 						  		
@@ -2068,7 +2065,8 @@ Hello, <%= session[:cas_user] %>!
 		  		<% if bookadvance_bypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
-					<p>A University monetary advance available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees</p>
+					<p>A University monetary advance is available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees. <a href="http://www.fau.edu/finaid/other/sta.php" target="_blank">[More Information]</a>
+					</p>
 
 					<p>
 						Maximum loan amount is $750 with a non-refundable processing of $7.50 assessed. Students must meet additional eligibility criteria.
@@ -2086,14 +2084,8 @@ Hello, <%= session[:cas_user] %>!
 					</p>
 					 -->
 
-					 <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_short_term_adv.pwr_dispstaletr" target="_blank">Your Short Term Advance Status</a>
-					 <p>
-
-					 </p>
-
-					<p>
-						<a href="http://www.fau.edu/finaid/other/sta.php" target="_blank">[More Information]</a>
-					</p>
+					 <a href="https://boc22finaid.fau.edu/short_loan/" target="_blank">Short Term Advance Application</a><br>
+					 					
 				 <% end %>
 
 				  <% if  (bookadvance_available == 1 && bookadvance_available == 1 ) || bookadvance_bypass == 1 %>
