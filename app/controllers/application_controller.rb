@@ -243,7 +243,7 @@ class ApplicationController < ActionController::Base
      # end  
   end
 
-  def sms_signup
+  def sms_send(subscribe)
     # api = Clickatell::API.authenticate('3543539', 'rresnick', 'dVAJOFRILWdfGe')
     # api.send_message('19546614509', 'Hello from clickatell')
     # render :nothing => true
@@ -254,7 +254,14 @@ class ApplicationController < ActionController::Base
 
           # The Message   
           mobile_number = '19546614509'       # Use comma separated numbers to send the same text message to multiple numbers.
-          sms_text = 'TEST - Congrats! You are signed up to receive FAU Student Onboarding Alerts!'            # 160 characters per message part
+          
+          if subscribe == 1
+            sms_text = 'You are signed up to receive FAU Student Onboarding Alerts!'            # 160 characters per message part
+          elsif subscribe == 0
+            sms_text = 'You will no longer recieve FAU Student Onboarding Alerts.'
+          else
+            sms_text = ''
+          end 
 
           # Build query string
           params = {              
@@ -274,6 +281,8 @@ class ApplicationController < ActionController::Base
           # Get the response
          
           response = RestClient.get 'http://api.clickatell.com/http/sendmsg', :params => params
+
+
 
           # Check for error from API
           if response.split(':').first == 'ERR'

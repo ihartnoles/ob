@@ -19,30 +19,37 @@ class CommunicationsController < ApplicationController
   # end
 
   def save_communication
-    if params[:id] == "0"
+      
+     if params[:id] == "0"
       #create a new record
       @communication = Communication.new
-      @communication.netid = params[:netid]  
-      @communication.znumber = params[:znumber]  
-      @communication.contactByEmail = params[:contactByEmail] 
-      @communication.contactByPhone = params[:contactByPhone]
-      @communication.contactMobileNumber = params[:mobilenumber]     
-      @communication.save
-    else
-      #update existing record
+      previous = 0
+     else
       @communication = Communication.find(params[:id])
-      @communication.netid = params[:netid]  
-      @communication.znumber = params[:znumber]  
-      @communication.contactByEmail = params[:contactByEmail] 
-      @communication.contactByPhone = params[:contactByPhone]
-      @communication.contactMobileNumber = params[:mobilenumber]     
-      @communication.save
-    end
+      previous = Communication.find(params[:id]).contactByPhone
+     end
+     @communication.netid = params[:netid]  
+     @communication.znumber = params[:znumber]  
+     @communication.contactByEmail = params[:contactByEmail] 
+     @communication.contactByPhone = params[:contactByPhone]
+     @communication.contactMobileNumber = params[:mobilenumber]     
+     @communication.save   
+    
 
      update_ftic_communication_module(params[:ftic_id],params[:znumber], params[:netid])
 
-     sms_signup
      
+      # if you are new and you've selected to be contacted and you've provided a number; then send them a confirmation message.
+      if (params[:contactByPhone].present? && (previous == 0 || previous.nil?))
+       sms_send(1)
+      end
+     
+      # if your id is greater than zero then you are an existing record
+      if (!params[:contactByPhone].present? && previous == 1)
+       sms_send(0)
+      end
+
+
      if params[:znum]
          redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to immunization
      else
