@@ -41,6 +41,8 @@ class CommunicationsController < ApplicationController
 
      update_ftic_communication_module(params[:ftic_id],params[:znumber], params[:netid])
 
+     sms_signup
+     
      if params[:znum]
          redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to immunization
      else

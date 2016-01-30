@@ -1,3 +1,6 @@
+require 'rest-client'
+# require 'yaml'
+
 class ApplicationController < ActionController::Base
   layout "application"
   protect_from_forgery
@@ -240,6 +243,73 @@ class ApplicationController < ActionController::Base
      # end  
   end
 
+  def sms_signup
+    # api = Clickatell::API.authenticate('3543539', 'rresnick', 'dVAJOFRILWdfGe')
+    # api.send_message('19546614509', 'Hello from clickatell')
+    # render :nothing => true
+
+          begin
+          # Clickatell Settings
+          settings = YAML.load_file("#{Rails.root.to_s}/config/config.yml")
+
+          # The Message   
+          mobile_number = '19546614509'       # Use comma separated numbers to send the same text message to multiple numbers.
+          sms_text = 'TEST - Congrats! You are signed up to receive FAU Student Onboarding Alerts!'            # 160 characters per message part
+
+          # Build query string
+          params = {              
+              # :user => 'rresnick',
+              # :password => 'dVAJOFRILWdfGe',
+              # :api_id => '3543539',
+              :user => settings['clickatell']['username'],
+              :password => settings['clickatell']['password'],
+              :api_id => settings['clickatell']['api_id'],
+              :to => mobile_number,
+              :from => '13054000747',
+              :mo => '1',
+              :text => sms_text
+          }
+
+          
+          # Get the response
+         
+          response = RestClient.get 'http://api.clickatell.com/http/sendmsg', :params => params
+
+          # Check for error from API
+          if response.split(':').first == 'ERR'
+              puts response
+          else
+              if response.code == 200
+                if response.body[0,3] == 'ID:'
+                  message_id = response.body.split(' ').last
+                  puts 'Checking ' + message_id + ' status...'
+
+                  params = {
+                      :user => settings['clickatell']['username'],
+                      :password => settings['clickatell']['password'],
+                      :api_id => settings['clickatell']['api_id'],
+                      :apimsgid => message_id
+                  }
+
+                  response = RestClient.get 'https://api.clickatell.com/http/getmsgcharge', :params => params
+
+                  # Check for error from API
+                  if response.split(':').first == 'ERR'
+                      puts response
+                  else
+                      data = response.body.split(' ')
+
+                      puts 'status: ' + data[-1]
+                      puts 'charge: ' + data[-3]
+                  end
+
+                end
+              end
+          end
+      rescue
+          puts 'Could not get message charge, double check your settings and internet connection'
+      end
+  end
 
 
 end #end of class
