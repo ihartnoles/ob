@@ -487,13 +487,13 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 
-		  	<% if  (communication_available == 1 || communication_bypass == 1 ) &&  ( @deposit_complete == 1 || @deposit_bypass == 1 )  %>
+		  	<% if  (communication_available == 1 || communication_bypass == 1 ) &&  ( account_complete == 1 )  %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
 			<% else %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (communication_available == 1 || communication_bypass == 1 ) &&  ( @deposit_complete == 1 || @deposit_bypass == 1 ) %>
+			<% if (communication_available == 1 || communication_bypass == 1 ) &&  ( account_complete == 1 ) %>
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
 			<% end %>
 
@@ -1858,14 +1858,14 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 		  
-		  <% if (emergency_available == 1 || emergencybypass == 1) && ( tuition_complete == 1  || tuition_bypass == 1 ) %>
+		  <% if (emergency_available == 1 || emergencybypass == 1) && ( account_complete == 1 ) %>
 		  	<a id="emergencyhref" href="#step-emergency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="emergencyhref" href="#step-emergency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if (emergency_available == 1 || emergencybypass == 1) && ( tuition_complete == 1  || tuition_bypass == 1 ) %>
+		  <% if (emergency_available == 1 || emergencybypass == 1) && ( account_complete == 1 ) %>
 			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
 		  <% end %>
 
@@ -2778,7 +2778,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if  (communication_available == 1 || communication_bypass == 1 ) &&  (@deposit_available == 1 && @deposit_complete == 1 || @deposit_bypass == 1 ) %>
+	<% if  (communication_available == 1 || communication_bypass == 1 ) &&  ( account_complete == 1 ) %>
 	 /* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-comm") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
@@ -2913,7 +2913,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 	
-	<% if (emergency_available == 1 || emergencybypass == 1) && ( tuition_available == 1 && tuition_complete == 1  || tuition_bypass == 1 ) %>
+	<% if (emergency_available == 1 || emergencybypass == 1) && ( account_complete == 1 ) %>
 	if (window.location.href.indexOf("#step-emergency") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');

@@ -41,12 +41,12 @@ class CommunicationsController < ApplicationController
      
       # if you are new and you've selected to be contacted and you've provided a number; then send them a confirmation message.
       if (params[:contactByPhone].present? && (previous == 0 || previous.nil?))
-       sms_send(1)
+       sms_send(1,params[:mobilenumber])
       end
      
       # if your id is greater than zero then you are an existing record
       if (!params[:contactByPhone].present? && previous == 1)
-       sms_send(0)
+       sms_send(0,params[:mobilenumber])
       end
 
 

@@ -243,7 +243,7 @@ class ApplicationController < ActionController::Base
      # end  
   end
 
-  def sms_send(subscribe)
+  def sms_send(subscribe,number)
     # api = Clickatell::API.authenticate('3543539', 'rresnick', 'dVAJOFRILWdfGe')
     # api.send_message('19546614509', 'Hello from clickatell')
     # render :nothing => true
@@ -253,7 +253,7 @@ class ApplicationController < ActionController::Base
           settings = YAML.load_file("#{Rails.root.to_s}/config/config.yml")
 
           # The Message   
-          mobile_number = '19546614509'       # Use comma separated numbers to send the same text message to multiple numbers.
+          mobile_number = "1"+number.gsub(/\D/, '') #'19546614509'       # Use comma separated numbers to send the same text message to multiple numbers.
           
           if subscribe == 1
             sms_text = 'You are signed up to receive FAU Student Onboarding Alerts!'            # 160 characters per message part
