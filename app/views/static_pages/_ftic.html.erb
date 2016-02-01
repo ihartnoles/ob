@@ -1176,7 +1176,7 @@ Hello, <%= session[:cas_user] %>!
 				<% end %>
 
 
-				 <% if  (housing_fee_available == 1 && housing_fee_complete == 1 ) || housingfee_bypass == 1 || @isInternationalStudent == 1 %>
+				 <% if  housing_fee_available == 1  || housingfee_bypass == 1 || @isInternationalStudent == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_housing_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -1205,13 +1205,13 @@ Hello, <%= session[:cas_user] %>!
 			<!-- <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
 		  <%# elsif (aleks_available == 1 && aleks_complete == 1) || aleksbypass == 1%>
 		  	<!-- <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
-		  <% if (aleks_available == 1 || aleksbypass == 1) && ( housing_fee_complete == 1 || housingfee_bypass == 1 ) %>
+		  <% if (aleks_available == 1 || aleksbypass == 1) %>
 		    <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="alekshref" href="#step-aleks" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		   <% if (aleks_available == 1 || aleksbypass == 1) && (housing_fee_complete == 1 || housingfee_bypass == 1 ) %>
+		   <% if (aleks_available == 1 || aleksbypass == 1) %>
 			  <div class="number"><!-- Step 10 --> <%= get_statusicon(aleks_available, aleks_complete, aleksbypass) %></div>
 		   <% end %>
 
@@ -1769,9 +1769,11 @@ Hello, <%= session[:cas_user] %>!
 					  					<li>You must complete the Residency Classification for Tuition Purposes and submit the required documentation.</li>
 					  				<% end %>
 
-					  				<% if housing_meal_plans_complete == 0 && housing_fee_required == 1  %>
-					  					<li>You must submit a housing contract and deposit to the Department of Housing and Residential Life.</li>
-					  				<% end %>
+					  				<%# if housing_meal_plans_complete == 0 && housing_fee_required == 1  %>
+					  					<!-- 
+					  					<li>You must submit a housing contract and deposit to the Department of Housing and Residential Life.</li> 
+					  					-->
+					  				<%# end %>
 					  				
 					  			</ol>
 						
@@ -2144,12 +2146,14 @@ Hello, <%= session[:cas_user] %>!
 				<% else %>
 
 					  <p>
-	                 	Students are eligible to register for their parking permits 24 hours after they have registered for their classes. To register for a permit: 
+	                 	Students are eligible to register for their <a href="http://www.fau.edu/parking/allpermits.php" target="_blank">parking permits</a> 24 hours after they have registered for their classes. To register for a permit: 
 	                  </p>
 	                  
 	                   <p>All payments will need to be made online, by mail or by using the drop box at the Boca Raton campus.</p>
 
+	                   <!-- 
 	                  <p>It is important to note you have the following options to pay your bill:</p>
+
 
 	                  <ol>
 	                  	<li>Go to MyFAU account. (myfau.fau.edu)</li>
@@ -2160,18 +2164,27 @@ Hello, <%= session[:cas_user] %>!
 	                  	<li>Print out the confirmation page and follow the instructions carefully.</li>
 	                  </ol>
 	              		
+	              	  
 	              	   <p>              	   	
 	              	   	<br>
 	              	   	<a href="http://www.fau.edu/parking/allpermits.php" target="_blank">
 	              	   		[More Information]
 	              	   	</a>
-	              	   </p>
+	              	   </p> 
+	              	   -->
 
 	              	   <p>
 	              	    	
-	              	    <a href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>' target='_blank'>
+	              	   <!--  <a href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>&myfau' target='_blank'>
 	              	   		[Register Here]
-	              	   	</a> 
+	              	   	</a>  -->
+
+	              	   	<div class="buttons-box text-right">
+			  		 		<%= form_tag('https://fau.t2hosted.com/cmn/auth.aspx' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <button type="submit" class="btn btn-danger" id="learningBut">Register</button>		
+					 		<% end %>				 
+						</div>
 	              	   
 	              	   	<!-- <button type="button" id="parkingbutton" class="btn btn-link">[Register Here]!</button> -->
 
@@ -2840,7 +2853,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if  ( aleks_available == 1 || aleksbypass == 1) && (housing_fee_available == 1 &&  housing_fee_complete == 1 || housingfee_bypass == 1 ) %>
+	<% if  ( aleks_available == 1 || aleksbypass == 1) %>
 	if (window.location.href.indexOf("#step-aleks") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
