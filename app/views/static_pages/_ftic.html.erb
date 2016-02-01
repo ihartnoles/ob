@@ -290,7 +290,7 @@ Hello, <%= session[:cas_user] %>!
 						  		<tr>
 						  			<td><b>Acceptance Term:</b></td>
 						  			<td><%= @term %> <%= @year %></td>						  			
-						  			<td colspan="2"><a href="#" target="_blank">[Need This Link]</a> <%# end %></td>
+						  			<td colspan="2"><a href="http://www.fau.edu/admissions/ChangeEntry.php" target="_blank">[Change of Entry Term Request]</a> <%# end %></td>
 						  		</tr>
 						  		
 						  		
@@ -1761,9 +1761,9 @@ Hello, <%= session[:cas_user] %>!
 								<p>You have holds on your record which are preventing you from completing your tution payment. The holds are listed below:</p>
 
 					  			<ol>
-					  				<% if reg_complete == 0 %>
-					  					<li>You must be registered for 12 or more credits in any semester.</li>
-					  				<% end %>
+					  				<%# if reg_complete == 0 %>
+					  					<!-- <li>You must be registered for 12 or more credits in any semester.</li> -->
+					  				<%# end %>
 
 					  				<% if residency_complete == 0 %>
 					  					<li>You must complete the Residency Classification for Tuition Purposes and submit the required documentation.</li>
@@ -1787,48 +1787,25 @@ Hello, <%= session[:cas_user] %>!
 							 <hr>
 
 							 <p>
-							  	<b>
-							  	Please note: The tuition deposit is separate from any Housing payments. First time applicants who plan to live on campus  are required to pay a $100 one-time non-refundable administration charge. 
-							    </b>
-							  </p>
+							 	Fees are charged by course level and student's Residency status. If you are a Florida Resident and you have been charged Out of State fees, please contact Undergraduate Admissions or the Graduate College immediately regarding your residency status.
+							 </p>
+							 <p>
+								Please see our <a href="http://www.fau.edu/controller/student_information/tuition_breakdown.php" target="_blank">tuition breakdown</a> of tuition and fees per credit hour based on course level and residency.
+							</p>
 
-							  <p>
-			                  Florida Atlantic University is pleased to announce there will be no net increase of tuition and fees for the 2014-15 Academic Year. The last day to pay the balance due for Fall 2014 is August 25, 2014.
-			                  </p>
-			                  
-			                  <p>
-			                  Tuition and fees amounts are detailed at:
-			                  </p>
-			                  <a href="http://www.fau.edu/controller/student_information/tuition_breakdown.php" target="_blank">
-			                     
-			                        http://www.fau.edu/controller/student_information/tuition_breakdown.php 
-			                  </a>
-
-			                  <br>	                  
-			                  
-			                  <p>All payments will need to be made online, by mail or by using the drop box at the Boca Raton campus.</p>
-
-			                  <p>It is important to note you have the following options to pay your bill:</p>
-
-			                  <ul>
-			                  	<li>Online by using your Visa, MasterCard, American Express or Discover Card. Using the online system, the third party vendor will process your payment and apply it to your student account with a non-refundable fee of 2.60%</li>
-			                  	<li>Online by using your personal checking/savings account without a non-refundable fee.</li>
-			                  	<li>By check or money order mailed to Florida Atlantic University. The postmark of your payment will be used to determine timeliness of the payment.</li>
-			                  	<li>By check or money order dropped into the drop box located at the Cashier’s Office in the Student Services Building on the Boca Raton campus.</li>
-			                  </ul>
-			                  <br>
-			                  <p>
-			                		If you have any questions, please email <a href="mailto:webcontroller@fau.edu">webcontroller@fau.edu</a> or call tuition and billing services (561)297-6101.
-			                  </p>
+							<p>
+								There are other charges that are charged separately such as the Transportation Access Fee, 
+								Owl Card Fee, eLearning fee, lab fee, late fee, etc. Please see our <a href="http://www.fau.edu/controller/student_information/fees_defined.php" target="_blank">fee descriptions</a>for more information. 						 
+							 </p>
 
 			                  <p>
-			                  	<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link" target="_blank">[Your Tuition Payment Information]</a> |
-			                    <a href='http://www.fau.edu/registrar/pdf/acadcal1516.pdf' target='_blank'>
+			                  	<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Tuition Payment Information</a>
+			                   <!--  <a href='http://www.fau.edu/registrar/pdf/acadcal1516.pdf' target='_blank'>
 			              	   		[More Information]
 			              	    </a>  | 
 			              	     <a href='http://www.fau.edu/controller/student_information/pdfs/Summer_2015_Fee_Bulletin_2.pdf ' target='_blank'>
 			              	   		[Fee Payment Information]
-			              	    </a>
+			              	    </a> -->
 
 			              	   
 
@@ -2175,16 +2152,16 @@ Hello, <%= session[:cas_user] %>!
 
 	              	   <p>
 	              	    	
-	              	   <!--  <a href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>&myfau' target='_blank'>
+	              	    <a href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>' target='_blank'>
 	              	   		[Register Here]
-	              	   	</a>  -->
+	              	   	</a> 
 
-	              	   	<div class="buttons-box text-right">
+	              	  <!--  	<div class="buttons-box text-right">
 			  		 		<%= form_tag('https://fau.t2hosted.com/cmn/auth.aspx' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
 							    <button type="submit" class="btn btn-danger" id="learningBut">Register</button>		
 					 		<% end %>				 
-						</div>
+						</div> -->
 	              	   
 	              	   	<!-- <button type="button" id="parkingbutton" class="btn btn-link">[Register Here]!</button> -->
 
