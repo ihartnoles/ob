@@ -206,6 +206,7 @@ DEPENDENCIES
   tiny_tds (~> 0.6.3.rc1)
   traceroute
   uglifier (>= 1.0.3)
+  unf_ext (~> 0.0.7.1)
   uniform_notifier
   whenever
 

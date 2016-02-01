@@ -33,7 +33,7 @@ gem 'tiny_tds', '~> 0.6.3.rc1'
 gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'
 
 gem 'rest-client'
-
+gem 'unf_ext', '~> 0.0.7.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
