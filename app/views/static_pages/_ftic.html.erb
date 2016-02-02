@@ -1626,7 +1626,7 @@ Hello, <%= session[:cas_user] %>!
 				<% else %>
 
 
-			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 || @reg_complete == 0  %>
+			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 %>
 			  			
 			  			<p>You have holds on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
@@ -1647,9 +1647,11 @@ Hello, <%= session[:cas_user] %>!
 			  					<li>You must provide proof of immunizations and vaccinations.</li>
 			  				<% end %>
 
-			  				<% if @reg_complete == 0 %>
-			  					<li>You must be registered for at least 12 credit hours to be considered a Full-time student! <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Register Now]</a></li>
-			  				<% end %>
+			  				<%# if @reg_complete == 0 %>
+			  					<!-- 
+			  					<li>You must be registered for at least 12 credit hours to be considered a Full-time student! <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Register Now]</a></li> 
+			  				    -->
+			  				<%# end %>
 
 			  			</ol>
 
@@ -1671,9 +1673,9 @@ Hello, <%= session[:cas_user] %>!
 
 								<p>Your registration status:</p>
 
-								<% if @reg_complete == 1 %>
+								<%# if @reg_complete == 1 %>
 
-									<div class="alert alert-border <%if reg_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+									<div class="alert alert-border alert-info text-center fade in">
 											<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 											<br>
 											<table class="table table-striped text-left order-details">	
@@ -1687,14 +1689,16 @@ Hello, <%= session[:cas_user] %>!
 												</strong>
 											</table>									
 									</div>
-								<% else %>
+								<%# else %>
 
+									<!-- 
 									<div class="alert alert-border alert-danger text-center fade in">
 										You must be registered for at least 12 credit hours to be considered a Full-time student!<br>
 										<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Register Now]</a>
 									</div>
+									 -->
 
-								<% end %>
+								<%# end %>
 
 
 					
@@ -1709,7 +1713,7 @@ Hello, <%= session[:cas_user] %>!
 
 		  		<% end %>
 
-		  		  <% if  (reg_available == 1 && reg_complete == 1 ) || registrationbypass == 1 %>
+		  		  <% if  (reg_available == 1) || registrationbypass == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_reg_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -1733,14 +1737,14 @@ Hello, <%= session[:cas_user] %>!
 		   <li class="panel">
 		  		  
 
-			<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_complete == 1  || registrationbypass == 1 )  %>
+			<% if (tuition_available == 1 || tuition_bypass == 1) && (registrationbypass == 1 )  %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_complete == 1  || registrationbypass == 1 )  %>
+			<% if (tuition_available == 1 || tuition_bypass == 1) && ( registrationbypass == 1 )  %>
 			  <div class="number"><!-- Step 19 --> <%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></div>
 			<% end %>
 
@@ -1755,10 +1759,10 @@ Hello, <%= session[:cas_user] %>!
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-						<% if reg_complete == 0 || residency_complete == 0 || housing_meal_plans_complete == 0 %>
+						<% if residency_complete == 0 || housing_meal_plans_complete == 0 %>
 	                         
 
-								<p>You have holds on your record which are preventing you from completing your tution payment. The holds are listed below:</p>
+								<p>You have holds on your record which are preventing you from completing your tuition payment. The holds are listed below:</p>
 
 					  			<ol>
 					  				<%# if reg_complete == 0 %>
@@ -2891,7 +2895,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_available == 1 && reg_complete == 1  || registrationbypass == 1 ) %>
+	<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_available == 1 || registrationbypass == 1 ) %>
 	if (window.location.href.indexOf("#step-tuition") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
