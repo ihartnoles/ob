@@ -49,6 +49,8 @@ class CommunicationsController < ApplicationController
        sms_send(0,params[:mobilenumber])
       end
 
+      #mail = UserMailer.email_signup('Ike', 'ihartstein@fau.edu')
+      
 
      if params[:znum]
          redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to immunization
