@@ -608,7 +608,10 @@ class StaticPagesController < ApplicationController
           else 
                #@reg_complete = 1
                 total_hours = Banner.total_hours(@znum)
-              
+                
+                if total_hours.count == 0
+                     @reg_complete = 0
+                else
                  total_hours.each do |o|
                    if o['totalhours'].nil?
                      @reg_complete = 0
@@ -619,7 +622,8 @@ class StaticPagesController < ApplicationController
                    else
                      @reg_complete = 0
                    end
-                 end
+                 end  #end of each loop
+               end
 
           end
 

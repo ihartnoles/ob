@@ -130,16 +130,19 @@ module StaticPagesHelper
          if !o.nil? 
            tmp <<  "<tr><td>#{o['sfrstcr_crn']}</td><td>#{o['scbcrse_title']}</td><td>#{o['sfrstcr_credit_hr']}</td><td>#{term_value} #{this_term[0..3]}</td></tr>"
          else
-           tmp =  "<tr><td colspan='3'>You are not registered for enough credit hours!</td></tr>"
+           tmp =  "<tr><td colspan='4' align='center'>You are not registered for enough credit hours!</td></tr>"
          end       
 
         end
 
-          return tmp.html_safe
+          
 
       else
-        return "Registration status pending"
+         tmp =  "<tr><td colspan='4' align='center' >No class registration information on file.</td></tr>"
       end 
+
+      return tmp.html_safe
+
      end
 
 
