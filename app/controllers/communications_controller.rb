@@ -49,14 +49,9 @@ class CommunicationsController < ApplicationController
        sms_send(0,params[:mobilenumber])
       end
 
-      #mail = UserMailer.email_signup('Ike', 'ihartstein@fau.edu')
-     
-      # @subject    = 'Welcome'
-      # @body       = "Welcome,\n\n Thank you for registering!\n\nUse your email address and password to log in."
-      # #@recipients = cust_email
-      # @from       = "noreply@fau.edu"
-      # @sent_on    = Time.now
-      UserMailer.email_signup("Ike Hart","ihartstein@fau.edu").deliver
+      
+      # Proof of concept email notifications
+      # UserMailer.email_signup("Ike Hart","ihartstein@fau.edu").deliver
       
 
      if params[:znum]
