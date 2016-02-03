@@ -51,7 +51,7 @@ class CommunicationsController < ApplicationController
 
       
       # Proof of concept email notifications
-      # UserMailer.email_signup("Ike Hart","ihartstein@fau.edu").deliver
+      # UserMailer.email_signup("Hentomi","wlinares@fau.edu").deliver
       
 
      if params[:znum]
