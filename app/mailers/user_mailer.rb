@@ -8,13 +8,14 @@ class UserMailer < ActionMailer::Base
   #
   def email_signup(cust_name, cust_email)
     # @greeting = "Hi"
-
+     
     # mail to: "to@example.org"
-    @subject    = 'Welcome'
-    @body       = "Welcome #{cust_name},\n\n Thank you for registering!\n\nUse your email address (#{cust_email}) and password to log in."
+    @subject    = 'Get Owl Done!'
+    @body       = "Welcome test,\n\n Thank you for registering!\n\nUse your email address test and password to log in."
     @recipients = cust_email
     @from       = "noreply@fau.edu"
     @sent_on    = Time.now
-    mail(:from => "ihartstein@fau.edu", :to => "ihartstein@fau.edu", :subject => "#{@subject}", :body => "#{@body}" )
-  end
+    mail(:from => "ihartstein@fau.edu", :to => "ihartstein@fau.edu", :subject => "#{@subject}" )
+
+    end
 end

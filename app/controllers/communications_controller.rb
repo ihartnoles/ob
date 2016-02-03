@@ -50,6 +50,13 @@ class CommunicationsController < ApplicationController
       end
 
       #mail = UserMailer.email_signup('Ike', 'ihartstein@fau.edu')
+     
+      # @subject    = 'Welcome'
+      # @body       = "Welcome,\n\n Thank you for registering!\n\nUse your email address and password to log in."
+      # #@recipients = cust_email
+      # @from       = "noreply@fau.edu"
+      # @sent_on    = Time.now
+      UserMailer.email_signup("Ike Hart","ihartstein@fau.edu").deliver
       
 
      if params[:znum]
