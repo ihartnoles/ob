@@ -1691,12 +1691,14 @@ Hello, <%= session[:cas_user] %>!
 									</div>
 								<%# else %>
 
-									<!-- 
-									<div class="alert alert-border alert-danger text-center fade in">
-										You must be registered for at least 12 credit hours to be considered a Full-time student!<br>
-										<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Register Now]</a>
-									</div>
-									 -->
+									<% if  @reg_complete == 0 %>
+
+										<div class="alert alert-border alert-danger text-center fade in">
+											Fall/Spring term students must be registered for at least 12 credit hours!<br> Summer term students must be registered for at least 6 credit hours!<br>
+											<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Please Register Now]</a>
+										</div>
+									
+									<% end %>
 
 								<%# end %>
 
@@ -1737,14 +1739,14 @@ Hello, <%= session[:cas_user] %>!
 		   <li class="panel">
 		  		  
 
-			<% if (tuition_available == 1 || tuition_bypass == 1) && (registrationbypass == 1 )  %>
+			<% if (tuition_available == 1 || tuition_bypass == 1 || registrationbypass == 1 )  %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (tuition_available == 1 || tuition_bypass == 1) && ( registrationbypass == 1 )  %>
+			<% if (tuition_available == 1 || tuition_bypass == 1 || registrationbypass == 1 )  %>
 			  <div class="number"><!-- Step 19 --> <%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></div>
 			<% end %>
 
@@ -1759,15 +1761,16 @@ Hello, <%= session[:cas_user] %>!
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-						<% if residency_complete == 0 || housing_meal_plans_complete == 0 %>
+						<% if residency_complete == 0 || @reg_complete == 0 %>
 	                         
 
 								<p>You have holds on your record which are preventing you from completing your tuition payment. The holds are listed below:</p>
 
 					  			<ol>
-					  				<%# if reg_complete == 0 %>
-					  					<!-- <li>You must be registered for 12 or more credits in any semester.</li> -->
-					  				<%# end %>
+					  				<% if @reg_complete == 0 %>
+					  					<li>If you are enrolling for the Fall or Spring terms you must be registered for 12 or more credits in any semester.</li>
+					  					<li>If you are enrolling for the Summer term you must be registered for 6 or more credits in any semester.</li>
+					  				<% end %>
 
 					  				<% if residency_complete == 0 %>
 					  					<li>You must complete the Residency Classification for Tuition Purposes and submit the required documentation.</li>

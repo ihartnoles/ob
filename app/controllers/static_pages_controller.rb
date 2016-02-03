@@ -606,18 +606,20 @@ class StaticPagesController < ApplicationController
           if registration_status.blank?
                 @reg_complete = 0
           else 
-                @reg_complete = 1
-               # total_hours = Banner.total_hours(@znum)
+               #@reg_complete = 1
+                total_hours = Banner.total_hours(@znum)
               
-               #  total_hours.each do |o|
-               #    if o['totalhours'].nil?
-               #      @reg_complete = 0
-               #    elsif o['totalhours'] >= 12
-               #      @reg_complete = 1
-               #    else
-               #      @reg_complete = 0
-               #    end
-               #  end
+                 total_hours.each do |o|
+                   if o['totalhours'].nil?
+                     @reg_complete = 0
+                   elsif o['totalhours'] >= 12 &&  o['term'] == 'Fall' || o['term'] == 'Spring'
+                     @reg_complete = 1
+                   elsif o['totalhours'] >= 6 && o['term'] == 'Summer'
+                     @reg_complete = 1
+                   else
+                     @reg_complete = 0
+                   end
+                 end
 
           end
 

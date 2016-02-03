@@ -99,7 +99,12 @@ class Banner < ActiveRecord::Base
 
 
 		def self.total_hours(id)
-			get = connection.exec_query("SELECT SUM(sfrstcr_credit_hr) as totalhours from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT  CASE SUBSTR(SFRSTCR_TERM_CODE, 5 , 6 )
+									             WHEN '01' THEN 'Spring'
+									             WHEN '08' THEN 'Fall'
+									             WHEN '05' THEN 'Summer'
+									          ELSE ''
+									      END as term, SUM(sfrstcr_credit_hr) as totalhours from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)} GROUP BY SFRSTCR_TERM_CODE")
 		end
 
 
