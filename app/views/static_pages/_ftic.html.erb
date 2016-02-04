@@ -1460,6 +1460,9 @@ Hello, <%= session[:cas_user] %>!
 							    <%= hidden_field_tag :znumber, @znum %>
 							    <%= hidden_field_tag :netid, @displayname %>
 							    <%= hidden_field_tag :id, @lc_id %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :learning_comm, 1 %>
+
 							     <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 							    <% if params[:znum] %>
 							    	<%= hidden_field_tag :znum, @znum %>									    
@@ -1471,7 +1474,7 @@ Hello, <%= session[:cas_user] %>!
 								</div>
 								
 							    <div class="radio">
-							    	<%= radio_button_tag 'join_lc', 'No' , !!(@join_lc.nil? || @join_lc == 'No')%>Not at this time. You can come back and join at any time. <br>Please remember…Learning Communities fill on a first come first serve basis and they fill up quickly.  The priority application closes on May 1st and applications are accepted until July 20th.<br>
+							    	<%= radio_button_tag 'join_lc', 'No' , !!(@join_lc.nil? || @join_lc == 'No')  %>Not at this time. You can come back and join at any time. <br>Please remember…Learning Communities fill on a first come first serve basis and they fill up quickly.  The priority application closes on May 1st and applications are accepted until July 20th.<br>
 							    </div>
 
 
@@ -1503,26 +1506,41 @@ Hello, <%= session[:cas_user] %>!
 
 								<br>
 
-								<%= submit_tag 'Save' , :id=> "lcBut"%>
-							
+								<% if @join_lc == 'Yes' %> 
+									 <div class="alert alert-border alert-info text-center fade in">
+									 	If you wish to change your Learning Community please contact the <a href="https://www.fau.edu/class/" target="_blank">Center for Learning and Student Success</a><br> by phone at (561) 297-0906 or by email at: <a href="mailto:stay@fau.edu">stay@fau.edu</a>.
+									 </div>
+								<% end %>
+
+
+								<br>
+
+								<%#= submit_tag 'Save' , :id=> "lcBut"%>
+
+								<% if  learning_comm_available == 1 || learning_commbypass == 1 %>
+									<button type="submit" class="btn btn-danger" id="lcBut">Continue</button>
+								<% end %>	
 						<% end %>
 				<% end %>
 
-				 <% if  (learning_comm_available == 1 && learning_comm_complete == 1 ) || learning_commbypass == 1 %>
-						<div class="buttons-box text-right">
-			  		 		<%= form_tag('/update_ftic_learning_module' , {:class => 'register-form form-validator'})  do %>
-			  		 		 	<%= hidden_field_tag :znumber, @znum %>
-							    <%= hidden_field_tag :netid, @displayname %>
-							    <%= hidden_field_tag :ftic_id, @ftic_id %>
-							    <%= hidden_field_tag :learning_comm, 1 %>
+				 <%# if  (learning_comm_available == 1 && learning_comm_complete == 1 ) || learning_commbypass == 1 %>
+						<!-- 
+						<div class="buttons-box text-right"> -->
+			  		 		<%#= form_tag('/update_ftic_learning_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%#= hidden_field_tag :znumber, @znum %>
+							    <%#= hidden_field_tag :netid, @displayname %>
+							    <%#= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%#= hidden_field_tag :learning_comm, 1 %>
 							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-								<% if params[:znum] %>
-								   	<%= hidden_field_tag :znum, @znum %>									    
-								<% end %>
-						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
-					 		<% end %>				 
-						</div>
-				<% end %>
+								<%# if params[:znum] %>
+								   	<%#= hidden_field_tag :znum, @znum %>									    
+								<%# end %>
+						    	<!--  <button type="submit" class="btn btn-danger" id="learningBut">Continue</button> -->		
+					 		<%# end %>				 
+					<!--
+						</div> 
+					 -->
+				<%# end %>
 
 				
 
@@ -2532,7 +2550,7 @@ Hello, <%= session[:cas_user] %>!
 	 $('#lcBut').click(function (e) {
 	 	
 	 	if(  $('input[type=radio][name=join_lc]:radio:checked').val() == "Yes" && $('input[type=radio][name=lc_choice]:radio:checked').val() == "CCLC" ) {
-	 		alert('they clicked YES and CCLC');
+	 		//alert('they clicked YES and CCLC');
 
 	 		if ( $("#cclc_type").val().length <= 0 ) {
 	 			 alert('Please select your CCLC Community if you wish to join the Commuting Connections Learning Community (CCLC) Program');
@@ -2694,6 +2712,16 @@ Hello, <%= session[:cas_user] %>!
 	    }, 2000);
 	 }
 
+
+	 /* learning communities cannot change yes answers to no answers*/
+	 <% if @join_lc == 'Yes' %> 
+	 	$('#join_lc_Yes').prop('disabled', true);
+	 	$('#join_lc_No').prop('disabled', true);
+	 	$('#lc_choice_RLC').prop('disabled', true);
+	 	$('#lc_choice_CCLC').prop('disabled', true);
+	 	$('#cclc_type').prop('disabled', true);
+	 	$('#signature').prop('disabled', true);
+	 <% end %>
 
 
 	<% if ( account_available == 1 && @welcome_available == 1 )%>

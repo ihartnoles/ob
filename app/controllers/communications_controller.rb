@@ -26,7 +26,7 @@ class CommunicationsController < ApplicationController
       previous = 0
      else
       @communication = Communication.find(params[:id])
-      previous = Communication.find(params[:id]).contactByPhone
+      previous = @communication.contactByPhone
      end
      @communication.netid = params[:netid]  
      @communication.znumber = params[:znumber]  

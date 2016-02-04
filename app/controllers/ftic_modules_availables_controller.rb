@@ -449,20 +449,20 @@ class FticModulesAvailablesController < ApplicationController
   end
 
   
-  def update_ftic_learning_module
-    @modules_available = FticModulesAvailable.find(params[:ftic_id])
-    @modules_available.learning_comm = params[:learning_comm]
-    @modules_available.oars = 1 #unlock oars
-    @modules_available.save
+  # def update_ftic_learning_module
+  #   @modules_available = FticModulesAvailable.find(params[:ftic_id])
+  #   @modules_available.learning_comm = params[:learning_comm]
+  #   @modules_available.oars = 1 #unlock oars
+  #   @modules_available.save
 
-    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+  #   record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
-     if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-oars" #redirect to deposit
-     else
-        redirect_to "/home#step-oars"
-     end  
-  end
+  #    if params[:znum]
+  #        redirect_to "/home?znum=#{params[:znum]}#step-oars" #redirect to deposit
+  #    else
+  #       redirect_to "/home#step-oars"
+  #    end  
+  # end
 
   def update_ftic_oars_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])

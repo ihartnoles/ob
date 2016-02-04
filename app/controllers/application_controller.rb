@@ -216,7 +216,7 @@ class ApplicationController < ActionController::Base
   end  
 
 
-   def update_ftic_verify_module(ftic_id,verify,znumber,netid,isIntl)
+  def update_ftic_verify_module(ftic_id,verify,znumber,netid,isIntl)
     @modules_available = FticModulesAvailable.find(ftic_id)
     @modules_available.verify = verify
     @modules_available.deposit = 1 #unlock deposit
@@ -227,9 +227,24 @@ class ApplicationController < ActionController::Base
     record_activity("Module Update | " + znumber + " | " + netid)   
   end
 
-  
+   
+  def update_ftic_learning_module(ftic_id,learning_comm,znumber,netid)
+    @modules_available = FticModulesAvailable.find(ftic_id)
+    @modules_available.learning_comm = learning_comm
+    @modules_available.oars = 1 #unlock oars
+    @modules_available.save
 
-  def update_ftic_communication_module(ftic_id,znumber,netid)
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     # if params[:znum]
+     #     redirect_to "/home?znum=#{params[:znum]}#step-oars" #redirect to deposit
+     # else
+     #    redirect_to "/home#step-oars"
+     # end  
+  end
+
+
+  def update_ftic_communication_module(ftic_id,learning_comm,znumber,netid)
     @modules_available = FticModulesAvailable.find(ftic_id)
     @modules_available.immunization = 1 #unlock immunization
     @modules_available.save
