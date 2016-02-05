@@ -25,5 +25,5 @@ env :PATH, '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
 every 15.minutes do
  #runner "FticModulesAvailable.sync"
  #command "/bin/bash -l -c 'cd /home/ihartstein/ror/ob && bin/rails runner '\''fticsync'\'''"
- runner "/bin/bash -l -c 'cd /home/ihartstein/ror/ob && source /home/ihartstein/.rvm/scripts/rvm && rvm use 1.9.3-p551 && script/rails runner -e development '\''FticModulesAvailable.sync'\'''"
+ runner "/bin/bash -l -c 'cd /home/ihartstein/ror/ob && source /home/ihartstein/.rvm/scripts/rvm && rvm use 2.1.6 && script/rails runner -e development '\''FticModulesAvailable.sync'\'''"
 end
