@@ -487,13 +487,13 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 
-		  	<% if  (communication_available == 1 || communication_bypass == 1 ) &&  ( account_complete == 1 )  %>
+		  	<% if  (communication_available == 1 || communication_bypass == 1 || account_complete == 1 )  %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
 			<% else %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (communication_available == 1 || communication_bypass == 1 ) &&  ( account_complete == 1 ) %>
+			<% if (communication_available == 1 || communication_bypass == 1 || account_complete == 1 ) %>
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
 			<% end %>
 
@@ -1890,14 +1890,14 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 		  
-		  <% if (emergency_available == 1 || emergencybypass == 1) && ( account_complete == 1 ) %>
+		  <% if emergencybypass == 1 || emergency_available == 1 || account_complete == 1 %>
 		  	<a id="emergencyhref" href="#step-emergency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="emergencyhref" href="#step-emergency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if (emergency_available == 1 || emergencybypass == 1) && ( account_complete == 1 ) %>
+		  <% if  emergencybypass == 1 || emergency_available == 1 || account_complete == 1 %>
 			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
 		  <% end %>
 
