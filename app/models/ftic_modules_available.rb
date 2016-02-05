@@ -19,7 +19,7 @@ class FticModulesAvailable < ActiveRecord::Base
          newstudent.verifybypass = 0
          newstudent.deposit = 1
          newstudent.depositbypass = 0
-         newstudent.account = 0
+         newstudent.account = 1
          newstudent.accountbypass = 0
          newstudent.communication = 0
          newstudent.communicationbypass = 0
@@ -56,7 +56,8 @@ class FticModulesAvailable < ActiveRecord::Base
          newstudent.tuitionbypass = 0
          newstudent.vehiclereg = 0 
          newstudent.vehicleregbypass = 0
-         newstudent.isactive = 0
+         newstudent.congrats = 0
+         newstudent.isactive = 1
          
          if bs['int_student'] == 'Y'
           newstudent.isInternational = 1
@@ -65,8 +66,11 @@ class FticModulesAvailable < ActiveRecord::Base
          end
 
          newstudent.intl_medical = 0
+         newstudent.intl_medical_bypass = 0
          newstudent.intl_visa = 0
+         newstudent.intl_visa_bypass = 0
          newstudent.intl_orientation = 0
+         newstudent.intl_orientation_bypass = 0
          newstudent.save(validate: false)   
         else
          student = FticModulesAvailable.find_by_znumber(bs['z_number'])       
