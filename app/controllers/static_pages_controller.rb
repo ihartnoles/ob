@@ -490,6 +490,19 @@ class StaticPagesController < ApplicationController
             housing_exemption = Housing.get_housing_exemption(@znum)
             housing_reqs = Banner.additional_housing_reqs(@znum)
             deposit_received = Housing.get_housing_deposit(@znum)
+            meal_plan_info = Housing.get_meal_plan(@znum)
+
+
+            #BEGIN: meal plan info
+            if meal_plan_info.count >= 1
+                @meal_plan_selected = 1
+                meal_plan_info.each do |mp| 
+                    @dining_plan = o['dining_plan']                               
+                end      
+            else
+              @meal_plan_selected = 0
+            end            
+            #END: meal plan info
 
             #set a default deposit received to 0
             @housing_deposit_received = 0

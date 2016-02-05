@@ -1123,13 +1123,17 @@ Hello, <%= session[:cas_user] %>!
 		  		 <a title="FAU Housing" href="http://www.fau.edu/housing/" target="_blank">[More Information]</a> 
 		  		</p>
 
+		  		<h3 class="title">Housing Requirement</h3>
+
 		  		<div class="alert alert-border <%if @housing_fee_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
 			  		<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 		             <p>
 		             	<strong>
+		             		
 		             		  <% if @housing_exemption == 1 %>			  	
 				                    Our records indicate you have been granted a housing exemption. As such you are NOT required to live in University Housing.
 		  					 <% elsif @housing_fee_required == 1%>	      
+		  					 		
 		  					 		Our records indicate you meet one or more of the following criteria:
 
 				                    <br>Your residential address is OUTSIDE the 30-mile commutable radius of the campus. 
@@ -1137,41 +1141,65 @@ Hello, <%= session[:cas_user] %>!
 				                	<!-- <br>Your marital status is: single.<br> -->
 				                    <br>As such you are required to live in University Housing.	
 
-				                    <hr>
+				                    
 
 				                    <p>
 		  							 	<!-- <a title="FAU Housing" href="https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=<%=params[:znum]%>" target="_blank">[Sign up here]</a> -->
 		  							 	<%= get_housing_deposit(znum) %>
 		  							</p>       
 
-		  							<p>
+		  							<!-- <p>
 		  								<a title="FAU Housing" href="https://talon.fau.edu/sso/housing" target="_blank">[Your Housing Information]</a> 
 		  								
-		  							</p>       	
+		  							</p>       --> 	
 			                 <% else %>
+
 			                 		Our records indicate you meet at least one of the following criteria:
 			                 		<br>Your residential address is within a 30-mile commutable radius of the campus, 
 			                 		<br>You are over the age of 21.
 			                 		<!-- <br>Your marital status is: married.<br>  -->
 			                 		<br>As such you are NOT required to live in University Housing.
 
-			                 		<hr>
-
 			                 		<% if @housing_deposit_received == 1 %>
-			                 			<p>
+			                 		    <p>
 		  							 		<%= get_housing_deposit(znum) %>
 		  								</p>   
 			                 		<% end %>
 
+			                 		<!-- 
 			                 		<p>
 		  								<a title="FAU Housing" href="https://talon.fau.edu/sso/housing" target="_blank">[Your Housing Information]</a> 
-		  								
-		  							</p>   
+		  							</p>
+		  							-->
 			                 <% end %>
+
+
 	              		</strong>
 		              <p>
 	              </div>
 
+	              <h3 class="title">Meal Plan Status</h3>
+	                 <% if @housing_exemption == 1 ||  @housing_fee_required == 0 %>	
+	                 	  <div class="alert alert-border alert-info text-center fade in">
+	                 	  	<p>Students who either commute (drive to school) or live in the upperclassmen student apartments (Innovation Village, University Village) can purchase any of these particular meal plan options known as a profiler package!</p>
+
+							<p>
+
+By purchasing one of these profiler meal plan packages, you will avoid waiting in the occasional longer lines, sales tax when paying cash or credit at the Atlantic Dining Hall, and save that parking spot! You can even save an average of $175 dollars with a commuter meal plan.  <a href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">[Purchase a meal plan]</a>
+							</p>
+	                 	  </div>
+	                 <% else %>
+		             	 <div class="alert alert-border <%if @meal_plan_selected == 1 %>alert-success<%else%>alert-info<%end%> text-center fade in">
+			              <% if @meal_plan_selected == 1 %>
+			              	You are signed up for the <%= @dining_plan %>
+			              <% else %>
+			              	You have not signed up for a meal plan. 
+			              	<p>
+		  								<a title="FAU Dining" href="https://talon.fau.edu/sso/housing" target="_blank">[Choose your meal plan]</a> 
+		  					</p>
+			              <% end %>
+			             </div>
+			          <% end %>
 		  		
 				<% end %>
 
