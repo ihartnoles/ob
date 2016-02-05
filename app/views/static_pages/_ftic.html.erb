@@ -2554,7 +2554,16 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 
 	//   updateMeter('10');
 	// })
+	
 
+	$('#welcomeBut').click(function () {
+	  $('#step-1').collapse('hide');
+	  $('#step-1').prev().addClass('collapsed');
+	  $('#step-account').collapse('show');
+	  $('#step-account').prev().removeClass('collapsed');
+	 
+	  //updateMeter('10');
+	})
 
  	
 	 $('#contactBut').click(function (e) {
