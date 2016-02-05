@@ -497,7 +497,7 @@ class StaticPagesController < ApplicationController
             if meal_plan_info.count >= 1
                 @meal_plan_selected = 1
                 meal_plan_info.each do |mp| 
-                    @dining_plan = o['dining_plan']                               
+                    @dining_plan = mp['dining_plan']                               
                 end      
             else
               @meal_plan_selected = 0
