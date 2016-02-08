@@ -297,7 +297,7 @@ Hello, <%= session[:cas_user] %>!
 						</table>
 						
 
-						<p><strong>Is your information correct?</strong></p>																
+						<p><h3 class="title">Is your information correct?</h3></p>																
 							<%= form_tag('/save_verify_info', {:class => 'form-horizontal', :role => 'form'}) do %>
 								    <%= hidden_field_tag :znumber, @znum %>
 								    <%= hidden_field_tag :netid, @displayname %>
@@ -2573,6 +2573,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	  //updateMeter('10');
 	})
 
+	 $('#verifySaveBut').click(function (e) {
+	 	if ( !$("input[name=verify_info]:checked").is(":checked")) {
+	 		alert('Please tell us if your information is correct.');
+	 		e.preventDefault();
+	 	}	 	
+	 });
+	
  	
 	 $('#contactBut').click(function (e) {
 	    
