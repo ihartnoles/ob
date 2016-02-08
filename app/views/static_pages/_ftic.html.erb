@@ -1125,40 +1125,49 @@ Hello, <%= session[:cas_user] %>!
 
 		  		<h3 class="title">Housing Requirement</h3>
 
-		  		<div class="alert alert-border <%if @housing_fee_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+		  		<div class="alert alert-border <%if @housing_fee_complete == 1 %>alert-success<%else%>alert-danger<%end%> text fade in">
 			  		<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 		             <p>
 		             	<strong>
+
+		             		<div class="col-sm-3">
+			                	&nbsp;
+			                </div>
 		             		
-		             		  <% if @housing_exemption == 1 %>			  	
-				                    Our records indicate you have been granted a housing exemption. As such you are NOT required to live in University Housing.
+		             		  <% if @housing_exemption == 1 %>		
+		             		  		
+		             		  		<div class="col-sm-6 ">	  	
+				                    	Our records indicate you have been granted a housing exemption. As such you are NOT required to live in University Housing.
+				                    </div>
+
 		  					 <% elsif @housing_fee_required == 1%>	      
 		  					 		
+		  					 		<div class="col-sm-6 ">
 		  					 		Our records indicate you meet one or more of the following criteria:
 
-				                    <br>Your residential address is OUTSIDE the 30-mile commutable radius of the campus. 
-				                    <br>You are under the age of 21.
-				                	<!-- <br>Your marital status is: single.<br> -->
-				                    <br>As such you are required to live in University Housing.	
+		  					 		<ul>
+					                    <li>Your residential address is OUTSIDE the 30-mile commutable radius of the campus.</li> 
+					                    <li>You are under the age of 21.</li> 
+					                	<li>As such you are required to live in University Housing.</li> 
+				                    </ul>
 
-				                    
-
-				                    <p>
-		  							 	<!-- <a title="FAU Housing" href="https://housing.fau.edu/THDSS/security/login_student_posted.cfm?StudentID=<%=params[:znum]%>" target="_blank">[Sign up here]</a> -->
+				                    <p>		  							 	
 		  							 	<%= get_housing_deposit(znum) %>
 		  							</p>       
 
-		  							<!-- <p>
-		  								<a title="FAU Housing" href="https://talon.fau.edu/sso/housing" target="_blank">[Your Housing Information]</a> 
-		  								
-		  							</p>       --> 	
+		  							
 			                 <% else %>
 
-			                 		Our records indicate you meet at least one of the following criteria:
-			                 		<br>Your residential address is within a 30-mile commutable radius of the campus, 
-			                 		<br>You are over the age of 21.
-			                 		<!-- <br>Your marital status is: married.<br>  -->
-			                 		<br>As such you are NOT required to live in University Housing.
+			                        <div class="col-sm-6 ">
+                            			Our records indicate you meet at least one of the following criteria:
+				                 		<ul>
+				                 			<li>Your residential address is within a 30-mile commutable radius of the campus</li>
+				                 			<li>You are over the age of 21.</li>
+				                 			<!-- <br>Your marital status is: married.<br>  -->
+				                 			<li>As such you are NOT required to live in University Housing.</li>
+				                 		</ul>
+				                 	</div>
+			                 	
 
 			                 		<% if @housing_deposit_received == 1 %>
 			                 		    <p>
@@ -1166,13 +1175,12 @@ Hello, <%= session[:cas_user] %>!
 		  								</p>   
 			                 		<% end %>
 
-			                 		<!-- 
-			                 		<p>
-		  								<a title="FAU Housing" href="https://talon.fau.edu/sso/housing" target="_blank">[Your Housing Information]</a> 
-		  							</p>
-		  							-->
+			                 	
 			                 <% end %>
 
+			                 <div class="col-sm-3 ">
+			                 	&nbsp;
+			                 </div>
 
 	              		</strong>
 		              <p>

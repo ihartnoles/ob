@@ -541,7 +541,7 @@ class StaticPagesController < ApplicationController
                     end
                    
                     #determine if housing fee is required
-                    if housing_fee_required = 1 || housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
+                    if housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
                       @housing_fee_required = 1
                       @housing_fee_complete = 0           
                     else
