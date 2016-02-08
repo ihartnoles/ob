@@ -244,7 +244,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def update_ftic_communication_module(ftic_id,learning_comm,znumber,netid)
+  def update_ftic_communication_module(ftic_id,znumber,netid)
     @modules_available = FticModulesAvailable.find(ftic_id)
     @modules_available.immunization = 1 #unlock immunization
     @modules_available.save

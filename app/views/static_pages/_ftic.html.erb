@@ -509,7 +509,7 @@ Hello, <%= session[:cas_user] %>!
 					<% else %>
 				  		 <p>Stay up to date with the student onboarding process. Receive notifications about outstanding issues or items which require your attention.</p>
 
-				  		 <p>Please select all that apply below</p>
+				  		 <p>Please select at least one option:</p>
 			
 			
 						<!-- <form>
@@ -2567,7 +2567,17 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
  	
 	 $('#contactBut').click(function (e) {
-	 	//alert('contactBut clicked');
+	    
+	    // alert('contactBut clicked');
+
+	    // alert(!$('#contactByPhone').is(':checked'));
+	    // alert(!$('#contactByEmail').is(':checked'));
+
+	    if ( !$('#contactByPhone').is(':checked') && !$('#contactByEmail').is(':checked') ){
+	 		alert('Please choose your communication preferences.');
+	 		e.preventDefault();
+	 	}
+
 	    
 	    if($('#contactByPhone').is(':checked')) {
 	    	 
