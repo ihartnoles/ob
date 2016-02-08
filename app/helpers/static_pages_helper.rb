@@ -214,7 +214,8 @@ module StaticPagesHelper
 
         end
       else
-        return "Immunization status pending"
+        tmp = " You need to make sure your immunization records are up to date. <br><a title='FAU Immunizations' href='http://myhealth.fau.edu/Account/Logon?ReturnUrl=%2f' target='_blank'>[More Information]</a>"
+        return tmp.html_safe
       end 
      end
 
