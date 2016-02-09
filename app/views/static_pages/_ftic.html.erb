@@ -239,7 +239,7 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>	
 			
 			<% if (@verify_available == 1 || @verify_bypass == 1) && ( account_complete == 1 )%>
-			  <div class="number"><!-- Step 3 --><%= get_statusicon(@verify_available, @verify_info_complete, verify_bypass) %></div>
+			  <div class="number"><!-- Step 3 --><%#= get_statusicon(@verify_available, @verify_info_complete, verify_bypass) %><span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span></div>
 			<% end %>
 
 			  <h6><b>VERIFY YOUR INFORMATION</b></h6>
@@ -296,55 +296,7 @@ Hello, <%= session[:cas_user] %>!
 						  		
 						</table>
 						
-
-						<p><h3 class="title">Is your information correct?</h3></p>																
-							<%= form_tag('/save_verify_info', {:class => 'form-horizontal', :role => 'form'}) do %>
-								    <%= hidden_field_tag :znumber, @znum %>
-								    <%= hidden_field_tag :netid, @displayname %>
-								    <%= hidden_field_tag :id, @verify_id %>
-								    <%= hidden_field_tag :verify, 1 %>
-								    <%= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%= hidden_field_tag :intl, @isInternationalStudent %>
-
-								     <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-								    <% if params[:znum] %>
-								    	<%= hidden_field_tag :znum, @znum %>									    
-								    <% end %>
-								    
-								    <div class="radio">
-								    	<%= radio_button_tag 'verify_info', 'Yes', !!(@verify_info.nil? || @verify_info == 'Yes') %>Yes - my information is correct!<br>
-									</div>
-									
-								    <div class="radio">
-								    	<%= radio_button_tag 'verify_info', 'No' , !!(@verify_info.nil? || @verify_info == 'No')%>No - my information needs to be updated.<br>
-								    </div>
-
-									<div id="verify_options"  <% if @verify_info == 'Yes' %> <% else %> style="display:none" <% end %>>
-																
-									</div>
-
-									<br>
-									<%= submit_tag 'Continue' , :id=> "verifySaveBut", class: "btn btn-danger"%>										
-							<% end %>
-
-				  						  		
-				  		
-						<% #if  (@verify_available == 1 && @verify_info_complete == 1 || @verify_bypass == 1) &&  account_complete == 1 %>
-				  		 	<!-- <div class="buttons-box text-right">
-				  		 		<%#= form_tag('/update_ftic_verify_module' , {:class => 'register-form form-validator'})  do %>
-				  		 		 	<%#= hidden_field_tag :znumber, @znum %>
-								    <%#= hidden_field_tag :netid, @displayname %>
-								    <%#= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%#= hidden_field_tag :verify, 1 %>
-								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-									<%# if params[:znum] %>
-									   	<%#= hidden_field_tag :znum, @znum %>									    
-									<%# end %>
-							    	<!--  <button type="submit" class="btn btn-danger" id="verifyBut">Continue</button> -->		
-						 		<%# end %>				 
-						 	<!-- </div> -->
-						 <%# end %>						 
-						
+						<br><button type="button" class="btn btn-continue btn-danger" id="verify">Continue</button>
 						
 					<% end %>
 			  </div>
@@ -2582,12 +2534,19 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	  //updateMeter('10');
 	})
 
-	 $('#verifySaveBut').click(function (e) {
-	 	if ( !$("input[name=verify_info]:checked").is(":checked")) {
-	 		alert('Please tell us if your information is correct.');
-	 		e.preventDefault();
-	 	}	 	
-	 });
+	$('#verify').click(function () {
+	  $('#step-verify').collapse('hide');
+	  $('#step-verify').prev().addClass('collapsed');
+	  $('#step-deposit').collapse('show');
+	  $('#step-deposit').prev().removeClass('collapsed');	 
+	})
+
+	 // $('#verifySaveBut').click(function (e) {
+	 // 	if ( !$("input[name=verify_info]:checked").is(":checked")) {
+	 // 		alert('Please tell us if your information is correct.');
+	 // 		e.preventDefault();
+	 // 	}	 	
+	 // });
 	
  	
 	 $('#contactBut').click(function (e) {
