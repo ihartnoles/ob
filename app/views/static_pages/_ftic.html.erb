@@ -1155,17 +1155,22 @@ Hello, <%= session[:cas_user] %>!
 		  							 	<%= get_housing_deposit(znum) %>
 		  							</p>       
 
-		  							
+		  							</div>
 			                 <% else %>
 
 			                        <div class="col-sm-6 ">
-                            			Our records indicate you meet at least one of the following criteria:
+                            			Our records indicate you meet one or more of the following criteria:
 				                 		<ul>
 				                 			<li>Your residential address is within a 30-mile commutable radius of the campus</li>
 				                 			<li>You are over the age of 21.</li>
 				                 			<!-- <br>Your marital status is: married.<br>  -->
 				                 			<li>As such you are NOT required to live in University Housing.</li>
 				                 		</ul>
+
+				                 		<div align="center">
+				                 			<br><a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Optionally Sign Up for Housing Here]</a>
+				                 		</div>
+
 				                 	</div>
 			                 	
 
@@ -1193,7 +1198,11 @@ Hello, <%= session[:cas_user] %>!
 
 							<p>
 
-By purchasing one of these profiler meal plan packages, you will avoid waiting in the occasional longer lines, sales tax when paying cash or credit at the Atlantic Dining Hall, and save that parking spot! You can even save an average of $175 dollars with a commuter meal plan.  <a href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">[Purchase a meal plan]</a>
+By purchasing one of these profiler meal plan packages, you will avoid waiting in the occasional longer lines, sales tax when paying cash or credit at the Atlantic Dining Hall, and save that parking spot! You can even save an average of $175 dollars with a commuter meal plan.  <br>
+
+<div align="center">
+	<br><a href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">[Purchase a meal plan]</a>
+</div>
 							</p>
 	                 	  </div>
 	                 <% else %>
