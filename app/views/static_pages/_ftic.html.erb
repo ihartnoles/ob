@@ -630,7 +630,7 @@ Hello, <%= session[:cas_user] %>!
 							<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-		  		<p>To comply with Florida Board of Governors Regulations, prior to registration, all students must submit a signed FAU Immunization Form and documented proof of immunizations to measles and rubella. In addition, all students must provide documentation of vaccinations against meningococcal meningitis and hepatitis B or provide a signed waiver for each declined vaccination. Students will not be allowed to register for classes until all documentation has been approved by the Student Health Services Immunization Office. For more information or to download the immunization form visit www.fau.edu/shs &nbsp;<a title="FAU Immunization Guidelines" href="http://www.fau.edu/shs/info_forms/immunizations.php" target="_blank">[More Information]</a></p>
+		  		<p>To comply with Florida Board of Governors Regulations, prior to registration, all students must submit a signed FAU Immunization Form and documented proof of immunizations to measles and rubella. In addition, all students must provide documentation of vaccinations against meningococcal meningitis and hepatitis B or provide a signed waiver for each declined vaccination. Students will not be allowed to register for classes until all documentation has been approved by the Student Health Services Immunization Office.</p>
 
 		  		<!-- <p>
 		  			
@@ -1092,19 +1092,26 @@ Hello, <%= session[:cas_user] %>!
 				                    	Our records indicate you have been granted a housing exemption. As such you are NOT required to live in University Housing.
 				                    </div>
 
-		  					 <% elsif @housing_fee_required == 1%>	      
+		  					 <% elsif @housing_fee_required == 1 %>	      
 		  					 		
 		  					 		<div class="col-sm-6 ">
 		  					 		Our records indicate you meet one or more of the following criteria:
 
 		  					 		<ul>
 					                    <li>Your residential address is OUTSIDE the 30-mile commutable radius of the campus.</li> 
-					                    <li>You are under the age of 21.</li> 
-					                	<li>As such you are required to live in University Housing.</li> 
+					                    <li>You are under the age of 21.</li> 					                	
 				                    </ul>
 
-				                    <p>		  							 	
-		  							 	<%= get_housing_deposit(znum) %>
+				                    <div align="center">
+				                 		<br>As such you are required to live in University Housing.
+				                 	</div>
+
+				                    <p>		
+				                    	<% if @term != 'Summer' %>  							 	
+		  							 		<%= get_housing_deposit(znum) %>
+		  							 	<% else %>
+		  							 		<br><a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
+		  							 	<% end %>
 		  							</p>       
 
 		  							</div>
@@ -1115,11 +1122,11 @@ Hello, <%= session[:cas_user] %>!
 				                 		<ul>
 				                 			<li>Your residential address is within a 30-mile commutable radius of the campus</li>
 				                 			<li>You are over the age of 21.</li>
-				                 			<!-- <br>Your marital status is: married.<br>  -->
-				                 			<li>As such you are NOT required to live in University Housing.</li>
+				                 			<!-- <br>Your marital status is: married.<br>  -->				                 			
 				                 		</ul>
 
 				                 		<div align="center">
+				                 			<br>As such you are NOT required to live in University Housing.
 				                 			<br><a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Optionally Sign Up for Housing Here]</a>
 				                 		</div>
 
@@ -1128,7 +1135,11 @@ Hello, <%= session[:cas_user] %>!
 
 			                 		<% if @housing_deposit_received == 1 %>
 			                 		    <p>
-		  							 		<%= get_housing_deposit(znum) %>
+		  							 		<% if @term != 'Summer' %>  							 	
+		  							 			<%= get_housing_deposit(znum) %>
+			  							 	<% else %>
+			  							 		<br><a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
+			  							 	<% end %>
 		  								</p>   
 			                 		<% end %>
 

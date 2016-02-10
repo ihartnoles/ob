@@ -205,7 +205,7 @@ module StaticPagesHelper
           # puts YAML::dump(o)
 
          if o['imm_hold_flg'] == 'Y' 
-           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <a title='FAU Immunizations' href='http://myhealth.fau.edu/Account/Logon?ReturnUrl=%2f' target='_blank'>[More Information]</a>"           
+           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <a title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"           
          else
            tmp =  "Your immunization records are up to date!  Good job!"
          end
@@ -214,7 +214,7 @@ module StaticPagesHelper
 
         end
       else
-        tmp = " You need to make sure your immunization records are up to date. <br><a title='FAU Immunizations' href='http://myhealth.fau.edu/Account/Logon?ReturnUrl=%2f' target='_blank'>[More Information]</a>"
+        tmp = " You need to make sure your immunization records are up to date. <br> <a title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"
         return tmp.html_safe
       end 
      end

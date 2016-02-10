@@ -524,15 +524,20 @@ class StaticPagesController < ApplicationController
                     housing_reqs.each do |o| 
                        @married = o['spbpers_mrtl_code']
                        @whc_student = o['whc_student']    
-                       @age = o['age']               
+                       @age = o['age']   
+                       @term = o['term']            
                     end      
 
-                    if @married = 'M' ||  @age >= 21 #check if they are married or over the age of 21
+                     # puts YAML::dump('***** START ******')
+                     # puts YAML::dump(@term)
+                     # puts YAML::dump('****** END ********')
+
+                    if @married = 'M' ||  @age >= 21 || @term = 'Summer' #check if they are married ,over the age of 21, or enrolling in summer; Summer == NO FEE FOR HOUSING
                        @housing_fee_required = 0
                        @housing_fee_complete = 1 
                     end
 
-                    if @whc_student == 'Y' #check if they are a wilkes honors college student
+                    if @whc_student == 'Y'  #check if they are a wilkes honors college student
                       #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
                       housing_fee_required = 1                   
                     else
