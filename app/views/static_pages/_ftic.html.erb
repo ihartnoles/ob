@@ -835,7 +835,7 @@ Hello, <%= session[:cas_user] %>!
 				<% else %>
 
 			  				
-							<% if @fafsa_complete == 0 %>
+							<% if @fafsa_complete == 0 || @fafsa_complete.nil? %>
 			  					<div class="alert alert-border alert-danger text-center fade in">
 			  						Our records indicate you have not completed your Free Application for Federal Student Aid (FAFSA).<br>
 			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" target="_blank">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.
