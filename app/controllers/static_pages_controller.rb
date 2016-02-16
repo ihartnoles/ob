@@ -541,8 +541,12 @@ class StaticPagesController < ApplicationController
                       #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
                       housing_fee_required = 1                   
                     else
-                      #check zipcode radius for Boca Campus              
-                      housing_fee_required = HousingZipcode.where(:zip => @zipcode)
+                      #check zipcode radius for Boca Campus
+                      if 
+                        housing_fee_required = HousingZipcode.where(:zip => @zipcode.gsub(/\D/, ''))
+                      else
+                        housing_fee_required = 1 
+                      end
                     end
                    
                     #determine if housing fee is required
