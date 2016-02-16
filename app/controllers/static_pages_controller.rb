@@ -576,12 +576,15 @@ class StaticPagesController < ApplicationController
           #@residency_complete = 0
           if residency_status.count <= 0
                @residency_complete = 0
+               @FLA_resident = 0
           else
             residency_status.each do |o|
-               if o['sgbstdn_resd_code'].include?('T') || o['sgbstdn_resd_code'].include?('F') || o['sgbstdn_resd_code'].include?('R') || o['sgbstdn_resd_code'].include?('O')
-                @residency_complete = 1
+               @residency_complete = 1
+
+              if o['sgbstdn_resd_code'].include?('T') || o['sgbstdn_resd_code'].include?('F') || o['sgbstdn_resd_code'].include?('R') || o['sgbstdn_resd_code'].include?('O')
+                @FLA_resident = 1
               else
-                @residency_complete = 0
+                @FLA_resident = 0
               end 
             end
           end

@@ -789,7 +789,7 @@ Hello, <%= session[:cas_user] %>!
 
 				 <% end %>
 
-				  <% if  (residency_available == 1 && residency_complete == 1 ) || residency_bypass == 1 %>
+				  <% if  residency_available == 1 || residency_bypass == 1 %>
 						   	
 						   	<div class="buttons-box text-right">
 				  		 		<%= form_tag('/update_ftic_residency_module' , {:class => 'register-form form-validator'})  do %>

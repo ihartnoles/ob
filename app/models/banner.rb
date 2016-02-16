@@ -149,7 +149,7 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.residency_status(id)
-			get = connection.exec_query("SELECT SGBSTDN_RESD_CODE from BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT SGBSTDN_RESD_CODE, spraddr_stat_code from BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.fin_aid_awards(id)
