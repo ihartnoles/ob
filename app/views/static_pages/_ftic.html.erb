@@ -191,12 +191,14 @@ Hello, <%= session[:cas_user] %>!
 					<% else %>						
 				  		 <p>The FAUNet ID is the account name you will use to login to many of the systems you will utilize in your daily life at Florida Atlantic University. It is a part of your official FAU e-mail address (e.g., FAUNetID@fau.edu). All students, faculty and staff are automatically granted a FAUNet ID and may claim their account by logging into the MyFAU portal. While many online services provided by the University require a separate password, OIT is working to synchronize these passwords while striving to improve the security of the system.</p>
 
+				  		   <!--<a title="FAU Account Claiming" href="#" id="claimAccountBut">[Startz claiming your account]</a> -->
+
 				  		<% if account_complete == 1 %>
 
 				  			<div class="alert alert-border <%if account_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
 								<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 								<p>
-								<strong>Congrats on claiming your account! You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
+								<strong>Congrats on claiming your account! <br> You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
 								</p>					
 					        </div>
 
@@ -215,10 +217,12 @@ Hello, <%= session[:cas_user] %>!
 						 	</div>
 
 					     <% else %>
-				  		 <p>
-				  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu" target="_blank" id="claimAccountBut">[Start claiming your account]</a>
-				  		 </p>			  		
-
+				  		 <div class="alert alert-border alert-danger text-center fade in">
+					  		 <p>
+					  		 	<strong>You must claim your FAU account before going any further. Please click on the link below to claim your account.<br>When you have completed the process you will have to log into this system again.</strong>
+					  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu">[Start claiming your account]</a>
+					  		 </p>			  		
+				  		 </div>
 				  		
 						<% end %>
 					<% end %>
@@ -2685,14 +2689,22 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	*/
 
 
-
+	/* close parent after child window closes
 	$('#claimAccountBut').click(function(event) {
 	    event.preventDefault();
 	    //window.open($(this).attr(""), "popupWindow", "width=600,height=600,scrollbars=yes");
 
-	    window.open("http://accountst.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");
-	});
+	    var child = window.open("http://accountst.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");
+	    var timer = setInterval(checkChild, 500);
 
+	    function checkChild() {
+			    if (child.closed) {
+			        alert("Child window closed");   
+			        clearInterval(timer);
+			    }
+			}
+	});
+	*/
 	 
 
 	/* BEGIN: title click functions */
@@ -2700,7 +2712,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	/* END: button click functions */
 
 
-	 /* helper functions */
 	 function clearNavBar(){
 	 	$('.progress-list li.active').removeClass('active');		
 	 }
