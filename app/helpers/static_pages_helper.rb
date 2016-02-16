@@ -325,25 +325,7 @@ module StaticPagesHelper
 
   	 end
 
-     def get_statusicon(available,completed,bypass)
-
-       if bypass == 1
-          return "bypassed <i class='fa fa-asterisk'></i>".html_safe
-       else
-          case 
-            when available == 0 && ( completed == 0 || completed.nil?)
-              return "<span class='badge badge-important'>locked <i class='fa fa-ban'></i></span>".html_safe
-            when available == 1 && ( completed == 0 || completed.nil?)
-              return " <span class='badge badge-important label label-danger'>incomplete <i class='fa fa-times'></i></span>".html_safe
-            when  completed == 1          
-              return "<span class='badge badge-important label label-success'>completed <i class='fa fa-check'></i></span>".html_safe
-           
-          else
-            return "N/A <i class='fa fa-ban'></i>".html_safe
-          end
-       end
-
-     end
+    
 
      def get_housing_deposit(znum)
       output = Housing.get_housing_deposit(znum)
