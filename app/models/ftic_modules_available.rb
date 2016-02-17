@@ -59,7 +59,7 @@ class FticModulesAvailable < ActiveRecord::Base
          newstudent.congrats = 0
          newstudent.isactive = 1
          
-         if bs['int_student'] == 'Y'
+         if bs['int_student'] == "Y"
           newstudent.isInternational = 1
          else
           newstudent.isInternational = 0
@@ -73,13 +73,20 @@ class FticModulesAvailable < ActiveRecord::Base
          newstudent.intl_orientation_bypass = 0
          newstudent.save(validate: false)   
         else
-         student = FticModulesAvailable.find_by_znumber(bs['z_number'])       
+         student = FticModulesAvailable.find_by_znumber(bs['z_number'])     
+
+         if bs['int_student'] == "Y"
+          isInternational = 1
+         else
+          isInternational = 0
+         end
+
          student.update_attributes(
           :netid => bs['gobtpac_external_user'],
           :znumber => bs['z_number'],
           :f_name => bs['f_name'],
           :l_name => bs['l_name'],
-          :isInternational => bs['int_student']
+          :isInternational => isInternational
          ) 
         end
 

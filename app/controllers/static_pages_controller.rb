@@ -714,6 +714,24 @@ class StaticPagesController < ApplicationController
      end
   end
 
+  def dashstats
+     get_daily_logins
+     get_login_times
+    
+     total = FticModulesAvailable.all().count
+    
+     @ftic_count = FticModulesAvailable.where(:isInternational => 0).count
+    
+     # @mourn_count = (Float(tmp_morn_count)/Float(login_times.count) * 100)
+     # @afternoon_count = (Float(tmp_afternoon_count)/Float(login_times.count)  * 100)
+     
+     @int_count = FticModulesAvailable.where(:isInternational => 1).count
+
+     @ftic_percent = (Float(@ftic_count)/Float(total)  * 100)
+     @int_percent = (Float(@int_count)/Float(total)  * 100)
+
+  end
+
   
  
 	def unauthorized
@@ -757,7 +775,7 @@ class StaticPagesController < ApplicationController
          newstudent.tution = 0
          newstudent.vehiclereg = 0 
          newstudent.isactive = 1
-         if bs['int_student'] == 'Y'
+         if bs['int_student'] == "Y"
           newstudent.isInternational = 1
          else
           newstudent.isInternational = 0
@@ -767,13 +785,20 @@ class StaticPagesController < ApplicationController
          newstudent.intl_orientation = 0
          newstudent.save(validate: false)   
         else
-         student = FticModulesAvailable.find_by_znumber(bs['z_number'])       
+         student = FticModulesAvailable.find_by_znumber(bs['z_number'])   
+
+         if bs['int_student'] == "Y"
+           isInternational = 1
+         else
+           isInternational = 0
+         end
+
          student.update_attributes(
           :netid => bs['gobtpac_external_user'],
           :znumber => bs['z_number'],
           :f_name => bs['f_name'],
           :l_name => bs['l_name'],
-          :isInternational => bs['int_student']
+          :isInternational =>  isInternational
          )
         end
 
@@ -797,27 +822,63 @@ class StaticPagesController < ApplicationController
   
    
 
-  # protected
+   protected
 
-  # def get_session_info
-  #    #puts YAML::dump(session.inspect)
-  #    session[:booyah] = "begin"
-  #    puts YAML::dump(session[:booyah])
-  #    puts YAML::dump(session[:cas_user].nil?)
-  #    puts YAML::dump(session[:cas_user].blank?)
-  #    puts YAML::dump(request.env['HTTP_REFERER'])
-
-  #    @lexluthor ='bananas'
-
-  #   if request.env['HTTP_REFERER'] == 'http://10.16.9.208:3000/login'
-  #        # @lexluthor = 'true'
-  #       CASClient::Frameworks::Rails::GatewayFilter, :only => [:login, :do_manual_login]
-  #       #CASClient::Frameworks::Rails::Filter, :except => [:login, :do_manual_login]
-  #   else
-  #        # @lexluthor = 'false'
-  #       CASClient::Frameworks::Rails::GatewayFilter, :only => [:login, :do_manual_login, :home]
-  #       #CASClient::Frameworks::Rails::Filter, :except => [:login, :do_manual_login, :home]
-  #   end 
+   def get_daily_logins
+      logins = ActivityLog.where(:note => 'User Login').pluck(:created_at)
      
-  # end
+     @sun_count = 0
+     @mon_count = 0
+     @tue_count = 0
+     @wed_count = 0
+     @thur_count = 0
+     @fri_count = 0
+     @sat_count = 0
+
+     logins.each do |l|
+         case l.wday
+           when 0            
+             @sun_count += 1             
+           when 1
+             @mon_count += 1     
+           when 2
+             @tue_count += 1
+           when 3
+             @wed_count += 1
+           when 4
+             @thur_count += 1
+           when 5
+             @fri_count += 1
+           else
+             @sat_count += 1
+           end
+     end
+     
+   end #end of daily logins
+
+   def get_login_times
+      login_times = ActivityLog.where(:note => 'User Login').pluck(:created_at)
+     
+     tmp_morn_count = 0
+     tmp_afternoon_count = 0
+     tmp_evening_count = 0
+    
+     login_times.each do |lt|
+        if lt.strftime("%H") >= "00" && lt.strftime("%H") < "12"
+           tmp_morn_count += 1  
+        elsif  lt.strftime("%H") > "12" && lt.strftime("%H") <= "18"
+           tmp_afternoon_count += 1
+        else
+           tmp_evening_count += 1
+        end          
+     end
+    
+     @mourn_count = (Float(tmp_morn_count)/Float(login_times.count) * 100)
+     @afternoon_count = (Float(tmp_afternoon_count)/Float(login_times.count)  * 100)
+     @evening_count = (Float(tmp_evening_count)/Float(login_times.count)  * 100)
+
+
+   end
+
+
 end

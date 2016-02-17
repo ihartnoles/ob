@@ -1,0 +1,289 @@
+<p>&nbsp;</p>
+
+<header class="page-header">
+    <div class="container">
+      <h3 class="title">Student Onboarding Stats</h1>
+    </div>  
+  </header>
+
+
+<div class="container">
+    <div class="row">
+
+    	<% if flash[:notice] %>
+			<div class="alert alert-info alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong><%= flash[:notice] %></strong>
+			</div>
+		<% end %>
+
+
+      <div class="sidebar col-sm-12 col-md-12" id="sidebar">
+		<aside class="widget menu">
+		 <!-- 
+		  <header>
+			<h3 class="title">Student Queues</h3>
+		  </header> 
+		 -->
+		  <nav>
+				 <div class="container">
+				 	<div align="center">
+						<strong>Quick Stats - Student Counts</strong><br>
+						<b>FTIC: <%=@ftic_count %></b> |  <b>INTERNATIONAL:<%=@int_count %> | TOTAL:<%=@int_count + @ftic_count%></b> <br>
+					</div>
+
+					<div class="bottom-padding col-sm-12 col-md-12">
+					  <div class="title-box">
+						<h1 class="title">Logins Per Day</h1>
+					  </div>
+			          <div class="graph" id="hero-bar"></div>
+					</div>		
+
+					<div class="bottom-padding col-sm-6 col-md-6">
+					  <div class="title-box">
+						<h1 class="title">Popular Login Times</h1>
+					  </div>
+			          <div class="graph" id="hero-donut" style="height: 245px"></div>
+					</div>
+
+					<div class="bottom-padding col-sm-6 col-md-6">
+					  <div class="title-box">
+						<h1 class="title">Student Types</h1>
+					  </div>
+			          <div class="graph" id="hero-donut2" style="height: 245px"></div>
+					</div>
+
+	  			</div>
+
+
+		  </nav>
+		</aside><!-- .menu-->
+	  </div>
+	 </div>
+
+	 <p>&nbsp;</p>
+
+	 
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/assets/morris.min.js"></script>
+<script src="/assets/raphael.min.js"></script>
+<script src="/assets/jquery.easypiechart.min.js"></script>
+
+<%= javascript_tag do %>
+
+graph();
+
+
+function graph($re) {
+  var $ = jQuery,
+	  tax_data;
+  
+  if ($re) {
+	$('.graph').html('');
+  }
+  
+ //  tax_data = [
+	// {
+	//   period: "2011 Q3",
+	//   licensed: 3407,
+	//   sorned: 660
+	// }, {
+	//   period: "2011 Q2",
+	//   licensed: 3351,
+	//   sorned: 629
+	// }, {
+	//   period: "2011 Q1",
+	//   licensed: 3269,
+	//   sorned: 618
+	// }, {
+	//   period: "2010 Q4",
+	//   licensed: 3246,
+	//   sorned: 661
+	// }, {
+	//   period: "2009 Q4",
+	//   licensed: 3171,
+	//   sorned: 676
+	// }, {
+	//   period: "2008 Q4",
+	//   licensed: 3155,
+	//   sorned: 681
+	// }, {
+	//   period: "2007 Q4",
+	//   licensed: 3226,
+	//   sorned: 620
+	// }, {
+	//   period: "2006 Q4",
+	//   licensed: 3245,
+	//   sorned: null
+	// }, {
+	//   period: "2005 Q4",
+	//   licensed: 3289,
+	//   sorned: null
+	// }
+ //  ];
+  
+ //  if ($('#hero-graph').length) {
+	// Morris.Line({
+	//   element    : "hero-graph",
+	//   data       : tax_data,
+	//   xkey       : "period",
+	//   ykeys      : ["licensed", "sorned"],
+	//   labels     : ["Licensed", "Off the road"],
+	//   lineColors : ["#3e8e00", "#000000"]
+	// });
+ //  }
+  
+   if ($('#hero-donut').length) {
+	 Morris.Donut({
+	   element   : "hero-donut",
+	   data      : [
+	 	{
+	 	  label: "Morning",
+	 	  value: <%=@mourn_count.round %>
+	 	}, {
+	 	  label: "Afternoon",
+	 	  value: <%=@afternoon_count.round %>
+	 	}, {
+	 	  label: "Evening",
+	 	  value:<%=@evening_count.round %>
+	 	}
+	   ],
+	   colors    : ["#C10841"],
+	   height    : 100,
+	   formatter : function(y) {
+	 	return y + "%";
+	   }
+	 });
+  }
+  
+
+   if ($('#hero-donut2').length) {
+	 Morris.Donut({
+	   element   : "hero-donut2",
+	   data      : [
+	 	{
+	 	  label: "FTIC",
+	 	  value: <%=@ftic_percent %>
+	 	}, {
+	 	  label: "TRANSFERS",
+	 	  value: <%=@int_percent %>
+	 	}
+	   ],
+	   colors    : ["#C10841"],
+	   height    : 100,
+	   formatter : function(y) {
+	 	return y + "%";
+	   }
+	 });
+  }
+
+ //  if ($('#hero-area').length) {
+	// Morris.Area({
+	//   element   : "hero-area",
+	//   data      : [
+	// 	{
+	// 	  period: "2010 Q1",
+	// 	  iphone: 2666,
+	// 	  ipad: null,
+	// 	  itouch: 2647
+	// 	}, {
+	// 	  period: "2010 Q2",
+	// 	  iphone: 2778,
+	// 	  ipad: 2294,
+	// 	  itouch: 2441
+	// 	}, {
+	// 	  period: "2010 Q3",
+	// 	  iphone: 4912,
+	// 	  ipad: 1969,
+	// 	  itouch: 2501
+	// 	}, {
+	// 	  period: "2010 Q4",
+	// 	  iphone: 3767,
+	// 	  ipad: 3597,
+	// 	  itouch: 5689
+	// 	}, {
+	// 	  period: "2011 Q1",
+	// 	  iphone: 6810,
+	// 	  ipad: 1914,
+	// 	  itouch: 2293
+	// 	}, {
+	// 	  period: "2011 Q2",
+	// 	  iphone: 5670,
+	// 	  ipad: 4293,
+	// 	  itouch: 1881
+	// 	}, {
+	// 	  period: "2011 Q3",
+	// 	  iphone: 4820,
+	// 	  ipad: 3795,
+	// 	  itouch: 1588
+	// 	}, {
+	// 	  period: "2011 Q4",
+	// 	  iphone: 15073,
+	// 	  ipad: 5967,
+	// 	  itouch: 5175
+	// 	}, {
+	// 	  period: "2012 Q1",
+	// 	  iphone: 10687,
+	// 	  ipad: 4460,
+	// 	  itouch: 2028
+	// 	}, {
+	// 	  period: "2012 Q2",
+	// 	  iphone: 8432,
+	// 	  ipad: 5713,
+	// 	  itouch: 1791
+	// 	}
+	//   ],
+	//   xkey        : "period",
+	//   ykeys       : ["iphone", "ipad", "itouch"],
+	//   labels      : ["iPhone", "iPad", "iPod Touch"],
+	//   hideHover   : "auto",
+	//   lineWidth   : 2,
+	//   pointSize   : 4,
+	//   lineColors  : ["#00c3ff", "#ff9d00", "#3e8e00"],
+	//   fillOpacity : 0.3,
+	//   smooth      : true
+	// });
+ //  }
+  
+  if ($('#hero-bar').length) {
+	return Morris.Bar({
+	  element    : "hero-bar",
+	  data       : [
+		{
+		  day: "Monday",
+		  logcount: <%= @mon_count %>
+		}, {
+		  day: "Tuesday",
+		  logcount: <%= @tue_count %>
+		}, {
+		  day: "Wednesday",
+		  logcount: <%= @wed_count %>
+		}, {
+		  day: "Thursday",
+		  logcount: <%= @thur_count %>
+		}, {
+		  day: "Friday",
+		  logcount: <%= @fri_count %>
+		}, {
+		  day: "Saturday",
+		  logcount: <%= @sat_count %>
+		}
+		, {
+		  day: "Sunday",
+		  logcount: 100
+		}
+	  ],
+	  xkey        : "day",
+	  ykeys       : ["logcount"],
+	  labels      : ["Logins"],
+	  barRatio    : 0.4,
+	  xLabelAngle : 35,
+	  hideHover   : "auto",
+	  barColors   : ["#00457C"]
+	});
+  }
+}
+
+<% end %>

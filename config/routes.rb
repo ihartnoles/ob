@@ -21,6 +21,7 @@ Ob::Application.routes.draw do
    match  '/zipcode/',         to: 'static_pages#calc_distance', via: 'post'
    get    '/zipcode',          to: 'static_pages#calc_distance'
    get    '/dashboard/:type',  to: 'static_pages#dashboard'
+   get    '/dashstats/',  to: 'static_pages#dashstats'
    get    '/messages/new/:znum',    to: 'messages#new'
    get    '/moduledetail/:id/:znum',    to: 'ftic_modules_availables#moduledetail'
 
