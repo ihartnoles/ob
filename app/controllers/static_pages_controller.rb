@@ -20,6 +20,11 @@ class StaticPagesController < ApplicationController
       #   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:login, :do_manual_login]
       #   before_filter CASClient::Frameworks::Rails::Filter, :except => [:login, :do_manual_login]
       # end 
+  
+  def routing_error
+    render_not_found(nil)
+  end
+
 
   def main
      @login = Login.new

@@ -28,6 +28,8 @@ gem 'activerecord-oracle_enhanced-adapter', '~> 1.4.0'
 gem 'activerecord-sqlserver-adapter'
 gem 'tiny_tds', '~> 0.6.3.rc1'
 
+gem 'exception_notification'
+
 #cas adapter
 #'rubycas-client', :git => 'https://github.com/mp-dhorsak/rubycas-client'
 gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'

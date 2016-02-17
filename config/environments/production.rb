@@ -70,5 +70,15 @@ Ob::Application.configure do
     :address              => "smtp.fau.edu",
     :port                 => 25,
   }
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[Error Report]",
+    :sender_address => %{"Onboarding Exception Notifier" <ihartstein@fau.edu>},
+    :exception_recipients => %w{ihartstein@fau.edu}
+  }
   
 end

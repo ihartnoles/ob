@@ -69,6 +69,9 @@ GEM
     domain_name (0.5.20160128)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
+    exception_notification (4.1.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.6.0)
     hike (1.2.3)
     http-cookie (1.0.2)
@@ -190,6 +193,7 @@ DEPENDENCIES
   bullet
   ckeditor!
   coffee-rails (~> 3.2.1)
+  exception_notification
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   multi_json
@@ -211,4 +215,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

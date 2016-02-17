@@ -6,6 +6,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 
+  unless Rails.application.config.consider_all_requests_local
+      rescue_from Exception,
+                  :with => :render_error
+      rescue_from ActiveRecord::RecordNotFound,
+                  :with => :render_not_found
+      rescue_from ActionController::RoutingError,
+                  :with => :render_not_found
+      rescue_from ActionController::UnknownController,
+                  :with => :render_not_found
+      rescue_from ActionController::UnknownAction,
+                  :with => :render_not_found
+  end
+
   def session_config
     session[:usertype]  = nil
       @znum = nil
@@ -334,6 +347,27 @@ class ApplicationController < ActionController::Base
           puts 'Could not get message charge, double check your settings and internet connection'
       end
   end
+  
+
+  protected
+    def render_not_found(exception)
+       
+       ExceptionNotifier::Notifier
+        .exception_notification(request.env, exception)
+        .deliver
+
+       render :file => 'public/404.html',  :status => :not_found, :layout => false
+        
+    end
+
+  protected
+    def render_error(exception)
+      ExceptionNotifier::Notifier
+        .exception_notification(request.env, exception)
+        .deliver
+       render :file => 'public/500.html',  :status => :not_found, :layout => false
+
+    end
 
 
 end #end of class

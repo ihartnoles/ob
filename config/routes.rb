@@ -60,4 +60,6 @@ Ob::Application.routes.draw do
    post   'update_ftic_vehicle_module',  to: 'ftic_modules_availables#update_ftic_vehicle_module'   
 
    # get    'sms', to: 'static_pages#sms'
+
+   match '*a', :to => 'static_pages#routing_error'
 end
