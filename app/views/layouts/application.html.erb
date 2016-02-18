@@ -17,7 +17,7 @@
   <%= stylesheet_link_tag "css/buttons/buttons.css" %>
   <%= stylesheet_link_tag "css/buttons/social-icons.css" %>
   <%= stylesheet_link_tag "css/font-awesome.min.css" %>
-  <%= stylesheet_link_tag "css/bootstrap.min.css" %>
+  <%#= stylesheet_link_tag "css/bootstrap.min.css" %>
   <%= stylesheet_link_tag "css/jslider.css" %>
   <%= stylesheet_link_tag "css/settings.css" %>
   <%= stylesheet_link_tag "css/jquery.fancybox.css" %>
@@ -33,8 +33,10 @@
   <%= stylesheet_link_tag "css/datatables.min.css" %>
   <%= stylesheet_link_tag "css/jquery.easy-pie-chart.css" %>
 
-   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+
 
   <%= javascript_include_tag 'ckeditor/ckeditor.js' %>
   <!-- Theme CSS -->
@@ -53,45 +55,45 @@
   <![endif]-->
   <style type="text/css">
    .spinner {
-   width: 100%;
-  height: 40px;
-  text-align: center;
-  font-size: 10px;
-  color:#00457C;
-}
-.spinner > div {
-  background-color: #00457C;
-  height: 100%;
-  width: 6px;
-  display: inline-block;
-  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  animation: sk-stretchdelay 1.2s infinite ease-in-out;
-}
-.spinner .rect2 {
-  -webkit-animation-delay: -1.1s;
-  animation-delay: -1.1s;
-}
-.spinner .rect3 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
-.spinner .rect4 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-.spinner .rect5 {
-  -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
-@-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4)}  
-  20% { -webkit-transform: scaleY(1.0) }
-}
-@keyframes sk-stretchdelay {
-  0%, 40%, 100% { transform: scaleY(0.4);webkit-transform: scaleY(0.4);}20%{ 
-    transform: scaleY(1.0);-webkit-transform: scaleY(1.0);
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+    color:#00457C;
   }
-}
+  .spinner > div {
+    background-color: #00457C;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  }
+  .spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+  .spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+  .spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+  .spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+  @-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4)}  
+    20% { -webkit-transform: scaleY(1.0) }
+  }
+  @keyframes sk-stretchdelay {
+    0%, 40%, 100% { transform: scaleY(0.4);webkit-transform: scaleY(0.4);}20%{ 
+      transform: scaleY(1.0);-webkit-transform: scaleY(1.0);
+    }
+  }
 </style>
 <%= csrf_meta_tags %>
 </head>

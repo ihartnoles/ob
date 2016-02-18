@@ -224,7 +224,7 @@ class FticModulesAvailablesController < ApplicationController
           end
 
       # END: Registration Check
-     
+     render layout: 'admin'
 
   end
 

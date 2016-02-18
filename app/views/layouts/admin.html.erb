@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FAU Student Onboarding Admin</title>
+  <meta class="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="img/favicon.ico">
+  
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
+  <!-- Plagins CSS -->
+  <%= stylesheet_link_tag "css/buttons/buttons.css" %>
+  <%= stylesheet_link_tag "css/buttons/social-icons.css" %>
+  <%= stylesheet_link_tag "css/font-awesome.min.css" %>
+  <%= stylesheet_link_tag "css/bootstrap.min.css" %>
+  <%= stylesheet_link_tag "css/jslider.css" %>
+  <%= stylesheet_link_tag "css/settings.css" %>
+  <%= stylesheet_link_tag "css/jquery.fancybox.css" %>
+  <%= stylesheet_link_tag "css/animate.css" %>
+  <%= stylesheet_link_tag "css/video-js.min.css" %>
+  <%= stylesheet_link_tag "css/morris.css" %>
+  <%= stylesheet_link_tag "css/royalslider/royalslider.css" %>
+  <%= stylesheet_link_tag "css/royalslider/skins/minimal-white/rs-minimal-white.css" %>
+  <%= stylesheet_link_tag "css/layerslider/layerslider.css" %>
+  <%= stylesheet_link_tag "css/ladda.min.css" %>
+  <%= stylesheet_link_tag "css/datepicker.css" %>
+  <%= stylesheet_link_tag "css/jquery.scrollbar.css" %>
+  <%= stylesheet_link_tag "css/datatables.min.css" %>
+  <%= stylesheet_link_tag "css/jquery.easy-pie-chart.css" %>
+
+   
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"> 
+<!--   <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">  -->
+
+
+  <%= javascript_include_tag 'ckeditor/ckeditor.js' %>
+  <!-- Theme CSS -->
+  <%= stylesheet_link_tag "css/style.css" %>
+  <!-- Responsive CSS -->
+  <%= stylesheet_link_tag "css/responsive.css" %>
+    <!-- Custom CSS -->
+  <%= stylesheet_link_tag "css/customizer/pages.css" %>
+  <%= stylesheet_link_tag "css/customizer/shop-pages-customizer.css" %>
+  <!-- IE Styles-->
+  <%= stylesheet_link_tag "css/ie/ie.css" %>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" %></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" %></script>
+	<link rel='stylesheet' href="css/ie/ie8.css" %>
+  <![endif]-->
+</head>
+
+<header class="header">
+  <div class="header-wrapper">
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-12 logo-box">
+		  <div class="logo">
+			<a href="index.html">
+			<!--
+			<img src="img/logo.svg" class="logo-img" alt=""> 
+			<img src="img/spirit-owl.png" class="logo-img" alt="">
+			-->
+			<img src="/assets/fau-header-white.png" class="logo-img" alt="" width="500px">
+			</a>
+		  </div>
+		</div><!-- .logo-box -->
+		
+		
+		
+	  </div><!--.row -->
+	</div>
+
+  </div><!-- .header-wrapper -->
+  <div class="breadcrumb-box breadcrumb-none"></div>
+</header><!-- .header -->
+
+
+<body class="fixed-header">
+<div class="page-box">
+<div class="page-box-content">
+
+
+
+<div class="breadcrumb-box">
+  <div class="container">
+    <ul class="breadcrumb">
+     <!--  <li><a href="index.html">Home</a> </li>
+      <li class="active">Charts</li> -->
+    </ul>	
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<section id="main">
+  <%= yield %>
+</section><!-- #main -->
+
+</div><!-- .page-box-content -->
+</div><!-- .page-box -->
+
+<div class="clearfix"></div>
+
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/assets/price-regulator/jshashtable-2.1_src.js"></script>
+<script src="/assets/price-regulator/jquery.numberformatter-1.2.3.js"></script>
+<script src="/assets/price-regulator/tmpl.js"></script>
+<script src="/assets/price-regulator/jquery.dependClass-0.1.js"></script>
+<script src="/assets/price-regulator/draggable-0.1.js"></script>
+<script src="/assets/price-regulator/jquery.slider.js"></script>
+<script src="/assets/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script src="/assets/jquery.touchSwipe.min.js"></script>
+<script src="/assets/jquery.elevateZoom-3.0.8.min.js"></script>
+<script src="/assets/jquery.imagesloaded.min.js"></script>
+<script src="/assets/jquery.appear.js"></script>
+<script src="/assets/jquery.sparkline.min.js"></script>
+<script src="/assets/jquery.easypiechart.min.js"></script>
+<script src="/assets/jquery.easing.1.3.js"></script>
+<script src="/assets/jquery.fancybox.pack.js"></script>
+<script src="/assets/isotope.pkgd.min.js"></script>
+<script src="/assets/jquery.knob.js"></script>
+<script src="/assets/jquery.stellar.min.js"></script>
+<script src="/assets/jquery.selectBox.min.js"></script>
+<script src="/assets/jquery.royalslider.min.js"></script>
+<script src="/assets/jquery.tubular.1.0.js"></script>
+<script src="/assets/SmoothScroll.js"></script>
+<script src="/assets/country.js"></script>
+<script src="/assets/spin.min.js"></script>
+<script src="/assets/ladda.min.js"></script>
+<script src="/assets/masonry.pkgd.min.js"></script>
+<script src="/assets/morris.min.js"></script>
+<script src="/assets/raphael.min.js"></script>
+<script src="/assets/video.js"></script>
+<script src="/assets/pixastic.custom.js"></script>
+<script src="/assets/livicons-1.4.min.js"></script>
+<script src="/assets/layerslider/greensock.js"></script>
+<script src="/assets/layerslider/layerslider.transitions.js"></script>
+<script src="/assets/layerslider/layerslider.kreaturamedia.jquery.js"></script>
+<script src="/assets/revolution/jquery.themepunch.plugins.min.js"></script>
+<script src="/assets/revolution/jquery.themepunch.revolution.min.js"></script>
+<script src="/assets/bootstrapValidator.min.js"></script>
+<script src="/assets/bootstrap-datepicker.js"></script>
+<script src="/assets/jplayer/jquery.jplayer.min.js"></script>
+<script src="/assets/jplayer/jplayer.playlist.min.js"></script>
+<script src="/assets/jquery.scrollbar.min.js"></script>
+
+<script src="/assets/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script> -->
+ 
+
+ 
+
+<%#= request.env.inspect %>
+<%#= debug ENV.to_h.to_yaml %>
+
+
+
+
+</body>
+</html>

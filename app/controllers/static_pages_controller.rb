@@ -712,6 +712,8 @@ class StaticPagesController < ApplicationController
        @table_label = "Student Queue"
        @modules_availabless = FticModulesAvailable.where(:isactive => 1).order(:netid)
      end
+
+      render layout: 'admin'
   end
 
   def dashstats
@@ -729,6 +731,8 @@ class StaticPagesController < ApplicationController
 
      @ftic_percent = (Float(@ftic_count)/Float(total)  * 100)
      @int_percent = (Float(@int_count)/Float(total)  * 100)
+
+     render layout: 'admin'
 
   end
 

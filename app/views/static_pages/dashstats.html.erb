@@ -1,76 +1,199 @@
-<p>&nbsp;</p>
-
 <header class="page-header">
     <div class="container">
-      <h3 class="title">Student Onboarding Stats</h1>
-    </div>  
+      <h3 class="title">Onboarding System Stats</h3>
+    </div>	
   </header>
 
-
-<div class="container">
-    <div class="row">
-
-    	<% if flash[:notice] %>
-			<div class="alert alert-info alert-dismissable">
-			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  <strong><%= flash[:notice] %></strong>
-			</div>
-		<% end %>
-
-
-      <div class="sidebar col-sm-12 col-md-12" id="sidebar">
-		<aside class="widget menu">
-		 <!-- 
-		  <header>
-			<h3 class="title">Student Queues</h3>
-		  </header> 
-		 -->
-		  <nav>
-				 <div class="container">
-				 	<div align="center">
+  <!-- 
+  <div class="container">
+  	<div class="alert alert-danger text-center fade in">
 						<strong>Quick Stats - Student Counts</strong><br>
 						<b>FTIC: <%=@ftic_count %></b> |  <b>INTERNATIONAL:<%=@int_count %> | TOTAL:<%=@int_count + @ftic_count%></b> <br>
-					</div>
+	</div>
+  </div>
+  -->
+  
+  <div class="container">
+    <article class="content">
+	  <div class="row">
+		<!-- <div class="bottom-padding col-sm-6 col-md-6">
+		  <div class="title-box">
+			<h2 class="title">Line v.1</h2>
+		  </div>
+		  <div class="chart" data-line="160, 240, 250, 280, 300, 250, 230, 200, 280, 380, 400, 360, 300, 220, 200, 150, 100, 100, 180, 180, 200, 160, 220, 140" data-line-color="#6bdcff" data-spot-color="#00c1fd" data-min-spot-color="#ff9d00" data-max-spot-color="#3e8e00">
+			Loading...
+		  </div>
+		</div> -->
+		
+		<!-- <div class="bottom-padding col-sm-6 col-md-6">
+		  <div class="title-box">
+			<h2 class="title">Bar v.1</h2>
+		  </div>
+		  <div class="chart" data-line="160, 220, 260, 120, 320, 260, 300, 160, 240, 100, 240, 120" data-type="bar" data-bar-color="rgba(255,115,0,.8)">
+			Loading...
+		  </div>
+		</div> -->
+		
+		<div class="clearfix"></div>
+		
+		<!-- <div class="bottom-padding col-sm-12 col-md-12">
+		  <div class="title-box">
+			<h2 class="title">Area</h2>
+		  </div>
+		  <div class="graph" id="hero-area"></div>
+		</div> -->
+		
+		<div class="clearfix"></div>
 
-					<div class="bottom-padding col-sm-12 col-md-12">
-					  <div class="title-box">
-						<h1 class="title">Logins Per Day</h1>
-					  </div>
-			          <div class="graph" id="hero-bar"></div>
-					</div>		
+		<div class="bottom-padding col-sm-12 col-md-12">
+		  <div class="title-box">
+			<h2 class="title">Day of the Week Login Activity</h2>
+		  </div>
+          <div class="graph" id="hero-bar"></div>
+		</div>
 
-					<div class="bottom-padding col-sm-6 col-md-6">
-					  <div class="title-box">
-						<h1 class="title">Popular Login Times</h1>
-					  </div>
-			          <div class="graph" id="hero-donut" style="height: 245px"></div>
-					</div>
+		<!-- <div class="bottom-padding col-sm-6 col-md-6">
+		  <div class="title-box">
+			<h2 class="title">Bar v.2</h2>
+		  </div>
+          <div class="graph" id="hero-bar2"></div>
+		</div> -->
+		
+		
+		<!-- <div class="bottom-padding col-sm-6 col-md-6">
+		  <div class="title-box">
+			<h2 class="title"></h2>
+		  </div>
+          <div class="graph" id="hero-graph"></div>
+		</div> -->
+		
+		<div class="clearfix"></div>
+		
+		
 
-					<div class="bottom-padding col-sm-6 col-md-6">
-					  <div class="title-box">
-						<h1 class="title">Student Types</h1>
-					  </div>
-			          <div class="graph" id="hero-donut2" style="height: 245px"></div>
-					</div>
 
-	  			</div>
+		<!-- <div class="col-sm-4 col-md-4">
+		  <div class="title-box">
+			<h2 class="title">Student Counts</h2>
+		  </div>
+		<div class="chart" data-line="2, 8, 6, 10" data-type="pie" data-offset="+90" data-slice-colors="#ff9c00, #3e8e00, #00c3ff, #ef005c"> 
+		    <!-- <div class="chart" data-line="5, 5" data-type="pie" data-offset="+90" data-slice-colors="#ff9c00, #00c3ff"> -->
+			<!-- Loading... -->
+		 <!--  </div>
+		</div>  -->
 
 
-		  </nav>
-		</aside><!-- .menu-->
+		<div class="bottom-padding col-sm-4 col-md-4">
+		  <div class="title-box">
+			<h2 class="title">Student Precentage Breakdown in System</h2>
+		  </div>
+          <div class="graph" id="hero-donut2" style="height: 245px"></div>
+		</div>
+
+
+		<div class="bottom-padding col-sm-4 col-md-4">
+		  <div class="title-box">
+			<h2 class="title">Most Popular Login Times</h2>
+		  </div>
+          <div class="graph" id="hero-donut" style="height: 245px"></div>
+		</div>
+		
+
+		<div class="bottom-padding col-sm-4 col-md-4">
+		  <div class="title-box">
+			<h2 class="title">Student Counts in System</h2>
+		  </div>
+          <div class="graph" id="hero-donut3" style="height: 245px"></div>
+		</div>
+		
+		
+		 
+	    
+		
+		<!-- <div class="bottom-padding col-sm-4 col-md-4">
+		  <div class="title-box">
+			<h2 class="title">Tristate</h2>
+		  </div>
+		  <div class="chart" data-line="160, -220, 320, 260, -300, 160, -240, 100, 240" data-type="tristate" data-pos-bar-color="#3e8e00">
+			Loading...
+		  </div>
+		</div> -->
+		
+		<div class="clearfix"></div>
+		
+		<!-- <div class="bottom-padding col-sm-6 col-md-6">
+		  <div class="title-box">
+			<h2 class="title">Bullet</h2>
+		  </div>
+		  <div class="chart" data-line="10,12,12,9,7 " data-type="bullet" data-height="100" data-range-colors="#aae9fd, #55d3fa, #00c3ff">
+			Loading...
+		  </div>
+		</div> -->
+		
+		<!-- <div class="bottom-padding col-sm-6 col-md-6">
+		  <div class="title-box">
+			<h2 class="title">Box Plot</h2>
+		  </div>
+		  <div class="chart" data-line="160, 220, 260, 120, 320, 260, 300, 160, 240, 100, 240, 120" data-type="box" data-height="100">
+			Loading...
+		  </div>
+		</div> -->
 	  </div>
-	 </div>
-
-	 <p>&nbsp;</p>
-
-	 
+	</article><!-- .content -->
   </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/assets/price-regulator/jshashtable-2.1_src.js"></script>
+<script src="/assets/price-regulator/jquery.numberformatter-1.2.3.js"></script>
+<script src="/assets/price-regulator/tmpl.js"></script>
+<script src="/assets/price-regulator/jquery.dependClass-0.1.js"></script>
+<script src="/assets/price-regulator/draggable-0.1.js"></script>
+<script src="/assets/price-regulator/jquery.slider.js"></script>
+<script src="/assets/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script src="/assets/jquery.touchSwipe.min.js"></script>
+<script src="/assets/jquery.elevateZoom-3.0.8.min.js"></script>
+<script src="/assets/jquery.imagesloaded.min.js"></script>
+<script src="/assets/jquery.appear.js"></script>
+<script src="/assets/jquery.sparkline.min.js"></script>
+<script src="/assets/jquery.easypiechart.min.js"></script>
+<script src="/assets/jquery.easing.1.3.js"></script>
+<script src="/assets/jquery.fancybox.pack.js"></script>
+<script src="/assets/isotope.pkgd.min.js"></script>
+<script src="/assets/jquery.knob.js"></script>
+<script src="/assets/jquery.stellar.min.js"></script>
+<script src="/assets/jquery.selectBox.min.js"></script>
+<script src="/assets/jquery.royalslider.min.js"></script>
+<script src="/assets/jquery.tubular.1.0.js"></script>
+<script src="/assets/SmoothScroll.js"></script>
+<script src="/assets/country.js"></script>
+<script src="/assets/spin.min.js"></script>
+<script src="/assets/ladda.min.js"></script>
+<script src="/assets/masonry.pkgd.min.js"></script>
 <script src="/assets/morris.min.js"></script>
 <script src="/assets/raphael.min.js"></script>
-<script src="/assets/jquery.easypiechart.min.js"></script>
+<script src="/assets/video.js"></script>
+<script src="/assets/pixastic.custom.js"></script>
+<script src="/assets/livicons-1.4.min.js"></script>
+<script src="/assets/layerslider/greensock.js"></script>
+<script src="/assets/layerslider/layerslider.transitions.js"></script>
+<script src="/assets/layerslider/layerslider.kreaturamedia.jquery.js"></script>
+<script src="/assets/revolution/jquery.themepunch.plugins.min.js"></script>
+<script src="/assets/revolution/jquery.themepunch.revolution.min.js"></script>
+<script src="/assets/bootstrapValidator.min.js"></script>
+<script src="/assets/bootstrap-datepicker.js"></script>
+<script src="/assets/jplayer/jquery.jplayer.min.js"></script>
+<script src="/assets/jplayer/jplayer.playlist.min.js"></script>
+<script src="/assets/jquery.scrollbar.min.js"></script>
 
+<script src="/assets/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+<script src="/assets/main.js"></script>
+
+
+<% if request.url.include?('dashstats') %>
 <%= javascript_tag do %>
 
 graph();
@@ -150,7 +273,7 @@ function graph($re) {
 	 	  value:<%=@evening_count.round %>
 	 	}
 	   ],
-	   colors    : ["#C10841"],
+	   colors    : ["#ff9c00", "#3e8e00", "#00c3ff"],
 	   height    : 100,
 	   formatter : function(y) {
 	 	return y + "%";
@@ -165,19 +288,41 @@ function graph($re) {
 	   data      : [
 	 	{
 	 	  label: "FTIC",
-	 	  value: <%=@ftic_percent %>
+	 	  value: <%=@ftic_percent.round %>
 	 	}, {
 	 	  label: "TRANSFERS",
-	 	  value: <%=@int_percent %>
+	 	  value: <%=@int_percent.round %>
 	 	}
 	   ],
-	   colors    : ["#C10841"],
+	   colors    : ["#C10841" , "#00457C"],
 	   height    : 100,
 	   formatter : function(y) {
 	 	return y + "%";
 	   }
 	 });
   }
+
+  if ($('#hero-donut3').length) {
+	 Morris.Donut({
+	   element   : "hero-donut3",
+	   data      : [
+	 	{
+	 	  label: "FTIC",
+	 	  value: <%=@ftic_count %>
+	 	}, {
+	 	  label: "TRANSFERS",
+	 	  value: <%=@int_count %>
+	 	}
+	   ],
+	   colors    : ["#00457C" , "#C10841"],
+	   height    : 100,
+	   formatter : function(y) {
+	 	return y ;
+	   }
+	 });
+  }
+
+   
 
  //  if ($('#hero-area').length) {
 	// Morris.Area({
@@ -246,6 +391,8 @@ function graph($re) {
 	//   smooth      : true
 	// });
  //  }
+
+  
   
   if ($('#hero-bar').length) {
 	return Morris.Bar({
@@ -286,4 +433,5 @@ function graph($re) {
   }
 }
 
+<% end %>
 <% end %>
