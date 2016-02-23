@@ -216,6 +216,106 @@ class ApplicationController < ActionController::Base
 
   end
 
+  def updateCompletedStep     
+    currentstep = 'n/a'
+    
+    while true
+     if  @welcome_complete == 0
+         currentstep = 'Welcome'
+         break
+     end
+     if  @account_complete == 0
+         currentstep = 'Create Account'
+         break
+     end
+
+     if @verify_complete == 0
+         currentstep = 'Verify Info'
+         break
+     end
+
+     if @deposit_complete == 0
+         currentstep = 'Deposit'
+         break
+     end
+
+     if @communication_complete == 0
+        currentstep = 'Comm. Pref.'
+        break
+     end
+
+     if @immunization_complete == 0
+        currentstep = 'Immunization'
+        break
+     end
+
+     if @residency_complete == 0
+        currentstep = 'Residency'
+        break
+     end
+
+     if  @finaid_complete == 0
+         currentstep = 'Fin. Aid.'
+         break
+     end
+     
+     if  @housing_fee_complete == 0
+         currentstep = 'Housing & Meal'
+         break
+     end
+
+     if  @aleks_complete == 0
+         currentstep = 'Aleks'
+         break
+     end
+
+     if  @orientation_complete == 0
+         currentstep = 'Orientation'
+         break
+     end
+
+     if  @learning_comm_complete == 0
+         currentstep = 'Learning Communities'
+         break
+     end
+
+     if  @oars_complete == 0
+         currentstep = 'OARS'
+         break
+     end
+
+     if  @reg_complete == 0
+         currentstep = 'Registration'
+         break
+     end
+
+     if  @reg_complete == 0
+         currentstep = 'Registration'
+         break
+     end
+
+     if @tuition_complete == 0
+         currentstep = 'Tuition Payment'
+         break
+     end
+
+     if @emergency_complete == 0
+         currentstep = 'Emergency Contacts'
+         break
+     end
+
+     if @fau_alert_complete == 0
+         currentstep = 'FAU Alert'
+         break
+     end
+    end
+        
+    @ftic = FticModulesAvailable.find_by_znumber(@znum)
+    @ftic.current_step = currentstep
+    @ftic.save
+  end
+
+
   def record_activity(note)
     @activity = ActivityLog.new
     @activity.netid = session[:cas_user]

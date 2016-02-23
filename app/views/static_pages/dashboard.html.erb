@@ -104,7 +104,7 @@
 	            <th>Z#</th>
 	            <th>First</th>
 	            <th>Last</th>
-	            <th>Status</th>
+	            <th>Module</th>
 	            <th>Actions</th>  	            
 	                      
 	          </tr>
@@ -116,7 +116,7 @@
 	              <td><%= modules_available.znumber %></td>
 	              <td><%= modules_available.f_name %></td>
 	              <td><%= modules_available.l_name %></td>
-	              <td class="text-warning"><em>Pending</em></td>
+	              <td class="text-info"><em><%= modules_available.current_step %></em></td>
 	              <td>
 	              	 <div class="btn-group">
 	              	 	<!-- <a href="/moduledetail/<%= modules_available.id %>/<%= modules_available.znumber %>"  target="_blank">Details</a> | -->

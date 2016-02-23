@@ -57,48 +57,21 @@ class StaticPagesController < ApplicationController
 
           modules_available         
 
-
-          #@isInternationalStudent = 0
-
           #TO DO: Query for WHC_STUDENT
           #@isHonorsCollege = 1
 
-
-
-          #module flags
-          # @welcome_available = 1
-          # @deposit_available = 1
-          # @account_available = 1
-          # @communication_available = 1
-          # @immunization_available = 1
-          # @finaid_available = 1
-          # @housing_fee_available = 1
-          # @residency_available = 1
-          # @housing_meal_plans_available = 1
-          # @aleks_available = 1
-          # @oars_available = 1
-          # @learning_comm_available = 1
-          # @orientation_available = 1
-          # @reg_available = 1
-          # @emergency_available = 1
-          # @fau_alert_available = 1
-          # @owlcard_available = 1
-          # @bookadvance_available = 1
-          # @tuition_available = 1
-          # @vehicle_reg_available = 1
-
-          #module completion flags
           
           #BEGIN: account_status check
-          account_status = Oim.accountstatus_by_netid(session[:cas_user].upcase)
-    
-          account_status.each do |as| 
-              if as['status'] == 'N' || as['status'].nil?
-                    @account_complete = 0
-                  else
-                    @account_complete = 1
-              end 
-           end     
+            # account_status = Oim.accountstatus_by_netid(session[:cas_user].upcase)
+      
+            # account_status.each do |as| 
+            #     if as['status'] == 'N' || as['status'].nil?
+            #           @account_complete = 0
+            #         else
+            #           @account_complete = 1
+            #     end 
+            #  end   
+            @account_complete = 1  
            #END: account status check
 
 
@@ -657,16 +630,10 @@ class StaticPagesController < ApplicationController
 
           updateDaMeter
           
-          # @start = 0
+          updateCompletedStep
+          
+          #updateNextStep
 
-          # if  @account_complete == 1
-          #   @start += 1
-          # end
-
-          # if @verify_complete == 1
-          #   @start += 1
-          # end
-    	 
     end
 
 	# def admin	
@@ -722,6 +689,11 @@ class StaticPagesController < ApplicationController
      @ftic_percent = (Float(@ftic_count)/Float(total)  * 100)
      @int_percent = (Float(@int_count)/Float(total)  * 100)
 
+     @status_counts = FticModulesAvailable.find_by_sql(["select current_step, count(*) AS num from ftic_modules_availables group by current_step order by num desc"])
+
+     # puts YAML::dump('*** BUC LAO ***')
+     # puts YAML::dump(@status_counts)
+
      render layout: 'admin'
 
   end
@@ -748,6 +720,7 @@ class StaticPagesController < ApplicationController
          newstudent.netid   = bs['gobtpac_external_user']
          newstudent.f_name = bs['f_name']
          newstudent.l_name = bs['l_name']
+         newstudent.current_step = 'Welcome'
          newstudent.welcome = 1
          newstudent.deposit = 1
          newstudent.account = 0
@@ -873,12 +846,5 @@ class StaticPagesController < ApplicationController
 
 
    end
-
-
-   def get_they_step
-
-
-   end
-
 
 end
