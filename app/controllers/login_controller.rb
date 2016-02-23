@@ -21,26 +21,18 @@ class LoginController < ApplicationController
       #sha1   = Digest::SHA1.digest('bicboi')
       sha1  = Digest::SHA1.digest(params[:password])
       base64_passwd = Base64.strict_encode64(sha1)
-
       authenticated = Ugapp.find_user(params[:email], base64_passwd)
 
-      #Ugapp.find_user('ihartstein.test1@gmail.com', Base64.strict_encode64(Digest::SHA1.digest('12341234')))
-
       if authenticated
-        @message = 'i found yo ass'
-
-       
+        @message = 'Authenticated!'
+    
         session[:fullname] = Ugapp.get_fullname(params[:email], base64_passwd)
-        #session[:displayname] = Ugapp.get_fullname(params[:email], base64_passwd)
-
-        puts YAML::dump(session[:fullname])
-
-
+      
         # session.delete(:cas_user)
 
-        redirect_to gatewayed_home_path
+        redirect_to home_path
       else
-        @message = 'nopity nope nope'
+        @message = 'Failed Authentication'
         #redirect_to unauthorized_path
       end
 

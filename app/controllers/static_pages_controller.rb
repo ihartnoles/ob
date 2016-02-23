@@ -1,25 +1,15 @@
 #require 'mapquest_api'
-require 'common_stuff'
+# require 'common_stuff'
 
 class StaticPagesController < ApplicationController
       
       #before_filter :get_session_info
-
       before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:login, :do_manual_login, :gatewayed_home, :main]
       before_filter CASClient::Frameworks::Rails::Filter, :except => [:login, :do_manual_login, :gatewayed_home, :main]
       # before_filter RubyCAS::Filter, :only => [:login, :do_manual_login, :gatewayed_home, :main]
       # before_filter RubyCAS::Filter, :except => [:login, :do_manual_login, :gatewayed_home, :main]
- 	 
-
       #puts YAML::dump(@cas_user)
 
-      # if @lexluthor = 'true'
-      #   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:login, :do_manual_login, :home]
-      #   before_filter CASClient::Frameworks::Rails::Filter, :except => [:login, :do_manual_login, :home ]       
-      # else
-      #   before_filter CASClient::Frameworks::Rails::GatewayFilter, :only => [:login, :do_manual_login]
-      #   before_filter CASClient::Frameworks::Rails::Filter, :except => [:login, :do_manual_login]
-      # end 
   
   def routing_error
     render_not_found(nil)
@@ -886,8 +876,8 @@ class StaticPagesController < ApplicationController
 
 
    def get_they_step
-    
-    
+
+
    end
 
 
