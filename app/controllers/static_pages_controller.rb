@@ -885,4 +885,10 @@ class StaticPagesController < ApplicationController
    end
 
 
+   def get_they_step
+    
+    
+   end
+
+
 end
