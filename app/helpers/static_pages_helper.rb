@@ -36,7 +36,7 @@ module StaticPagesHelper
          if o['aleks_taken'] == 'Y' 
            tmp =  "You have taken ALEKS! Congrats!"
          else
-           tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <a title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=sisma2015' target='_blank'>[Aleks Sign-up]</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
+           tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <a id='aleks' title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=sisma2015' target='_blank'>[Aleks Sign-up]</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
          end
 
          return tmp.html_safe
@@ -180,7 +180,7 @@ module StaticPagesHelper
          if !o.nil?
            tmp =  "You have taken OARS for #{o['semester_desc']}! Great work!"
          else
-           tmp =  "You have NOT completed OARS. <a title='OARS information' href='http://www.fau.edu/uas/oars_welcome.php' target='_blank'>[More Information]</a>"
+           tmp =  "You have NOT completed OARS. <a id='oars' title='OARS information' href='https://oars.fau.edu/login/login' target='_blank'>[More Information]</a>"
          end
 	    	 
 
@@ -205,7 +205,7 @@ module StaticPagesHelper
           # puts YAML::dump(o)
 
          if o['imm_hold_flg'] == 'Y' 
-           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <a title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"           
+           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <a id='immune' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"           
          else
            tmp =  "Your immunization records are up to date!  Good job!"
          end
@@ -214,7 +214,7 @@ module StaticPagesHelper
 
         end
       else
-        tmp = " You need to make sure your immunization records are up to date. <br> <a title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"
+        tmp = " You need to make sure your immunization records are up to date. <br> <a id='immune' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"
         return tmp.html_safe
       end 
      end
@@ -337,7 +337,7 @@ module StaticPagesHelper
            tmp =  "Our records indicated you have made a housing deposit. <br> Your housing deposit was received on #{o['deposit_received'].strftime('%x')}."
          else
            tmp =  "Your housing deposit has NOT been paid yet!  <br>            
-               <a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>"
+               <a id='housing' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>"
          end
          
          return tmp.html_safe
@@ -345,7 +345,7 @@ module StaticPagesHelper
          end
       else
         return "Your housing deposit has NOT been paid yet!  <br>            
-               <a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>".html_safe
+               <a id='housing' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>".html_safe
       end 
      end
 end

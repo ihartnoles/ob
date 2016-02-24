@@ -863,10 +863,10 @@ Hello, <%= session[:cas_user] %>!
 			  							<li> <% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li>
 
 			  						
-				  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Complete Your Financial Aid Requirements</a></li>
+				  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Complete Your Financial Aid Requirements</a></li>
 
-				  						<li><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; </li>
-				  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp;</li>
+				  						<li><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; </li>
+				  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@finaidyear%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp;</li>
 				  					<% end %>
 			  					</ol>
 			  						
@@ -1116,7 +1116,7 @@ Hello, <%= session[:cas_user] %>!
 				                    	<% if @term != 'Summer' %>  							 	
 		  							 		<%= get_housing_deposit(znum) %>
 		  							 	<% else %>
-		  							 		<br><a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
+		  							 		<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
 		  							 	<% end %>
 		  							</p>       
 
@@ -1135,7 +1135,7 @@ Hello, <%= session[:cas_user] %>!
 
 				                 		<div align="center">
 				                 			<br>As such you are NOT required to live in University Housing.
-				                 			<br><a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Optionally Sign Up for Housing Here]</a>
+				                 			<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Optionally Sign Up for Housing Here]</a>
 				                 		</div>
 
 				                 	</div>
@@ -1148,7 +1148,7 @@ Hello, <%= session[:cas_user] %>!
 		  							 		<% if @term != 'Summer' %>  							 	
 		  							 			<%= get_housing_deposit(znum) %>
 			  							 	<% else %>
-			  							 		<br><a title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
+			  							 		<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
 			  							 	<% end %>
 		  								</p>   
 		  								</div>
@@ -1175,7 +1175,7 @@ Hello, <%= session[:cas_user] %>!
 By purchasing one of these profiler meal plan packages, you will avoid waiting in the occasional longer lines, sales tax when paying cash or credit at the Atlantic Dining Hall, and save that parking spot! You can even save an average of $175 dollars with a commuter meal plan.  <br>
 
 <div align="center">
-	<br><a href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">[Purchase a meal plan]</a>
+	<br><a id="mealplan" href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">[Purchase a meal plan]</a>
 </div>
 							</p>
 	                 	  </div>
@@ -1186,7 +1186,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			              <% else %>
 			              	You have not signed up for a meal plan. 
 			              	<p>
-		  								<a title="FAU Dining" href="https://talon.fau.edu/sso/housing" target="_blank">[Choose your meal plan]</a> 
+		  								<a id="housing" title="FAU Dining" href="https://talon.fau.edu/sso/housing" target="_blank">[Choose your meal plan]</a> 
 		  					</p>
 			              <% end %>
 			             </div>
@@ -1732,7 +1732,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 										<div class="alert alert-border alert-danger text-center fade in">
 											Fall/Spring term students must be registered for at least 12 credit hours!<br> Summer term students must be registered for at least 6 credit hours!<br>
-											<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Please Register Now]</a>
+											<a id="registration" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Please Register Now]</a>
 										</div>
 									
 									<% end %>
@@ -1825,7 +1825,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						<% else %>
 							 <p>
 							  	<b>
-								Before paying your tuition you may want to take a look at our  <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
+								Before paying your tuition you may want to take a look at our  <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
 								</b>
 							 </p>
 							 <hr>
@@ -1834,7 +1834,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 							 	Fees are charged by course level and student's Residency status. If you are a Florida Resident and you have been charged Out of State fees, please contact Undergraduate Admissions or the Graduate College immediately regarding your residency status.
 							 </p>
 							 <p>
-								Please see our <a href="http://www.fau.edu/controller/student_information/tuition_breakdown.php" target="_blank">tuition breakdown</a> of tuition and fees per credit hour based on course level and residency.
+								Please see our <a id="finaidtuition"href="http://www.fau.edu/controller/student_information/tuition_breakdown.php" target="_blank">tuition breakdown</a> of tuition and fees per credit hour based on course level and residency.
 							</p>
 
 							<p>
@@ -1843,7 +1843,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 							 </p>
 
 			                  <p>
-			                  	<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Tuition Payment Information</a>
+			                  	<a id="finaidpayment" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Tuition Payment Information</a>
 			                   <!--  <a href='http://www.fau.edu/registrar/pdf/acadcal1516.pdf' target='_blank'>
 			              	   		[More Information]
 			              	    </a>  | 
@@ -1912,7 +1912,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					 </p>
 					
 
-				 	<br><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> [Edit Your Emergency Contact Information]</a>
+				 	<br><a id="emerg" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> [Edit Your Emergency Contact Information]</a>
 				<% end %>
 
 				  <% if  (emergency_available == 1 && emergency_complete == 1 ) || emergencybypass == 1 %>
@@ -1975,7 +1975,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 	               <br>
 
-	               <a title="FAU Alert" href="http://www.fau.edu/emergency/universityalerts.php" target="_blank">[More Information]</a> | <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">[Your FAU Alert Info]</a></p>
+	               <a title="FAU Alert" href="http://www.fau.edu/emergency/universityalerts.php" target="_blank">[More Information]</a> | <a id="faualert" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">[Your FAU Alert Info]</a></p>
                <% end %>
 
 
@@ -2196,7 +2196,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 	              	   <p>
 	              	    	
-	              	    <a href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>' target='_blank'>
+	              	    <a id="vehicle" href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>' target='_blank'>
 	              	   		[Register Here]
 	              	   	</a> 
 
@@ -2526,13 +2526,15 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
      /* begin pay deposit */
     	$("#tuitionlink").click(function (e) {
     		e.preventDefault();
-        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+        	var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
 
         	var timer = setInterval(function() {   
 			    if(win.closed) {  
 			        clearInterval(timer);  
 			        location.reload(true);			        
-					window.location.href = window.location.href + "#step-deposit"
+					window.location.href = a.replace(regex,'') + "#step-deposit"
 			    }  
 			}, 1000);         	
     	});
@@ -2540,59 +2542,289 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
       
       $("#namechange").click(function (e) {
     		e.preventDefault();
-        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+        	var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
 
         	var timer = setInterval(function() {   
 			    if(win.closed) {  
 			        clearInterval(timer);  
 			        location.reload(true);			        
-					window.location.href = window.location.href + "#step-verify"
+					window.location.href = a.replace(regex,'') + "#step-verify"
 			    }  
 			}, 1000);         	
     	});
 
        $("#addresschange").click(function (e) {
     		e.preventDefault();
-        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+        	var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
 
         	var timer = setInterval(function() {   
 			    if(win.closed) {  
 			        clearInterval(timer);  
 			        location.reload(true);			        
-					window.location.href = window.location.href + "#step-verify"
+					window.location.href =  a.replace(regex,'') + "#step-verify"
 			    }  
 			}, 1000);         	
     	});
 
-       $("#addresschange").click(function (e) {
-    		e.preventDefault();
-        	var win=window.open($(this).attr('href'),'','height=500,width=850');
-
-        	var timer = setInterval(function() {   
-			    if(win.closed) {  
-			        clearInterval(timer);  
-			        location.reload(true);			        
-					window.location.href = window.location.href + "#step-verify"
-			    }  
-			}, 1000);         	
-    	});
-
+      
        $("#changeterm").click(function (e) {
-    		e.preventDefault();
-        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
 
         	var timer = setInterval(function() {   
 			    if(win.closed) {  
 			        clearInterval(timer);  
 			        location.reload(true);			        
-					window.location.href = window.location.href + "#step-verify"
+					window.location.href =  a.replace(regex,'') + "#step-verify"
 			    }  
-			}, 1000);         	
+			}, 1000);       		   	
+    	});
+
+
+       $("#immune").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-immunization"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+       $("#finaidest").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-tuition"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+         $("#finaidtuition").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-tuition"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+          $("#finaidpayment").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-tuition"
+			    }  
+			}, 1000);       		   	
+    	});
+
+          $("#FAreqs").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-finaid"
+			    }  
+			}, 1000);       		   	
+    	});
+
+            $("#FAtc").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-finaid"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+           $("#FApackage").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-finaid"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+       $("#housing").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-housing"
+			    }  
+			}, 1000);       		   	
+    	});
+
+       $("#mealplan").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-housing"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+        $("#aleks").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-aleks"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+    	 $("#oars").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-oars"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+    	$("#registration").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-registration"
+			    }  
+			}, 1000);       		   	
+    	});
+
+    	$("#emerg").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-emergency"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+    	$("#faualert").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-faualert"
+			    }  
+			}, 1000);       		   	
+    	});
+
+
+    	$("#vehicle").click(function (e) {
+			e.preventDefault();
+			var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes"');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-vehicle"
+			    }  
+			}, 1000);       		   	
     	});
 
       /* END: listening for child windows  */
-
-
+     
+     
  	$("#mobilenumber").mask("(999) 999-9999");
 
  	$("#mobilenumber").on("blur", function() {
