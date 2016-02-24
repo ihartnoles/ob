@@ -166,70 +166,71 @@ Hello, <%= session[:cas_user] %>!
 			</div>
 		  </li>
 
-		   <li class="panel">
+		   <!-- <li class="panel">
 		  	
-		  	<% if  account_available == 1 || account_bypass == 1%>
+		  	<%# if  account_available == 1 || account_bypass == 1%>
 				<a id="accounthref" href="#step-account" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">			
-			<% else %>
+			<%# else %>
 				<a id="accounthref" href="#step-account" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="accounttitle">
-			<% end %>
+			<%# end %>
 
 			
-			<% if account_available == 1 %>
-			  <div class="number"><!-- Step 3 --> <%= get_statusicon(account_available, account_complete, account_bypass) %></div>
-			<% end %>
+			<%# if account_available == 1 %>
+			 <!--  <div class="number"><%= get_statusicon(account_available, account_complete, account_bypass) %></div> -->
+			<%# end %>
             
-            <h6><b>CREATE ACCOUNT</b> <!-- AA:<%#= @account_available %>    AC:<%#= @account_complete %>  DC  <%#= @deposit_complete %> --></h6>
+            <!-- <h6><b>CREATE ACCOUNT</b></h6> -->
 
-			</a>
+			<!-- </a> -->
 			
-			<div id="step-account" class="collapse">
+			<!-- <div id="step-account" class="collapse">
 			  <div class="step-content">
 			  	<h3 class="title">Claiming Your Account</h3>
 			  		
-			  		<% if account_bypass == 1 %>			  		
+			  		<%# if account_bypass == 1 %>			  		
 							<p> An administrator has bypassed (overridden) this section for you.</p>
-					<% else %>						
+					<%# else %>						
 				  		 <p>The FAUNet ID is the account name you will use to login to many of the systems you will utilize in your daily life at Florida Atlantic University. It is a part of your official FAU e-mail address (e.g., FAUNetID@fau.edu). All students, faculty and staff are automatically granted a FAUNet ID and may claim their account by logging into the MyFAU portal. While many online services provided by the University require a separate password, OIT is working to synchronize these passwords while striving to improve the security of the system.</p>
 
 				  		   <!--<a title="FAU Account Claiming" href="#" id="claimAccountBut">[Startz claiming your account]</a> -->
 
-				  		<% if account_complete == 1 %>
+				  		<%# if account_complete == 1 %>
 
-				  			<div class="alert alert-border <%if account_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+				  			<!-- <div class="alert alert-border <%#if account_complete == 1 %>alert-success<%#else%>alert-danger<%#end%> text-center fade in">
 								<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
-								<p>
+							<!-- 	<p>
 								<strong>Congrats on claiming your account! <br> You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
 								</p>					
-					        </div>
+					        </div> -->
 
-					        <div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_ftic_account_module' , {:class => 'register-form form-validator'})  do %>
-				  		 		 	<%= hidden_field_tag :znumber, @znum %>
-								    <%= hidden_field_tag :netid, @displayname %>
-								    <%= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%= hidden_field_tag :account, 1 %>
+					        <!-- <div class="buttons-box text-right">
+				  		 		<%#= form_tag('/update_ftic_account_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%#= hidden_field_tag :znumber, @znum %>
+								    <%#= hidden_field_tag :netid, @displayname %>
+								    <%#= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%#= hidden_field_tag :account, 1 %>
 								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-									<% if params[:znum] %>
-									   	<%= hidden_field_tag :znum, @znum %>									    
-									<% end %>
-							    	 <button type="submit" class="btn btn-danger" id="accountBut">Continue</button>		
-						 		<% end %>				 
-						 	</div>
+									<%# if params[:znum] %>
+									   	<%#= hidden_field_tag :znum, @znum %>									    
+									<%# end %>
+							    	 <!-- <button type="submit" class="btn btn-danger" id="accountBut">Continue</button>	 -->	
+						 		<%# end %>				 
+						 	<!-- </div> -->
+						 
 
-					     <% else %>
-				  		 <div class="alert alert-border alert-danger text-center fade in">
+					     <%# else %>
+				  		<!--  <div class="alert alert-border alert-danger text-center fade in">
 					  		 <p>
 					  		 	<strong>You must claim your FAU account before going any further. Please click on the link below to claim your account.<br>When you have completed the process you will have to log into this system again.</strong>
 					  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu">[Start claiming your account]</a>
 					  		 </p>			  		
-				  		 </div>
+				  		 </div> -->
 				  		
-						<% end %>
-					<% end %>
-			  </div>
+						<%# end %>
+					<%# end %>
+			 <!--  </div>
 			</div>
-		  </li>
+		  </li> -->
 
 		   <li class="panel">
 		  	
@@ -278,12 +279,12 @@ Hello, <%= session[:cas_user] %>!
 						  		<tr>
 						  			<td><b>Your Name:</b></td>
 						  			<td><%= @fname %> <%= @mname %> <%= @lname %>&nbsp;</td>	
-						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <%# end %></td>					  			
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="namechange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <%# end %></td>					  			
 						  		</tr>
 						  		<tr>
 						  			<td><b>Your Address:</b></td>
 						  			<td><%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %>&nbsp;</td>						  			
-						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
 						  		</tr>
 						  		
 						  		<tr>
@@ -295,7 +296,7 @@ Hello, <%= session[:cas_user] %>!
 						  		<tr>
 						  			<td><b>Acceptance Term:</b></td>
 						  			<td><%= @term %> <%= @year %></td>						  			
-						  			<td colspan="2"><a href="http://www.fau.edu/admissions/ChangeEntry.php" target="_blank">[Change of Entry Term Request]</a> <%# end %></td>
+						  			<td colspan="2"><a id="changeterm" href="http://www.fau.edu/admissions/ChangeEntry.php" target="_blank">[Change of Entry Term Request]</a> <%# end %></td>
 						  		</tr>
 						  		
 						  		
@@ -2519,6 +2520,79 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
  	})
 
+
+
+     /* BEGIN: listening for child windows  */
+     /* begin pay deposit */
+    	$("#tuitionlink").click(function (e) {
+    		e.preventDefault();
+        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href = window.location.href + "#step-deposit"
+			    }  
+			}, 1000);         	
+    	});
+     /* end pay deposit */
+      
+      $("#namechange").click(function (e) {
+    		e.preventDefault();
+        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href = window.location.href + "#step-verify"
+			    }  
+			}, 1000);         	
+    	});
+
+       $("#addresschange").click(function (e) {
+    		e.preventDefault();
+        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href = window.location.href + "#step-verify"
+			    }  
+			}, 1000);         	
+    	});
+
+       $("#addresschange").click(function (e) {
+    		e.preventDefault();
+        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href = window.location.href + "#step-verify"
+			    }  
+			}, 1000);         	
+    	});
+
+       $("#changeterm").click(function (e) {
+    		e.preventDefault();
+        	var win=window.open($(this).attr('href'),'','height=500,width=850');
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href = window.location.href + "#step-verify"
+			    }  
+			}, 1000);         	
+    	});
+
+      /* END: listening for child windows  */
+
+
  	$("#mobilenumber").mask("(999) 999-9999");
 
  	$("#mobilenumber").on("blur", function() {
@@ -2549,8 +2623,10 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	$('#welcomeBut').click(function () {
 	  $('#step-1').collapse('hide');
 	  $('#step-1').prev().addClass('collapsed');
-	  $('#step-account').collapse('show');
-	  $('#step-account').prev().removeClass('collapsed');
+	  //$('#step-account').collapse('show');
+	  //$('#step-account').prev().removeClass('collapsed');
+	  $('#step-verify').collapse('hide');
+	  $('#step-verify').prev().addClass('collapsed');
 	 
 	  //updateMeter('10');
 	})
