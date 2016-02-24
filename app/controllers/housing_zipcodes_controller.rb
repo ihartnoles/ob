@@ -1,5 +1,5 @@
 class HousingZipcodesController < ApplicationController
-  before_action :set_housing_zipcode, only: [:show, :edit, :update, :destroy]
+  #before_action :set_housing_zipcode, only: [:show, :edit, :update, :destroy]
 
   # # GET /housing_zipcodes
   # # GET /housing_zipcodes.json

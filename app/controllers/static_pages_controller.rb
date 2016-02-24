@@ -169,11 +169,6 @@ class StaticPagesController < ApplicationController
 
           #END verify your information question
 
-
-
-
-
-
           #pull the student's zip
           student_zip = Banner.find_student_zip_by_z(@znum)
 
