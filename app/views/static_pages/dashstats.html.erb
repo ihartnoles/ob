@@ -399,17 +399,17 @@ function graphAgain($re) {
 	  element    : "hero2-bar",
 	  data       : [
 
-	   <% @status_counts.each do |idx| %>
+	   <% @status_counts.each_with_index do |u, idx| %>
 	  		{
-			  day: "<%= idx.current_step %>",
-			  logcount: <%= idx.num %>
-			},			
+			  day: "<%= u.current_step %>",
+			  logcount: <%= u.num %>
+			}
+			<% if idx != @status_counts.size - 1 %>
+			,			
+			<% end %>
 	  	<% end %>
 
-	  		{
-			  day: "Finished",
-			  logcount: 100
-			}	
+	  		
 	  
 		
 	  ],
