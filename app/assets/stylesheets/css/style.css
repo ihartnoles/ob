@@ -153,25 +153,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {
   font-size: 48px;
+  font-weight: bold;
+   color: #11547F;
 }
 h2 {
   font-size: 40px;
+  font-weight: bold;
    color: #11547F;
 }
 h3 {
   font-size: 32px;
+  font-weight: bold;
   color: #11547F;
 }
 h4 {
   font-size: 26px;
+  font-weight: bold;
   color: #11547F;
   text-align: center;
 }
 h5 {
   font-size: 20px;
+  font-weight: bold;
+   color: #11547F;
 }
 h6 {
   font-size: 16px;
+  font-weight: bold;
 }
 p {
   margin-bottom: 22px;
@@ -5282,7 +5290,7 @@ blockquote small {
 .product-bottom .related-products header h3 {
   color: #11547F;
   font-size: 18px;
-  font-weight: normal;
+  font-weight: bold;
   line-height: 1;
   margin: 0;
 }

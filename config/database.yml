@@ -56,8 +56,10 @@ faudw:
 bannertest:
    adapter: oracle_enhanced
    database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=banoradev.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=TEST)))"
-   username: ihartstein
-   password: ikeORACLE60
+   username: ONBOARDUSR
+   password: fau43pass22254
+   #username: ihartstein
+   #password: ikeORACLE60
 
 oimdev:
    adapter: oracle_enhanced
