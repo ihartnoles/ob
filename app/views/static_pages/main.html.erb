@@ -37,68 +37,84 @@
     </form>
  -->
     
-   <section id="main" class="login-register">
-  <!-- <header class="page-header">
+   <section id="main">
+ <header class="page-header">
     <div class="container">
-      <h4 class="title">FAU Student Onboarding Portal</h4>
+      <h3 class="title">Welcome to the FAU Student Onboarding Portal</h3>
     </div>  
-  </header> -->
+  </header>
   <div class="container">
     <div class="row">
       <div class="content col-sm-12 col-md-12">
-    <div class="row filter-elements hidden">
-      <div class="col-sm-6  box login">
-      <div class="info-box col-sm-6 col-md-6">
-        
-        <header class="page-header">
-            <div class="container">
-        <h3 class="title col-sm-6 col-md-6">Claim your FAU NetID</h3>
+
+       <div class="bs-callout bs-callout-info col-sm-6 col-md-6">
+        <h4>Step 1: Claim your FAU NetID</h4>
+        <p>
+          If you have not already done so please claim your FAU NetID. If you have been assigned an FAU NetID you should login with this method. When you're ready click the button below to get started.
+        </p>
+         <div align="center">
+              <button id="btnClaimNetID" class="btn btn-danger filter-buttons">Claim NetID</button>
             </div>
-        </header>
-
-        <p class="descriptions">If you have been assigned an FAU NetID you should login with this method.</p>
-        <button id="btnNetID" class="btn btn-danger filter-buttons">Login with NETID</button>
-      </div>
       </div>
 
-      <div class="col-sm-6 col-md-6 box login">
+
+       <div class="bs-callout bs-callout-info col-sm-6 col-md-6">
+        <h4>Step 2: Login with your FAU NetID</h4>
+         To get started with the onboarding process you need will need to have claimed your FAU credentials. These credentials include your FAU NetID and password. Once you're ready click the button below to get started.<br><br>
+          <div align="center">
+            <button id="btnNetID" class="btn btn-danger filter-buttons">login</button>
+          </div>
+      </div>
+
+
+    <!-- <div class="row filter-elements hidden"> -->
+      
+     <!--  <div class="col-sm-6 col-md-6 box login">
+    <!--   <div class="info-box col-sm-6 col-md-6"> -->
+        
+       <!-- <header class="page-header">
+            <div class="container">
+              <h3 class="title col-sm-6 col-md-6">Step 1:<br>Claim your FAU NetID</h3>
+            </div>
+        </header> -->
      
 
-         <%= form_for @login, :url => do_manual_login_path, :method => "post", :html => {:class => 'form-box login-form form-validator bv-form'}  do |f| %>
-          
+
+       <!--  <p class="descriptions">
+          <div class="alert alert-info  fade in">
+            If you have not already done so please claim your FAU NetID. If you have been assigned an FAU NetID you should login with this method. When you're ready click the button below to get started.
+           
+           <br><br>
+
+            <div align="center">
+              <button id="btnNetID" class="btn btn-danger filter-buttons">Claim NetID</button>
+            </div>
+          </div>
+        </p> -->
+       
+      <!-- </div> -->
+    <!--   </div>
+ -->
+     
+
+
+     <!--  
+        <div class="col-sm-6 col-md-6 box login">              
           <header class="page-header">
             <div class="container">
-            <h3 class="title col-sm-6 col-md-6">Method 2: <br> Use your Admissions Credentials</h3>
+            <h3 class="title col-sm-6 col-md-6">Step 2: <br> Login with your FAU NetID</h3>
             </div>
           </header>
-                  <p>If you do NOT have an FAU NetID yet you can login with the same credentials you set up when applying to FAU</p>
-            
-
-            <div class="form-group has-feedback">
-              <label>Email Address: <span class="required">*</span></label>
-              <%#= f.label :email %><br>
-              <%#= f.text_field :email, class: 'form-control', 'type'=>'email',  'data-bv-emailaddress-message' => 'The input is not a valid email address', 'data-bv-field'=>'email'%>
-
-               <%= text_field_tag :email, params[:email] , class: 'form-control', 'required' => '', 'type'=>'email',  'data-bv-emailaddress-message' => 'The input is not a valid email address', 'data-bv-field'=>'email'%>
-              <i class="form-control-feedback" data-bv-icon-for="email" style="display: none;"></i>
-                        <small class="help-block" data-bv-validator="emailAddress" data-bv-for="email" data-bv-result="NOT_VALIDATED" style="display: none;">The input is not a valid email address</small><small class="help-block" data-bv-validator="notEmpty" data-bv-for="email" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
+          
+          <p>
+            <div class="alert alert-info  fade in">
+              To get started with the onboarding process you need will need to have claimed your FAU credentials. These credentials include your FAU NetID and password. Once you're ready click the button below to get started.<br><br>
+              <div align="center">
+                <button id="btnNetID" class="btn btn-danger filter-buttons">login</button>
               </div>
-
-            <div class="form-group has-feedback">
-              <label>Password: <span class="required">*</span></label>
-              
-             <%#= f.text_field :password, class: 'form-control'  %>
-             <%= text_field_tag :password, params[:password] , class: 'form-control', 'required' => '','type'=>'password', 'data-bv-field'=>'password'%>
-
-             <i class="form-control-feedback" data-bv-icon-for="password" style="display: none;"></i>
-                        <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter a value</small>
-
             </div>
-            <div class="actions">
-              <%= f.submit  'Login', :class => "btn btn-danger" %>
-            </div>
-        <% end %>
-      </div>
+          </p>  
+      </div> -->
 
      
 
@@ -173,6 +189,14 @@
   <% else %>
      window.location.replace("https://<%= USE_THIS_SERVER %>/home");      
   <% end %>
+   
+  });
+
+
+  
+  $("#btnClaimNetID").click(function() {    
+     
+     window.open("http://accountst.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");
    
   });
 
