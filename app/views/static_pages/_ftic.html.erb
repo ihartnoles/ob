@@ -124,16 +124,17 @@ Hello, <%= session[:cas_user] %>!
 
 					<p>Congratulations on your acceptance to Florida Atlantic University for <%= term_display %> <%= year_display %>!  We are so excited to have you join the Owl family!  This is an exciting time, with lots of steps to prepare for your first day on campus.  Please read through these pages carefully, as there is a lot of information to know before you arrive on campus. <a title="Welcome to FAU!" href="#divForm" class="lightbox" id="btnForm">[More Information]</a></p>
 
-					<!-- <p>
-						<a href="#divForm" class="gallery-images" id="btnForm">[More Information]</a>
-					</p> -->
 					
-					<p>
+					
+					<!-- <p>
 					<div align="center">
 						<iframe width="640" height="390" frameborder="0" style="max-width:100%;" allowfullscreen="" src="//www.youtube.com/embed?listtype=playlist&nnMTKjhOVq8&list=PLnOOOyLqcjkjTUf4XLmwuBUomAq70Bfsc&rel=0&index=1"></iframe>
 					</div>
-					</p>
+					</p> -->
 
+					<div align="center">
+						<iframe src="https://devserviceawards.fau.edu/test.cfm?fname=<%=@fname%>&lname=<%=@lname%>" width="640" height="548" scrolling="no" frameborder="0"></iframe>
+					</div>
 									
 				<!-- 	<div id="divForm" style="display:none">
 						<div class="row">					     
@@ -2519,6 +2520,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	  // 	$("#meterdisplay").attr("style",'width: ' + parseInt(increment) + '%; text-indent: 10px;');
 
  	})
+
 
 
 

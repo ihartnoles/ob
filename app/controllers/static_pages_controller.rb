@@ -87,7 +87,7 @@ class StaticPagesController < ApplicationController
 
 
           comm_preferences = Communication.where(:znumber => @znum)
-          #puts YAML::dump('**********AYYEEEEE**********')
+         
           
           if comm_preferences.blank?
               @contact_id = 0
@@ -249,6 +249,9 @@ class StaticPagesController < ApplicationController
                @isInternationalStudent = 0
             else
                 get_multistatus.each do |o|
+
+                  @fname =  o['f_name']
+                  @lname =  o['l_name']
 
                   if o['whc_student'] == 'N' || o['whc_student'].nil?
                     @isHonorsCollege = 0

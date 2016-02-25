@@ -71,7 +71,7 @@ class Banner < ActiveRecord::Base
 			# sarchkl_admr_code == TUTD -> deposit has been made
 			# spremrg fields = emergency contact info on file
 		def self.get_multistatus(id)
-			get = connection.exec_query("SELECT GOBTPAC_EXTERNAL_USER, 
+			get = connection.exec_query("SELECT GOBTPAC_EXTERNAL_USER, L_NAME, F_NAME,
 										 SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
 									      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
 									             WHEN '01' THEN 'Spring'
