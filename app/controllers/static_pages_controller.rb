@@ -176,12 +176,16 @@ class StaticPagesController < ApplicationController
            # puts YAML::dump(student_zip)
 
           #set the zip
-          student_zip.each do |o| 
-             zipcode = o['zip']  
-             @zipcode = o['zip']      
-             # puts YAML::dump('**********ZIIIIIIIP**********')
-             # puts YAML::dump(zipcode)
-             # puts YAML::dump('**********CODE**********')
+          if student_zip.count >= 1
+            student_zip.each do |o| 
+               zipcode = o['zip']  
+               @zipcode = o['zip']      
+               # puts YAML::dump('**********ZIIIIIIIP**********')
+               # puts YAML::dump(zipcode)
+               # puts YAML::dump('**********CODE**********')
+            end
+          else
+            @zipcode = '00000'
           end     
 
           
