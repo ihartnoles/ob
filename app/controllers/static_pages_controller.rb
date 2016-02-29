@@ -257,6 +257,14 @@ class StaticPagesController < ApplicationController
                   @fname =  o['f_name']
                   @lname =  o['l_name']
 
+
+                  # puts YAML::dump('**********BURRRIALLLLL!!!!**********')
+                  # puts response.body
+                  # puts YAML::dump(response.body)
+
+                  #@OwlImage = RestClient.get('https://devserviceawards.fau.edu/test2.cfm?fname=Peter&lname=Griffon')
+                  
+
                   if o['whc_student'] == 'N' || o['whc_student'].nil?
                     @isHonorsCollege = 0
                   else
@@ -655,24 +663,32 @@ class StaticPagesController < ApplicationController
 	# end 
 
   def dashboard
-    studentype = params[:type].presence || 'ftic'
 
-    case studentype
-     when "ftic"
-       @table_label = "First Time in College Queue"
-       @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
-     when "intl"
-       @table_label = "International Queue"
-       @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
-     when "transfer"
-       @table_label = "Transfer Queue"
-       @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
+    authenticate_for_admin(session[:cas_user])
+
+
+    if @access == 1
+      studentype = params[:type].presence || 'ftic'
+
+      case studentype
+       when "ftic"
+         @table_label = "First Time in College Queue"
+         @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
+       when "intl"
+         @table_label = "International Queue"
+         @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
+       when "transfer"
+         @table_label = "Transfer Queue"
+         @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
+       else
+         @table_label = "Student Queue"
+         @modules_availabless = FticModulesAvailable.where(:isactive => 1).order(:netid)
+       end
+
+        render layout: 'admin'
      else
-       @table_label = "Student Queue"
-       @modules_availabless = FticModulesAvailable.where(:isactive => 1).order(:netid)
+        redirect_to unauthorized_path
      end
-
-      render layout: 'admin'
   end
 
   def dashstats
@@ -792,6 +808,23 @@ class StaticPagesController < ApplicationController
    
 
    protected
+
+   def authenticate_for_admin(netid)
+      user = User.where(:netid => netid)
+
+      if user.count == 0 #no info found
+        #bounce 'em
+        #return redirect_to unauthorized_path
+        @access = 0
+      else
+        @access = 1
+      end
+
+       puts YAML::dump('*** DUH HELLO ***')
+       puts YAML::dump(netid)
+       puts YAML::dump(@access)
+   end 
+
 
    def get_daily_logins
       logins = ActivityLog.where(:note => 'User Login').pluck(:created_at)

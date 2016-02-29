@@ -408,9 +408,6 @@ class ApplicationController < ActionController::Base
           
           # Get the response
          
-          response = RestClient.get 'http://api.clickatell.com/http/sendmsg', :params => params
-
-
 
           # Check for error from API
           if response.split(':').first == 'ERR'

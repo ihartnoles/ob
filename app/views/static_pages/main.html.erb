@@ -215,11 +215,11 @@
 
   $("#btnNetID").click(function() {    
    
-  <%# if request.server_name.include?('10.16.10.141') || request.server_name.include?('localhost')  %>
-     /* window.location.replace("http://10.16.10.141:3000/home"); */
-  <%# else %>
+  <% if request.server_name.include?('10.16.10.141') %>
+     window.location.replace("http://10.16.10.141:3000/home");
+  <% else %>
      window.location.replace("https://boc22webdev1.fau.edu/home");      
-  <%# end %>
+  <% end %>
    
   });
 
