@@ -17,12 +17,12 @@ module StaticPagesHelper
   	    	 return tmp
          else
 
-          return "Orienation status pending"
+          return "Our records indicate you have not yet attended an Orienation session. Please <a href='http://www.fau.edu/orientation/' target='_blank'>[sign up here]</a>. <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
 
          end
       end
       	 else
-      	 	return "Orienation status pending"
+      	 	return "Our records indicate you have not yet attended an Orienation session. Please <a href='http://www.fau.edu/orientation/' target='_blank'>[sign up here]</a>. <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
       	 end        
   	end
 

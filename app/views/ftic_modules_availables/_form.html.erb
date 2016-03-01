@@ -97,7 +97,7 @@
 
                     <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">International Visa</h6></a>
                     <div class="text-small">
-                        <div class="text-warning"><em><b>pending</b></em></div><br>
+                        <div class="text-info"><em><b>INFORMATION</b></em></div><br>
                         <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
                        
                        <br><br>
@@ -144,7 +144,7 @@
                     <div class="text-small">
                          
                          <% if @deposit_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -265,7 +265,7 @@
 
                           <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Intl. Medical Insurance</h6></a>
                           <div class="text-small">
-                              <div class="text-warning"><em><b>pending</b></em></div><br>
+                              <div class="text-info"><em><b>INFORMATION</b></em></div><br>
                               <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
                              
                              <br><br>
@@ -301,7 +301,7 @@
                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Residency Validation</h6> </a>
                         <div class="text-small">
                           <% if @residency_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -346,7 +346,7 @@
                         <div class="text-small">
                             
                            <% if @finaid_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -463,7 +463,7 @@
                         <div class="text-small">
                             
                           <% if @aleks_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -505,7 +505,7 @@
                         <div class="text-small">
                           
                           <% if @orientation_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -535,7 +535,7 @@
 
                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Intl. Student Orientation</h6></a>
                         <div class="text-small">
-                            <div class="text-warning"><em><b>pending</b></em></div><br>
+                            <div class="text-info"><em><b>INFORMATION</b></em></div><br>
                             <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
                            
                            <br><br>
@@ -569,7 +569,14 @@
                             <% end %></div>
                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Learning Communities</h6></a>
                         <div class="text-small">
-                            <div class="text-warning"><em><b>pending</b></em></div><br>
+
+                          <% if @learning_comm_complete == 1 %>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            
                             <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
 
                             <br><br>
@@ -607,7 +614,7 @@
                         <div class="text-small">
 
                           <% if @oars_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -649,7 +656,7 @@
                         <div class="text-small">
                           
                           <% if @reg_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -691,7 +698,7 @@
                         <div class="text-small">
                           
                           <% if @tuition_complete == 1 %>
-                              <div class="text-info"><b>COMPLETED</b></div><br>
+                              <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -732,8 +739,8 @@
                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Emergency Contacts</h6></a>
                         <div class="text-small">
                             
-                          <% if @deposit_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                          <% if @emergency_complete == 1 %>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
@@ -776,7 +783,7 @@
                         <div class="text-small">
 
                           <% if @fau_alert_complete == 1 %>
-                               <div class="text-info"><b>COMPLETED</b></div><br>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>

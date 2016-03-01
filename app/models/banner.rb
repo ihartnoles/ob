@@ -141,7 +141,7 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.fin_aid_checkboxes(id)
-			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, '04/01/2015' as rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
+			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
 		end
 
 		def self.fin_aid_acceptance(id)
