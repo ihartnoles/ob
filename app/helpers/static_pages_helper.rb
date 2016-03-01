@@ -27,7 +27,7 @@ module StaticPagesHelper
   	end
 
 
-     def aleks_status(znum)
+     def aleks_status(znum,netid)
       output = Banner.aleks_status(znum)
 
       if output.count > 0
@@ -36,7 +36,7 @@ module StaticPagesHelper
          if o['aleks_taken'] == 'Y' 
            tmp =  "You have taken ALEKS! Congrats!"
          else
-           tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <a id='aleks' title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=sisma2015' target='_blank'>[Aleks Sign-up]</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
+           tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <br><a id='aleks' title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=#{netid}' target='_blank'>[Sign-up for ALEKS here]</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
          end
 
          return tmp.html_safe
@@ -333,9 +333,6 @@ module StaticPagesHelper
 
       if output.count > 0
         output.each do |o| 
-
-       puts YAML::dump(' *** PORKY PIG  ***')      
-       puts YAML::dump(o['deposit_received'])
 
          if !o['deposit_received'].nil?
            tmp =  "Our records indicate you have made a housing deposit. <br> Your housing deposit was received on #{o['deposit_received'].strftime('%x')}."

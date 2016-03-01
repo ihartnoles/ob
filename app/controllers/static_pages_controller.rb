@@ -257,6 +257,7 @@ class StaticPagesController < ApplicationController
 
                   @fname =  o['f_name']
                   @lname =  o['l_name']
+                  @netid =  o['gobtpac_external_user']
 
 
                   if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
