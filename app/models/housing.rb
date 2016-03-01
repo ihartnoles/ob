@@ -6,7 +6,7 @@ class Housing < ActiveRecord::Base
 	establish_connection(:housing)
 
 	def self.get_housing_deposit(id)
-			get = connection.exec_query("SELECT  tblStudentApplications.deposit_received FROM  tblStudentApplications INNER JOIN  tblStudents ON tblStudentApplications.StudentID = tblStudents.StudentID WHERE StudentNumber = #{connection.quote(id)}")
+			get = connection.exec_query("SELECT  tblStudentApplications.deposit_received FROM  tblStudentApplications INNER JOIN  tblStudents ON tblStudentApplications.StudentID = tblStudents.StudentID WHERE StudentNumber = #{connection.quote(id)} AND tblStudentApplications.deposit_received is not null")
 	end
 
 	def self.get_housing_exemption(id)

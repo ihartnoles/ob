@@ -201,13 +201,14 @@ module StaticPagesHelper
       if output.count > 0
         output.each do |o| 
 
-          # puts YAML::dump('begin immunization status')
-          # puts YAML::dump(o)
+           # puts YAML::dump('begin immunization status')
+           # puts YAML::dump(o['im_exists'])
+           # puts YAML::dump(o['sprhold_hldd_code'])
 
-         if o['imm_hold_flg'] == 'Y' 
-           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <a id='immune' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"           
+         if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
+           tmp <<  "Your immunization records are up to date!  Good job!"                                 
          else
-           tmp =  "Your immunization records are up to date!  Good job!"
+           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <a id='immune' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"
          end
          
          return tmp.html_safe
@@ -333,8 +334,11 @@ module StaticPagesHelper
       if output.count > 0
         output.each do |o| 
 
+       puts YAML::dump(' *** PORKY PIG  ***')      
+       puts YAML::dump(o['deposit_received'])
+
          if !o['deposit_received'].nil?
-           tmp =  "Our records indicated you have made a housing deposit. <br> Your housing deposit was received on #{o['deposit_received'].strftime('%x')}."
+           tmp =  "Our records indicate you have made a housing deposit. <br> Your housing deposit was received on #{o['deposit_received'].strftime('%x')}."
          else
            tmp =  "Your housing deposit has NOT been paid yet!  <br>            
                <a id='housing' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>"

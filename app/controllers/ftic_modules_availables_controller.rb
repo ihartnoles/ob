@@ -30,8 +30,9 @@ class FticModulesAvailablesController < ApplicationController
     @modules_available = FticModulesAvailable.find(params[:id])
     #@modules_available =FticModulesAvailable.where(:znumber => params[:znum]) 
     @ma = FticModulesAvailable.where(:id =>  params[:id] )
+    @znum = params[:znum]
 
-    immunization_status = Banner.immunization_status(@znum)
+    #immunization_status = Banner.immunization_status(@znum)
     residency_status = Banner.residency_status(@znum)
     finaid_status = Banner.fin_aid_docs(@znum)
     finaid_checks = Banner.fin_aid_checkboxes(@znum)
@@ -40,7 +41,7 @@ class FticModulesAvailablesController < ApplicationController
     oars_status = Faudw.oars_status(@znum)
     orientation_status = Faudw.orientation_status(@znum)
     registration_status = Banner.registered_hours(@znum)
-    get_multistatus = Banner.get_multistatus(params[:znum])
+    get_multistatus = Banner.get_multistatus(@znum)
 
     #BEGIN: To-Dos
       # @fau_alert_complete = 0
@@ -68,15 +69,16 @@ class FticModulesAvailablesController < ApplicationController
           end
 
           #pull the commmunication pref. data for the particular znumber
-          communication_data = Communication.find(:all, :conditions => ["znumber = ? AND (contactByEmail = ? OR contactByPhone = ?) ", @znum, 1, 1])
+          comm_data = Communication.find(:all, :conditions => ["znumber = ? AND (contactByEmail = ? OR contactByPhone = ?) ", @znum, 1, 1])
 
           #set the flag appropriate
-          if communication_data.count > 0
-            @communication_complete = 1
+          if comm_data.count == 0
+            @communication_complete = 0            
           else
-            @communication_complete = 0
+            @communication_complete = 1        
           end
 
+         
           #query for learning community data for the student
           lc_preferences = Community.where(:znumber => @znum)
 
@@ -128,9 +130,16 @@ class FticModulesAvailablesController < ApplicationController
                @emergency_complete = 0
                @fau_alert_complete = 0
                @isInternationalStudent = 0
+               @immunization_complete = 0
             else
                 get_multistatus.each do |o|
                   
+                  if o['im_exists'] == 'N' || o['im_exists'].nil?
+                    @immunization_complete = 0
+                  else
+                    @immunization_complete = 1
+                  end 
+
                   if o['whc_student'] == 'N' || o['whc_student'].nil?
                     @isHonorsCollege = 0
                   else
@@ -203,17 +212,17 @@ class FticModulesAvailablesController < ApplicationController
             end
             #END: multistatus check
      
-              if immunization_status.blank? || immunization_status.count == 0
-                   @immunization_complete = 0
-               else
-                immunization_status.each do |o|
-                  if o['imm_hold_flg'] == 'Y' || o['imm_hold_flg'].nil?
-                    @immunization_complete = 0
-                  else
-                    @immunization_complete = 1
-                  end 
-                end
-               end
+              # if immunization_status.blank? || immunization_status.count == 0
+              #      @immunization_complete = 0
+              #  else
+              #   immunization_status.each do |o|
+              #     if o['imm_hold_flg'] == 'Y' || o['imm_hold_flg'].nil?
+              #       @immunization_complete = 0
+              #     else
+              #       @immunization_complete = 1
+              #     end 
+              #   end
+              #  end
 
 
             #begin finaidcheckboxes

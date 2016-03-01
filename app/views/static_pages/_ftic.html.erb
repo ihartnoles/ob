@@ -1149,24 +1149,23 @@ Hello, <%= session[:cas_user] %>!
 
 				                 		<div align="center">
 				                 			<br>As such you are NOT required to live in University Housing.
-				                 			<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Optionally Sign Up for Housing Here]</a>
+				                 			
+				                 			<% if @housing_deposit_received == 1 %>
+				                 				<% if @term != 'Summer'%>  							 	
+		  							 				<br><%= get_housing_deposit(znum) %>
+				  							 	<% else %>
+				  							 		<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
+				  							 	<% end %>
+				                 			<% else %>
+				                 				<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Optionally Sign Up for Housing Here]</a>
+				                 			<% end %>
+
+				                 			
+
 				                 		</div>
 
-				                 	</div>
-			                 	
-
-			                 		<% if @housing_deposit_received == 1 %>
-			                 		    <div align="center">
-			                 		    <p>
-
-		  							 		<% if @term != 'Summer' %>  							 	
-		  							 			<%= get_housing_deposit(znum) %>
-			  							 	<% else %>
-			  							 		<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
-			  							 	<% end %>
-		  								</p>   
-		  								</div>
-			                 		<% end %>
+				                 	</div>            		
+			                 		
 
 			                 	
 			                 <% end %>

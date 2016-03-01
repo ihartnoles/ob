@@ -80,7 +80,7 @@ class StaticPagesController < ApplicationController
             @verify_complete = 1
            #END: verify complete
 
-          immunization_status = Banner.immunization_status(@znum)
+          #immunization_status = Banner.immunization_status(@znum)
           residency_status = Banner.residency_status(@znum)
           finaid_status = Banner.fin_aid_docs(@znum)
           finaid_checks = Banner.fin_aid_checkboxes(@znum)
@@ -108,7 +108,7 @@ class StaticPagesController < ApplicationController
           communication_data = Communication.find(:all, :conditions => ["znumber = ? AND (contactByEmail = ? OR contactByPhone = ?) ", @znum, 1, 1])
 
           #set the flag appropriate
-          if communication_data.count > 0
+          if communication_data.count >= 1
             @communication_complete = 1
           else
             @communication_complete = 0
@@ -251,11 +251,19 @@ class StaticPagesController < ApplicationController
                @emergency_complete = 0
                @fau_alert_complete = 0
                @isInternationalStudent = 0
+               @immunization_complete = 0
             else
                 get_multistatus.each do |o|
 
                   @fname =  o['f_name']
                   @lname =  o['l_name']
+
+
+                  if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
+                    @immunization_complete = 1
+                  else
+                    @immunization_complete = 0
+                  end 
 
 
                   # puts YAML::dump('**********BURRRIALLLLL!!!!**********')
@@ -340,17 +348,19 @@ class StaticPagesController < ApplicationController
 
         
           
-         if immunization_status.blank? || immunization_status.count == 0
-             @immunization_complete = 0
-         else
-          immunization_status.each do |o|
-            if o['imm_hold_flg'] == 'Y' || o['imm_hold_flg'].nil?
-              @immunization_complete = 0
-            else
-              @immunization_complete = 1
-            end 
-          end
-         end
+         # if immunization_status.blank? || immunization_status.count == 0
+         #     @immunization_complete = 0
+         # else
+         #  immunization_status.each do |o|
+         #    if o['imm_hold_flg'] == 'Y' || o['imm_hold_flg'].nil?
+         #      @immunization_complete = 0
+         #    else
+         #      @immunization_complete = 1
+         #    end 
+         #  end
+
+
+         #end
 
 
           #begin finaidcheckboxes
@@ -878,8 +888,6 @@ class StaticPagesController < ApplicationController
      @mourn_count = (Float(tmp_morn_count)/Float(login_times.count) * 100)
      @afternoon_count = (Float(tmp_afternoon_count)/Float(login_times.count)  * 100)
      @evening_count = (Float(tmp_evening_count)/Float(login_times.count)  * 100)
-
-
    end
 
 end

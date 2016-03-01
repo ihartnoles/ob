@@ -61,6 +61,11 @@ class Banner < ActiveRecord::Base
 			get = connection.exec_query("SELECT sarchkl_admr_code, sarchkl_receive_date FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
+		def self.immunization_status(id)
+			get = connection.exec_query("SELECT sprhold_hldd_code, im_exists from BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)} and sprhold_hldd_code = 'IM' AND im_exists='Y'")
+		end
+
+
 		# def self.account_claimed_status(id)
 		# 	get = connection.exec_query("SELECT spremrg_first_name, spremrg_last_name FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		# end
@@ -79,8 +84,7 @@ class Banner < ActiveRecord::Base
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
 									      END as term ,
-											
-										  									      
+										  im_exists, sprhold_hldd_code,										  									      
 									      aleks_taken, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, sarchkl_admr_code, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name, 
 									      spremrg_street_line1, spremrg_city, spremrg_stat_code, spremrg_natn_code, spremrg_zip, sprtele_phone_area, sprtele_phone_number,spremrg_phone_area, spremrg_phone_number, 
 									      gwrr911_phone_area, gwrr911_phone_number, gwrr911_tele_code, gwrr911_text_capable,
@@ -137,17 +141,13 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.fin_aid_checkboxes(id)
-			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
+			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, '04/01/2015' as rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
 		end
 
 		def self.fin_aid_acceptance(id)
 			get = connection.exec_query("SELECT rpratrm_accept_date from BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
-
-		def self.immunization_status(id)
-			get = connection.exec_query("SELECT IMM_HOLD_FLG from BANINST1.AWS_ONBOARDING_FINAID WHERE Z_NUMBER=#{connection.quote(id)}")
-		end
-
+	
 		def self.residency_status(id)
 			get = connection.exec_query("SELECT SGBSTDN_RESD_CODE, spraddr_stat_code from BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		end

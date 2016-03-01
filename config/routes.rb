@@ -9,6 +9,7 @@ Ob::Application.routes.draw do
   resources :activity_logs
   get       '/activity_log/:znum',  to: 'activity_logs#znumber'
   resources :ftic_modules_availables , :path => "fticadmin"
+  
   #static actions
    get    '/main',             to: 'static_pages#main'
    get    '/home',             to: 'static_pages#home'
