@@ -651,8 +651,8 @@ class StaticPagesController < ApplicationController
           @vehicle_reg_complete = 0   
 
           updateDaMeter
-          
-          updateCompletedStep
+        
+          updateCompletedStep(@znum)
           
           #updateNextStep
 

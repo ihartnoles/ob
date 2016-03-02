@@ -578,7 +578,7 @@ Hello, <%= session[:cas_user] %>!
 										<div>
 											<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
 											<% if  (communication_available == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
-											<%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>
+												<%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>										
 											<% end %>
 										</div>
 									

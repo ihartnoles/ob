@@ -216,7 +216,7 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def updateCompletedStep     
+  def updateCompletedStep(znumber)     
     currentstep = 'n/a'
     
     while true
@@ -309,6 +309,12 @@ class ApplicationController < ActionController::Base
          break
      end
     end
+    
+    puts YAML::dump('*** @znum ***')       
+    puts YAML::dump(@znum)
+    puts YAML::dump('*** znumber ***') 
+    puts YAML::dump(znumber)
+    puts YAML::dump('*** AFTER ***') 
         
     @ftic = FticModulesAvailable.find_by_znumber(@znum)
     @ftic.current_step = currentstep

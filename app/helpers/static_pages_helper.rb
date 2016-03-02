@@ -17,12 +17,12 @@ module StaticPagesHelper
   	    	 return tmp
          else
 
-          return "Our records indicate you have not yet attended an Orienation session. Please <a href='http://www.fau.edu/orientation/' target='_blank'>[sign up here]</a>. <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
+          return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='http://www.fau.edu/orientation/' class='btn btn-danger' target='_blank'>Sign-up for Orientation Now</a>. <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
 
          end
       end
       	 else
-      	 	return "Our records indicate you have not yet attended an Orienation session. Please <a href='http://www.fau.edu/orientation/' target='_blank'>[sign up here]</a>. <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
+      	 	return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='http://www.fau.edu/orientation/' class='btn btn-danger' target='_blank'>Sign-up for Orientation Now</a>. <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
       	 end        
   	end
 
@@ -36,7 +36,7 @@ module StaticPagesHelper
          if o['aleks_taken'] == 'Y' 
            tmp =  "You have taken ALEKS! Congrats!"
          else
-           tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <br><a id='aleks' title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=#{netid}' target='_blank'>[Sign-up for ALEKS here]</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
+           tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <br><br><a id='aleks' class='btn btn-danger' title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=#{netid}' target='_blank'>Sign-Up for ALEKS Now</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
          end
 
          return tmp.html_safe
@@ -180,7 +180,7 @@ module StaticPagesHelper
          if !o.nil?
            tmp =  "You have taken OARS for #{o['semester_desc']}! Great work!"
          else
-           tmp =  "You have NOT completed OARS. <a id='oars' title='OARS information' href='https://oars.fau.edu/login/login' target='_blank'>[More Information]</a>"
+           tmp =  "You have NOT completed OARS. <br><br> <a id='oars' class='btn btn-danger' title='OARS information' href='https://oars.fau.edu/login/login' target='_blank'>Sign Up for OARS Now</a>"
          end
 	    	 
 
@@ -208,14 +208,14 @@ module StaticPagesHelper
          if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
            tmp <<  "Your immunization records are up to date!  Good job!"                                 
          else
-           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <a id='immune' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"
+           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>Update Your Immunization Records Now</a>"
          end
          
          return tmp.html_safe
 
         end
       else
-        tmp = " You need to make sure your immunization records are up to date. <br> <a id='immune' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>[More Information]</a>"
+        tmp = " You need to make sure your immunization records are up to date. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>Update Your Immunization Records Now</a>"
         return tmp.html_safe
       end 
      end
@@ -292,8 +292,8 @@ module StaticPagesHelper
          if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
            tmp =  "Your tuition deposit was paid on #{o['sarchkl_receive_date'].strftime('%x')}."
          else
-           tmp =  "Your tuition deposit has NOT been paid yet!  <br>            
-               <a id='tuitionlink' href='https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link' target='_blank'>[Pay Your Tuition Deposit Now]</a>
+           tmp =  "Your tuition deposit has NOT been paid yet!  <br> You cannot continue until you've paid. <br> <br>           
+               <a id='tuitionlink' class='btn btn-danger' href='https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link' target='_blank'>Pay Your Tuition Deposit Now</a>
               "
          end
          
@@ -337,16 +337,16 @@ module StaticPagesHelper
          if !o['deposit_received'].nil?
            tmp =  "Our records indicate you have made a housing deposit. <br> Your housing deposit was received on #{o['deposit_received'].strftime('%x')}."
          else
-           tmp =  "Your housing deposit has NOT been paid yet!  <br>            
-               <a id='housing' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>"
+           tmp =  "Your housing deposit has NOT been paid yet!  <br><br>            
+               <a id='housing' class='btn btn-danger' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>Pay Your Housing Deposit Now</a>"
          end
          
          return tmp.html_safe
 
          end
       else
-        return "Your housing deposit has NOT been paid yet!  <br>            
-               <a id='housing' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Sign up here]</a>".html_safe
+        return "Your housing deposit has NOT been paid yet!  <br><br>            
+               <a id='housing' class='btn btn-danger' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>Pay Your Housing Deposit Now</a>".html_safe
       end 
      end
 end
