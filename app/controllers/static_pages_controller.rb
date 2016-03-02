@@ -463,6 +463,7 @@ class StaticPagesController < ApplicationController
             end
 
             @finaidyear = o['finaidyear']
+            @aidy= o['rorstat_aidy_code']
           end
 
          

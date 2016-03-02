@@ -132,12 +132,15 @@ class Banner < ActiveRecord::Base
 									          ELSE ''
 									      END as term ,
 
+									      RORSTAT_AIDY_CODE,
+
 									     CASE RORSTAT_AIDY_CODE 
 									     	WHEN '1617' THEN '2016-2017'
 									     	WHEN '1516' THEN '2015-2016'
 									     	WHEN '1415' THEN '2014-2015'
 
-									     END as finaidyear  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}")
+									     END as finaidyear  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
+									     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
 		end
 
 		def self.fin_aid_checkboxes(id)
@@ -165,7 +168,9 @@ class Banner < ActiveRecord::Base
 
 									    RPRATRM_AIDY_CODE as finaidyear,
 									
-									    RPRATRM_OFFER_AMT, TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)} ORDER BY RPRATRM_PERIOD, RFRBASE_FUND_TITLE")
+									    RPRATRM_OFFER_AMT, TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS 
+									    WHERE Z_NUMBER=#{connection.quote(id)} 
+									    ORDER BY RFRBASE_FUND_TITLE ASC")
 		end
 
 	#END:QUERIES TO BANINST1.AWS_ONBOARDING_FINAID
