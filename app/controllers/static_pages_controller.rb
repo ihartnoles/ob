@@ -184,6 +184,10 @@ class StaticPagesController < ApplicationController
                # puts YAML::dump(zipcode)
                # puts YAML::dump('**********CODE**********')
             end
+
+            if @zipcode.nil?
+              @zipcode = '00000'
+            end
           else
             @zipcode = '00000'
           end     
