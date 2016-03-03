@@ -441,7 +441,7 @@ Hello, <%= session[:cas_user] %>!
 					  		<p>The non-refundable admissions tuition deposit is for admitted freshman students only.</p>
 					 		 
 					 		<p>All admitted freshmen must confirm their intention to enroll and secure their space in the class with a $200.00 <strong>non-refundable</strong> deposit. The $200 is applied to your tuition and fees for the semester in which you are admitted to FAU. It will be forfeited if you pay the deposit and choose not to enroll at FAU for that term, or if you submit a change of entry request for a different term. Your space will be released to another applicant if the deposit is not received by<span style="text-decoration: underline;"> May 1 or within two weeks of admission if admitted after May 1 <sup>st</sup></span>.
-	                         <br><br>The deposit is applied to your account when you enroll and will be used toward your tuition and fees. It will be forfeited if you do not enroll. <a title="FAU Admissions Deposit" href="http://www.fau.edu/admissions/tuitiondeposit.php" target="_blank">[More Information]</a></p>
+	                         <br><br>The deposit is applied to your account when you enroll and will be used toward your tuition and fees. It will be forfeited if you do not enroll. <a title="FAU Admissions Deposit" href="http://www.fau.edu/admissions/tuitiondeposit.php" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a></p>
 					 		
 					 		 <!-- <a href="https://epay.fau.edu:8443/C20081test_tsa/web/welcome.jsp" target="_blank">Pay Tuition Touchnet:</a> -->
 
@@ -761,13 +761,13 @@ Hello, <%= session[:cas_user] %>!
 
 					 <p>
 					 	<strong>OPTION I</strong><br>
-							Step 1. <a href="http://www.insuranceforstudents.com/insurance-plans/year/schools/details?s=9&l=5012&b=0" target="_blank">Enroll</a> in the FAU insurance plan for international students.<br>
+							Step 1. <a href="http://www.insuranceforstudents.com/insurance-plans/year/schools/details?s=9&l=5012&b=0" onclick="window.open(this.href, 'international insurance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Enroll</a> in the FAU insurance plan for international students.<br>
 							Step 2. Submit your receipt to <a href="mailto:insurance@fau.edu">insurance@fau.edu</a> (subject line: Remove MM hold – insurance receipt).<br>
 					 </p>
 				 		
 				 	 <p>
 					 	<strong>OPTION II</strong><br>
-							Students who wish to seek medical insurance coverage under a non-FAU plan must submit the <a href="http://www.fau.edu/shs/PDFs/Alternate_Insurance_Form_2015_2016.pdf" target="_blank">Alternate Insurance Compliance Form</a> in lieu of purchasing the FAU insurance plan for international students.
+							Students who wish to seek medical insurance coverage under a non-FAU plan must submit the <a href="http://www.fau.edu/shs/PDFs/Alternate_Insurance_Form_2015_2016.pdf" onclick="window.open(this.href, 'insurance form','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Alternate Insurance Compliance Form</a> in lieu of purchasing the FAU insurance plan for international students.
 					 </p>
 					 <p>
 					 	<!-- <em><b>MM hold is manually removed by Student Health Services.</b></em> -->
@@ -816,7 +816,7 @@ Hello, <%= session[:cas_user] %>!
 	                     <br>All applicants must complete the Residency Classification for Tuition Purposes section of the application and submit the required documentation, regardless of the duration of their presence in Florida. A Florida resident for tuition purposes is defined as an individual who has resided in the state for 12 consecutive months while not enrolled in an institution of higher learning, prior to the beginning of classes, and who has established legal ties in Florida according to Florida Statute 1009.21.<br> 
 	                     <br>Florida Legislature has recently implemented significant changes to Florida Statute 1009.21. For updated information, please visit <a title="Florida Legislature" href="http://www.flsenate.gov/data/session/2009/Senate/bills/amendments/pdf/sb1696c2588994.pdf" target="_blank">here</a>. Florida residency content can be found beginning on page 10. 
 
-	                    <a title="FAU Residency Guidelines" href="http://www.fau.edu/registrar/residency/index.php" target="_blank">[More Information]</a> | <a href="http://www.fau.edu/finaid/other/cost-of-attendance.php" target="_blank">[Cost of Attendance]</a>
+	                    <a title="FAU Residency Guidelines" href="http://www.fau.edu/registrar/residency/index.php" onclick="window.open(this.href, 'residency','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> | <a href="http://www.fau.edu/finaid/other/cost-of-attendance.php" onclick="window.open(this.href, 'attendance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Cost of Attendance]</a>
 
 	                 </p>
 
@@ -882,7 +882,7 @@ Hello, <%= session[:cas_user] %>!
 							<% if @fafsa_complete == 0 || @fafsa_complete.nil? %>
 			  					<div class="alert alert-border alert-danger text-center fade in">
 			  						Our records indicate you have not completed your Free Application for Federal Student Aid (FAFSA).<br>
-			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" target="_blank">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.
+			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" onclick="window.open(this.href, 'fafsa','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.
 
 			  					</div>
 			  				<% end %>
@@ -898,12 +898,12 @@ Hello, <%= session[:cas_user] %>!
 
 			  						<%# else %>
 			  						
-			  							<li> <% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li>
+			  							<li> <% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="http://fafsa.gov" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li>
 			  						
-				  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Complete Your Financial Aid Requirements</a></li>
+				  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'fin aid requirements','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete Your Financial Aid Requirements</a></li>
 
-				  						<li><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Terms & Conditions</a> &nbsp; </li>
-				  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" target="_blank">Accept Your Financial Aid Package</a> &nbsp;</li>
+				  						<li><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'terms and conditions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Terms & Conditions</a> &nbsp; </li>
+				  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'fin aid package','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Accept Your Financial Aid Package</a> &nbsp;</li>
 				  					<% end %>
 			  					</ol>
 			  						
@@ -1011,12 +1011,12 @@ Hello, <%= session[:cas_user] %>!
                   	<% if @fafsa_complete == 1 %>
 					  		<h3 class="title">Your Financial Aid Documents</h3>
 
-					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" target="_blank">www.fau.edu/finaid</a> or call 561-297-3530. 
+					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 
 					  			<!-- <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" target="_blank">[More Information]</a> | 
 					  			<a title="FAU Financial Aid Forms" href="http://www.fau.edu/finaid/resources/forms.php" target="_blank">[FAFSA Form Information]</a> | -->
 					  			
 
-					  			<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" target="_blank">[Your Financial Aid Information]</a>
+					  			<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
 
 					  		</p>
 
@@ -1036,7 +1036,7 @@ Hello, <%= session[:cas_user] %>!
 
 					  		<h3 class="title">Your Financial Aid Awards</h3>
 					  		<p>
-			  					For more detailed information on the various types of financial aid which are available please see <a href="http://www.fau.edu/finaid/types-of-aid/" target="_blank">Types of Financial Aid</a>.
+			  					For more detailed information on the various types of financial aid which are available please see <a href="http://www.fau.edu/finaid/types-of-aid/" onclick="window.open(this.href, 'fin. aid types','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Types of Financial Aid</a>.
 			  				</p>
 					  		<p>
 					  			<table class="table table-striped text-left order-details">
@@ -1115,7 +1115,7 @@ Hello, <%= session[:cas_user] %>!
 		  		<p>
 		  		   All full-time freshmen are required to live in University Housing. Exemptions are made for students residing with their parent or legal guardian within a 30-mile commutable radius of the campus or students who
 		  		   are at least 21 years of age. Students who wish to be exempt must apply prior to the start of the acadmeic year.
-		  		 <a title="FAU Housing" href="http://www.fau.edu/housing/" target="_blank">[More Information]</a> 
+		  		 <a title="FAU Housing" href="http://www.fau.edu/housing/" onclick="window.open(this.href, 'housing','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> 
 		  		</p>
 
 		  		<h3 class="title">Housing Requirement</h3>
@@ -1177,10 +1177,10 @@ Hello, <%= session[:cas_user] %>!
 				                 				<% if @term != 'Summer'%>  							 	
 		  							 				<br><%= get_housing_deposit(znum) %>
 				  							 	<% else %>
-				  							 		<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>
+				  							 		<br><a id="housing" class="btn btn-info" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>Access Additional Housing Information Here</a>
 				  							 	<% end %>
 				                 			<% else %>
-				                 				<br><a id="housing" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Optionally Sign Up for Housing Here]</a>
+				                 				<br><a id="housing" class="btn btn-info" title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>Optionally Sign Up for Housing Here</a>
 				                 			<% end %>
 
 				                 			
@@ -1211,7 +1211,7 @@ Hello, <%= session[:cas_user] %>!
 By purchasing one of these profiler meal plan packages, you will avoid waiting in the occasional longer lines, sales tax when paying cash or credit at the Atlantic Dining Hall, and save that parking spot! You can even save an average of $175 dollars with a commuter meal plan.  <br>
 
 <div align="center">
-	<br><a id="mealplan" href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">[Purchase a meal plan]</a>
+	<br><a id="mealplan" class="btn btn-info" href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">Purchase a meal plan</a>
 </div>
 							</p>
 	                 	  </div>
@@ -1222,7 +1222,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			              <% else %>
 			              	You have not signed up for a meal plan. 
 			              	<p>
-		  								<a id="housing" title="FAU Dining" href="https://talon.fau.edu/sso/housing" target="_blank">[Choose your meal plan]</a> 
+		  								<a id="housing" class="btn btn-info" title="FAU Dining" href="https://talon.fau.edu/sso/housing" target="_blank">Choose your meal plan</a> 
 		  					</p>
 			              <% end %>
 			             </div>
@@ -1282,7 +1282,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<% else %>
 
 			  		<p>
-					FAU has adopted a mandatory placement exam to determine math proficiency known as ALEKS. All entering freshmen are required to take the ALEKS test. <a title="ALEKS information" href="http://www.fau.edu/mathplacement" target="_blank">[More Information]</a>.
+					FAU has adopted a mandatory placement exam to determine math proficiency known as ALEKS. All entering freshmen are required to take the ALEKS test. <a title="ALEKS information" href="http://www.fau.edu/mathplacement" onclick="window.open(this.href, 'aleks','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>.
 					</p>
 
 
@@ -1347,7 +1347,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 					<p>
 						All new incoming students are required to complete an orientation session.  Freshman students are required to complete a two-day orientation program.  Please read more about your orientation session 
-						<a href="http://www.fau.edu/orientation/" target="_blank">here</a>
+						<a href="http://www.fau.edu/orientation/" onclick="window.open(this.href, 'orientation','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">here</a>
 					</p>	
 
 					<div class="alert alert-border <%if orientation_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
@@ -1418,8 +1418,8 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						
 					</p>	
 
-					<p>Register for mandatory <a href="https://docs.google.com/forms/d/1nMaxZuzgsDps14fS_F5C7e3WMc-EAjzX-EdHu2HLOyE/viewform?c=0&w=1" target="_blank">Immigration Check-in</a>.</p>
-					<p>Register for mandatory <a href="https://docs.google.com/forms/d/1GBYhv4bhBzBwbrY-fAwoTSKnIQYyzGEM4WRbGMYngL0/viewform" target="_blank">International Student Orientation</a>.</p>
+					<p>Register for mandatory <a href="https://docs.google.com/forms/d/1nMaxZuzgsDps14fS_F5C7e3WMc-EAjzX-EdHu2HLOyE/viewform?c=0&w=1" onclick="window.open(this.href, 'immigration','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Immigration Check-in</a>.</p>
+					<p>Register for mandatory <a href="https://docs.google.com/forms/d/1GBYhv4bhBzBwbrY-fAwoTSKnIQYyzGEM4WRbGMYngL0/viewform" onclick="window.open(this.href, 'iso','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">International Student Orientation</a>.</p>
 					
 					<p><em>After the two steps above are complete, the IS hold should be removed. Currently, these holds are manually removed after the students complete these two steps.</em></p>
 
@@ -1578,7 +1578,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<% end %>
 
 				<% if  learning_comm_available == 1 || learning_commbypass == 1 %>
-					<button type="submit" class="btn btn-danger" id="lcBut">Continue</button>
+						<button type="submit" class="btn btn-danger" id="lcBut">Continue</button>
 				<% end %>	
 
 				 <%# if  (learning_comm_available == 1 && learning_comm_complete == 1 ) || learning_commbypass == 1 %>
@@ -1632,7 +1632,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						"OARS" is a self-directed system. You may be a little nervous about choosing classes on your own, but DON'T WORRY! Help is always just a phone call or mouse click away, and the instructions are very user-friendly. When you log in to select your courses, you will find:
 							A brief description of the course when you click on the subject.
 							A sample class schedule for your major.
-							It takes three (3) to five (5) business days to process your submitted OARS form. After three to five business days, log back into OARS to review your advisor's comments. If your holds are cleared and your course selections are in sync with your advisors, you can log into MyFAU to register for classes. That's all there is to it!  <a title="OARS information" href="http://www.fau.edu/uas/oars.php" target="_blank">[More Information]</a>
+							It takes three (3) to five (5) business days to process your submitted OARS form. After three to five business days, log back into OARS to review your advisor's comments. If your holds are cleared and your course selections are in sync with your advisors, you can log into MyFAU to register for classes. That's all there is to it!  <a title="OARS information" href="http://www.fau.edu/uas/oars.php" onclick="window.open(this.href, 'oars','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
 					</p>	
 
 
@@ -1749,7 +1749,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 								</p>
 
 								<p>
-								See the Academic Calendar for registration dates. Please check your holds prior to registration by going to <a href="http://myfau.fau.edu" target="_blank">http://myfau.fau.edu</a> , clicking FAU Self Service, then Student Services, then Student Records, then View Holds.	
+								See the Academic Calendar for registration dates. Please check your holds prior to registration by going to <a href="http://myfau.fau.edu" onclick="window.open(this.href, 'myfau','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">http://myfau.fau.edu</a> , clicking FAU Self Service, then Student Services, then Student Records, then View Holds.	
 								</p>
 
 
@@ -1880,12 +1880,12 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 							 	Fees are charged by course level and student's Residency status. If you are a Florida Resident and you have been charged Out of State fees, please contact Undergraduate Admissions or the Graduate College immediately regarding your residency status.
 							 </p>
 							 <p>
-								Please see our <a id="finaidtuition"href="http://www.fau.edu/controller/student_information/tuition_breakdown.php" target="_blank">tuition breakdown</a> of tuition and fees per credit hour based on course level and residency.
+								Please see our <a id="finaidtuition" href="http://www.fau.edu/controller/student_information/tuition_breakdown.php" onclick="window.open(this.href, 'tuition breakdown','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;" target="_blank">tuition breakdown</a> of tuition and fees per credit hour based on course level and residency.
 							</p>
 
 							<p>
 								There are other charges that are charged separately such as the Transportation Access Fee, 
-								Owl Card Fee, eLearning fee, lab fee, late fee, etc. Please see our <a href="http://www.fau.edu/controller/student_information/fees_defined.php" target="_blank">fee descriptions</a>for more information. 						 
+								Owl Card Fee, eLearning fee, lab fee, late fee, etc. Please see our <a href="http://www.fau.edu/controller/student_information/fees_defined.php" onclick="window.open(this.href, 'fee descriptions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;" target="_blank">fee descriptions</a>for more information. 						 
 							 </p>
 
 			                  <p>
@@ -2004,7 +2004,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. <a title="FAU Alert"  href="http://www.fau.edu/emergency/universityalerts.php" target="_blank">[More Information]</a>
+					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. <a title="FAU Alert"  href="http://www.fau.edu/emergency/universityalerts.php" onclick="window.open(this.href, 'fau alert','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
 	               
 					<% if fau_alert_complete == 1 %>
 						 <p>Your FAU Alert information on file is:<br>
@@ -2085,7 +2085,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 							Contact:<br>
 							Phone: 561-799-8697<br>
 						<% else %>
-							To obtain your OWL Card, visit the <a href="http://www.fau.edu/business-services/owl-card/locations.php" target="_blank">OWL Card Center</a> on Florida Atlantic University's Boca Raton or Davie campus. Bring with you a photo ID, either your driver's license, military ID or passport. You must also be registered for classes within the current semester or have a current FAU employment contract or LLS membership card. <a href="http://www.fau.edu/business-services/owl-card/request.php" target="_blank">[More Information]</a>
+							To obtain your OWL Card, visit the <a href="http://www.fau.edu/business-services/owl-card/locations.php" onclick="window.open(this.href, 'owl card center','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">OWL Card Center</a> on Florida Atlantic University's Boca Raton or Davie campus. Bring with you a photo ID, either your driver's license, military ID or passport. You must also be registered for classes within the current semester or have a current FAU employment contract or LLS membership card. <a href="http://www.fau.edu/business-services/owl-card/request.php" onclick="window.open(this.href, 'owl card info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
 						<% end %>
 					</p>
 				 <% end %>
@@ -2136,7 +2136,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<% if bookadvance_bypass == 1 %>			  		
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
-					<p>A University monetary advance is available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees. <a href="http://www.fau.edu/finaid/other/sta.php" target="_blank">[More Information]</a>
+					<p>A University monetary advance is available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees. <a href="http://www.fau.edu/finaid/other/sta.php" onclick="window.open(this.href, 'book advance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
 					</p>
 
 					<p>
@@ -2155,7 +2155,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					</p>
 					 -->
 
-					 <a class="btn btn-info" href="https://boc22finaid.fau.edu/short_loan/" target="_blank">Apply for the Short Term Advance</a><br>
+					 <a class="btn btn-info" href="https://boc22finaid.fau.edu/short_loan/" onclick="window.open(this.href, 'short term advance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Apply for the Short Term Advance</a><br>
 					 					
 				 <% end %>
 
@@ -2213,7 +2213,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<% else %>
 
 					  <p>
-	                 	Students are eligible to register for their <a href="http://www.fau.edu/parking/allpermits.php" target="_blank">parking permits</a> 24 hours after they have registered for their classes. To register for a permit: 
+	                 	Students are eligible to register for their <a href="http://www.fau.edu/parking/allpermits.php" onclick="window.open(this.href, 'parking','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">parking permits</a> 24 hours after they have registered for their classes. To register for a permit: 
 	                  </p>
 	                  
 	                   <p>All payments will need to be made online, by mail or by using the drop box at the Boca Raton campus.</p>
@@ -2242,7 +2242,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 	              	   <p>
 	              	    	
-	              	    <a id="vehicle" class="btn btn-info" href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>' target='_blank'>
+	              	    <a  class="btn btn-info" href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>' onclick="window.open(this.href, 'vehicle','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">
 	              	   		Register Your Vehicle Now
 	              	   	</a> 
 
