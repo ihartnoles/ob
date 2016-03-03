@@ -1701,6 +1701,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 
 			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 %>
+			  		<%# if  0 == 1 %>
 			  			
 			  			<p>You have holds on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
@@ -1769,7 +1770,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 										<div class="alert alert-border alert-danger text-center fade in">
 											Fall/Spring term students must be registered for at least 12 credit hours!<br> Summer term students must be registered for at least 6 credit hours!<br>
-											<a id="registration" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Please Register Now]</a>
+											<a id="registration" class='btn btn-danger' href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">Register for Classes Now</a>
 										</div>
 									
 									<% end %>
@@ -1880,7 +1881,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 							 </p>
 
 			                  <p>
-			                  	<a id="finaidpayment" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Tuition Payment Information</a>
+			                  	<a id="finaidpayment" class="btn btn-danger" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Pay Your Tuition Now</a>
 			                   <!--  <a href='http://www.fau.edu/registrar/pdf/acadcal1516.pdf' target='_blank'>
 			              	   		[More Information]
 			              	    </a>  | 
@@ -1949,7 +1950,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					 </p>
 					
 
-				 	<br><a id="emerg" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> [Edit Your Emergency Contact Information]</a>
+				 	<br><a id="emerg" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> Update Your Emergency Contact Information</a><br>
 				<% end %>
 
 				  <% if  (emergency_available == 1 && emergency_complete == 1 ) || emergencybypass == 1 %>
@@ -1995,7 +1996,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						<p> An administrator has bypassed (overridden) this section for you.</p>
 				<% else %>
 
-					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. 
+					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. <a title="FAU Alert"  href="http://www.fau.edu/emergency/universityalerts.php" target="_blank">[More Information]</a>
 	               
 					<% if fau_alert_complete == 1 %>
 						 <p>Your FAU Alert information on file is:<br>
@@ -2012,7 +2013,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 	               <br>
 
-	               <a title="FAU Alert" href="http://www.fau.edu/emergency/universityalerts.php" target="_blank">[More Information]</a> | <a id="faualert" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">[Your FAU Alert Info]</a></p>
+	                <a id="faualert" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">Update Your FAU Alert Information</a></p>
                <% end %>
 
 
@@ -2146,7 +2147,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					</p>
 					 -->
 
-					 <a href="https://boc22finaid.fau.edu/short_loan/" target="_blank">Short Term Advance Application</a><br>
+					 <a class="btn btn-info" href="https://boc22finaid.fau.edu/short_loan/" target="_blank">Apply for the Short Term Advance</a><br>
 					 					
 				 <% end %>
 
@@ -2233,8 +2234,8 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 	              	   <p>
 	              	    	
-	              	    <a id="vehicle" href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>' target='_blank'>
-	              	   		[Register Here]
+	              	    <a id="vehicle" class="btn btn-info" href='https://fau.t2hosted.com/cmn/auth.aspx?personid=<%= params[:znum] %>' target='_blank'>
+	              	   		Register Your Vehicle Now
 	              	   	</a> 
 
 	              	  <!--  	<div class="buttons-box text-right">

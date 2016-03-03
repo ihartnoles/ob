@@ -840,7 +840,7 @@ class FticModulesAvailablesController < ApplicationController
      if params[:znum]
          redirect_to "/home?znum=#{params[:znum]}#step-vehicle" #redirect to deposit
      else
-        redirect_to "/home#step-step-vehicle"
+        redirect_to "/home#step-vehicle"
      end  
   end
 
