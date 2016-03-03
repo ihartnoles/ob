@@ -19,6 +19,6 @@ end
 Ob::Application.initialize!
 
 CASClient::Frameworks::Rails::Filter.configure(
-  #:cas_base_url => "https://cas1t.fau.edu/" 
-  :cas_base_url => "https://ssot.fau.edu/" 
+  :cas_base_url => "https://cas1t.fau.edu/" 
+  #:cas_base_url => "https://ssot.fau.edu/" 
 )

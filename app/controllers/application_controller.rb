@@ -310,11 +310,11 @@ class ApplicationController < ActionController::Base
      end
     end
     
-    puts YAML::dump('*** @znum ***')       
-    puts YAML::dump(@znum)
-    puts YAML::dump('*** znumber ***') 
-    puts YAML::dump(znumber)
-    puts YAML::dump('*** AFTER ***') 
+    # puts YAML::dump('*** @znum ***')       
+    # puts YAML::dump(@znum)
+    # puts YAML::dump('*** znumber ***') 
+    # puts YAML::dump(znumber)
+    # puts YAML::dump('*** AFTER ***') 
         
     @ftic = FticModulesAvailable.find_by_znumber(@znum)
     @ftic.current_step = currentstep
