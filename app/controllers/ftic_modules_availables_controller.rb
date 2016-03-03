@@ -537,6 +537,9 @@ class FticModulesAvailablesController < ApplicationController
       #if @modules_available.update(ftic_modules_available_params)
       if @modules_available.update_attributes(model_params)
         format.html { redirect_to '/dashboard/ftic', notice: 'Record updated!' }
+        #format.html { redirect_to '/fticadmin/params[:ftic_modules_available][:id]/edit?znum=params[:ftic_modules_available][:znum]', notice: 'Record updated!' }
+        #format.html { render action: 'edit' }
+        #format.html { edit_ftic_modules_available_path(id: params[:ftic_modules_available][:id], znum:params[:ftic_modules_available][:znum]  ) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

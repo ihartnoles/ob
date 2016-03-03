@@ -15,6 +15,7 @@
 
         <%= f.hidden_field :znumber, :value => params[:znum] %>
         <%= f.hidden_field :netid,   :value => m.netid %>
+        <%= f.hidden_field :id,      :value => params[:id] %>
 
         <% if @modules_available.errors.any? %>
           <div id="error_explanation">
@@ -430,9 +431,15 @@
 
                             <br><br>
                              <div class="row">
+                                <!-- 
                                 <div class="col-sm-6 ">
-                                    <%= f.label :housingmealplan, "Availability" %><br>  
-                                    <%= f.radio_button :housingmealplan, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :housingmealplan, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                    <%#= f.label :housingmealplan, "Availability" %><br>  
+                                    <%#= f.radio_button :housingmealplan, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%#= f.radio_button :housingmealplan, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div> -->
+
+                                <div class="col-sm-6 ">
+                                    <%= f.label :housingfee, "Availability"  %><br>    
+                                    <%= f.radio_button :housingfee, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :housingfee, 0 %> &nbsp; <i class="fa fa-lock"></i>
                                 </div>
 
                                  <div class="col-sm-6 "> 
