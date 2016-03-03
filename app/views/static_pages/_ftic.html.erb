@@ -1369,7 +1369,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 				<% end %>
 
-				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 %>
+				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 && (aleks_complete == 1 || aleksbypass == 1 ) %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_orientation_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
