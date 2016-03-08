@@ -17,12 +17,12 @@ module StaticPagesHelper
   	    	 return tmp
          else
 
-          return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='http://www.fau.edu/orientation/' class='btn btn-danger' target='_blank'>Sign-up for Orientation Now</a>. <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
+          return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='http://www.fau.edu/orientation/' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a> <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
 
          end
       end
       	 else
-      	 	return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='http://www.fau.edu/orientation/' class='btn btn-danger' target='_blank'>Sign-up for Orientation Now</a>. <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
+      	 	return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='http://www.fau.edu/orientation/' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;'>Sign-up for Orientation Now</a> <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
       	 end        
   	end
 
@@ -36,7 +36,7 @@ module StaticPagesHelper
          if o['aleks_taken'] == 'Y' 
            tmp =  "You have taken ALEKS! Congrats!"
          else
-           tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <br><br><a id='aleks' class='btn btn-danger' title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=#{netid}' target='_blank'>Sign-Up for ALEKS Now</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
+           tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <br><br><a id='aleks' class='btn btn-danger' title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=#{netid}' onclick='window.open(this.href, \"aleks\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\">Sign-Up for ALEKS Now</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
          end
 
          return tmp.html_safe
@@ -180,7 +180,7 @@ module StaticPagesHelper
          if !o.nil?
            tmp =  "You have taken OARS for #{o['semester_desc']}! Great work!"
          else
-           tmp =  "You have NOT completed OARS. <br><br> <a id='oars' class='btn btn-danger' title='OARS information' href='https://oars.fau.edu/login/login' target='_blank'>Sign Up for OARS Now</a>"
+           tmp =  "You have NOT completed OARS. <br><br> <a id='oars' class='btn btn-danger' title='OARS information' href='https://oars.fau.edu/login/login' >Sign Up for OARS Now</a>"
          end
 	    	 
 
@@ -188,7 +188,7 @@ module StaticPagesHelper
 
       	   end
   	 	else
-  	 		return "OARS status pending"
+  	 		return "You have NOT completed OARS. <br><br> <a id='oars' class='btn btn-danger' title='OARS information' href='https://oars.fau.edu/login/login' >Sign Up for OARS Now</a>".html_safe
   	 	end 
   	 end
 
