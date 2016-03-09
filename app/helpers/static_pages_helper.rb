@@ -243,8 +243,9 @@ module StaticPagesHelper
              return tmp.html_safe
            end
         else
-          return "Residency status pending"
+          return "Residency status pending <br> For additional information please see <a href='http://www.fau.edu/registrar/residency/index.php' target='_blank'>Florida Residency Guidelines</a>".html_safe
         end 
+
      end
 
 

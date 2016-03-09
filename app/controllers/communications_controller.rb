@@ -55,9 +55,9 @@ class CommunicationsController < ApplicationController
       
 
      if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to immunization
+         redirect_to "/home?znum=#{params[:znum]}#step-deposit" #redirect to immunization
      else
-        redirect_to "/home#step-immunization"
+        redirect_to "/home#step-deposit"
      end  
 
   end

@@ -348,140 +348,7 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 
-	<% if @isInternationalStudent == 1 %>	
 		    <li class="panel">
-		  	
-		  	<%# if  @deposit_available == 1 && @deposit_complete== 0 %>
-				<a id="visahref" href="#step-visa" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle">
-			<%# elsif  (@deposit_available == 1 && @deposit_complete == 1 ) || @deposit_bypass == 1 %>
-				<!-- <a href="#step-1A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle"> -->
-			<%# else %>
-				<!-- <a href="#step-1A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="studentvisatitle"> -->
-			<%# end %>
-
-
-			  <div class="number"><!-- Step 2 -->
-			  	<%#= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> 
-			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i>
-			  </div>
-			  <h6><b>INTERNATIONAL STUDENT VISA PROCESSING</b></h6>
-			</a>
-			
-			<div id="step-visa" class="collapse">
-			  <div class="step-content">
-			  	<h3 class="title">International Student Visa Processing</h3>
-			 
-						<%# if @deposit_bypass == 1 %>			  		
-							<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
-						<%# else %>
-
-					  		<p>Congratulations and Welcome to FAU! International students who wish to study in the U.S. must obtain the appropriate visa classification in order to engage in full-time study (F-1 visa or J-1 visa). International Student and Scholar Services (ISSS) assists international students in obtaining the Certification of Eligibility (I-20 or DS-2019), required to obtain the F-1 or J-1 visa classification.</p> 
-							
-							<p>If you have any questions pertaining to the information below, email <a href="mailto:ISSSAdmissionDocs@fau.edu">ISSSAdmissionDocs@fau.edu</a> </p>
-
-							<p><strong>Submit the documentation below in order to obtain your I-20 or DS-2019:</strong></p>
-							<ol>
-							  <li><a href="http://www.fau.edu/isss/forms/FCF_UG2.pdf" target="_blank">Financial Certification Form (FCF)</a>: Complete and sign the FCF; use multiple copies of page 3 if you have more than one sponsor. Provide a complete foreign address on all forms.</li>
-							  <li><strong>Proof of financial support: bank letters or other financial documents must be in English or accompanied by an English translation</strong>. Financial support can be from the student, the student's sponsor (parent, relative, etc.), FAU, government agency, or other sponsoring entity.</li>
-							  <li><strong>Copy of passport page</strong> (biographical information and expiration date) for student and any accompanying dependents (spouse/children).</li>
-							
-							  <br><p><b>IF YOU ARE TRANSFERRING FROM ANOTHER INSTITUTION IN THE UNITED STATES, MUST ALSO SUBMIT THE FOLLOWING DOCUMENTS:</b></p>
-						  
-							  <li><a href="http://www.fau.edu/isss/forms/SEVIS%20Transfer%20Form.pdf" target="_blank">SEVIS Transfer Form (STF)</a>: complete part 1 of STF and submit to the Designated School Official (usually the International Student Advisor) for completion and signature of STF part 2, at the institution which currently holds your I-20.</li>
-							</ol>
-
-							<div align="center">
-								<br><p><h5>INFORMATION FOR OTHER STUDENTS WITH NON-IMMIGRANT CLASSIFICATIONS</h5></p>
-							</div>
-
-							<p>If you currently hold another non-immigrant visa classification (for example, B-1/B-2, F-2, H-4, L-2, E-2, etc.) and wish to request a change of status to F-1 or J-1, email <a href="mailto:isss@fau.edu">isss@fau.edu</a> for an appointment (in-person or via phone/skype) with an ISSS advisor.</p>
-
-							<p>If you are applying for permanent residence (‘green card’) or hold other types of immigration classifications (i.e., Deferred Action, political asylum, temporary protected status, etc.) you do not need to supply documentation to ISSS. Please contact Admissions directly at <a href="mailto:admissions@fau.edu">admissions@fau.edu</a>. Once your record is updated with the appropriate information, you will no longer see the International Student Visa Processing information in your account.</p>
-
-	
-			   			  <%# end %>
-
-                         <div class="buttons-box text-right">
-						  <button type="button" class="btn btn-danger" id="visaBut">Continue</button>						 
-						</div>
-				
-				
-			  </div>
-			</div>
-		  </li>
-	
-	<% end %>
-
-		  <li class="panel">
-		  	
-		  	<%#if  deposit_available == 1 && deposit_complete== 0 %>
-				<!-- <a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle"> -->
-			<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) %>
-				<a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
-			<% else %>
-				<a id="deposithref" href="#step-deposit" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
-			<% end %>
-
-			
-			<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  (  @verify_available == 1) %>
-			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
-			<% end %>
-
-			  <h6><b>PAY DEPOSIT</b></h6>
-			</a>
-			
-			<div id="step-deposit" class="collapse">
-			  <div class="step-content">
-			  	<h3 class="title">Paying Your Admisssions Tuition Deposit </h3>
-			 
-						<% if @deposit_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-						<% else %>
-
-					  		<p>The non-refundable admissions tuition deposit is for admitted freshman students only.</p>
-					 		 
-					 		<p>All admitted freshmen must confirm their intention to enroll and secure their space in the class with a $200.00 <strong>non-refundable</strong> deposit. The $200 is applied to your tuition and fees for the semester in which you are admitted to FAU. It will be forfeited if you pay the deposit and choose not to enroll at FAU for that term, or if you submit a change of entry request for a different term. Your space will be released to another applicant if the deposit is not received by<span style="text-decoration: underline;"> May 1 or within two weeks of admission if admitted after May 1 <sup>st</sup></span>.
-	                         <br><br>The deposit is applied to your account when you enroll and will be used toward your tuition and fees. It will be forfeited if you do not enroll. <a title="FAU Admissions Deposit" href="http://www.fau.edu/admissions/tuitiondeposit.php" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a></p>
-					 		
-					 		 <!-- <a href="https://epay.fau.edu:8443/C20081test_tsa/web/welcome.jsp" target="_blank">Pay Tuition Touchnet:</a> -->
-
-					 		<div class="alert alert-border  <%if deposit_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
-								<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
-								<p>
-									<strong>
-										<%= get_tuition_deposit_status(znum) %>
-									</strong>
-								</p>					
-			   			    </div>
-			   			  <% end %>
-                        
-
-						<% if (@deposit_available == 1 && @verify_complete == 1 && deposit_complete == 1) || @deposit_bypass == 1 %>
-
-							<div class="buttons-box text-right">
-				  		 		<%= form_tag('/update_ftic_deposit_module' , {:class => 'register-form form-validator'})  do %>
-				  		 		 	<%= hidden_field_tag :znumber, @znum %>
-								    <%= hidden_field_tag :netid, @displayname %>
-								    <%= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%= hidden_field_tag :deposit, 1 %>
-								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-									<% if params[:znum] %>
-									   	<%= hidden_field_tag :znum, @znum %>									    
-									<% end %>
-							    	 <button type="submit" class="btn btn-danger" id="depositBut">Continue</button>		
-						 		<% end %>				 
-						 	</div>
-						 <% end %>						 
-						
-
-				
-			  </div>
-			</div>
-		  </li>
-		  
-		 
-		  
-		  <li class="panel">
 
 		  	<% if  (communication_available == 1  || communication_bypass == 1) &&  deposit_complete == 1  %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
@@ -646,6 +513,142 @@ Hello, <%= session[:cas_user] %>!
 			  </div>
 			</div>
 		  </li>
+
+
+	<% if @isInternationalStudent == 1 %>	
+		    <li class="panel">
+		  	
+		  	<%# if  @deposit_available == 1 && @deposit_complete== 0 %>
+				<a id="visahref" href="#step-visa" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle">
+			<%# elsif  (@deposit_available == 1 && @deposit_complete == 1 ) || @deposit_bypass == 1 %>
+				<!-- <a href="#step-1A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle"> -->
+			<%# else %>
+				<!-- <a href="#step-1A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="studentvisatitle"> -->
+			<%# end %>
+
+
+			  <div class="number"><!-- Step 2 -->
+			  	<%#= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> 
+			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i>
+			  </div>
+			  <h6><b>INTERNATIONAL STUDENT VISA PROCESSING</b></h6>
+			</a>
+			
+			<div id="step-visa" class="collapse">
+			  <div class="step-content">
+			  	<h3 class="title">International Student Visa Processing</h3>
+			 
+						<%# if @deposit_bypass == 1 %>			  		
+							<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
+						<%# else %>
+
+					  		<p>Congratulations and Welcome to FAU! International students who wish to study in the U.S. must obtain the appropriate visa classification in order to engage in full-time study (F-1 visa or J-1 visa). International Student and Scholar Services (ISSS) assists international students in obtaining the Certification of Eligibility (I-20 or DS-2019), required to obtain the F-1 or J-1 visa classification.</p> 
+							
+							<p>If you have any questions pertaining to the information below, email <a href="mailto:ISSSAdmissionDocs@fau.edu">ISSSAdmissionDocs@fau.edu</a> </p>
+
+							<p><strong>Submit the documentation below in order to obtain your I-20 or DS-2019:</strong></p>
+							<ol>
+							  <li><a href="http://www.fau.edu/isss/forms/FCF_UG2.pdf" target="_blank">Financial Certification Form (FCF)</a>: Complete and sign the FCF; use multiple copies of page 3 if you have more than one sponsor. Provide a complete foreign address on all forms.</li>
+							  <li><strong>Proof of financial support: bank letters or other financial documents must be in English or accompanied by an English translation</strong>. Financial support can be from the student, the student's sponsor (parent, relative, etc.), FAU, government agency, or other sponsoring entity.</li>
+							  <li><strong>Copy of passport page</strong> (biographical information and expiration date) for student and any accompanying dependents (spouse/children).</li>
+							
+							  <br><p><b>IF YOU ARE TRANSFERRING FROM ANOTHER INSTITUTION IN THE UNITED STATES, MUST ALSO SUBMIT THE FOLLOWING DOCUMENTS:</b></p>
+						  
+							  <li><a href="http://www.fau.edu/isss/forms/SEVIS%20Transfer%20Form.pdf" target="_blank">SEVIS Transfer Form (STF)</a>: complete part 1 of STF and submit to the Designated School Official (usually the International Student Advisor) for completion and signature of STF part 2, at the institution which currently holds your I-20.</li>
+							</ol>
+
+							<div align="center">
+								<br><p><h5>INFORMATION FOR OTHER STUDENTS WITH NON-IMMIGRANT CLASSIFICATIONS</h5></p>
+							</div>
+
+							<p>If you currently hold another non-immigrant visa classification (for example, B-1/B-2, F-2, H-4, L-2, E-2, etc.) and wish to request a change of status to F-1 or J-1, email <a href="mailto:isss@fau.edu">isss@fau.edu</a> for an appointment (in-person or via phone/skype) with an ISSS advisor.</p>
+
+							<p>If you are applying for permanent residence (‘green card’) or hold other types of immigration classifications (i.e., Deferred Action, political asylum, temporary protected status, etc.) you do not need to supply documentation to ISSS. Please contact Admissions directly at <a href="mailto:admissions@fau.edu">admissions@fau.edu</a>. Once your record is updated with the appropriate information, you will no longer see the International Student Visa Processing information in your account.</p>
+
+	
+			   			  <%# end %>
+
+                         <div class="buttons-box text-right">
+						  <button type="button" class="btn btn-danger" id="visaBut">Continue</button>						 
+						</div>
+				
+				
+			  </div>
+			</div>
+		  </li>
+	
+	<% end %>
+
+		  <li class="panel">
+		  	
+		  	<%#if  deposit_available == 1 && deposit_complete== 0 %>
+				<!-- <a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle"> -->
+			<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) %>
+				<a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
+			<% else %>
+				<a id="deposithref" href="#step-deposit" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
+			<% end %>
+
+			
+			<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  (  @verify_available == 1) %>
+			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
+			<% end %>
+
+			  <h6><b>PAY DEPOSIT</b></h6>
+			</a>
+			
+			<div id="step-deposit" class="collapse">
+			  <div class="step-content">
+			  	<h3 class="title">Paying Your Admisssions Tuition Deposit </h3>
+			 
+						<% if @deposit_bypass == 1 %>			  		
+							<p> An administrator has bypassed (overridden) this section for you.</p>
+						<% else %>
+
+					  		<p>The non-refundable admissions tuition deposit is for admitted freshman students only.</p>
+					 		 
+					 		<p>All admitted freshmen must confirm their intention to enroll and secure their space in the class with a $200.00 <strong>non-refundable</strong> deposit. The $200 is applied to your tuition and fees for the semester in which you are admitted to FAU. It will be forfeited if you pay the deposit and choose not to enroll at FAU for that term, or if you submit a change of entry request for a different term. Your space will be released to another applicant if the deposit is not received by<span style="text-decoration: underline;"> May 1 or within two weeks of admission if admitted after May 1 <sup>st</sup></span>.
+	                         <br><br>The deposit is applied to your account when you enroll and will be used toward your tuition and fees. It will be forfeited if you do not enroll. <a title="FAU Admissions Deposit" href="http://www.fau.edu/admissions/tuitiondeposit.php" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a></p>
+					 		
+					 		 <!-- <a href="https://epay.fau.edu:8443/C20081test_tsa/web/welcome.jsp" target="_blank">Pay Tuition Touchnet:</a> -->
+
+					 		<div class="alert alert-border  <%if deposit_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+								<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
+								<p>
+									<strong>
+										<%= get_tuition_deposit_status(znum) %>
+									</strong>
+								</p>					
+			   			    </div>
+			   			  <% end %>
+                        
+
+						<% if (@deposit_available == 1 && @verify_complete == 1 && deposit_complete == 1) || @deposit_bypass == 1 %>
+
+							<div class="buttons-box text-right">
+				  		 		<%= form_tag('/update_ftic_deposit_module' , {:class => 'register-form form-validator'})  do %>
+				  		 		 	<%= hidden_field_tag :znumber, @znum %>
+								    <%= hidden_field_tag :netid, @displayname %>
+								    <%= hidden_field_tag :ftic_id, @ftic_id %>
+								    <%= hidden_field_tag :deposit, 1 %>
+								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+									<% if params[:znum] %>
+									   	<%= hidden_field_tag :znum, @znum %>									    
+									<% end %>
+							    	 <button type="submit" class="btn btn-danger" id="depositBut">Continue</button>		
+						 		<% end %>				 
+						 	</div>
+						 <% end %>						 
+						
+
+				
+			  </div>
+			</div>
+		  </li>
+		  
+		 
+		  
+		
 		  
 		  <li class="panel">
 		 
