@@ -582,15 +582,15 @@ class FticModulesAvailablesController < ApplicationController
    def update_ftic_deposit_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.deposit = params[:deposit]
-    @modules_available.communication = 1 #unlock communication preference
+    #@modules_available.communication = 1 #unlock communication preference
     @modules_available.save
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
      if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-comm" #redirect to deposit
+        redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect to deposit
      else
-        redirect_to "/home#step-comm"
+        redirect_to "/home#step-finaid"
      end  
   end
 
