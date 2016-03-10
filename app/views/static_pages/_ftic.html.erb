@@ -649,15 +649,15 @@ Hello, <%= session[:cas_user] %>!
 
 		  <% if @isInternationalStudent == 0 %>  
 		  <li class="panel">
-		  	<% if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
+		  	<% #if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
 			   <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<% else %>
-               <a id="finaidhref" href="#step-finaid" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
-			<% end %>
+			<%# else %>
+               <!-- <a id="finaidhref" href="#step-finaid" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
+			<%# end %>
 
-			<% if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
-			  <div class="number"><!-- Step 6 --><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> </div>
-			<% end %>
+			<%# if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
+			  <div class="number"><!-- Step 6 --><%= get_statusicon(1, finaid_complete, finaid_bypass) %> </div>
+			<%# end %>
 
 			  <h6><b>FINANCIAL AID</b></h6>
 			</a>
@@ -3286,6 +3286,18 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
 	<% end %>
 
+	<%# if  (finaid_available == 1 || finaid_bypass == 1)  && (residency_available == 1 && residency_complete == 1 || residency_bypass == 1 ) %>
+	 if (window.location.href.indexOf("#step-finaid") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#finaidhref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-finaid').removeClass('collapse').addClass('collapse in');
+
+		    scrollToElement('#step-finaid');
+		}
+	<%# end %>
+
 	<% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1)  %>
 	 /* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-immunization") > -1) {
@@ -3311,17 +3323,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
 	<% end %>
 
-	<% if  (finaid_available == 1 || finaid_bypass == 1)  && (residency_available == 1 && residency_complete == 1 || residency_bypass == 1 ) %>
-	 if (window.location.href.indexOf("#step-finaid") > -1) {
-		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
-		    $('div .collapse').removeClass("collapse in").addClass('collapse');
-
-		    $('#finaidhref').removeClass('collapsed step-title').addClass('step-title');
-		    $('#step-finaid').removeClass('collapse').addClass('collapse in');
-
-		    scrollToElement('#step-finaid');
-		}
-	<% end %>
+	
 
 	<% if  (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_available == 1 && finaid_complete == 1 || finaid_bypass == 1 || @fafsa_complete == 0) %>
 	if (window.location.href.indexOf("#step-housing") > -1) {

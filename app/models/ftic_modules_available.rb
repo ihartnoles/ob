@@ -26,7 +26,7 @@ class FticModulesAvailable < ActiveRecord::Base
          newstudent.depositbypass = 0
          newstudent.immunization = 0
          newstudent.immunizationbypass = 0
-         newstudent.finaid = 0
+         newstudent.finaid = 1
          newstudent.finaidbypass = 0
          newstudent.housingfee = 0
          newstudent.housingfeebypass = 0
@@ -65,6 +65,7 @@ class FticModulesAvailable < ActiveRecord::Base
           newstudent.isInternational = 0
          end
 
+
          newstudent.intl_medical = 0
          newstudent.intl_medical_bypass = 0
          newstudent.intl_visa = 0
@@ -80,13 +81,14 @@ class FticModulesAvailable < ActiveRecord::Base
          else
           isInternational = 0
          end
-
+        
          student.update_attributes(
           :netid => bs['gobtpac_external_user'],
           :znumber => bs['z_number'],
           :f_name => bs['f_name'],
           :l_name => bs['l_name'],
-          :isInternational => isInternational
+          :isInternational => isInternational,
+          :finaid => 1
          ) 
         end
 
