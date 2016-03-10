@@ -21,7 +21,7 @@ class FticModulesAvailable < ActiveRecord::Base
          newstudent.depositbypass = 0
          newstudent.account = 1
          newstudent.accountbypass = 0
-         newstudent.communication = 0
+         newstudent.communication = 1
          newstudent.communicationbypass = 0
          newstudent.depositbypass = 0
          newstudent.immunization = 0
@@ -88,6 +88,7 @@ class FticModulesAvailable < ActiveRecord::Base
           :f_name => bs['f_name'],
           :l_name => bs['l_name'],
           :isInternational => isInternational,
+          :communication => 1,
           :finaid => 1
          ) 
         end

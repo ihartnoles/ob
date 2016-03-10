@@ -350,15 +350,15 @@ Hello, <%= session[:cas_user] %>!
 
 		    <li class="panel">
 
-		  	<% if  (communication_available == 1  || communication_bypass == 1) &&  deposit_complete == 1  %>
+		  	<%# if  (communication_available == 1  || communication_bypass == 1) &&  deposit_complete == 1  %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
-			<% else %>
-				<a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
-			<% end %>
+			<%# else %>
+				<!-- <a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
+			<%# end %>
 
-			<% if (communication_available == 1 || communication_bypass == 1 ) && deposit_complete == 1 %>
+			<%# if (communication_available == 1 || communication_bypass == 1 ) && deposit_complete == 1 %>
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
-			<% end %>
+			<%# end %>
 
 			  <h6><b>COMMUNICATION PREFERENCE</b> <%= %> </h6>
 			</a>
@@ -3273,7 +3273,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
 	<% end %>
 
-	<% if  (communication_available == 1 || communication_bypass == 1 ) &&  ( account_complete == 1 ) %>
+	<%# if  (communication_available == 1 || communication_bypass == 1 ) &&  ( account_complete == 1 ) %>
 	 /* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-comm") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
@@ -3284,7 +3284,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		    scrollToElement('#step-comm');
 		}
-	<% end %>
+	<%# end %>
 
 	<%# if  (finaid_available == 1 || finaid_bypass == 1)  && (residency_available == 1 && residency_complete == 1 || residency_bypass == 1 ) %>
 	 if (window.location.href.indexOf("#step-finaid") > -1) {
