@@ -8449,7 +8449,7 @@ a.big-icon:hover {
 #checkoutsteps .step-content {
   border: 1px solid #e1e1e1;
   border-top: 0 none;
-  font-size: 12px;
+  /*font-size: 12px;*/
   line-height: 20px;
   padding: 22px 18px 19px;
   background: #ffffff;
