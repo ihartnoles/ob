@@ -631,6 +631,7 @@ Hello, <%= session[:cas_user] %>!
 								    <%= hidden_field_tag :netid, @displayname %>
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
 								    <%= hidden_field_tag :deposit, 1 %>
+								    <%= hidden_field_tag :intl, @isInternationalStudent %>
 								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 									<% if params[:znum] %>
 									   	<%= hidden_field_tag :znum, @znum %>									    
@@ -656,7 +657,7 @@ Hello, <%= session[:cas_user] %>!
 			<%# end %>
 
 			<%# if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
-			  <div class="number"><!-- Step 6 --><%= get_statusicon(1, finaid_complete, finaid_bypass) %> </div>
+			  <div class="number"><!-- Step 6 --><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> </div>
 			<%# end %>
 
 			  <h6><b>FINANCIAL AID</b></h6>
@@ -886,14 +887,13 @@ Hello, <%= session[:cas_user] %>!
 
 		  <% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1) %>
 			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, immunization_complete,immunization_bypass) %></div>
-		  <% end %>
+		 
 
 			  <h6><b>IMMUNIZATION HOLDS</b></h6>
 			</a>
+		 <% end %>
 			
 			<div id="step-immunization" class="collapse">
-				
-
 			   
 			  <div class="step-content">
 			  		
@@ -1047,7 +1047,7 @@ Hello, <%= session[:cas_user] %>!
 	                     <br>All applicants must complete the Residency Classification for Tuition Purposes section of the application and submit the required documentation, regardless of the duration of their presence in Florida. A Florida resident for tuition purposes is defined as an individual who has resided in the state for 12 consecutive months while not enrolled in an institution of higher learning, prior to the beginning of classes, and who has established legal ties in Florida according to Florida Statute 1009.21.<br> 
 	                     <br>Florida Legislature has recently implemented significant changes to Florida Statute 1009.21. For updated information, please visit <a title="Florida Legislature" href="http://www.flsenate.gov/data/session/2009/Senate/bills/amendments/pdf/sb1696c2588994.pdf" target="_blank">here</a>. Florida residency content can be found beginning on page 10. 
 
-	                    <a title="FAU Residency Guidelines" href="http://www.fau.edu/registrar/residency/index.php" onclick="window.open(this.href, 'residency','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> | <a href="http://www.fau.edu/finaid/other/cost-of-attendance.php" onclick="window.open(this.href, 'attendance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Cost of Attendance]</a>
+	                    <a title="FAU Residency Guidelines" href="http://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&Search_String=&URL=1000-1099/1009/Sections/1009.21.html" onclick="window.open(this.href, 'residency','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> | <a href="http://www.fau.edu/finaid/other/cost-of-attendance.php" onclick="window.open(this.href, 'attendance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Cost of Attendance]</a>
 
 	                 </p>
 

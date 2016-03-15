@@ -588,9 +588,19 @@ class FticModulesAvailablesController < ApplicationController
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
      if params[:znum]
-        redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect to deposit
+        if params[:intl] == "0"
+           redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect 
+        else
+           redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect
+        end
+       
      else
-        redirect_to "/home#step-finaid"
+       
+         if params[:intl] == "0"
+           redirect_to "/home#step-finaid" #redirect
+        else
+           redirect_to "/home#step-immunization" #redirect
+        end
      end  
   end
 
@@ -687,9 +697,9 @@ class FticModulesAvailablesController < ApplicationController
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
      if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-housing" #redirect to deposit
+         redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to deposit
      else
-        redirect_to "/home#step-housing"
+        redirect_to "/home#step-immunization"
      end  
   end
 
