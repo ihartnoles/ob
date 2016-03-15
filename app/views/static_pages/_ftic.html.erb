@@ -1276,10 +1276,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 
-		  <%# if aleks_available == 1 && aleks_complete == 0 %>
-			<!-- <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
-		  <%# elsif (aleks_available == 1 && aleks_complete == 1) || aleksbypass == 1%>
-		  	<!-- <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
+		 
 		  <% if (aleks_available == 1 || aleksbypass == 1) %>
 		    <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
@@ -1344,13 +1341,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 
-		   	<% if  (orientation_available == 1 || orientationbypass == 1) && (aleks_complete == 1 || aleksbypass == 1 ) %>
+		   	<% if  (orientation_available == 1 || orientationbypass == 1) || aleksbypass == 1  %>
 				<a id="orientationhref" href="#step-orientation" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="orientationhref" href="#step-orientation" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (orientation_available == 1 || orientationbypass == 1) && (aleks_complete == 1 || aleksbypass == 1 ) %>
+			<% if (orientation_available == 1 || orientationbypass == 1) || aleksbypass == 1 %>
 			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
 			<% end %>
 
@@ -1385,7 +1382,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 				<% end %>
 
-				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 && (aleks_complete == 1 || aleksbypass == 1 ) %>
+				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 && ( aleksbypass == 1 ) %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_orientation_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -3342,7 +3339,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
 	<% end %>
 
-	<% if  (orientation_available == 1 || orientationbypass == 1) && (aleks_available == 1 && aleks_complete == 1 || aleksbypass == 1 ) %>
+	<% if  (orientation_available == 1 || orientationbypass == 1) && (aleks_available == 1 || aleksbypass == 1 ) %>
 	if (window.location.href.indexOf("#step-orientation") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
