@@ -304,15 +304,27 @@ Hello, <%= session[:cas_user] %>!
 								<thead>                    		
 	                    		<tr>
 	                    			<th>&nbsp;</th>	 
+	                    			<th>&nbsp;</th>
+	                    			<th>&nbsp;</th>
 	                    			<th>&nbsp;</th>	 
 	                    			<th>&nbsp;</th>	           
 	                    			<th>&nbsp;</th>	         			
 	                    		</tr>
 	                    		</thead>
 						  		<tr>
-						  			<td ><b>Your znumber:</b></td>
+						  			<td ><b>Your Znumber:</b></td>
 						  			<td><%= @znum %>&nbsp;</td>	
 						  			<td colspan="2"><em>Your Z number is a unique id assigned to you to protect your privacy.</em></td>					  			
+						  		</tr>
+						  		<tr>
+						  			<td ><b>Your Netid:</b></td>
+						  			<td><%= @netid %></td>	
+						  			<td colspan="2"><em>Your FAUNet ID is the account name you use to login to many of our systems.</em></td>					  			
+						  		</tr>
+						  		<tr>
+						  			<td ><b>Your FAU Email:</b></td>
+						  			<td><%= @email %>&nbsp;</td>	
+						  			<td colspan="2"></td>					  			
 						  		</tr>
 						  		<tr>
 						  			<td><b>Your Name:</b></td>

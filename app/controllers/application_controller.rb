@@ -50,6 +50,8 @@ class ApplicationController < ActionController::Base
             @city = o['spraddr_city']      
             @state = o['spraddr_stat_code'] 
             @zip = o['spraddr_zip'] 
+            @netid = o['gobtpac_external_user']
+            @email = o['goremal_email_address']
         end     
 
         record_activity("Proxy Login")
@@ -74,6 +76,8 @@ class ApplicationController < ActionController::Base
             @city = o['spraddr_city']      
             @state = o['spraddr_stat_code'] 
             @zip = o['spraddr_zip'] 
+            @netid = o['gobtpac_external_user']
+            @email = o['goremal_email_address']
         end     
       
         record_activity("User Login")
