@@ -676,22 +676,22 @@ class FticModulesAvailablesController < ApplicationController
   def update_ftic_residency_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.residency = params[:residency]
-    @modules_available.finaid = 1 #unlock financial aid
+    @modules_available.housingmealplan = 1 #unlock housing
     @modules_available.save
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
      if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect to deposit
+         redirect_to "/home?znum=#{params[:znum]}#step-housing" #redirect to deposit
      else
-        redirect_to "/home#step-finaid"
+        redirect_to "/home#step-housing"
      end  
   end
 
   def update_ftic_finaid_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.finaid = params[:finaid]
-    @modules_available.housingfee = 1 #unlock housing
+    @modules_available.immunization = 1 #unlock immunization
     @modules_available.save
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])

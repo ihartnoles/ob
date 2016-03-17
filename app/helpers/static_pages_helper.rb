@@ -206,16 +206,16 @@ module StaticPagesHelper
            # puts YAML::dump(o['sprhold_hldd_code'])
 
          if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
-           tmp <<  "Your immunization records are up to date!  Good job!"                                 
+           tmp <<  "Your immunization records have been submitted and approved.  Thank you!"                                 
          else
-           tmp <<  "You have an immunization hold! <br> You need to make sure your immunization records are up to date. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>Update Your Immunization Records Now</a>"
+           tmp <<  "You need to make sure your immunization records have been submitted and approved. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'> Review immunization requirements here </a>"
          end
          
          return tmp.html_safe
 
         end
       else
-        tmp = " You need to make sure your immunization records are up to date. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'>Update Your Immunization Records Now</a>"
+        tmp =  "You need to make sure your immunization records have been submitted and approved. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'> Review immunization requirements  here </a>"
         return tmp.html_safe
       end 
      end

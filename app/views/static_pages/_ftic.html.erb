@@ -480,9 +480,9 @@ Hello, <%= session[:cas_user] %>!
 
 										<div>
 											<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
-											<% if  (communication_available == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
+											<%# if  (communication_available == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
 												<%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>										
-											<% end %>
+											<%# end %>
 										</div>
 									
 								  </div>
@@ -635,7 +635,7 @@ Hello, <%= session[:cas_user] %>!
 			   			  <% end %>
                         
 
-						<% if (@deposit_available == 1 && @verify_complete == 1 && deposit_complete == 1) || @deposit_bypass == 1 %>
+						<% if (@deposit_available == 1) || @deposit_bypass == 1 %>
 
 							<div class="buttons-box text-right">
 				  		 		<%= form_tag('/update_ftic_deposit_module' , {:class => 'register-form form-validator'})  do %>
@@ -1106,14 +1106,14 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && ( finaid_complete == 1 || finaid_bypass == 1 || @isInternationalStudent == 1 || @fafsa_complete == 0)  %>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_complete == 1 || finaid_bypass == 1 || @isInternationalStudent == 1 || @fafsa_complete == 0) %>
+			<% if (housing_fee_available == 1 || housingfee_bypass == 1) %>
 			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, @housing_fee_complete, housingfee_bypass) %> </div>
 			<% end %>
 
@@ -3138,8 +3138,8 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	  	  $('#step-visa').collapse('show');
 		  $('#step-visa').prev().removeClass('collapsed');
 	  <% else %>
-		  $('#step-deposit').collapse('show');
-		  $('#step-deposit').prev().removeClass('collapsed');	 
+		  $('#step-comm').collapse('show');
+		  $('#step-comm').prev().removeClass('collapsed');	 
 	  <% end %>
 
 	})
@@ -3315,7 +3315,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 	
 
-	<% if  (housing_fee_available == 1 || housingfee_bypass == 1) && (finaid_available == 1 && finaid_complete == 1 || finaid_bypass == 1 || @fafsa_complete == 0) %>
+	<% if  (housing_fee_available == 1 || housingfee_bypass == 1) %>
 	if (window.location.href.indexOf("#step-housing") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
