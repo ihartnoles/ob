@@ -676,7 +676,7 @@ class FticModulesAvailablesController < ApplicationController
   def update_ftic_residency_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.residency = params[:residency]
-    @modules_available.housingmealplan = 1 #unlock housing
+    @modules_available.housingfee = 1 #unlock housing
     @modules_available.save
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])

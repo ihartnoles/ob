@@ -379,9 +379,12 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">
 			  	<h3 class="title">How do you want to be contacted?</h3>
 			  	
-			  		<% if communication_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-					<% else %>
+			  		<% if communication_bypass == 1 %>			  								  										
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>						
+					<% end %>
+
 				  		 <p>Stay up to date with the student onboarding process. Receive notifications about outstanding issues or items which require your attention.</p>
 
 				  		 <p>Please select at least one option:</p>
@@ -478,6 +481,7 @@ Hello, <%= session[:cas_user] %>!
 
 										<% end %>
 
+										
 										<div>
 											<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
 											<%# if  (communication_available == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
@@ -489,37 +493,11 @@ Hello, <%= session[:cas_user] %>!
 								
 																
 							  </div>
-							  <% end %>
+							  <%# end %>
 
 						  <div class="clearfix"></div>					  
-				  			
-				  		  <!-- 
-				  		  <div class="buttons-box text-right">
-							  <button type="button" class="btn btn-danger" id="communicationBut">Continue</button>		
-						  </div> 
-						  -->
-
-						  <%# if  (communication_available == 1 && communication_complete == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
-						   	
-						   	<!-- <div class="buttons-box text-right"> -->
-				  		 		<%#= form_tag('/update_ftic_communication_module' , {:class => 'register-form form-validator'})  do %>
-				  		 		 	<%#= hidden_field_tag :znumber, @znum %>
-								    <%#= hidden_field_tag :netid, @displayname %>
-								    <%#= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%#= hidden_field_tag :communication, 1 %>
-								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-									<%# if params[:znum] %>
-									   	<%#= hidden_field_tag :znum, @znum %>									    
-									<%# end %>
-							    	<!--  <button type="submit" class="btn btn-danger" id="communicationBut">Continue</button> -->		
-						 		<%# end %>				 
-						 	<!-- </div> -->
-						 <%# end %>					
-					
-
-						<!-- </form>  -->
-
-					<% end %>
+				  		
+					    <% end %>
 						
 					
 			  </div>
@@ -613,9 +591,15 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">
 			  	<h3 class="title">Paying Your Admissions Deposit </h3>
 			 
-						<% if @deposit_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-						<% else %>
+						<% if @deposit_bypass == 1 %>			  										
+								<div class="alert alert-warning">
+									<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+								</div>
+
+								
+						<% end %>
+
+						<%# else %>
 
 					  		<p>The non-refundable admissions deposit is for admitted freshman students only.</p>
 					 		 
@@ -632,7 +616,9 @@ Hello, <%= session[:cas_user] %>!
 									</strong>
 								</p>					
 			   			    </div>
-			   			  <% end %>
+
+			   			
+					 
                         
 
 						<% if (@deposit_available == 1) || @deposit_bypass == 1 %>
@@ -679,8 +665,12 @@ Hello, <%= session[:cas_user] %>!
 			  <div class="step-content">
 
 			  	<% if finaid_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>
+
+						
+				<% end %>
 
 			  				
 							<% if @fafsa_complete == 0 || @fafsa_complete.nil? %>
@@ -861,7 +851,7 @@ Hello, <%= session[:cas_user] %>!
 
 				<% end %>
 
-			<% end %>
+			
 
 				 <% if  (finaid_available == 1 || finaid_bypass == 1) ||  @fafsa_complete == 0 %>
 						<div class="buttons-box text-right">
@@ -911,9 +901,11 @@ Hello, <%= session[:cas_user] %>!
 			  		
 		  		<h3 class="title">Immunization Policy</h3>
 
-		  		<% if immunization_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+		  		<% if immunization_bypass == 1 %>			  											  								  										
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>						
+			    <% end %>
 
 		  		<p>To comply with Florida Board of Governors Regulations, prior to registration, all students must submit a signed FAU Immunization Form and documented proof of immunizations to measles and rubella. In addition, all students must provide documentation of vaccinations against meningococcal meningitis and hepatitis B or provide a signed waiver for each declined vaccination. Students will not be allowed to register for classes until all documentation has been approved by the Student Health Services Immunization Office.</p>
 
@@ -936,8 +928,7 @@ Hello, <%= session[:cas_user] %>!
 						</strong>
 					</p>					
    			    </div>
-
-		  		<% end %>
+		  		
 
 		  		<!-- <div class="buttons-box text-right">
 				  <button type="button" class="btn btn-danger" id="immunizationBut">Continue</button> 
@@ -1050,9 +1041,11 @@ Hello, <%= session[:cas_user] %>!
 			  		
 		  		<h3 class="title">Residency for tuition purposes</h3>
 
-		  		<% if residency_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+		  		<% if residency_bypass == 1 %>			  									  											  								  										
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>						
+			    <% end %>
 
 
 			  		<p>Florida Residency for Tuition Purposes refers to whether you are an in-state Florida resident or an out-of-state resident, and this classification determines your tuition cost as defined by Florida state statute 1009.21 and the State Board of Education Rule 6A-10.044. Students are encouraged to review the following documents for additional information.<br> 
@@ -1074,7 +1067,7 @@ Hello, <%= session[:cas_user] %>!
 
                  
 
-				 <% end %>
+				
 
 				  <% if  residency_available == 1 || residency_bypass == 1 %>
 						   	
@@ -1106,15 +1099,15 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) %>
+			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1) %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (housing_fee_available == 1 || housingfee_bypass == 1) %>
-			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, @housing_fee_complete, housingfee_bypass) %> </div>
+			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1) %>
+			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, @housing_fee_complete, @housingmealplanbypass) %> </div>
 			<% end %>
 
 			  <h6><b>HOUSING CONTRACT & MEAL PLANS</b></h6>
@@ -1127,9 +1120,11 @@ Hello, <%= session[:cas_user] %>!
 			  		
 		  		<h3 class="title">On-Campus Housing </h3>
 
-		  		<% if housingfee_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+		  		<% if @housingmealplanbypass == 1 %>			  		
+							<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>						
+			    <% end %>
 
 
 		  		<p>
@@ -1248,10 +1243,10 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			             </div>
 			          <% end %>
 		  		
-				<% end %>
+				<%# end %>
 
 
-				 <% if  housing_fee_available == 1  || housingfee_bypass == 1 || @isInternationalStudent == 1 %>
+				 <% if  housing_fee_available == 1  || @housingmealplanbypass == 1 || @isInternationalStudent == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_housing_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -1294,9 +1289,18 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  <div class="step-content">			  		
 		  		<h3 class="title">ALEKS</h3>
 
-		  		<% if aleksbypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+		  		
+
+		  		<% if aleksbypass == 1 %>		
+		  			<div class="alert alert-warning">
+		  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+		  			</div>
+
+		  			
+				<% end %>		
+					 
+
+				<%# else %>
 
 			  		<p>
 					FAU has adopted a mandatory placement exam to determine math proficiency known as ALEKS. All entering freshmen are required to take the ALEKS test. <a title="ALEKS information" href="http://www.fau.edu/mathplacement" onclick="window.open(this.href, 'aleks','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>.
@@ -1316,8 +1320,8 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					 	<!-- <a title="ALEKS information" href="https://secure.aleks.com/fau/?znumber=<%=params[:znum] %>&myfau_username=sbauer6" target="_blank">[Aleks Sign-up]</a> -->
 					 </p>
 
-				 <% end %>
-
+				 <%# end %>
+				
 				  <% if  (aleks_available == 1  || aleksbypass == 1) %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_aleks_module' , {:class => 'register-form form-validator'})  do %>
@@ -1333,7 +1337,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					 		<% end %>				 
 						</div>
 				<% end %>
-
+			
 
 			  </div>			
 			</div>
@@ -1359,8 +1363,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">New Student Orientation</h3>
 
 		  		<% if orientationbypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+					
+					<div class="alert alert-warning">
+		  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+		  			</div>
+
+		  			
+				<% end %>
 
 					<p>
 						All new incoming students are required to complete an orientation session.  Freshman students are required to complete a two-day orientation program.  Please read more about your orientation session 
@@ -1380,8 +1389,9 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						<a title="FAU Orientation" href="http://www.fau.edu/orientation/about/HowDoISignup.php" target="_blank">[More Information]</a>
 					</p> -->
 
-				<% end %>
+				<%# end %>
 
+				
 				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 && ( aleksbypass == 1 ) %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_orientation_module' , {:class => 'register-form form-validator'})  do %>
@@ -1480,9 +1490,11 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  <div class="step-content">			 
 
 			  	<% if learning_commbypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-						<!-- <p><button type="submit" class="btn btn-danger" id="lcButPassthru">Continue</button></p> -->
-				<% else %>
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>						
+			    <% end %>
+				
 
 			  		<h3 class="title">Learning Community Information</h3>
 					<p>Learning Communities help you make a fast, smooth, and easy transition to FAU!</p>
@@ -1527,7 +1539,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					<p><strong>Would you like to join one of FAU’s Learning Communities for the Fall 2016 – Spring 2017 academic year?</strong></p>
 
 								
-						<%= form_tag('/save_lc', {:class => 'form-horizontal', :role => 'form'}) do %>
+						<%= form_tag('/save_lc', {:class => 'form-horizontal', :role => 'form', :id=> "lcForm"}) do %>
 
 							
 							    <%= hidden_field_tag :znumber, @znum %>
@@ -1591,11 +1603,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 								<%#= submit_tag 'Save' , :id=> "lcBut"%>
 
 								
-						<% end %>						
-				<% end %>
+											
+				<%# end %>
 
 				<% if  learning_comm_available == 1 || learning_commbypass == 1 %>
 						<button type="submit" class="btn btn-danger" id="lcBut">Continue</button>
+				<% end %>	
+
 				<% end %>	
 
 				 <%# if  (learning_comm_available == 1 && learning_comm_complete == 1 ) || learning_commbypass == 1 %>
@@ -1641,8 +1655,10 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  <div class="step-content">	
 
 			  	<% if oars_bypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+					<div class="alert alert-warning">
+						<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+					</div>
+				<% end %>
 
 			  		<h3 class="title">Online Advising & Resource System</h3>
 			  		<p>
@@ -1660,8 +1676,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 							</strong>
 					 </div>
 			  		
-			  	 <% end %>
-
+			  	
 
 			  	  <% if  (oars_available == 1 && oars_complete == 1 ) || oars_bypass == 1 %>
 						<div class="buttons-box text-right">
@@ -1704,8 +1719,10 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">FAU Alert and Notification System</h3>
 
 		  		<% if faualertbypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+					<div class="alert alert-warning">
+						<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+					</div>
+				<% end %>
 
 					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. <a title="FAU Alert"  href="http://www.fau.edu/emergency/universityalerts.php" onclick="window.open(this.href, 'fau alert','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
 	               
@@ -1725,7 +1742,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	               <br>
 
 	                <a id="faualert" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">Update Your FAU Alert Information</a></p>
-               <% end %>
+               <%# end %>
 
 
                  <% if  (fau_alert_available == 1 && fau_alert_complete == 1 ) || faualertbypass == 1 %>
@@ -1767,7 +1784,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		   	
 		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
 			  <div class="number">
-				  <% if dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0%>
+				  <% if (dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0) && registrationbypass == 0 %>
 				    <span class="badge badge-important label label-danger">incomplete <i class='fa fa-times'></i></span>
 				  <% else %>
 				  	<!-- Step 14 --><%= get_statusicon(reg_available, reg_complete, registrationbypass) %>
@@ -1783,8 +1800,11 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">Register for Classes</h3>
 
 		  		<% if registrationbypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>
+				<% end %>
+				
 
 
 			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 %>
@@ -1875,7 +1895,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				  		<% end %>
 
 
-		  		<% end %>
+		  		<%# end %>
 
 		  		  <% if  (reg_available == 1) || registrationbypass == 1 %>
 						<div class="buttons-box text-right">
@@ -1920,8 +1940,10 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">Tuition and Billing Services</h3>
 
 		  		<% if tuition_bypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>
+				<% end %>
 
 						<% if residency_complete == 0 || @reg_complete == 0 %>
 	                         
@@ -1981,7 +2003,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			              	  </p>
 						
 						<% end %>
-	              <% end %>
+	              <%# end %>
 
 	               <% if  (tuition_available == 1 && tuition_complete == 1 ) || tuition_bypass == 1 %>
 						<div class="buttons-box text-right">
@@ -2026,8 +2048,10 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<!-- <p> Please be on the lookout for the FAU Alert and Statement of Responsibility forms/screens when you login to Self Service for the first time. You  must verify and submit both before the respective holds are lifted and access is granted to Self Service.</p> -->
 
 				<% if emergencybypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>
+				<% end %>
 					
 					 <p>Your emergency contact on file is:<br>
 					 	<br>
@@ -2038,7 +2062,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					
 
 				 	<br><a id="emerg" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> Update Your Emergency Contact Information</a><br>
-				<% end %>
+				<%# end %>
 
 				  <% if  (emergency_available == 1 && emergency_complete == 1 ) || emergencybypass == 1 %>
 						<div class="buttons-box text-right">
@@ -2922,99 +2946,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 // 	}	 	
 	 // });
 
-	
-	
- 	
-	 $('#contactBut').click(function (e) {
-	    
-	    // alert('contactBut clicked');
-
-	    // alert(!$('#contactByPhone').is(':checked'));
-	    // alert(!$('#contactByEmail').is(':checked'));
-
-	    if ( !$('#contactByPhone').is(':checked') && !$('#contactByEmail').is(':checked') ){
-	 		alert('Please choose your communication preferences.');
-	 		e.preventDefault();
-	 	}
-
-	    
-	    if($('#contactByPhone').is(':checked')) {
-	    	 
-	    	//alert('contactByPhone is CHECKED');
-
-	    	//alert( $('#mobilenumber').val().length );
-
-	    	if ( $("#mobilenumber").val().length <= 0 )  {
-	 			alert('Please enter your valid phone number');
-	 			 e.preventDefault();
-	    	}
-
-	    } 
-	});
-
-	 
-
-
-
-
-
-
-	 $('#lcBut').click(function (e) {
-	 	
-	 	if(  $('input[type=radio][name=join_lc]:radio:checked').val() == "Yes" && $('input[type=radio][name=lc_choice]:radio:checked').val() == "CCLC" ) {
-	 		//alert('they clicked YES and CCLC');
-
-	 		if ( $("#cclc_type").val().length <= 0 ) {
-	 			 alert('Please select your CCLC Community if you wish to join the Commuting Connections Learning Community (CCLC) Program');
-	 			 e.preventDefault();
-	 		}
-
-	 		if ( $("#signature").val().length <= 0 ) {
-	 			 alert('Please type in your full name if you wish to join the Commuting Connections Learning Community (CCLC) Program');
-	 			 e.preventDefault();
-	 		}
-
-	 	}
-
-	   
-	    // if($('#contactByPhone').is(':checked')) {
-	    	 
-	    // 	//alert('contactByPhone is CHECKED');
-
-	    // 	//alert( $('#mobilenumber').val().length );
-
-	    // 	if ( $("#mobilenumber").val().length <= 0 )  {
-	 			// alert('Please enter your valid phone number');
-	 			//  e.preventDefault();
-	    // 	}
-
-	    // } 
-	});
-
-
-	 /* Begin: Learning Communities radio button selections */
-	 $('input[type=radio][name=join_lc]').change(function() {
-        if (this.value == 'Yes') {
-           $("#lc_options").show();
-        }
-        else if (this.value == 'No') {
-            $("#lc_options").hide();
-            $("#cclc_options").hide();
-        }
-    });
-
-	  $('input[type=radio][name=lc_choice]').change(function() {
-        if (this.value == 'CCLC') {
-           $("#cclc_options").show();
-        }
-        else  {
-            $("#cclc_options").hide();
-        }
-    });
-	 /* End: Learning Communities radio button selections */
-
-
-	 $(function() {
+	$(function() {
 	 	$('.page-box-content').css('visibility','visible').delay(700).hide().fadeIn(700);
 	 	$('#main').css('visibility','visible').delay(700).hide().slideUp().fadeIn(700);
 		$('#footer').css('visibility','visible').delay(700).hide().fadeIn(700);
@@ -3172,6 +3104,56 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 
 
+	 $('#lcBut').click(function (e) {
+	 		 	
+	 	<% if  learning_commbypass == 0 %>
+
+		 	if(  $('input[type=radio][name=join_lc]:radio:checked').val() == "Yes" && $('input[type=radio][name=lc_choice]:radio:checked').val() == "CCLC" ) {
+		 		//alert('they clicked YES and CCLC');
+
+		 		if ( $("#cclc_type").val().length <= 0 ) {
+		 			 alert('Please select your CCLC Community if you wish to join the Commuting Connections Learning Community (CCLC) Program');
+		 			 e.preventDefault();
+		 		}
+
+		 		if ( $("#signature").val().length <= 0 ) {
+		 			 alert('Please type in your full name if you wish to join the Commuting Connections Learning Community (CCLC) Program');
+		 			 e.preventDefault();
+		 		}
+
+		 	}
+		<%# else %>
+		  //$( "#lcform" ).submit();
+	 	<% end %>
+	   
+	    
+	});
+
+
+	<% if  learning_commbypass == 0 %>
+		 /* Begin: Learning Communities radio button selections */
+		 $('input[type=radio][name=join_lc]').change(function() {
+	        if (this.value == 'Yes') {
+	           $("#lc_options").show();
+	        }
+	        else if (this.value == 'No') {
+	            $("#lc_options").hide();
+	            $("#cclc_options").hide();
+	        }
+	    });
+
+		  $('input[type=radio][name=lc_choice]').change(function() {
+	        if (this.value == 'CCLC') {
+	           $("#cclc_options").show();
+	        }
+	        else  {
+	            $("#cclc_options").hide();
+	        }
+	    });
+    <% end %>
+
+	 /* End: Learning Communities radio button selections */
+
 
 	 /* learning communities cannot change yes answers to no answers*/
 	 <% if @join_lc == 'Yes' %> 
@@ -3182,6 +3164,41 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 	$('#cclc_type').prop('disabled', true);
 	 	$('#signature').prop('disabled', true);
 	 <% end %>
+
+
+
+ 	
+	 $('#contactBut').click(function (e) {
+	    
+	    // alert('contactBut clicked');
+
+	    // alert(!$('#contactByPhone').is(':checked'));
+	    // alert(!$('#contactByEmail').is(':checked'));
+
+	    <% if  communication_bypass == 0  %>
+
+	    if ( !$('#contactByPhone').is(':checked') && !$('#contactByEmail').is(':checked') ){
+	 		alert('Please choose your communication preferences.');
+	 		e.preventDefault();
+	 	}
+
+	    
+	    if($('#contactByPhone').is(':checked')) {
+	    	 
+	    	//alert('contactByPhone is CHECKED');
+
+	    	//alert( $('#mobilenumber').val().length );
+
+	    	if ( $("#mobilenumber").val().length <= 0 )  {
+	 			alert('Please enter your valid phone number');
+	 			 e.preventDefault();
+	    	}
+
+	    } 
+
+	    <% end %>
+	});
+
 
 
 	<% if ( account_available == 1 && @welcome_available == 1 )%>
@@ -3412,7 +3429,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
 	<% end %>
 
-	<% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_available == 1 && emergency_complete == 1  || emergencybypass == 1 ) %>
+	<% if (fau_alert_available == 1 || faualertbypass == 1) %>
 	if (window.location.href.indexOf("#step-faualert") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3460,7 +3477,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
 	<% end %>
 
-	<% if congrats_available == 1 && ( vehicle_reg_available == 1  || vehicleregbypass == 1) %>
+	<% if congrats_available == 1 && ( vehicle_reg_available == 1  || vehicleregbypass == 1) && deposit_complete == 1%>
 	if (window.location.href.indexOf("#step-congrats") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
