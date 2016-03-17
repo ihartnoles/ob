@@ -310,7 +310,7 @@ module StaticPagesHelper
   	 def get_statusicon(available,completed,bypass)
 
        if bypass == 1
-          return "bypassed <i class='fa fa-asterisk'></i>".html_safe
+          return "<span class='badge badge-warning'>bypassed <i class='fa fa-asterisk'></i></span>".html_safe
        else
          	case 
       	 		when available == 0 && ( completed == 0 || completed.nil?)
