@@ -752,15 +752,15 @@ class FticModulesAvailablesController < ApplicationController
   def update_ftic_oars_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.oars = params[:oars]
-    @modules_available.registration = 1 #unlock registration
+    @modules_available.faualert = 1 #unlock fau alert
     @modules_available.save
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
      if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-registration" #redirect to deposit
+         redirect_to "/home?znum=#{params[:znum]}#step-faualert" #redirect to deposit
      else
-        redirect_to "/home#step-registration"
+        redirect_to "/home#step-faualert"
      end  
   end
 
@@ -797,23 +797,7 @@ class FticModulesAvailablesController < ApplicationController
   def update_ftic_emergency_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.emergency = params[:emergency]
-    @modules_available.faualert = 1 #unlock fau alert
-    @modules_available.save
-
-    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
-
-     if params[:znum]
-         redirect_to "/home?znum=#{params[:znum]}#step-faualert" #redirect to deposit
-     else
-        redirect_to "/home#step-faualert"
-     end  
-  end
-
-
-   def update_ftic_alert_module
-    @modules_available = FticModulesAvailable.find(params[:ftic_id])
-    @modules_available.faualert = params[:faualert]
-    @modules_available.owlcard = 1 #unlock owlcard
+    @modules_available.owlcard = 1 #unlock fau alert
     @modules_available.save
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
@@ -822,6 +806,22 @@ class FticModulesAvailablesController < ApplicationController
          redirect_to "/home?znum=#{params[:znum]}#step-owlcard" #redirect to deposit
      else
         redirect_to "/home#step-owlcard"
+     end  
+  end
+
+
+   def update_ftic_alert_module
+    @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    @modules_available.faualert = params[:faualert]
+    @modules_available.registration = 1 #unlock registration
+    @modules_available.save
+
+    record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
+
+     if params[:znum]
+         redirect_to "/home?znum=#{params[:znum]}#step-registration" #redirect to deposit
+     else
+        redirect_to "/home#step-registration"
      end  
   end
 

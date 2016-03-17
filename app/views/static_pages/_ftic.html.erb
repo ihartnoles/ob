@@ -863,7 +863,7 @@ Hello, <%= session[:cas_user] %>!
 
 			<% end %>
 
-				 <% if  (finaid_available == 1 && finaid_complete == 1 ) || finaid_bypass == 1 ||  @fafsa_complete == 0 %>
+				 <% if  (finaid_available == 1 || finaid_bypass == 1) ||  @fafsa_complete == 0 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -1684,7 +1684,69 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			</div>
 		  </li>
 
+		  <li class="panel">
+		  
+		   <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) %>
+		   	<a id="alerthref" href="#step-faualert" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		   <% else %>
+		    <a id="alerthref" href="#step-faualert" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+		   <% end %>
 
+		    <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) %>
+			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></div>
+			<% end %>
+
+			  <h6><b>FAU ALERT INFORMATION</b></h6>
+			</a>
+			
+			<div id="step-faualert" class="collapse">				   
+			  <div class="step-content">			  		
+		  		<h3 class="title">FAU Alert and Notification System</h3>
+
+		  		<% if faualertbypass == 1 %>			  		
+						<p> An administrator has bypassed (overridden) this section for you.</p>
+				<% else %>
+
+					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. <a title="FAU Alert"  href="http://www.fau.edu/emergency/universityalerts.php" onclick="window.open(this.href, 'fau alert','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
+	               
+					<% if fau_alert_complete == 1 %>
+						 <p>Your FAU Alert information on file is:<br>
+						 	<br>
+						 	<b>Primary Contact Number: (<%= @fau_alert_phone_area %>) <%= @fau_alert_phone_number %></b>
+						 	<br>						 	
+						 	<b></b>
+						 </p>
+					<% else %>
+						<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
+							You do not have any FAU Alert information on file!<br>							
+						</div>
+					<% end %>
+
+	               <br>
+
+	                <a id="faualert" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">Update Your FAU Alert Information</a></p>
+               <% end %>
+
+
+                 <% if  (fau_alert_available == 1 && fau_alert_complete == 1 ) || faualertbypass == 1 %>
+						<div class="buttons-box text-right">
+			  		 		<%= form_tag('/update_ftic_alert_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :faualert, 1 %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+
+			  </div>			
+			</div>
+		  </li>
 
 		 
 
@@ -1998,69 +2060,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			</div>
 		  </li>
 
-		   <li class="panel">
-		  
-		   <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) %>
-		   	<a id="alerthref" href="#step-faualert" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-		   <% else %>
-		    <a id="alerthref" href="#step-faualert" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
-		   <% end %>
-
-		    <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) %>
-			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></div>
-			<% end %>
-
-			  <h6><b>FAU ALERT INFORMATION</b></h6>
-			</a>
-			
-			<div id="step-faualert" class="collapse">				   
-			  <div class="step-content">			  		
-		  		<h3 class="title">FAU Alert and Notification System</h3>
-
-		  		<% if faualertbypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
-				<% else %>
-
-					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. <a title="FAU Alert"  href="http://www.fau.edu/emergency/universityalerts.php" onclick="window.open(this.href, 'fau alert','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
-	               
-					<% if fau_alert_complete == 1 %>
-						 <p>Your FAU Alert information on file is:<br>
-						 	<br>
-						 	<b>Primary Contact Number: (<%= @fau_alert_phone_area %>) <%= @fau_alert_phone_number %></b>
-						 	<br>						 	
-						 	<b></b>
-						 </p>
-					<% else %>
-						<div class="alert alert-border alert-danger text-center fade in alert-dismissable">
-							You do not have any FAU Alert information on file!<br>							
-						</div>
-					<% end %>
-
-	               <br>
-
-	                <a id="faualert" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">Update Your FAU Alert Information</a></p>
-               <% end %>
-
-
-                 <% if  (fau_alert_available == 1 && fau_alert_complete == 1 ) || faualertbypass == 1 %>
-						<div class="buttons-box text-right">
-			  		 		<%= form_tag('/update_ftic_alert_module' , {:class => 'register-form form-validator'})  do %>
-			  		 		 	<%= hidden_field_tag :znumber, @znum %>
-							    <%= hidden_field_tag :netid, @displayname %>
-							    <%= hidden_field_tag :ftic_id, @ftic_id %>
-							    <%= hidden_field_tag :faualert, 1 %>
-							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-								<% if params[:znum] %>
-								   	<%= hidden_field_tag :znum, @znum %>									    
-								<% end %>
-						    	 <button type="submit" class="btn btn-danger" id="learningBut">Continue</button>		
-					 		<% end %>				 
-						</div>
-				<% end %>
-
-			  </div>			
-			</div>
-		  </li>
+		   
 
 		   <li class="panel">
 		    <% if (owlcard_available == 1 || owlcard_bypass == 1) %>
