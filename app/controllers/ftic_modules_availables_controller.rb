@@ -582,7 +582,11 @@ class FticModulesAvailablesController < ApplicationController
    def update_ftic_deposit_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.deposit = params[:deposit]
-    #@modules_available.communication = 1 #unlock communication preference
+    
+    if params[:intl] == "1"
+      @modules_available.immunization = 1 #unlock immunization
+    end
+
     @modules_available.save
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])

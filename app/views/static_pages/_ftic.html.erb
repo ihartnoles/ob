@@ -3305,7 +3305,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
 	<%# end %>
 
-	<% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1)  %>
+	<% if  (immunization_available == 1 || immunization_bypass == 1)  %>
 	 /* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-immunization") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
