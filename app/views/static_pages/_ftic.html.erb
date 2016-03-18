@@ -662,9 +662,9 @@ Hello, <%= session[:cas_user] %>!
 			</a>
 			
 			<div id="step-finaid" class="collapse">
-			  <div class="step-content">
-
-			  	<% if finaid_bypass == 1 %>			  		
+			   <!--  Begin FIRST FIN AID PANEL  -->
+			   <div class="step-content">
+			   			<% if finaid_bypass == 1 %>			  		
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
@@ -676,9 +676,8 @@ Hello, <%= session[:cas_user] %>!
 							<% if @fafsa_complete == 0 || @fafsa_complete.nil? %>
 			  					<div class="alert alert-border alert-danger text-center fade in">
 			  						Our records indicate you have not completed your Free Application for Federal Student Aid (FAFSA).<br>
-			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" onclick="window.open(this.href, 'fafsa','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.
-
-			  					</div>
+			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" onclick="window.open(this.href, 'fafsa','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.			  						
+			  					</div>		  					
 			  				<% end %>
 
 			  				<% if @fafsa_complete == 1 %>
@@ -710,95 +709,6 @@ Hello, <%= session[:cas_user] %>!
 			  					*Dates are subject to change without notice.  Please see <a href="http://www.fau.edu/finaid/resources/dates.php" target="_blank">Important Financial Aid Dates & Deadlines</a> for more details. <br> You also have the option to sync with the FAU Financial Aid Calendar. You can get new events and updates directly in your calendar.<iframe src="https://stanza.co/button/embed?calendar=https%3A%2F%2Fstanza.co%2Fschedules%2FFAUFinancialAid&amp;size=medium" style="border: none; margin: 0px; vertical-align: middle; height: 35px; width: 210px;"></iframe>
 			  				</p>
 			  				
-			  				<!-- <h3 class="title">Financial Aid Calendar</h3>
-			  				
-			  				<p>
-			  					*Dates are subject to change without notice.  Please see <a href="http://www.fau.edu/finaid/resources/dates.php" target="_blank">Important Financial Aid Dates & Deadlines</a> for more details.
-			  				  <table class="table table-striped text-left order-details">
-						  			<thead>
-						  				<tr>
-						  					<th class="product-name">&nbsp;</th><th class="product-total">Fall 2015*</th><th class="product-total">Spring 2016*</th><th class="product-total" nowrap>Summer 2016*</th>
-						  				</tr>
-						  			</thead>
-						  			
-						  			<tr>
-						  				<td><strong>First day to apply for Short Term Advance for purchasing <br>textbooks and other unanticipated expenses</strong></td>
-						  				<td>August 3, 2015</td>
-						  				<td>December 18, 2015</td>
-						  				<td>April 25, 2016</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Barnes & Noble Book Voucher Program is available <br>to eligible students</strong></td>
-						  				<td>August 10, 2015</td>
-						  				<td>December 14, 2015</td>
-						  				<td>TBD</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>The Free Application for Federal Student Aid (FAFSA)<br> is available for the upcoming 2016-2017 academic year</strong></td>
-						  				<td>&nbsp;</td>
-						  				<td>January 1, 2016</td>
-						  				<td>&nbsp;</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Disbursement of Short Term Advance Begins</strong></td>
-						  				<td>August 11, 2015</td>
-						  				<td>January 5, 2016</td>
-						  				<td>May 10, 2016 <br> June 23,2016</br>(Term 3 Only)</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Semester Begins</strong></td>
-						  				<td>August 17, 2015</td>
-						  				<td>January 11, 2016</td>
-						  				<td>May 16, 2016 <br>(Terms 1 & 2) <br><br> June 28,2016</br>(Term 3)</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Submit the Mandatory Course Entry Survey</strong></td>
-						  				<td>August 17, 2015</td>
-						  				<td>January 11, 2016</td>
-						  				<td>May 16, 2016 <br>(Terms 1 & 2) <br><br> June 28,2016</br>(Term 3)</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Last day to drop/add courses without consequences <br> (by 5:00 p.m.)</strong></td>
-						  				<td>August 21, 2015<br>August 22, 2015<br>(Saturday only courses)</td>
-						  				<td>January 15, 2016<br>January 16,2016<br>(Saturday only courses)</td>
-						  				<td>(Terms 1 & 2)<br> May 20, 2016 <br><br> May 22, 2016<br>(Saturday or Sunday only courses)</br><hr>(Term 3)<br>July 1, 2016<br><br> July 3, 2016 <br> (Saturday or Sunday only courses)</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Last day to pay fees for the current term</strong></td>
-						  				<td>August 24, 2015</td>
-						  				<td>January 19, 2016</td>
-						  				<td>May 23, 2016 <br>(Terms 1 & 2) <br><br> July 5,2016</br>(Term 3)</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Request for Summer Financial Aid is Available Online.</strong></td>
-						  				<td>&nbsp;</td>
-						  				<td>February 1, 2016</td>
-						  				<td>&nbsp;</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Last day to apply for Short Term Advance online for the semester</strong></td>
-						  				<td>September 14, 2015</td>
-						  				<td>February 8, 2016</td>
-						  				<td>July 19, 2016</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Financial Aid Priority Deadline</strong></td>
-						  				<td>&nbsp;</td>
-						  				<td>March 1, 2016</td>
-						  				<td>&nbsp;</td>
-						  			</tr>
-						  			<tr>
-						  				<td><strong>Semester ends</strong></td>
-						  				<td>December 11, 2015</td>
-						  				<td>May 6, 2016</td>
-						  				<td>June 27, 2016 <br>(Terms 2) <br><br>August 9, 2016</br>(Summer Terms 1 & 3)</td>
-						  			</tr>
-						  		</table> 
-						  		
-			  			    </p>
-
-			  			    -->
-                     
 
                   <br>
 
@@ -851,11 +761,23 @@ Hello, <%= session[:cas_user] %>!
 
 				<% end %>
 
-			
+				<% if  (finaid_available == 1 || finaid_bypass == 1) ||  @fafsa_complete == 0 || @fafsa_complete.nil? %>
+	  				<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
+	  					<h3 class="title">Would you like more Financial Aid information?</h3>
+	  					<p>
+	  						<div class="checkbox">
+		  					     <%= radio_button_tag 'finaid_choice', 'YES' %>Yes, please tell me more!
+	  					    </div>
+	  					    <div class="checkbox">
+	  						 	<%= radio_button_tag 'finaid_choice', 'NO' %>No, I'm not interested in financial aid.
+	  						</div>
+	  					<p>
+			  	<%# end %>
+			  			
 
-				 <% if  (finaid_available == 1 || finaid_bypass == 1) ||  @fafsa_complete == 0 %>
+				 <%# if  (finaid_available == 1 || finaid_bypass == 1) ||  @fafsa_complete == 0 %>
 						<div class="buttons-box text-right">
-			  		 		<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		<%#= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
 							    <%= hidden_field_tag :netid, @displayname %>
 							    <%= hidden_field_tag :ftic_id, @ftic_id %>
@@ -869,8 +791,12 @@ Hello, <%= session[:cas_user] %>!
 					 		<% end %>				 
 						</div>
 				<% end %>
+			   </div>
+			    <!--  END FIRST FIN AID PANEL  -->
 
-			  </div>
+
+		
+
 			</div>
 		  </li>
 		<% end %>
@@ -1661,12 +1587,22 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<% end %>
 
 			  		<h3 class="title">Online Advising & Resource System</h3>
-			  		<p>
-						"OARS" is a self-directed system. You may be a little nervous about choosing classes on your own, but DON'T WORRY! Help is always just a phone call or mouse click away, and the instructions are very user-friendly. When you log in to select your courses, you will find:
-							A brief description of the course when you click on the subject.
-							A sample class schedule for your major.
-							It takes three (3) to five (5) business days to process your submitted OARS form. After three to five business days, log back into OARS to review your advisor's comments. If your holds are cleared and your course selections are in sync with your advisors, you can log into MyFAU to register for classes. That's all there is to it!  <a title="OARS information" href="http://www.fau.edu/uas/oars.php" onclick="window.open(this.href, 'oars','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
-					</p>	
+			  		<p>Welcome to OARS! You may be a little nervous about choosing classes, but DON'T WORRY! The instructions are very user-friendly and help is just a phone call or mouse click away.</p>
+
+			  		<p><b>What is OARS?</b></p>
+			  		<ul>
+			  			<li>OARS is the web-based advising system that you will be required to use in your first semester only. Why? It gives you “early” and “easy” access to the course selection/advising process from the comfort of your own home.  No waiting until New Student Orientation to design your schedule! OARS is NOT meant to replace face-to-face academic advising. You will have an opportunity to meet with your assigned advisor when you come to Orientation should you want to do so. </li>
+			  		</ul>
+
+			  		<p><br>When you log in you will find easy to follow instructions, a sample class schedule for your major, Jump Start courses, and course descriptions.</p>
+
+			  		<p><b>It usually takes three (3) to five (5) business days for your advisor to review and approve your submitted OARS form.</b> After three to five business days, log back into OARS and read your advisor's comments then take the next step to completing your schedule.</p>
+
+			  		<p><b>Important Jump Start Information:</b> All incoming freshman students who are admitted to FAU for the summer semester (or opt to begin in the summer semester) will be participating in the Jump Start Program. As part of the Summer Jump Start Program, you will be taking three (3) courses. Two of these courses are 3 credits each and apply to the Intellectual Foundations Program (IFP) or help prepare you for a course in the IFP, and the third course is the “Learning Community Experience (SLS 1412), Jump Start Edition”! This course is a FREE 0-credit class designed to help you master success strategies, connect with other students, and establish a strong foundation for your FAU experience.  For more information on Jump Start go to: <a title="OARS Jumpstart information" href="http://www.fau.edu/uas/jumpstart.php" onclick="window.open(this.href, 'oars','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">http://www.fau.edu/uas/jumpstart.php</a> </p>
+
+
+						<!--  <a title="OARS information" href="http://www.fau.edu/uas/oars.php" onclick="window.open(this.href, 'oars','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> -->
+						
 
 
 					 <div class="alert alert-border <%if oars_complete == 1 %>alert-success<%else%>alert-danger<%end%>  text-center fade in">
