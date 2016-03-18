@@ -881,17 +881,17 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		 
-		  <% if (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1)  %>
+		  <% if (immunization_available == 1 || immunization_bypass == 1)  %>
 		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		  <% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1) %>
+		  <% if  (immunization_available == 1 || immunization_bypass == 1)  %>
 			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, @immunization_complete ,immunization_bypass) %></div>
 		  <% end %>
 
-			  <h6><b>IMMUNIZATION HOLDS</b></h6>
+			  <h6><b>IMMUNIZATION HOLDS</b> <%= @immunization_complete %></h6>
 			</a>
 		 
 			

@@ -201,11 +201,8 @@ module StaticPagesHelper
       if output.count > 0
         output.each do |o| 
 
-           # puts YAML::dump('begin immunization status')
-           # puts YAML::dump(o['im_exists'])
-           # puts YAML::dump(o['sprhold_hldd_code'])
 
-         if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
+         if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM' 
           tmp <<  "You need to make sure your immunization records have been submitted and approved. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'> Review immunization requirements here </a>"                               
          else           
           tmp <<  "Your immunization records have been submitted and approved.  Thank you!"  

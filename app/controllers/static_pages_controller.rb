@@ -264,7 +264,7 @@ class StaticPagesController < ApplicationController
                   @netid =  o['gobtpac_external_user']
 
 
-                  if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
+                  if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
                     @immunization_complete = 0
                     break
                   else
