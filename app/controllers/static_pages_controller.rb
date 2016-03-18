@@ -254,7 +254,7 @@ class StaticPagesController < ApplicationController
                #@account_complete = 0
                @emergency_complete = 0
                @fau_alert_complete = 0
-               @isInternationalStudent = 0
+               @isInternationalStudent ||= 0
                @immunization_complete = 0
             else
                 get_multistatus.each do |o|
@@ -460,7 +460,9 @@ class StaticPagesController < ApplicationController
               finaidflags.push('1')
             end
 
-            if  o['fafsa_flg'] == 'N'
+            #if  o['fafsa_flg'] == 'N'
+            
+            if o['rtvtreq_long_desc'] == 'Federal Student Financial Aid Application' && o['rrrareq_sat_ind'] == 'Y'
               @fafsa_complete = 0
             else
               @fafsa_complete = 1

@@ -646,7 +646,7 @@ Hello, <%= session[:cas_user] %>!
 		  </li>
 
 
-		  <% if @isInternationalStudent == 0 %>  
+		  <% if @isInternationalStudent != 1 %>  
 		  <li class="panel">
 		  	<% #if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
 			   <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
