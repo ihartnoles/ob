@@ -888,7 +888,7 @@ Hello, <%= session[:cas_user] %>!
 		  <% end %>
 
 		  <% if  (immunization_available == 1 || immunization_bypass == 1) && ( communication_complete == 1 || communication_bypass == 1) %>
-			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, immunization_complete,immunization_bypass) %></div>
+			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, @immunization_complete ,immunization_bypass) %></div>
 		  <% end %>
 
 			  <h6><b>IMMUNIZATION HOLDS</b></h6>
@@ -919,7 +919,7 @@ Hello, <%= session[:cas_user] %>!
 		  		</p> -->
 
 
-		  		<div class="alert alert-border <%if immunization_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
+		  		<div class="alert alert-border <%if @immunization_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
 					
 					<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 					<p>
@@ -934,7 +934,7 @@ Hello, <%= session[:cas_user] %>!
 				  <button type="button" class="btn btn-danger" id="immunizationBut">Continue</button> 
 				</div> -->
 
-				 <% if  (immunization_available == 1 && immunization_complete == 1 ) || immunization_bypass == 1 %>
+				 <% if  (immunization_available == 1 && @immunization_complete == 1 ) || immunization_bypass == 1 %>
 						   	
 						   	<div class="buttons-box text-right">
 				  		 		<%= form_tag('/update_ftic_immunization_module' , {:class => 'register-form form-validator'})  do %>

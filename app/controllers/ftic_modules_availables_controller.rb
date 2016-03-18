@@ -134,7 +134,7 @@ class FticModulesAvailablesController < ApplicationController
             else
                 get_multistatus.each do |o|
                   
-                  if o['im_exists'] == 'N' || o['im_exists'].nil?
+                  if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
                     @immunization_complete = 0
                   else
                     @immunization_complete = 1

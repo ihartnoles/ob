@@ -206,9 +206,9 @@ module StaticPagesHelper
            # puts YAML::dump(o['sprhold_hldd_code'])
 
          if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
-           tmp <<  "Your immunization records have been submitted and approved.  Thank you!"                                 
-         else
-           tmp <<  "You need to make sure your immunization records have been submitted and approved. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'> Review immunization requirements here </a>"
+          tmp <<  "You need to make sure your immunization records have been submitted and approved. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'> Review immunization requirements here </a>"                               
+         else           
+          tmp <<  "Your immunization records have been submitted and approved.  Thank you!"  
          end
          
          return tmp.html_safe

@@ -265,15 +265,15 @@ class StaticPagesController < ApplicationController
 
 
                   if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
-                    @immunization_complete = 1
-                  else
                     @immunization_complete = 0
+                    break
+                  else
+                    @immunization_complete = 1
                   end 
 
 
-                  # puts YAML::dump('**********BURRRIALLLLL!!!!**********')
-                  # puts response.body
-                  # puts YAML::dump(response.body)
+                   # puts YAML::dump('**********BURRRIALLLLL!!!!**********')
+                   # puts YAML::dump(@immunization_complete)
 
                   #@OwlImage = RestClient.get('https://devserviceawards.fau.edu/test2.cfm?fname=Peter&lname=Griffon')
                   
