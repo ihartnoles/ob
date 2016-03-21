@@ -62,7 +62,7 @@ class Banner < ActiveRecord::Base
 
 
 		def self.aleks_status(id)
-			get = connection.exec_query("SELECT aleks_taken FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT aleks_taken, aleks_score FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.tuition_deposit_status(id)

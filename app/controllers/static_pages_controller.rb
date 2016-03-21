@@ -299,6 +299,13 @@ class StaticPagesController < ApplicationController
                     @aleks_complete = 1
                   end 
 
+                  if o['aleks_score'].nil?
+                    @aleks_score = ''
+                  else
+                    @aleks_score = o['aleks_score']
+                  end 
+
+
                   if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
                     @deposit_complete ||= 1   #change this back to 1
                     @dep_complete_flag = 1

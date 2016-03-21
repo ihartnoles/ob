@@ -34,7 +34,8 @@ module StaticPagesHelper
         output.each do |o| 
 
          if o['aleks_taken'] == 'Y' 
-           tmp =  "You have taken ALEKS! Congrats!"
+           @score = number_to_human(o['aleks_score'].to_i.round(2))
+           tmp =  "You have taken ALEKS! Your ALEKS score is #{@score}%"
          else
            tmp =  "You have NOT taken ALEKS yet. <br> You must complete this requirement. <br><br><a id='aleks' class='btn btn-danger' title='ALEKS Sign-up' href='https://secure.aleks.com/fau/?znumber=#{znum}&myfau_username=#{netid}' onclick='window.open(this.href, \"aleks\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\">Sign-Up for ALEKS Now</a> <br> <a title='FAU Aleks' href='https://www.fau.edu/uas/pdf/ALEKS.pdf' target='_blank'>[More Information]</a>"
          end
