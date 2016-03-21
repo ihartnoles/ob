@@ -332,8 +332,14 @@ Hello, <%= session[:cas_user] %>!
 						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="namechange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <%# end %></td>					  			
 						  		</tr>
 						  		<tr>
-						  			<td><b>Your Address:</b></td>
+						  			<td><b>Your Permanent Address:</b></td>
 						  			<td><%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %>&nbsp;</td>						  			
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
+						  		</tr>
+
+						  		<tr>
+						  			<td><b>Your Local Address:</b></td>
+						  			<td><%= @street2 %><br><%= @city2 %>,  <%= @state2 %> ,<%= @zip2 %>&nbsp;</td>						  			
 						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
 						  		</tr>
 						  		
@@ -761,15 +767,16 @@ Hello, <%= session[:cas_user] %>!
 
 				<% end %>
 
-				<% if  (finaid_available == 1 || finaid_bypass == 1) ||  @fafsa_complete == 0 || @fafsa_complete.nil? %>
+				<% if  (finaid_available == 1 || finaid_bypass == 1) %>
 	  				<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
-	  					<h3 class="title">Would you like more Financial Aid information?</h3>
+	  					<h3 class="title">Do you need Financial Aid?</h3>
+	  					<p></p>
 	  					<p>
 	  						<div class="checkbox">
-		  					     <%= radio_button_tag 'finaid_choice', 'YES' %>Yes, please tell me more!
+		  					     <%= radio_button_tag 'finaid_choice', 'YES' %>Yes, I do.
 	  					    </div>
 	  					    <div class="checkbox">
-	  						 	<%= radio_button_tag 'finaid_choice', 'NO' %>No, I'm not interested in financial aid.
+	  						 	<%= radio_button_tag 'finaid_choice', 'NO' %>No, I'm not interested.
 	  						</div>
 	  					<p>
 			  	<%# end %>
