@@ -340,7 +340,7 @@ Hello, <%= session[:cas_user] %>!
 						  		<tr>
 						  			<td><b>Your Local Address:</b></td>
 						  			<td><%= @street2 %><br><%= @city2 %>,  <%= @state2 %> ,<%= @zip2 %>&nbsp;</td>						  			
-						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange2" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
 						  		</tr>
 						  		
 						  		<tr>
@@ -2567,6 +2567,21 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
     	});
 
        $("#addresschange").click(function (e) {
+    		e.preventDefault();
+        	var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes",scrollbars=1');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href =  a.replace(regex,'') + "#step-verify"
+			    }  
+			}, 1000);         	
+    	});
+
+       $("#addresschange2").click(function (e) {
     		e.preventDefault();
         	var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes",scrollbars=1');
         	var a = window.location.href
