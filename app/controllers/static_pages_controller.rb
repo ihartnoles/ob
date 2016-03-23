@@ -769,53 +769,84 @@ class StaticPagesController < ApplicationController
          newstudent.netid   = bs['gobtpac_external_user']
          newstudent.f_name = bs['f_name']
          newstudent.l_name = bs['l_name']
-         newstudent.current_step = 'Welcome'
          newstudent.welcome = 1
+         newstudent.verify = 1
+         newstudent.verifybypass = 0
          newstudent.deposit = 1
-         newstudent.account = 0
-         newstudent.communication = 0
-         newstudent.immunization = 0
-         newstudent.finaid = 0
+         newstudent.depositbypass = 0
+         newstudent.account = 1
+         newstudent.accountbypass = 0
+         newstudent.communication = 1
+         newstudent.communicationbypass = 0
+         newstudent.depositbypass = 0
+         newstudent.immunization = 1
+         newstudent.immunizationbypass = 0
+         newstudent.finaid = 1
+         newstudent.finaidbypass = 0
          newstudent.housingfee = 0
+         newstudent.housingfeebypass = 0
          newstudent.residency = 0
+         newstudent.residencybypass = 0
          newstudent.housingmealplan = 0
+         newstudent.housingmealplanbypass = 0
          newstudent.aleks = 0
+         newstudent.aleksbypass = 0
          newstudent.oars = 0
+         newstudent.oarsbypass = 0
          newstudent.learning_comm = 0
+         newstudent.learning_commbypass = 0
          newstudent.orientation = 0
+         newstudent.orientationbypass = 0
          newstudent.registration = 0
+         newstudent.registrationbypass = 0
          newstudent.emergency = 0
+         newstudent.emergencybypass = 0
          newstudent.faualert = 0
+         newstudent.faualertbypass = 0
          newstudent.owlcard = 0
+         newstudent.owlcardbypass = 0
          newstudent.bookadvance = 0
+         newstudent.bookadvancebypass = 0
          newstudent.tution = 0
+         newstudent.tuitionbypass = 0
          newstudent.vehiclereg = 0 
+         newstudent.vehicleregbypass = 0
+         newstudent.congrats = 0
          newstudent.isactive = 1
+         
          if bs['int_student'] == "Y"
           newstudent.isInternational = 1
          else
           newstudent.isInternational = 0
          end
+
+
          newstudent.intl_medical = 0
+         newstudent.intl_medical_bypass = 0
          newstudent.intl_visa = 0
+         newstudent.intl_visa_bypass = 0
          newstudent.intl_orientation = 0
+         newstudent.intl_orientation_bypass = 0
          newstudent.save(validate: false)   
         else
-         student = FticModulesAvailable.find_by_znumber(bs['z_number'])   
+         student = FticModulesAvailable.find_by_znumber(bs['z_number'])     
 
          if bs['int_student'] == "Y"
-           isInternational = 1
+          isInternational = 1
          else
-           isInternational = 0
+          isInternational = 0
          end
-
+        
          student.update_attributes(
           :netid => bs['gobtpac_external_user'],
           :znumber => bs['z_number'],
           :f_name => bs['f_name'],
           :l_name => bs['l_name'],
-          :isInternational =>  isInternational
-         )
+          :isInternational => isInternational,
+          :communication => 1,
+          :finaid => 1,
+          :immunization => 1
+         ) 
         end
 
       end
