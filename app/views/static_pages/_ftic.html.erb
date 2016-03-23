@@ -714,7 +714,7 @@ Hello, <%= session[:cas_user] %>!
 			  								<% if @term == 'Summer'%>
 			  									<!-- need to update this to pull summer specific data -->
 			  									<td>
-			  							 			<% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
+			  							 			<% if @summer_fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
 			  									</td>
 			  									<!-- this is fall data -->
 			  									<td>
@@ -736,7 +736,7 @@ Hello, <%= session[:cas_user] %>!
 			  								<% if @term == 'Summer'%>
 			  									<!-- need to update this to pull summer specific data -->
 				  								<td>			  						
-					  								<% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
+					  								<% if @summer_eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
 					  							</td>
 					  							<!-- this is fall data -->
 					  							<td>			  						
@@ -760,7 +760,7 @@ Hello, <%= session[:cas_user] %>!
 				  							
 				  							<% if @term == 'Summer'%>
 				  							<!-- need to update this to pull summer specific data -->
-				  							<td><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
+				  							<td><% if @summer_tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
 				  							<!-- this is fall data -->
 				  							<td><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
 				  							<% else %>
@@ -776,7 +776,7 @@ Hello, <%= session[:cas_user] %>!
 				  							</td>				  							
 				  							<% if @term == 'Summer'%>
 				  							<!-- need to update this to pull summer specific data -->
-				  							<td><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
+				  							<td><% if @summer_fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
 				  							<!-- this is fall data -->
 				  							<td><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
 				  							<% else %>
@@ -840,7 +840,11 @@ Hello, <%= session[:cas_user] %>!
 					  			<table class="table table-striped text-left order-details">
 						  			<thead>
 						  				<tr>
-						  					<th class="product-name">Award</th><th class="product-total">Term</th><th class="product-total">Amount</th><th class="product-total">Offer Date</th><th class="product-total">Acceptance Date</th>
+						  					<th class="product-name">Award</th>
+						  					<th class="product-total">Term</th>
+						  					<th class="product-total">Amount</th>
+						  					<th class="product-total">Offer Date</th>
+						  					<th class="product-total">Status</th>
 						  				</tr>
 						  			</thead>
 
@@ -857,16 +861,17 @@ Hello, <%= session[:cas_user] %>!
 
 				<% if  (finaid_available == 1 || finaid_bypass == 1) %>
 	  				<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
+	  					<!-- 
 	  					<h3 class="title">Do you need Financial Aid?</h3>
 	  					<p></p>
 	  					<p>
 	  						<div class="checkbox">
-		  					     <%= radio_button_tag 'finaid_choice', 'YES' %>Yes, I do.
+		  					     <%#= radio_button_tag 'finaid_choice', 'YES' %>Yes, I do.
 	  					    </div>
 	  					    <div class="checkbox">
-	  						 	<%= radio_button_tag 'finaid_choice', 'NO' %>No, I'm not interested.
+	  						 	<%#= radio_button_tag 'finaid_choice', 'NO' %>No, I'm not interested.
 	  						</div>
-	  					<p>
+	  					<p> -->
 			  	<%# end %>
 			  			
 

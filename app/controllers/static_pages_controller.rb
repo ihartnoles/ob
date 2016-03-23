@@ -448,13 +448,21 @@ class StaticPagesController < ApplicationController
 
             if fin_aid_acceptance.nil? || fin_aid_acceptance.blank? || fin_aid_acceptance.count == 0
               @fin_aid_acceptance = 0
+              @summer_fin_aid_acceptance = 0
             else 
                fin_aid_acceptance.each do |fa|
-                 if fa['rpratrm_accept_date'].nil?
-                  @fin_aid_acceptance = 0
-                 else 
+                 if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == '201601' || fa['rpratrm_period'] == '201608')
                   @fin_aid_acceptance = 1
+                 else 
+                  @fin_aid_acceptance = 0
                  end
+
+                 if !fa['rpratrm_accept_date'].nil? && fa['rpratrm_period'] == '201605'
+                  @summer_fin_aid_acceptance = 1
+                 else 
+                  @summer_fin_aid_acceptance = 0
+                 end
+
                end 
               
             end
@@ -482,6 +490,28 @@ class StaticPagesController < ApplicationController
 
             @finaidyear = o['finaidyear']
             @aidy= o['rorstat_aidy_code']
+
+            if o['term'] == 'Summer'
+              #set up summer flags
+              if  o['fafsa_flg'] == 'Y' && o['rorstat_aidy_code'] == '1516'
+                @summer_fafsa_complete = 1
+              else
+                @summer_fafsa_complete = 0
+              end
+
+               if o['rorstat_all_req_comp_date'].nil? && o['rorstat_aidy_code'] == '1516'
+                  @summer_eligibility_reqs_complete = 0
+               else
+                  @summer_eligibility_reqs_complete = 1
+               end
+
+               if o['rtvtreq_code'] == 'TERMS' && o['rrrareq_sat_ind'] == 'Y' && o['rorstat_aidy_code'] == '1516'
+                   @summer_tc_complete = 1
+               else
+                   @summer_tc_complete = 0
+               end
+            end
+
           end
 
          

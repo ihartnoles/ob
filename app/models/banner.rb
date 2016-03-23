@@ -163,7 +163,10 @@ class Banner < ActiveRecord::Base
 									     	WHEN '1516' THEN '2015-2016'
 									     	WHEN '1415' THEN '2014-2015'
 
-									     END as finaidyear  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC_N WHERE Z_NUMBER=#{connection.quote(id)}
+									     END as finaidyear, 
+									     rtvtreq_code, 
+									     rorstat_all_req_comp_date
+									     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC_N WHERE Z_NUMBER=#{connection.quote(id)}
 									     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
 		end
 
@@ -172,7 +175,7 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.fin_aid_acceptance(id)
-			get = connection.exec_query("SELECT rpratrm_accept_date from BANINST1.AWS_ONBOARDING_FINAID_AWARDS_N WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT rpratrm_accept_date, rpratrm_period from BANINST1.AWS_ONBOARDING_FINAID_AWARDS_N WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 	
 		def self.residency_status(id)
@@ -182,17 +185,17 @@ class Banner < ActiveRecord::Base
 		def self.fin_aid_awards(id)
 			get = connection.exec_query("SELECT RFRBASE_FUND_TITLE, RPRATRM_PERIOD, 
 												SUBSTR( RPRATRM_PERIOD, 1 , 4 ) as year,
- 
-  											  CASE SUBSTR(RPRATRM_PERIOD, 5 , 6 )
+   											  CASE SUBSTR(RPRATRM_PERIOD, 5 , 6 )
 									             WHEN '01' THEN 'Spring'
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
 									      END as term,
-
 									    RPRATRM_AIDY_CODE as finaidyear,
-									
-									    RPRATRM_OFFER_AMT, TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS_N
+									    RPRATRM_OFFER_AMT, RPRATRM_DECLINE_AMT,
+									    TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate, 
+  								        rpratrm_decline_date
+									    FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS_N
 									    WHERE Z_NUMBER=#{connection.quote(id)} 
 									    ORDER BY RFRBASE_FUND_TITLE ASC")
 		end

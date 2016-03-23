@@ -61,8 +61,24 @@ module StaticPagesHelper
       if output.count > 0
         output.each do |o| 
              if !o.nil?              
+                
+               if !o['acceptdate'].nil?
+                 status = "accepted"
+               end
 
-               tmp <<  "<tr><td>#{o['rfrbase_fund_title']}</td><td>#{o['term']} #{o['year']}</td><td>#{number_to_currency(o['rpratrm_offer_amt'])}</td><td>#{o['offerdate']}</td><td>#{o['acceptdate']}</td></tr>"
+               if !o['rpratrm_decline_date'].nil?
+                 status = "declined"
+               end
+
+               if !o['rpratrm_offer_amt'].nil?
+                  amount =  o['rpratrm_offer_amt']
+               end
+
+               if !o['rpratrm_decline_amt'].nil?
+                  amount =  o['rpratrm_decline_amt']
+               end
+
+               tmp <<  "<tr><td>#{o['rfrbase_fund_title']}</td><td>#{o['term']} #{o['year']}</td><td>#{number_to_currency(amount)}</td><td>#{o['offerdate']}</td><td>#{status}</td></tr>"
              else
                tmp =  "<tr><td colspan='4'>You DO NOT have award information on file.</td></tr>"
              end        
@@ -89,9 +105,9 @@ module StaticPagesHelper
 
                case o['rrrareq_sat_ind']
                  when 'Y'
-                    doc_status = "received"
+                    doc_status = "<img src='/assets/Check_8x8.png' alt=''>".html_safe
                  when 'N'
-                    doc_status = "not received"
+                    doc_status = "<img src='/assets/Delete_8x8.png' alt='' >".html_safe
                  else
                     doc_status = "undetermined"
                 end
