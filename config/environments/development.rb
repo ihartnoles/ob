@@ -33,17 +33,17 @@ Ob::Application.configure do
   config.assets.compress = true
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
   
 
-  config.after_initialize do
-    Bullet.enable = true
-    Bullet.alert = true
-    Bullet.bullet_logger = true
-    Bullet.console = true   
-    Bullet.rails_logger = true   
-    Bullet.add_footer = true   
-  end
+  # config.after_initialize do
+  #   Bullet.enable = false
+  #   Bullet.alert = false
+  #   Bullet.bullet_logger = false
+  #   Bullet.console = false   
+  #   Bullet.rails_logger = false   
+  #   Bullet.add_footer = false   
+  # end
 
  
 

@@ -127,7 +127,7 @@ class Banner < ActiveRecord::Base
 
 		def self.registered_hours(id)
 			#get = connection.exec_query("SELECT Z_NUMBER, SFRSTCR_TERM_CODE, SUM(sfrstcr_credit_hr) as sfrstcr_credit_hr from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)} AND sfrstcr_credit_hr >0 GROUP BY  Z_NUMBER, SFRSTCR_TERM_CODE, sfrstcr_credit_hr")
-			get = connection.exec_query("SELECT Z_NUMBER, SFRSTCR_TERM_CODE, SFRSTCR_CRN, SCBCRSE_TITLE, sfrstcr_credit_hr from BANINST1.AWS_ONBOARDING_COURSE_REG_NEW WHERE Z_NUMBER=#{connection.quote(id)} ORDER BY SFRSTCR_TERM_CODE")
+			get = connection.exec_query("SELECT Z_NUMBER, SFRSTCR_TERM_CODE, SFRSTCR_CRN, SSBSECT_CRSE_TITLE, SCBCRSE_TITLE, sfrstcr_credit_hr from BANINST1.AWS_ONBOARDING_COURSE_REG_NEW WHERE Z_NUMBER=#{connection.quote(id)} ORDER BY SFRSTCR_TERM_CODE")
 		end
 
 

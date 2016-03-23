@@ -12,9 +12,9 @@ module StaticPagesHelper
   	    	 	 tmp =  "You have attended an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You have completed this requirement!"
   	    	 
            elsif o['attended'] == 'No' && !o['sessiondate'].nil?
-             tmp = "You have signed up for an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You must attend orientation and complete orientation. "
+             tmp = "You have signed up for an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You must attend and complete orientation. "
            else
-  	    	 	 tmp =  "You have NOT attended an orientation session yet. You must attend orientation and complete orientation. "
+  	    	 	 tmp =  "You have NOT attended an orientation session yet. You must attend and complete orientation. "
   	    	 end
 
   	    	 return tmp
@@ -126,7 +126,7 @@ module StaticPagesHelper
 
         this_term  = o['sfrstcr_term_code']
 
-         case this_term[4..5]
+          case this_term[4..5]
            when '01'
               term_value = "Spring"
            when '08'
@@ -134,6 +134,13 @@ module StaticPagesHelper
            else
               term_value = "Summer"
           end
+
+         
+         if !o['SSBSECT_CRSE_TITLE'].nil?
+           course = o['SSBSECT_CRSE_TITLE']
+         else
+           course = o['SCBCRSE_TITLE']
+         end
 
 
          if !o.nil? 

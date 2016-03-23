@@ -1413,7 +1413,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<%# end %>
 
 				
-				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 && ( aleksbypass == 1 ) %>
+				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_orientation_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -2413,49 +2413,37 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		</ul><!-- #checkoutsteps -->
       </article><!-- .content -->
-
  
 			
 		<div class="col-md-3">
 		  <div class="title-box">
-			<h2 class="title">Your Progress</h2>
+				<h2 class="title"><b>Your Progress</b></h2>
 		  </div>
-		 
-		  
 		  <div id="metercontainer" data-appear-progress-animation="0%" class="progress progress-striped active">
-			<div id="meterdisplay" class="progress-bar progress-bar-fau" style="width: 0%; text-indent: 5px;">0% completed</div>
+		   <div id="meterdisplay" class="progress-bar progress-bar-fau" style="width: 0%; text-indent: 5px;">0% completed</div>
 		  </div>
-		  
-		
-		</div>
+		</div>     
 
-       <div id="sidebar" class="col-sm-3 sidebar checkout-progress">
-       	<aside class="widget">
-		  <header>
-			<h3 class="title">FAU Support</h3>
-		  </header>
-		  <ul class="progress-list">
-			<!-- <li id="welcomenav"><a href="#welcometitle" class="edit">information <i class='fa fa-info'></i> </a>Welcome</li> -->
-			<p>Have questions? We are here to help. Get support by phone or email. Here are some useful <a href="http://fau.edu/studentresources/" target="_blank">student resources</a>.</p>
-		  </ul>
-		 </aside>
+	      <div class="col-sm-3 sidebar checkout-progress">
+	       	<aside class="widget">
+			  <header>
+				<h2 class="title">Did you know?</h2>
+			  </header>
+			 	You can revisit previously unlocked sections by clicking on the blue title bar for the section you want to go back to!</br>
+			  </aside>	
+	      </div> 
 
-	
-      </div> 
+	      <p>&nbsp;</p>
 
-     
-       <!-- <div id="sidebar" class="col-sm-3 sidebar checkout-progress">
-       	<aside class="widget">
-		  <header>
-			<h3 class="title">Changed Your Mind?</h3>
-		  </header>
-		  <ul class="progress-list">
-			<p>Have questions? We are here to help. Get support by phone or email. Here are some useful online resources.</p>			
-		  </ul>
-		</aside>
-      </div>  -->
-  
-    
+		  <div class="col-sm-3 sidebar checkout-progress">
+		   	<aside class="widget">
+			  <header>
+				<h2 class="title">FAU Support</h2>
+			  </header>
+			  Have questions? We are here to help. Get support by phone or email. Here are some useful <a href="http://fau.edu/studentresources/" target="_blank">student resources</a>.
+			 </aside>	
+		  </div>
+      
     </div>
   </div>
 </div><!-- #main -->

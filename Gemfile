@@ -3,10 +3,10 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
-	gem 'rack-mini-profiler'
-	gem 'traceroute'
-	gem 'bullet'
-	gem 'uniform_notifier'
+	#gem 'rack-mini-profiler'
+	#gem 'traceroute'
+	#gem 'bullet'
+	#gem 'uniform_notifier'
 	gem "rails_best_practices"
 end
 gem 'activesupport'
