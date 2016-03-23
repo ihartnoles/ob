@@ -2424,6 +2424,18 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  </div>
 		</div>     
 
+
+		<% unless @currentstep.nil? %>
+		 <div class="col-sm-3 sidebar checkout-progress">
+	       	<aside class="widget">
+			  <header>
+				<h2 class="title">Please complete the following</h2>
+			  </header>
+			 	<span class="badge badge-important label label-warning"><%=@currentstep.upcase %></span></br></br>
+			  </aside>	
+	      </div> 
+	    <% end %>
+
 	      <div class="col-sm-3 sidebar checkout-progress">
 	       	<aside class="widget">
 			  <header>
@@ -2440,7 +2452,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  <header>
 				<h2 class="title">FAU Support</h2>
 			  </header>
-			  Have questions? We are here to help. Get support by phone or email. Here are some useful <a href="http://fau.edu/studentresources/" target="_blank">student resources</a>.
+			  Have more questions? We are here to help. Get support by phone or email. Here are some useful <a href="http://fau.edu/studentresources/" target="_blank">student resources</a>.
 			 </aside>	
 		  </div>
       

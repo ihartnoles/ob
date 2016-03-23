@@ -252,7 +252,7 @@ class ApplicationController < ActionController::Base
      end
 
      if @communication_complete == 0
-        currentstep = 'Comm. Pref.'
+        currentstep = 'Communication Preference'
         break
      end
 
@@ -267,12 +267,12 @@ class ApplicationController < ActionController::Base
      end
 
      if  @finaid_complete == 0
-         currentstep = 'Fin. Aid.'
+         currentstep = 'Financial Aid'
          break
      end
      
      if  @housing_fee_complete == 0
-         currentstep = 'Housing & Meal'
+         currentstep = 'Housing & Meal Plans'
          break
      end
 
@@ -293,11 +293,6 @@ class ApplicationController < ActionController::Base
 
      if  @oars_complete == 0
          currentstep = 'OARS'
-         break
-     end
-
-     if  @reg_complete == 0
-         currentstep = 'Registration'
          break
      end
 
@@ -327,7 +322,7 @@ class ApplicationController < ActionController::Base
     # puts YAML::dump('*** znumber ***') 
     # puts YAML::dump(znumber)
     # puts YAML::dump('*** AFTER ***') 
-        
+    @currentstep = currentstep
     @ftic = FticModulesAvailable.find_by_znumber(@znum)
     @ftic.current_step = currentstep
     @ftic.save
