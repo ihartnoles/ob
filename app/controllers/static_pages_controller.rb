@@ -271,6 +271,13 @@ class StaticPagesController < ApplicationController
                     @immunization_complete = 1
                   end 
 
+                  if o['sprhold_hldd_code'] == 'OR'
+                    @orientation_complete = 0
+                    break
+                  else
+                    @orientation_complete = 1
+                  end 
+
 
                    # puts YAML::dump('**********BURRRIALLLLL!!!!**********')
                    # puts YAML::dump(@immunization_complete)
@@ -467,12 +474,10 @@ class StaticPagesController < ApplicationController
               finaidflags.push('1')
             end
 
-            #if  o['fafsa_flg'] == 'N'
-            
-            if o['rtvtreq_long_desc'] == 'Federal Student Financial Aid Application' && o['rrrareq_sat_ind'] == 'Y'
-              @fafsa_complete = 0
-            else
+            if  o['fafsa_flg'] == 'Y'  
               @fafsa_complete = 1
+            else
+              @fafsa_complete = 0
             end
 
             @finaidyear = o['finaidyear']
@@ -618,7 +623,7 @@ class StaticPagesController < ApplicationController
           end
 
         
-          if orientation_status.blank?
+          if orientation_status.blank? || orientation_status.count <= 0
               @orientation_complete = 0
           else
             orientation_status.each do |o|

@@ -670,15 +670,12 @@ Hello, <%= session[:cas_user] %>!
 			<div id="step-finaid" class="collapse">
 			   <!--  Begin FIRST FIN AID PANEL  -->
 			   <div class="step-content">
-			   			<% if finaid_bypass == 1 %>			  		
+			   	<% if finaid_bypass == 1 %>			  		
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
-
-						
-				<% end %>
-
-			  				
+			<% end %>
+		  				
 							<% if @fafsa_complete == 0 || @fafsa_complete.nil? %>
 			  					<div class="alert alert-border alert-danger text-center fade in">
 			  						Our records indicate you have not completed your Free Application for Federal Student Aid (FAFSA).<br>
@@ -686,25 +683,111 @@ Hello, <%= session[:cas_user] %>!
 			  					</div>		  					
 			  				<% end %>
 
-			  				<% if @fafsa_complete == 1 %>
+			  				<%# if @fafsa_complete == 1 %>
 
 			  				<h3 class="title">The Financial Aid Steps</h3>
 			  				<p>
-			  					<ol>
+			  					<!-- <ol> -->
 			  						<%# if @fafsa_complete == 0 %>
 			  							
 			  							<!-- <li> <img src="/assets/Delete_8x8.png" alt="" >&nbsp;<a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li> -->
 
 			  						<%# else %>
 			  						
-			  							<li> <% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a href="http://fafsa.gov" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li>
-			  						
-				  						<li><% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'fin aid requirements','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete Your Financial Aid Requirements</a></li>
+			  						<table class="table table-striped text-left order-details">
+			  							<thead>
+						  				<tr>
+						  					<th class="product-name">Step</th>
+						  					<% if @term == 'Summer'%>
+						  						<th class="product-total">Summer Term</th><th class="product-total">Fall Term</th>
+						  					<% else %>
+						  						<th class="product-total"><%= @term %> Term</th>
+						  					<% end %>
+						  				</tr>
+						  				</thead>
 
-				  						<li><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'terms and conditions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Terms & Conditions</a> &nbsp; </li>
-				  						<li><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'fin aid package','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Accept Your Financial Aid Package</a> &nbsp;</li>
-				  					<% end %>
-			  					</ol>
+			  							<tr>
+			  								<td>1. &nbsp;
+			  									<a href="http://fafsa.gov" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete your Free Application for Federal Student Aid at FAFSA.gov</a>
+			  								</td>
+
+			  								<% if @term == 'Summer'%>
+			  									<!-- need to update this to pull summer specific data -->
+			  									<td>
+			  							 			<% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
+			  									</td>
+			  									<!-- this is fall data -->
+			  									<td>
+				  									<% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
+				  								</td>
+			  								<% else %>
+			  									<!-- this is fall data -->
+			  									<td>
+				  									<% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
+				  								</td>
+			  								<% end %>
+
+			  								
+			  							</tr>
+
+			  							<tr>
+			  								<td>2. &nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'fin aid requirements','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete Your Financial Aid Requirements</a></td>
+			  								
+			  								<% if @term == 'Summer'%>
+			  									<!-- need to update this to pull summer specific data -->
+				  								<td>			  						
+					  								<% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
+					  							</td>
+					  							<!-- this is fall data -->
+					  							<td>			  						
+				  									<% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
+				  								</td>
+				  							<% else %>
+				  								<!-- this is fall data -->
+				  								<td>			  						
+				  									<% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
+				  								</td>
+				  							<% end %>
+
+
+				  							
+			  							</tr>
+
+			  							<tr>
+			  								<td>3. &nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'terms and conditions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Terms & Conditions</a> 	
+				  								
+				  							</td>
+				  							
+				  							<% if @term == 'Summer'%>
+				  							<!-- need to update this to pull summer specific data -->
+				  							<td><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
+				  							<!-- this is fall data -->
+				  							<td><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
+				  							<% else %>
+				  							<!-- this is fall data -->
+				  							<td><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
+				  							<% end %>
+				  							
+			  							</tr>
+
+			  							<tr>
+			  								<td>4. &nbsp;
+				  						<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm" onclick="window.open(this.href, 'fin aid package','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Accept Your Financial Aid Package</a> &nbsp;
+				  							</td>				  							
+				  							<% if @term == 'Summer'%>
+				  							<!-- need to update this to pull summer specific data -->
+				  							<td><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
+				  							<!-- this is fall data -->
+				  							<td><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
+				  							<% else %>
+				  							<!-- this is fall data -->
+				  							<td><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
+				  							<% end %>		
+			  							</tr>
+			  						</table>
+				  			<%# end %>
+
+			  					<!-- </ol> -->
 			  						
 			  						
 			  				</p> 
@@ -734,11 +817,16 @@ Hello, <%= session[:cas_user] %>!
 						  		<table class="table table-striped text-left order-details">
 						  			<thead>
 						  				<tr>
-						  					<th class="product-name">FAFSA Document</th><th class="product-total">Award Year</th><th class="product-total">Status</th>
+						  					<th class="product-name">FAFSA Document</th>
+						  					<% if @term == 'Summer' %>
+						  						<th class="product-total">Summer Term</th><th class="product-total">Fall Term</th>
+						  					<% else %>
+						  						<th class="product-total"><%= @term %> Term</th>
+						  					<% end %>						  					
 						  				</tr>
 						  			</thead>
 
-						  				<%= fin_aid_docs(znum) %>
+						  				<%= fin_aid_docs(znum,@term) %>
 						  		</table>
 						  		<br>
 
@@ -1712,7 +1800,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		   <li class="panel">
 		   	
-		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_complete == 1 || oars_bypass == 1 ) && ( dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || immunization_complete ==1 )%>		   	
+		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_complete == 1 || oars_bypass == 1 ) && ( dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || immunization_complete ==1)%>		   	
 
 		   		<!-- dep_complete_flag : <%#= dep_complete_flag %>
 		   		account_complete :<%#= account_complete %>
@@ -1750,9 +1838,8 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				
 
 
-			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 %>
-			  		<%# if  0 == 1 %>
-			  			
+			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 || immunization_complete == 0 || orientation_complete == 0 || aleks_complete == 0  %>
+			  					  			
 			  			<p>You have holds on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
 			  			<ol>
@@ -1768,15 +1855,21 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  					<li>You must complete Online Advising (OARS).</li>
 			  				<% end %>
 
+			  				<% if fau_alert_complete == 0 %>
+			  					<li>You must complete your FAU alert information.</li>
+			  				<% end %>
+
 			  				<% if immunization_complete == 0 %>
 			  					<li>You must provide proof of immunizations and vaccinations.</li>
 			  				<% end %>
 
-			  				<%# if @reg_complete == 0 %>
-			  					<!-- 
-			  					<li>You must be registered for at least 12 credit hours to be considered a Full-time student! <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Register Now]</a></li> 
-			  				    -->
-			  				<%# end %>
+			  				<% if aleks_complete == 0	%>		  				
+					  			<li>You must take the ALEKS placement exam.</li>
+					  		<% end %>
+
+			  				<% if orientation_complete == 0	%>		  				
+			  					<li>You must attend an orientation session.</li>
+			  				<% end %>
 
 			  			</ol>
 
@@ -1888,7 +1981,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						</div>
 				<% end %>
 
-						<% if residency_complete == 0 || @reg_complete == 0 %>
+						<% if residency_complete == 0 || @reg_complete == 0 ||  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 || immunization_complete == 0 || @orientation_complete == 0 || aleks_complete == 0 %>
 	                         
 
 								<p>You have holds on your record which are preventing you from completing your tuition payment. The holds are listed below:</p>
@@ -1901,6 +1994,34 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 					  				<% if residency_complete == 0 %>
 					  					<li>You must complete the Residency Classification for Tuition Purposes and submit the required documentation.</li>
+					  				<% end %>
+
+					  				<% if dep_complete_flag == 0 %>
+					  					<li>You must confirm your intention to enroll and secure your space in the class with a $200.00 non-refundable deposit.</li>
+					  				<% end %>
+
+					  				<% if account_complete == 0 %>
+					  					<li>You must claim your FAU NetID.</li>
+					  				<% end %>
+
+					  				<% if oars_complete_flag == 0 %>
+					  					<li>You must complete Online Advising (OARS).</li>
+					  				<% end %>
+
+					  				<% if fau_alert_complete == 0 %>
+					  					<li>You must complete your FAU alert information.</li>
+					  				<% end %>
+
+					  				<% if immunization_complete == 0 %>
+					  					<li>You must provide proof of immunizations and vaccinations.</li>
+					  				<% end %>
+
+					  				<% if aleks_complete == 0	%>		  				
+					  					<li>You must take the ALEKS placement exam.</li>
+					  				<% end %>
+
+					  				<% if @orientation_complete == 0	%>		  				
+					  					<li>You must attend an orientation session.</li>
 					  				<% end %>
 
 					  				<%# if housing_meal_plans_complete == 0 && housing_fee_required == 1  %>

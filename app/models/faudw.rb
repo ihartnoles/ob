@@ -15,7 +15,7 @@ class Faudw < ActiveRecord::Base
 	end
 
 	def self.orientation_status(id)
-		get = connection.exec_query("SELECT id, firstname, lastname studenttype, term_entry, sessiondate, attended FROM DWPROD.ORIENTATION_TRACKING WHERE ID=#{connection.quote(id)}")
+		get = connection.exec_query("SELECT id, firstname, lastname studenttype, term_entry, sessiondate, sessiontitle, attended FROM DWPROD.ORIENTATION_TRACKING WHERE ID=#{connection.quote(id)}")
 	end
 
 end

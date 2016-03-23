@@ -127,7 +127,7 @@ class Banner < ActiveRecord::Base
 
 		def self.registered_hours(id)
 			#get = connection.exec_query("SELECT Z_NUMBER, SFRSTCR_TERM_CODE, SUM(sfrstcr_credit_hr) as sfrstcr_credit_hr from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)} AND sfrstcr_credit_hr >0 GROUP BY  Z_NUMBER, SFRSTCR_TERM_CODE, sfrstcr_credit_hr")
-			get = connection.exec_query("SELECT Z_NUMBER, SFRSTCR_TERM_CODE, SFRSTCR_CRN, SCBCRSE_TITLE, sfrstcr_credit_hr from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)} ORDER BY SFRSTCR_TERM_CODE")
+			get = connection.exec_query("SELECT Z_NUMBER, SFRSTCR_TERM_CODE, SFRSTCR_CRN, SCBCRSE_TITLE, sfrstcr_credit_hr from BANINST1.AWS_ONBOARDING_COURSE_REG_NEW WHERE Z_NUMBER=#{connection.quote(id)} ORDER BY SFRSTCR_TERM_CODE")
 		end
 
 
@@ -137,7 +137,7 @@ class Banner < ActiveRecord::Base
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
-									      END as term, SUM(sfrstcr_credit_hr) as totalhours from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)} GROUP BY SFRSTCR_TERM_CODE")
+									      END as term, SUM(sfrstcr_credit_hr) as totalhours from BANINST1.AWS_ONBOARDING_COURSE_REG_NEW WHERE Z_NUMBER=#{connection.quote(id)} GROUP BY SFRSTCR_TERM_CODE")
 		end
 
 
@@ -163,16 +163,16 @@ class Banner < ActiveRecord::Base
 									     	WHEN '1516' THEN '2015-2016'
 									     	WHEN '1415' THEN '2014-2015'
 
-									     END as finaidyear  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
+									     END as finaidyear  from BANINST1.AWS_ONBOARDING_FINAID_REQDOC_N WHERE Z_NUMBER=#{connection.quote(id)}
 									     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
 		end
 
 		def self.fin_aid_checkboxes(id)
-			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
+			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC_N WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
 		end
 
 		def self.fin_aid_acceptance(id)
-			get = connection.exec_query("SELECT rpratrm_accept_date from BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT rpratrm_accept_date from BANINST1.AWS_ONBOARDING_FINAID_AWARDS_N WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 	
 		def self.residency_status(id)
@@ -192,7 +192,7 @@ class Banner < ActiveRecord::Base
 
 									    RPRATRM_AIDY_CODE as finaidyear,
 									
-									    RPRATRM_OFFER_AMT, TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS 
+									    RPRATRM_OFFER_AMT, TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS_N
 									    WHERE Z_NUMBER=#{connection.quote(id)} 
 									    ORDER BY RFRBASE_FUND_TITLE ASC")
 		end

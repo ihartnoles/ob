@@ -9,8 +9,11 @@ module StaticPagesHelper
 
          if !o.nil?
   	    	 if o['attended'] == 'Yes'
-  	    	 	 tmp =  "You have attended an orientation session on #{o['sessiondate']}. You have completed this requirement!"
-  	    	 else
+  	    	 	 tmp =  "You have attended an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You have completed this requirement!"
+  	    	 
+           elsif o['attended'] == 'No' && !o['sessiondate'].nil?
+             tmp = "You have signed up for an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You must attend orientation and complete orientation. "
+           else
   	    	 	 tmp =  "You have NOT attended an orientation session yet. You must attend orientation and complete orientation. "
   	    	 end
 
@@ -74,7 +77,7 @@ module StaticPagesHelper
      end
 
 
-      def fin_aid_docs(znum)
+      def fin_aid_docs(znum,term)
       output = Banner.fin_aid_docs(znum)
 
       tmp = ''
@@ -93,7 +96,12 @@ module StaticPagesHelper
                     doc_status = "undetermined"
                 end
 
-               tmp <<  "<tr><td>#{o['rtvtreq_long_desc']}</td><td>#{o['finaidyear']}</td><td>#{doc_status}</td></tr>"
+              if term == 'Summer'
+                # need to update the last status to reflect summer data
+                 tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td>#{doc_status}</td><td>#{doc_status}</td></tr>"
+              else
+                 tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td>#{doc_status}</td></tr>"
+              end 
              else
                tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
              end        
