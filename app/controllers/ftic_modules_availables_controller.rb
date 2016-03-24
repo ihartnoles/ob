@@ -634,10 +634,6 @@ class FticModulesAvailablesController < ApplicationController
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
-     puts YAML::dump('*** update_ftic_orientation_module ***')
-     puts YAML::dump(params[:intl])
-     puts YAML::dump(params[:znum].present?)
-
      if params[:znum]
         if params[:intl] == "0"
           redirect_to "/home?znum=#{params[:znum]}#step-learning" #redirect to deposit
