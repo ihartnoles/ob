@@ -931,13 +931,13 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		 
-		  <% if (immunization_available == 1 || immunization_bypass == 1)  %>
+		  <% if (immunization_available == 1 || immunization_bypass == 1 || @immunization_complete == 1 )  %>
 		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		  <% if  (immunization_available == 1 || immunization_bypass == 1)  %>
+		  <% if  (immunization_available == 1 || immunization_bypass == 1 || @immunization_complete == 1)  %>
 			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, @immunization_complete ,immunization_bypass) %></div>
 		  <% end %>
 
@@ -1070,14 +1070,14 @@ Hello, <%= session[:cas_user] %>!
 
 	<% if @isInternationalStudent == 0 %>
 	   <li class="panel">		  
-		  <% if (residency_available == 1  || residency_bypass == 1)  &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (residency_available == 1  || residency_bypass == 1 || residency_complete == 1 )  &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if (residency_available == 1  || residency_bypass == 1)  &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (residency_available == 1  || residency_bypass == 1 || residency_complete == 1 )  &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 7 --> <%= get_statusicon(residency_available, residency_complete, residency_bypass) %> </div>
 		  <% end %>
 
@@ -1119,7 +1119,7 @@ Hello, <%= session[:cas_user] %>!
 
 				
 
-				  <% if  residency_available == 1 || residency_bypass == 1 %>
+				  <% if  residency_available == 1 || residency_bypass == 1 || residency_complete == 1%>
 						   	
 						   	<div class="buttons-box text-right">
 				  		 		<%= form_tag('/update_ftic_residency_module' , {:class => 'register-form form-validator'})  do %>
@@ -1149,14 +1149,14 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	
-			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || @housing_fee_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || @housing_fee_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, @housing_fee_complete, @housingmealplanbypass) %> </div>
 			<% end %>
 
@@ -1296,7 +1296,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<%# end %>
 
 
-				 <% if  housing_fee_available == 1  || @housingmealplanbypass == 1 || @isInternationalStudent == 1 %>
+				 <% if  housing_fee_available == 1 || @housing_fee_complete == 1  || @housingmealplanbypass == 1 || @isInternationalStudent == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_housing_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -1322,13 +1322,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  <li class="panel">
 
 		 
-		  <% if (aleks_available == 1 || aleksbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (aleks_available == 1 || aleksbypass == 1 || aleks_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 		    <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="alekshref" href="#step-aleks" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		   <% if (aleks_available == 1 || aleksbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		   <% if (aleks_available == 1 || aleksbypass == 1 || aleks_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 10 --> <%= get_statusicon(aleks_available, aleks_complete, aleksbypass) %></div>
 		   <% end %>
 
@@ -1372,7 +1372,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 				 <%# end %>
 				
-				  <% if  (aleks_available == 1  || aleksbypass == 1) && deposit_complete == 1 %>
+				  <% if  (aleks_available == 1  || aleksbypass == 1 || aleks_complete == 1) && deposit_complete == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_aleks_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -1395,13 +1395,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 
-		   	<% if  (orientation_available == 1 || orientationbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		   	<% if  (orientation_available == 1 || orientationbypass == 1 || orientation_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 				<a id="orientationhref" href="#step-orientation" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="orientationhref" href="#step-orientation" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (orientation_available == 1 || orientationbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (orientation_available == 1 || orientationbypass == 1 || orientation_complete == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
 			<% end %>
 
@@ -1442,7 +1442,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<%# end %>
 
 				
-				 <% if  (orientation_available == 1 && orientation_complete == 1 ) || orientationbypass == 1 %>
+				 <% if  (orientation_available == 1 || orientation_complete == 1 ) || orientationbypass == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_orientation_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -1521,13 +1521,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 		  
-		  <% if  (learning_comm_available == 1 || learning_commbypass == 1) && ( orientation_complete == 1  || orientationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if  (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && ( orientation_complete == 1  || orientationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 		   	<a id="lc_href" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="lc_href" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		  <% if (learning_comm_available == 1 || learning_commbypass == 1) && ( orientation_complete == 1  || orientationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && ( orientation_complete == 1  || orientationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 12 --> <%= get_statusicon(learning_comm_available,  learning_comm_complete, learning_commbypass) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  </div>
@@ -1656,7 +1656,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 											
 				<%# end %>
 
-				<% if  learning_comm_available == 1 || learning_commbypass == 1 %>
+				<% if  learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1 %>
 						<button type="submit" class="btn btn-danger" id="lcBut">Continue</button>
 				<% end %>	
 
@@ -1688,13 +1688,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  </li>
 
 		   <li class="panel">
-		   	<% if (oars_available == 1 || oars_bypass == 1) && ( learning_comm_complete == 1  || learning_commbypass == 1 ) && (deposit_complete == 1 || deposit_bypass == 1) %>
+		   	<% if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && ( learning_comm_complete == 1  || learning_commbypass == 1 ) && (deposit_complete == 1 || deposit_bypass == 1) %>
 				<a id="oarshref" href="#step-oars" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
 			<% else %>
 				<a id="oarshref" href="#step-oars" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (oars_available == 1 || oars_bypass == 1) && ( learning_comm_complete == 1  || learning_commbypass == 1 ) && (deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && ( learning_comm_complete == 1  || learning_commbypass == 1 ) && (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 11 --> <%= get_statusicon(oars_available, oars_complete, oars_bypass) %></div>
 			<% end %>
 
@@ -1761,13 +1761,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 		  
-		   <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1)%>
+		   <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1)%>
 		   	<a id="alerthref" href="#step-faualert" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   <% else %>
 		    <a id="alerthref" href="#step-faualert" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   <% end %>
 
-		    <% if (fau_alert_available == 1 || faualertbypass == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		    <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></div>
 			<% end %>
 
@@ -1829,7 +1829,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		   <li class="panel">
 		   	
-		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_complete == 1 || oars_bypass == 1 ) && ( dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || immunization_complete ==1)%>		   	
+		   	<% if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) && ( dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || immunization_complete ==1)%>		   	
 
 		   		<!-- dep_complete_flag : <%#= dep_complete_flag %>
 		   		account_complete :<%#= account_complete %>
@@ -1842,7 +1842,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		   	<% end %>
 
 		   	
-		   	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
+		   	<% if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
 			  <div class="number">
 				  <% if (dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 || aleks_complete == 0 || orientation_complete == 0) && registrationbypass == 0 %>
 				    <span class="badge badge-important label label-danger">incomplete <i class='fa fa-times'></i></span>
@@ -1967,7 +1967,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  		<%# end %>
 
-		  		  <% if  (reg_available == 1) || registrationbypass == 1 %>
+		  		  <% if  (reg_available == 1 || registrationbypass == 1 || reg_complete == 1)%>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_reg_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -1991,14 +1991,14 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		   <li class="panel">
 		  		  
 
-			<% if (tuition_available == 1 || tuition_bypass == 1 || registrationbypass == 1 ) &&  ( deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1 || registrationbypass == 1 ) &&  ( deposit_complete == 1 || deposit_bypass == 1) %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (tuition_available == 1 || tuition_bypass == 1 || registrationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1 || registrationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 19 --> <%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></div>
 			<% end %>
 
@@ -2103,7 +2103,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						<% end %>
 	              <%# end %>
 
-	               <% if  (tuition_available == 1) || tuition_bypass == 1 %>
+	               <% if  (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1)%>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_tuition_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -2126,14 +2126,14 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 		  
-		  <% if emergencybypass == 1 || emergency_available == 1 &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 		  	<a id="emergencyhref" href="#step-emergency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="emergencyhref" href="#step-emergency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if  emergencybypass == 1 || emergency_available == 1 &&  (deposit_complete == 1 || deposit_bypass == 1)%>
+		  <% if  (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1)%>
 			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
 		  <% end %>
 
@@ -2162,7 +2162,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				 	<br><a id="emerg" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> Update Your Emergency Contact Information</a><br>
 				<%# end %>
 
-				  <% if  (emergency_available == 1 && emergency_complete == 1 ) || emergencybypass == 1 %>
+				  <% if  (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1)|| emergencybypass == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_emergency_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
