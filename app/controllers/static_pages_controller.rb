@@ -190,9 +190,7 @@ class StaticPagesController < ApplicationController
             end
           else
             @zipcode = '00000'
-          end     
-
-          
+          end              
 
           housing_fee_status = 0
           oars_status = Faudw.oars_status(@znum)
@@ -263,42 +261,21 @@ class StaticPagesController < ApplicationController
                   @lname =  o['l_name']
                   @netid =  o['gobtpac_external_user']
 
-
-                  if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
-                    @immunization_complete = 0
-                    break
-                  else
-                    @immunization_complete = 1
-                  end 
-
-                  if o['sprhold_hldd_code'] == 'OR'
-                    @orientation_complete = 0
-                    break
-                  else
-                    @orientation_complete = 1
-                  end 
-
-
-                   # puts YAML::dump('**********BURRRIALLLLL!!!!**********')
-                   # puts YAML::dump(@immunization_complete)
+                 
 
                   #@OwlImage = RestClient.get('https://devserviceawards.fau.edu/test2.cfm?fname=Peter&lname=Griffon')
                   
-
                   if o['whc_student'] == 'N' || o['whc_student'].nil?
                     @isHonorsCollege = 0
                   else
                     @isHonorsCollege = 1
                   end 
 
-
                   if o['int_student'] == 'N' || o['int_student'].nil?
                     @isInternationalStudent = 0
                   else
                     @isInternationalStudent = 1
                   end 
-
-
 
                   if o['aleks_taken'] == 'N' || o['aleks_taken'].nil?
                     @aleks_complete = 0
@@ -310,12 +287,14 @@ class StaticPagesController < ApplicationController
                     @aleks_score = ''
                   else
                     @aleks_score = o['aleks_score']
-                  end 
+                  end  
 
+                  @x = o['sarchkl_admr_code']
+                  @y = o['sarchkl_receive_date']
 
                   if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
                     @deposit_complete ||= 1   #change this back to 1
-                    @dep_complete_flag = 1
+                    @dep_complete_flag = 1                    
                   else
                     @deposit_complete ||= 0
                     @dep_complete_flag = 0
@@ -359,6 +338,23 @@ class StaticPagesController < ApplicationController
                   @email      = o['goremal_email_address']
                   @phone_area      = o['sprtele_phone_area']
                   @phone_number      = o['sprtele_phone_number']
+
+
+                  if o['sprhold_hldd_code'] == 'OR'
+                    @orientation_complete = 0
+                    #break
+                  else
+                    @orientation_complete = 1
+                  end 
+                  
+                  if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
+                    @immunization_complete = 0
+                    break
+                  else
+                    @immunization_complete = 1
+                  end 
+
+                  
                 end
             end
 

@@ -586,8 +586,8 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			
-			<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  (  @verify_available == 1) %>
-			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> </div>
+			<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  @verify_available == 1 %>
+			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available,  @deposit_complete, deposit_bypass) %> </div>
 			<% end %>
 
 			  <h6><b>PAY DEPOSIT</b></h6>
@@ -595,7 +595,7 @@ Hello, <%= session[:cas_user] %>!
 			
 			<div id="step-deposit" class="collapse">
 			  <div class="step-content">
-			  	<h3 class="title">Paying Your Admissions Deposit </h3>
+			  	<h3 class="title">Paying Your Admissions Deposit:</h3>
 			 
 						<% if @deposit_bypass == 1 %>			  										
 								<div class="alert alert-warning">

@@ -109,7 +109,7 @@ class Banner < ActiveRecord::Base
 									          ELSE ''
 									      END as term ,
 										  im_exists, sprhold_hldd_code,										  									      
-									      aleks_taken, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, sarchkl_admr_code, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name, 
+									      aleks_taken, aleks_score, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name, 
 									      spremrg_street_line1, spremrg_city, spremrg_stat_code, spremrg_natn_code, spremrg_zip, phone_area, phone_number,spremrg_phone_area, spremrg_phone_number, 
 									      gwrr911_phone_area, gwrr911_phone_number, gwrr911_tele_code, gwrr911_text_capable,
 									      whc_student, int_student, goremal_email_address 
