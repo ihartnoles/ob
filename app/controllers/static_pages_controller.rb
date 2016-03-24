@@ -439,6 +439,15 @@ class StaticPagesController < ApplicationController
 
           #end
 
+          #query to see if they indicated if they need financial aid or not
+          
+          finaidneedflag = Finaidneed.find_by_znumber(@znum)
+          if !finaidneedflag.nil?
+              @finaidneedflag = finaidneedflag.needFinAid
+          else            
+              @finaidneedflag = nil
+          end
+
           #begin finaidacceptance
             fin_aid_acceptance = Banner.fin_aid_acceptance(@znum)
 
@@ -523,6 +532,10 @@ class StaticPagesController < ApplicationController
             @finaid_complete = 1
           end 
           #end finaidflags
+
+          if @finaidneedflag = "NO"
+             @finaid_complete = 1
+          end
 
           #BEGIN housing
             housing_exemption = Housing.get_housing_exemption(@znum)

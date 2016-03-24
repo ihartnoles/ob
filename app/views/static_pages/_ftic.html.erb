@@ -674,16 +674,40 @@ Hello, <%= session[:cas_user] %>!
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
-			<% end %>
+			    <% end %>
 		  				
-							<% if @fafsa_complete == 0 || @fafsa_complete.nil? %>
+							<% if @fafsa_complete == 0 || @fafsa_complete.nil? && ( @finaidneedflag.nil?|| @finaidneedflag  == "YES") %>
 			  					<div class="alert alert-border alert-danger text-center fade in">
 			  						Our records indicate you have not completed your Free Application for Federal Student Aid (FAFSA).<br>
-			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" onclick="window.open(this.href, 'fafsa','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.			  						
-			  					</div>		  					
+			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" onclick="window.open(this.href, 'fafsa','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.<br><br>
+			  					</div>		
+			  				<% end %>
+
+			  				<% if @finaidneedflag  == "NO" %>
+	  							<div class="alert alert-warning text-center fade in">
+			  						<b>You have indicated you are NOT interested in Financial Aid. As such you may skip this section. Should your situation change please remember there are strict deadlines as to when you can apply for Financial Aid.</b>
+			  					</div>
 			  				<% end %>
 
 			  				<%# if @fafsa_complete == 1 %>
+			  				<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
+			  				<br>
+			  				<div align="left">
+			  					<h3 class="title">Do you need Financial Aid?</h3>
+			  					<p></p>
+			  					<p>
+			  						<div class="checkbox">
+				  					     <%= radio_button_tag 'needFinAid', 'YES', !!(@finaidneedflag == "YES" || @finaidneedflag.nil?) %>
+				  					     <!-- <input name="needFinAid" id="needFinAid" type="radio" value="1"> --> Yes, I do.
+			  					    </div>
+			  					    <div class="checkbox">
+			  						 	<%= radio_button_tag 'needFinAid', 'NO', !!(@finaidneedflag == "NO") %>
+			  						 	<!-- <input name="needFinAid" id="needFinAid" type="radio" value="0"> --> No, I'm not interested.
+			  						</div>
+			  					<p>
+			  				</div>
+			  				<br>
+
 
 			  				<h3 class="title">The Financial Aid Steps</h3>
 			  				<p>
@@ -860,7 +884,7 @@ Hello, <%= session[:cas_user] %>!
 				<% end %>
 
 				<% if  (finaid_available == 1 || finaid_bypass == 1) %>
-	  				<%= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
+	  				<%#= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
 	  					<!-- 
 	  					<h3 class="title">Do you need Financial Aid?</h3>
 	  					<p></p>

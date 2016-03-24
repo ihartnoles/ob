@@ -700,6 +700,22 @@ class FticModulesAvailablesController < ApplicationController
 
     record_activity("Module Update | " + params[:znumber] + " | " + params[:netid])
 
+
+     if Finaidneed.find_by_znumber(params[:znumber]).nil? 
+      finaidneeds = Finaidneed.new
+      finaidneeds.znumber = params[:znumber]
+      finaidneeds.netid = params[:netid]
+      finaidneeds.needFinAid = params[:needFinAid]
+      finaidneeds.save(validate: false)   
+     else
+      finaidneeds = Finaidneed.find_by_znumber(params[:znumber]) 
+      finaidneeds.update_attributes(
+          :znumber => params[:znumber],          
+          :netid => params[:netid], 
+          :needFinAid => params[:needFinAid]
+      ) 
+     end
+
      if params[:znum]
          redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to deposit
      else
