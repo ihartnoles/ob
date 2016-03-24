@@ -533,7 +533,7 @@ class StaticPagesController < ApplicationController
           end 
           #end finaidflags
 
-          if @finaidneedflag = "NO"
+          if @finaidneedflag == "NO"
              @finaid_complete = 1
           end
 
