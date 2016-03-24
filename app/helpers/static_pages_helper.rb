@@ -114,9 +114,9 @@ module StaticPagesHelper
 
               if term == 'Summer'
                 # need to update the last status to reflect summer data
-                 tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td>#{doc_status}</td><td>#{doc_status}</td></tr>"
+                 tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td align='center'>#{doc_status}</td><td>#{doc_status}</td></tr>"
               else
-                 tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td>#{doc_status}</td></tr>"
+                 tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td align='center'>#{doc_status}</td></tr>"
               end 
              else
                tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"

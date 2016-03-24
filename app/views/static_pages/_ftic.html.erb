@@ -713,16 +713,16 @@ Hello, <%= session[:cas_user] %>!
 
 			  								<% if @term == 'Summer'%>
 			  									<!-- need to update this to pull summer specific data -->
-			  									<td>
+			  									<td align="center">
 			  							 			<% if @summer_fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
 			  									</td>
 			  									<!-- this is fall data -->
-			  									<td>
+			  									<td align="center">
 				  									<% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
 				  								</td>
 			  								<% else %>
 			  									<!-- this is fall data -->
-			  									<td>
+			  									<td align="center">
 				  									<% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
 				  								</td>
 			  								<% end %>
@@ -735,16 +735,16 @@ Hello, <%= session[:cas_user] %>!
 			  								
 			  								<% if @term == 'Summer'%>
 			  									<!-- need to update this to pull summer specific data -->
-				  								<td>			  						
+				  								<td align="center">			  						
 					  								<% if @summer_eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
 					  							</td>
 					  							<!-- this is fall data -->
-					  							<td>			  						
+					  							<td align="center">			  						
 				  									<% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
 				  								</td>
 				  							<% else %>
 				  								<!-- this is fall data -->
-				  								<td>			  						
+				  								<td align="center">			  						
 				  									<% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
 				  								</td>
 				  							<% end %>
@@ -760,12 +760,12 @@ Hello, <%= session[:cas_user] %>!
 				  							
 				  							<% if @term == 'Summer'%>
 				  							<!-- need to update this to pull summer specific data -->
-				  							<td><% if @summer_tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
+				  							<td align="center"><% if @summer_tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
 				  							<!-- this is fall data -->
-				  							<td><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
+				  							<td align="center"><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
 				  							<% else %>
 				  							<!-- this is fall data -->
-				  							<td><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
+				  							<td align="center"><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
 				  							<% end %>
 				  							
 			  							</tr>
@@ -776,12 +776,12 @@ Hello, <%= session[:cas_user] %>!
 				  							</td>				  							
 				  							<% if @term == 'Summer'%>
 				  							<!-- need to update this to pull summer specific data -->
-				  							<td><% if @summer_fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
+				  							<td align="center"><% if @summer_fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
 				  							<!-- this is fall data -->
-				  							<td><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
+				  							<td align="center"><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
 				  							<% else %>
 				  							<!-- this is fall data -->
-				  							<td><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
+				  							<td align="center"><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
 				  							<% end %>		
 			  							</tr>
 			  						</table>
@@ -2669,7 +2669,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
     
      /* BEGIN: listening for child windows  */
      /* begin pay deposit */
-    	$("#tuitionlink").click(function (e) {
+    	$("#tuitionlink #tuitionlink2").click(function (e) {
     		e.preventDefault();
         	var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes",scrollbars=1');
         	var a = window.location.href
