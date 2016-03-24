@@ -119,12 +119,7 @@ class ApplicationController < ActionController::Base
             @housing_fee_available = a.housingfee
             @housingfee_bypass = a.housingfeebypass
             @residency_available = a.residency
-            @residency_bypass = a.residencybypass
-
-            # puts YAML::dump('*** BEGIN: residency_available ***')
-            # puts YAML::dump(@residency_available)
-            # puts YAML::dump('*** END: residency_available ***')
-
+            @residency_bypass = a.residencybypass           
             @housing_meal_plans_available = a.housingmealplan
             @housingmealplanbypass = a.housingmealplanbypass
             @aleks_available = a.aleks
@@ -321,11 +316,6 @@ class ApplicationController < ActionController::Base
    
     end
     
-    # puts YAML::dump('*** @znum ***')       
-    # puts YAML::dump(@znum)
-    # puts YAML::dump('*** znumber ***') 
-    # puts YAML::dump(znumber)
-    # puts YAML::dump('*** AFTER ***') 
     @currentstep = currentstep
     @ftic = FticModulesAvailable.find_by_znumber(@znum)
     @ftic.current_step = currentstep

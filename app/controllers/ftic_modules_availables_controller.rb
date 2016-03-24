@@ -63,8 +63,7 @@ class FticModulesAvailablesController < ApplicationController
               @contact_id = cp['id']
               @contact_email_flag =  cp['contactByEmail']
               @contact_mobile_flag = cp['contactByPhone']
-              @contact_mobile_number = cp['contactMobileNumber']
-              #puts YAML::dump(@contact_mobile_number)
+              @contact_mobile_number = cp['contactMobileNumber']              
             end
           end
 
@@ -101,21 +100,14 @@ class FticModulesAvailablesController < ApplicationController
             end
           #END verify your information question
 
-          
-
-           #pull the student's zip
+          #pull the student's zip
           student_zip = Banner.find_student_zip_by_z(@znum)
 
-           # puts YAML::dump('**********AYYEEEEE**********')
-           # puts YAML::dump(student_zip)
-
+           
           #set the zip
           student_zip.each do |o| 
              zipcode = o['zip']  
-             @zipcode = o['zip']      
-             # puts YAML::dump('**********ZIIIIIIIP**********')
-             # puts YAML::dump(zipcode)
-             # puts YAML::dump('**********CODE**********')
+             @zipcode = o['zip']                  
           end     
 
 
@@ -278,10 +270,6 @@ class FticModulesAvailablesController < ApplicationController
             #begin finaidacceptance
             fin_aid_acceptance = Banner.fin_aid_acceptance(@znum)
 
-            # puts YAML::dump('**********BEGIN fin_aid_acceptance**********')
-            # puts YAML::dump(fin_aid_acceptance)
-            # puts YAML::dump('**********END**********')
-
             if fin_aid_acceptance.nil? || fin_aid_acceptance.blank? || fin_aid_acceptance.count == 0
               @fin_aid_acceptance = 0
             else 
@@ -369,10 +357,6 @@ class FticModulesAvailablesController < ApplicationController
                        @term = o['term']            
                     end      
 
-                     # puts YAML::dump('***** START ******')
-                     # puts YAML::dump(@term)
-                     # puts YAML::dump('****** END ********')
-
                     if @married = 'M' ||  @age >= 21 || @term = 'Summer' #check if they are married ,over the age of 21, or enrolling in summer; Summer == NO FEE FOR HOUSING
                        @housing_fee_required = 0
                        @housing_fee_complete = 1 
@@ -403,14 +387,8 @@ class FticModulesAvailablesController < ApplicationController
                       @housing_fee_required = 0
                       @housing_fee_complete = 1
                       @housing_deposit_received = 1
-                    end
+                    end           
                     
-                        # puts YAML::dump('***** START ******')
-                        # #puts YAML::dump(deposit_received.empty?)
-                        # puts YAML::dump(deposit_received.count)
-                        # puts YAML::dump(@housing_fee_required)
-                        # puts YAML::dump(@zipcode)
-                        # puts YAML::dump('****** END ********')
 
                   end
               #END housing reqs

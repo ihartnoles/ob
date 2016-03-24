@@ -21,34 +21,11 @@ class StaticPagesController < ApplicationController
   end
 
   def gatewayed_home
-
-      #BEGIN: manually pulling information for desiree young
-      # @fullname = Faudw.fullname('Z23122293')
-
-      # @orientation = Faudw.orientation_status('Z23122293')
-
-      # @oars= Faudw.oars_status('Z23122293')
-      #END
-
-      #TO DO: revisit this logic; it works fine with ugapp credentials but not straight NETID!!
-        # if !session[:fullname].nil?
-        #  session[:fullname].each do |fn|
-        #    @displayname = "#{fn['fullname']}"
-        #  end
-        # else
-        #   redirect_to unauthorized_path
-        # end
-
-         # puts YAML::dump(' *** BEGIN CAS USER  ***')      
-         # puts YAML::dump(session[:cas_user])
-         # puts YAML::dump('*** END CAS USER ***')  
-
        #if !session[:cas_user].nil?
           @displayname = session[:cas_user]
         #else
          # redirect_to unauthorized_path
         #end
-
   end
 
 	def home		
@@ -60,21 +37,8 @@ class StaticPagesController < ApplicationController
           #TO DO: Query for WHC_STUDENT
           #@isHonorsCollege = 1
 
-          
-          #BEGIN: account_status check
-            # account_status = Oim.accountstatus_by_netid(session[:cas_user].upcase)
-      
-            # account_status.each do |as| 
-            #     if as['status'] == 'N' || as['status'].nil?
-            #           @account_complete = 0
-            #         else
-            #           @account_complete = 1
-            #     end 
-            #  end   
-            @account_complete = 1  
-           #END: account status check
-
-
+          @account_complete = 1  
+        
            #BEGIN: verify complete check
             #To DO: how do we determine if VERIFY has been completed?????  Maybe radio buttons?  Is this information correct  (Y/N)?
             @verify_complete = 1
@@ -205,45 +169,7 @@ class StaticPagesController < ApplicationController
 
           #Banner.tuition_deposit_status('Z23173909')
 
-          # puts YAML::dump('**********TUITION**********')
-          # puts YAML::dump(tuition_status)
-          # puts YAML::dump('**********STATUS**********')
-
           @welcome_complete = 1
-
-          # BEGIN temporarily comment these out to test get_multistatus
-            # if tuition_status.blank?
-            #   @deposit_complete ||= 0
-            #   @dep_complete_flag = 0
-            # else
-            #   tuition_status.each do |o|
-            #     if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
-            #       @deposit_complete ||= 1
-            #       @dep_complete_flag = 1
-            #     else
-            #       @deposit_complete ||= 0
-            #       @dep_complete_flag = 0
-            #     end 
-            #   end
-            # end
-
-          # temporarily comment these out to test get_multistatus
-            # @account_complete = 0
-          
-          # if aleks_status.blank?
-            #    @aleks_complete = 0
-            # else
-            #   aleks_status.each do |o|
-            #     if o['aleks_taken'] == 'N' || o['aleks_taken'].nil?
-            #       @aleks_complete = 0
-            #     else
-            #       @aleks_complete = 1
-            #     end 
-            #   end
-            # end
-
-            #@deposit_bypass = 1
-            #@account_bypass = 1
 
             if get_multistatus.blank?
                @aleks_complete = 0
@@ -346,7 +272,7 @@ class StaticPagesController < ApplicationController
                   else
                     @orientation_complete = 1
                   end 
-                  
+
                   if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
                     @immunization_complete = 0
                     break

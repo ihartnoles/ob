@@ -282,18 +282,7 @@ module StaticPagesHelper
   	 def get_fullname(znum)
   	 	 output = Banner.fullname(znum)
 
-  	 	 # if !output.nil?
-  	 	 # 	return output
-  	 	 # else
-  	 	 # 	return 'unknown'
-  	 	 # end
-
-       # puts YAML::dump(' *** BEGIN FULLNAME static_pages_helper  ***')      
-       # puts YAML::dump(session[:cas_user])
-       # puts YAML::dump(output)
-       # puts YAML::dump(' *** MIDDLE FULLNAME static_pages_helper  ***') 
-
-       if output.count >= 0
+  	 	 if output.count >= 0
         output.each do |o| 
 
          # puts YAML::dump(o['fullname'])
