@@ -246,15 +246,21 @@ class ApplicationController < ActionController::Base
          break
      end
 
+    if @communication_complete == 0
+        currentstep = 'Communication Preference'
+        break
+     end
+
      if @deposit_complete == 0
          currentstep = 'Deposit'
          break
      end
 
-     if @communication_complete == 0
-        currentstep = 'Communication Preference'
-        break
+     if  @finaid_complete == 0
+         currentstep = 'Financial Aid'
+         break
      end
+    
 
      if @immunization_complete == 0
         currentstep = 'Immunization'
@@ -266,11 +272,7 @@ class ApplicationController < ActionController::Base
         break
      end
 
-     if  @finaid_complete == 0
-         currentstep = 'Financial Aid'
-         break
-     end
-     
+         
      if  @housing_fee_complete == 0
          currentstep = 'Housing & Meal Plans'
          break
@@ -296,6 +298,11 @@ class ApplicationController < ActionController::Base
          break
      end
 
+     if @fau_alert_complete == 0
+         currentstep = 'FAU Alert'
+         break
+     end
+     
      if  @reg_complete == 0
          currentstep = 'Registration'
          break
@@ -311,10 +318,7 @@ class ApplicationController < ActionController::Base
          break
      end
 
-     if @fau_alert_complete == 0
-         currentstep = 'FAU Alert'
-         break
-     end
+   
     end
     
     # puts YAML::dump('*** @znum ***')       
