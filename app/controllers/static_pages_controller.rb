@@ -266,7 +266,7 @@ class StaticPagesController < ApplicationController
                   @phone_number      = o['sprtele_phone_number']
 
 
-                  if o['sprhold_hldd_code'] == 'OR'
+                  if o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA' || o['sprhold_hldd_code'] == 'UN'
                     @orientation_complete = 0
                     #break
                   else
