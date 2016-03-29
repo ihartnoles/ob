@@ -137,7 +137,7 @@ class Banner < ActiveRecord::Base
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
-									      END as term, SUM(sfrstcr_credit_hr) as totalhours from BANINST1.AWS_ONBOARDING_COURSE_REG_NEW WHERE Z_NUMBER=#{connection.quote(id)} GROUP BY SFRSTCR_TERM_CODE")
+									      END as term, SUM(sfrstcr_credit_hr) as totalhours from BANINST1.AWS_ONBOARDING_COURSE_REG WHERE Z_NUMBER=#{connection.quote(id)} GROUP BY SFRSTCR_TERM_CODE")
 		end
 
 
