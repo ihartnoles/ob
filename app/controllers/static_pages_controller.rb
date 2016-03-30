@@ -160,15 +160,9 @@ class StaticPagesController < ApplicationController
           oars_status = Faudw.oars_status(@znum)
           orientation_status = Faudw.orientation_status(@znum)
           registration_status = Banner.registered_hours(@znum)
-
-          # temporarily comment these out to test get_multistatus
-            # tuition_status = Banner.tuition_deposit_status(@znum)
-            # aleks_status = Banner.aleks_status(@znum)
-
           get_multistatus = Banner.get_multistatus(@znum)
-
-          #Banner.tuition_deposit_status('Z23173909')
-
+          hold_checks = Banner.immunization_status(@znum)
+          
           @welcome_complete = 1
 
             if get_multistatus.blank?
@@ -215,9 +209,6 @@ class StaticPagesController < ApplicationController
                     @aleks_score = o['aleks_score']
                   end  
 
-                  @x = o['sarchkl_admr_code']
-                  @y = o['sarchkl_receive_date']
-
                   if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
                     @deposit_complete ||= 1   #change this back to 1
                     @dep_complete_flag = 1                    
@@ -261,47 +252,28 @@ class StaticPagesController < ApplicationController
                   @term_display = o['term']
                   @year_display = o['year']
                   
-                  @email      = o['goremal_email_address']
-                  @phone_area      = o['sprtele_phone_area']
-                  @phone_number      = o['sprtele_phone_number']
-
-
-                  if o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA' || o['sprhold_hldd_code'] == 'UN'
-                    @orientation_complete = 0
-                    #break
-                  else
-                    @orientation_complete = 1
-                  end 
-
-                  if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
-                    @immunization_complete = 0
-                    break
-                  else
-                    @immunization_complete = 1
-                  end 
-
-                  
+                  @email        = o['goremal_email_address']
+                  @phone_area   = o['sprtele_phone_area']
+                  @phone_number = o['sprtele_phone_number']                  
                 end
             end
 
+            
+            hold_checks.each do |o|
+              if o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA' || o['sprhold_hldd_code'] == 'UN'
+                @orientation_complete = 0
+                #break
+              else
+                @orientation_complete = 1
+              end 
 
-          # END temporarily comment these out to test get_multistatus
-
-        
-          
-         # if immunization_status.blank? || immunization_status.count == 0
-         #     @immunization_complete = 0
-         # else
-         #  immunization_status.each do |o|
-         #    if o['imm_hold_flg'] == 'Y' || o['imm_hold_flg'].nil?
-         #      @immunization_complete = 0
-         #    else
-         #      @immunization_complete = 1
-         #    end 
-         #  end
-
-
-         #end
+              if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
+                @immunization_complete = 0
+                break
+              else
+                @immunization_complete = 1
+              end 
+            end
 
 
           #begin finaidcheckboxes

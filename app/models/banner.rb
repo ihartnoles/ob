@@ -1,46 +1,42 @@
 class Banner < ActiveRecord::Base
 
 	self.abstract_class = true
-	self.table_name="BANINST1.AWS_ONBOARDING_MAIN_NEW"
+	self.table_name="BANINST1.AWS_ONBOARDING_MAIN"
 
 	establish_connection(:bannertest)
 
 
-	#BEGIN: QUERIES TO BANINST1.AWS_ONBOARDING_MAIN_NEW
+	#BEGIN: QUERIES TO BANINST1.AWS_ONBOARDING_MAIN
 		def self.find_student_by_netid(id)
-		 	get = connection.exec_query("select distinct Z_NUMBER,  SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
-									      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+		 	get = connection.exec_query("select A.Z_NUMBER,  SUBSTR( A.SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
+									      CASE SUBSTR(A.SARADAP_TERM_CODE_ENTRY, 5 , 6 )
 									             WHEN '01' THEN 'Spring'
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
-									      END as term , L_NAME, M_NAME, F_NAME, MAJOR_DESC, STREET_LINE1 , CITY, STATE, ZIP, street2_line1, city2, state2, zip2, GOBTPAC_EXTERNAL_USER, goremal_email_address  FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE GOBTPAC_EXTERNAL_USER=#{connection.quote(id)} AND rownum = 1")
+									      END as term , A.L_NAME, A.M_NAME, A.F_NAME, A.MAJOR_DESC,A.GOBTPAC_EXTERNAL_USER, A.goremal_email_address, B.STREET_LINE1 , B.CITY, B.STATE, B.ZIP, B.street2_line1, B.city2, B.state2, B.zip2 
+									      FROM BANINST1.AWS_ONBOARDING_MAIN A
+                        				  LEFT JOIN BANINST1.AWS_ONBOARDING_ADDRESS B ON B.SGBSTDN_PIDM = A.SGBSTDN_PIDM WHERE A.GOBTPAC_EXTERNAL_USER=#{connection.quote(id)}")
 		end
 
 		def self.find_student_by_z(id)
-		 	# get = connection.exec_query("select distinct Z_NUMBER,  SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
-				# 					      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
-				# 					             WHEN '01' THEN 'Spring'
-				# 					             WHEN '08' THEN 'Fall'
-				# 					             WHEN '05' THEN 'Summer'
-				# 					          ELSE ''
-				# 					      END as term , L_NAME, M_NAME, F_NAME, MAJOR_DESC, SPRADDR_STREET_LINE1 ,SPRADDR_CITY ,SPRADDR_STAT_CODE, SPRADDR_ZIP, GOBTPAC_EXTERNAL_USER, goremal_email_address  FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
-
-				get = connection.exec_query("select distinct Z_NUMBER,  SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
-									      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+		 	get = connection.exec_query("select A.Z_NUMBER,  SUBSTR( A.SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
+									      CASE SUBSTR(A.SARADAP_TERM_CODE_ENTRY, 5 , 6 )
 									             WHEN '01' THEN 'Spring'
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
-									      END as term , L_NAME, M_NAME, F_NAME, MAJOR_DESC, STREET_LINE1 , CITY, STATE, ZIP, street2_line1, city2, state2, zip2, GOBTPAC_EXTERNAL_USER, goremal_email_address  FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
+									      END as term , A.L_NAME, A.M_NAME, A.F_NAME, A.MAJOR_DESC,A.GOBTPAC_EXTERNAL_USER, A.goremal_email_address, B.STREET_LINE1 , B.CITY, B.STATE, B.ZIP, B.street2_line1, B.city2, B.state2, B.zip2 
+									      FROM BANINST1.AWS_ONBOARDING_MAIN A
+                        				  LEFT JOIN BANINST1.AWS_ONBOARDING_ADDRESS B ON B.SGBSTDN_PIDM = A.SGBSTDN_PIDM WHERE A.Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.find_student_zip_by_z(id)
-		 	get = connection.exec_query("select distinct SUBSTR( ZIP, 1 , 5 ) as ZIP FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
+		 	get = connection.exec_query("select SUBSTR( ZIP, 1 , 5 ) as ZIP FROM BANINST1.AWS_ONBOARDING_ADDRESS WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
 		end
 
 		# def self.age_calculation(netid)
-		# 	get = connection.exec_query("select floor(months_between(SYSDATE, SPBPERS_BIRTH_DATE) /12) as AGE FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(netid)} AND rownum = 1")
+		# 	get = connection.exec_query("select floor(months_between(SYSDATE, SPBPERS_BIRTH_DATE) /12) as AGE FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(netid)} AND rownum = 1")
 		# end
 
 		def self.additional_housing_reqs(id)
@@ -49,33 +45,33 @@ class Banner < ActiveRecord::Base
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
-									      END as term , floor(months_between(SYSDATE, SPBPERS_BIRTH_DATE) /12) as AGE, SPBPERS_MRTL_CODE, WHC_STUDENT FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
+									      END as term , floor(months_between(SYSDATE, SPBPERS_BIRTH_DATE) /12) as AGE, SPBPERS_MRTL_CODE, WHC_STUDENT FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
 		end
 
 		def self.fullname(id)
-		 	get = connection.exec_query("select distinct CONCAT(CONCAT(F_NAME, ' '), L_NAME) as fullname  FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
+		 	get = connection.exec_query("select distinct CONCAT(CONCAT(F_NAME, ' '), L_NAME) as fullname  FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)} AND rownum = 1")
 		end
 
 		def self.find_newstudents
-		 	get = connection.exec_query("select distinct Z_NUMBER, L_NAME, F_NAME, GOBTPAC_EXTERNAL_USER, INT_STUDENT from BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE SARADAP_STYP_CODE in ('B','E')")
+		 	get = connection.exec_query("select distinct Z_NUMBER, L_NAME, F_NAME, GOBTPAC_EXTERNAL_USER, INT_STUDENT from BANINST1.AWS_ONBOARDING_MAIN WHERE SARADAP_STYP_CODE in ('B','E')")
 		end
 
 
 		def self.aleks_status(id)
-			get = connection.exec_query("SELECT aleks_taken, aleks_score FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT aleks_taken, aleks_score FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.tuition_deposit_status(id)
-			get = connection.exec_query("SELECT sarchkl_admr_code, sarchkl_receive_date FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT sarchkl_admr_code, sarchkl_receive_date FROM BANINST1.AWS_ONBOARDING_ADDRESS WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.immunization_status(id)
-			get = connection.exec_query("SELECT sprhold_hldd_code, im_exists from BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT sprhold_hldd_code, im_exists from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 
 		# def self.account_claimed_status(id)
-		# 	get = connection.exec_query("SELECT spremrg_first_name, spremrg_last_name FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)}")
+		# 	get = connection.exec_query("SELECT spremrg_first_name, spremrg_last_name FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		# end
 
 		#BEGIN: a test to consolidate aleks tution and account claim status
@@ -84,43 +80,31 @@ class Banner < ActiveRecord::Base
 			# sarchkl_admr_code == TUTD -> deposit has been made
 			# spremrg fields = emergency contact info on file
 		def self.get_multistatus(id)
-			# get = connection.exec_query("SELECT GOBTPAC_EXTERNAL_USER, L_NAME, F_NAME,
-			# 							 SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
-			# 						      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
-			# 						             WHEN '01' THEN 'Spring'
-			# 						             WHEN '08' THEN 'Fall'
-			# 						             WHEN '05' THEN 'Summer'
-			# 						          ELSE ''
-			# 						      END as term ,
-			# 							  im_exists, sprhold_hldd_code,										  									      
-			# 						      aleks_taken, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, sarchkl_admr_code, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name, 
-			# 						      spremrg_street_line1, spremrg_city, spremrg_stat_code, spremrg_natn_code, spremrg_zip, sprtele_phone_area, sprtele_phone_number,spremrg_phone_area, spremrg_phone_number, 
-			# 						      gwrr911_phone_area, gwrr911_phone_number, gwrr911_tele_code, gwrr911_text_capable,
-			# 						      whc_student, int_student, goremal_email_address 
-
-			# 						      FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
-
-			get = connection.exec_query("SELECT GOBTPAC_EXTERNAL_USER, L_NAME, F_NAME,
-										 SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
-									      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
-									             WHEN '01' THEN 'Spring'
-									             WHEN '08' THEN 'Fall'
-									             WHEN '05' THEN 'Summer'
-									          ELSE ''
-									      END as term ,
-										  im_exists, sprhold_hldd_code,										  									      
-									      aleks_taken, aleks_score, sarchkl_admr_code, sarchkl_receive_date, sarchkl_receive_date, CONCAT(CONCAT(spremrg_first_name,' '),spremrg_last_name) as spremrg_contact_name, 
-									      spremrg_street_line1, spremrg_city, spremrg_stat_code, spremrg_natn_code, spremrg_zip, phone_area, phone_number,spremrg_phone_area, spremrg_phone_number, 
-									      gwrr911_phone_area, gwrr911_phone_number, gwrr911_tele_code, gwrr911_text_capable,
-									      whc_student, int_student, goremal_email_address 
-
-									      FROM BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT A.GOBTPAC_EXTERNAL_USER, A.L_NAME, A.F_NAME,
+									       SUBSTR( A.SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
+									          CASE SUBSTR(A.SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+									                 WHEN '01' THEN 'Spring'
+									                 WHEN '08' THEN 'Fall'
+									                 WHEN '05' THEN 'Summer'
+									              ELSE ''
+									          END as term,										   		
+									          A.whc_student, A.int_student, A.goremal_email_address, 
+									          A.aleks_taken, A.aleks_score, B.sarchkl_admr_code, B.sarchkl_receive_date, B.sarchkl_receive_date, 
+									          CONCAT(CONCAT(B.spremrg_first_name,' '),B.spremrg_last_name) as spremrg_contact_name, 
+									          B.spremrg_street_line1, B.spremrg_city, B.spremrg_stat_code,B. spremrg_natn_code, B.spremrg_zip, B.phone_area,B. phone_number,B.spremrg_phone_area, B.spremrg_phone_number, 
+									          B.gwrr911_phone_area, B.gwrr911_phone_number, B.gwrr911_tele_code, B.gwrr911_text_capable
+									          --,C.im_exists
+									          --, C.sprhold_hldd_code                        
+									  FROM BANINST1.AWS_ONBOARDING_MAIN A
+									  LEFT JOIN BANINST1.AWS_ONBOARDING_ADDRESS B ON B.SGBSTDN_PIDM = A.SGBSTDN_PIDM
+									  --LEFT JOIN BANINST1.AWS_ONBOARDING_HOLD C ON C.SGBSTDN_PIDM = A.SGBSTDN_PIDM
+									  WHERE A.Z_NUMBER=#{connection.quote(id)}")
 
 		end
 		#END: a test to consolidate aleks tution and account claim status
 
 
-	#END: QUERIES TO BANINST1.AWS_ONBOARDING_MAIN_NEW
+	#END: QUERIES TO BANINST1.AWS_ONBOARDING_MAIN
 	
 
 	#BEGIN: QUERIES TO BANINST1.AWS_ONBOARDING_COURSE_REG
@@ -166,20 +150,20 @@ class Banner < ActiveRecord::Base
 									     END as finaidyear, 
 									     rtvtreq_code, 
 									     rorstat_all_req_comp_date
-									     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC_N WHERE Z_NUMBER=#{connection.quote(id)}
+									     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
 									     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
 		end
 
 		def self.fin_aid_checkboxes(id)
-			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC_N WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
+			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR')")
 		end
 
 		def self.fin_aid_acceptance(id)
-			get = connection.exec_query("SELECT rpratrm_accept_date, rpratrm_period from BANINST1.AWS_ONBOARDING_FINAID_AWARDS_N WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT rpratrm_accept_date, rpratrm_period from BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 	
 		def self.residency_status(id)
-			get = connection.exec_query("SELECT SGBSTDN_RESD_CODE, STATE from BANINST1.AWS_ONBOARDING_MAIN_NEW WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT SGBSTDN_RESD_CODE, STATE from BANINST1.AWS_ONBOARDING_ADDRESS WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.fin_aid_awards(id)
@@ -195,7 +179,7 @@ class Banner < ActiveRecord::Base
 									    RPRATRM_OFFER_AMT, RPRATRM_DECLINE_AMT,
 									    TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate, 
   								        rpratrm_decline_date
-									    FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS_N
+									    FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS
 									    WHERE Z_NUMBER=#{connection.quote(id)} 
 									    ORDER BY RFRBASE_FUND_TITLE ASC")
 		end
