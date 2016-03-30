@@ -1820,7 +1820,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				
 
 
-			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 || immunization_complete == 0 || orientation_complete == 0 || aleks_complete == 0  %>
+			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 || immunization_complete == 0 || orientation_complete == 0 %>
 			  					  			
 			  			<p>You have holds on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
@@ -1845,9 +1845,9 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  					<li>You must provide proof of immunizations and vaccinations.</li>
 			  				<% end %>
 
-			  				<% if aleks_complete == 0	%>		  				
-					  			<li>You must take the ALEKS placement exam.</li>
-					  		<% end %>
+			  				<% #if aleks_complete == 0	%>		  				
+					  			<!-- <li>You must take the ALEKS placement exam.</li> -->
+					  		<%# end %>
 
 			  				<% if orientation_complete == 0	%>		  				
 			  					<li>You must attend an orientation session.</li>
@@ -1919,7 +1919,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 
 		  		<%# end %>
-
+		  		<br>
 		  		  <% if  (reg_available == 1 || registrationbypass == 1 || reg_complete == 1)%>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_reg_module' , {:class => 'register-form form-validator'})  do %>
@@ -1968,7 +1968,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						</div>
 				<% end %>
 
-						<% if residency_complete == 0 || @reg_complete == 0 ||  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 ||  @orientation_complete == 0 || aleks_complete == 0 %>
+						<% if residency_complete == 0 || @reg_complete == 0 ||  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 ||  @orientation_complete == 0 %>
 	                         
 
 								<p>You have holds on your record which are preventing you from completing your tuition payment. The holds are listed below:</p>
@@ -2003,9 +2003,9 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					  					<!-- <li>You must provide proof of immunizations and vaccinations.</li> -->
 					  				<%# end %>
 
-					  				<% if aleks_complete == 0	%>		  				
-					  					<li>You must take the ALEKS placement exam.</li>
-					  				<% end %>
+					  				<%# if aleks_complete == 0	%>		  				
+					  					<!-- <li>You must take the ALEKS placement exam.</li> -->
+					  				<%# end %>
 
 					  				<% if @orientation_complete == 0	%>		  				
 					  					<li>You must attend an orientation session.</li>
@@ -2055,7 +2055,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						
 						<% end %>
 	              <%# end %>
-
+	              <br>
 	               <% if  (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1)%>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_tuition_module' , {:class => 'register-form form-validator'})  do %>
