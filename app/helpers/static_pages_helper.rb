@@ -311,7 +311,7 @@ module StaticPagesHelper
          if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
            tmp =  "Your tuition deposit was paid on #{o['sarchkl_receive_date'].strftime('%x')}."
          else
-           tmp =  "Your tuition deposit has NOT been paid yet!  <br> You cannot continue until you've paid. <br> <br>           
+           tmp =  "Your tuition deposit has NOT been paid yet!  <br> You will not be able to move forward until you've paid. <br> <br>           
                <a id='tuitionlink' class='btn btn-danger' href='https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link' target='_blank'>Pay Your Tuition Deposit Now</a>
               "
          end
@@ -368,4 +368,48 @@ module StaticPagesHelper
                <a id='housing' class='btn btn-danger' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>Pay Your Housing Deposit Now</a>".html_safe
       end 
      end
+
+
+    def get_all_holds(znum)
+      output = Banner.get_all_holds(znum)  
+      tmp = ''
+
+      if output.count > 0
+
+        output.each do |o| 
+
+           case o['sprhold_hldd_code']
+                 when 'AB','AC','TD','TZ'
+                    details = "- Please contact the Admissions Office at 561-297-3040".html_safe
+                 when 'AR'
+                    details = "- Please contact the Controllers Office at 561-297-6101 ".html_safe
+                 when 'EG'
+                    details = "- Please contact the College of Engineering at 561-297-2780 or <a href='mailto:jeffries@fau.edu'>jeffries@fau.edu</a>".html_safe
+                 when 'HD'
+                    details = "- Please contact the HS Dual Enrollment Registrar at 561-297-2009".html_safe
+                 when 'IM'
+                    details = "- Please contact Student Health Services at 561-297-0049".html_safe
+                 when 'IS','MM'
+                    details = "- Please contact International Student and Scholar Services at 561-297-3049 or <a href='mailto:isss@fau.edu'>isss@fau.edu</a>".html_safe
+                 when 'NV'
+                    details = "- Please contact Navitas at FAU at 561-297-4689 <a href='mailto:admissionsFAU@navitas.com'>admissionsFAU@navitas.com</a>".html_safe
+                 when 'OA','OR','OT'
+                    details = "- Please contact the Orientation Office at 561-297-2733 or <a href='mailto:orientme@fau.edu'>orientme@fau.edu</a>".html_safe
+                 when 'RB'
+                    details = "- Please contact the Registrar's Office at 561-297-3050 or <a href='mailto:registrar@fau.edu'>registrar@fau.edu</a>".html_safe
+                 when 'UN'
+                    details = "- Please contact Freshman Advising at 561-297-3064 or <a href='mailto:advisingservices@fau.edu'>advisingservices@fau.edu</a>".html_safe
+                 else
+                    details = ""
+                end
+
+
+          tmp << "<li><b>#{o['stvhldd_desc']}</b> #{details}</li>"
+        end
+
+        return tmp.html_safe
+      end
+
+    end
+
 end

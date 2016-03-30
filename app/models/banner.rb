@@ -66,7 +66,7 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.immunization_status(id)
-			get = connection.exec_query("SELECT sprhold_hldd_code, im_exists from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)}")
+			get = connection.exec_query("SELECT sprhold_hldd_code, im_exists from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)} AND sprhold_hldd_code = 'IM'")
 		end
 
 
@@ -186,13 +186,9 @@ class Banner < ActiveRecord::Base
 
 	#END:QUERIES TO BANINST1.AWS_ONBOARDING_FINAID
 
-
-	# def self.oars_status(id)
-	# 	get = connection.exec_query("SELECT fname, lname, semester_desc, oars_version, status_desc FROM DWPROD.OARS_STUDENTS WHERE ID=#{connection.quote(id)}")
-	# end
-
-	# def self.orientation_status(id)
-	# 	get = connection.exec_query("SELECT id, firstname, lastname studenttype, term_entry, sessiondate, attended FROM DWPROD.ORIENTATION_TRACKING WHERE ID=#{connection.quote(id)}")
-	# end
+		def self.get_all_holds(id)
+			get = connection.exec_query("SELECT Z_NUMBER, SPRHOLD_HLDD_CODE, STVHLDD_DESC from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)} AND STVHLDD_REG_HOLD_IND = 'Y'")
+		end
+	
 
 end

@@ -1825,33 +1825,35 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  			<p>You have holds on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
 			  			<ol>
-			  				<% if dep_complete_flag == 0 %>
-			  					<li>You must confirm your intention to enroll and secure your space in the class with a $200.00 non-refundable deposit.</li>
-			  				<% end %>
+			  				<%# if dep_complete_flag == 0 %>
+			  					<!-- <li>You must confirm your intention to enroll and secure your space in the class with a $200.00 non-refundable deposit.</li> -->
+			  				<%# end %>
 
-			  				<% if account_complete == 0 %>
-			  					<li>You must claim your FAU NetID.</li>
-			  				<% end %>
+			  				<%# if account_complete == 0 %>
+			  					<!-- <li>You must claim your FAU NetID.</li> -->
+			  				<%#end %>
 
-			  				<% if oars_complete_flag == 0 %>
-			  					<li>You must complete Online Advising (OARS).</li>
-			  				<% end %>
+			  				<%# if oars_complete_flag == 0 %>
+			  					<!-- <li>You must complete Online Advising (OARS).</li> -->
+			  				<%# end %>
 
-			  				<% if fau_alert_complete == 0 %>
-			  					<li>You must complete your FAU alert information.</li>
-			  				<% end %>
+			  				<%# if fau_alert_complete == 0 %>
+			  					<!-- <li>You must complete your FAU alert information.</li> -->
+			  				<%# end %>
 
-			  				<% if immunization_complete == 0 %>
-			  					<li>You must provide proof of immunizations and vaccinations.</li>
-			  				<% end %>
+			  				<%# if immunization_complete == 0 %>
+			  					<!-- <li>You must provide proof of immunizations and vaccinations.</li>
+			  				<%# end %> -->
 
 			  				<% #if aleks_complete == 0	%>		  				
 					  			<!-- <li>You must take the ALEKS placement exam.</li> -->
 					  		<%# end %>
 
-			  				<% if orientation_complete == 0	%>		  				
-			  					<li>You must attend an orientation session.</li>
-			  				<% end %>
+			  				<%# if orientation_complete == 0	%>		  				
+			  					<!-- <li>You must attend an orientation session.</li> -->
+			  				<%# end %>
+
+			  				<%= get_all_holds(znum) %>
 
 			  			</ol>
 
@@ -2432,6 +2434,17 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 				<h2 class="title">Did you know?</h2>
 			  </header>
 			 	You can revisit unlocked sections by clicking on the blue title bar for the section you want to go back to!</br>
+			  </aside>	
+	      </div> 
+
+	      <p>&nbsp;</p>
+
+	      <div class="col-sm-3 sidebar checkout-progress">
+	       	<aside class="widget">
+			  <header>
+				<h2 class="title">What are holds?</h2>
+			  </header>
+			 	Registration holds are placed on your record by different offices to prevent you from registering. When the matter has been resolved you can register. In short, all holds must be cleared by the issuing office BEFORE you can register.</br>
 			  </aside>	
 	      </div> 
 

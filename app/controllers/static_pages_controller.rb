@@ -48,8 +48,6 @@ class StaticPagesController < ApplicationController
           residency_status = Banner.residency_status(@znum)
           finaid_status = Banner.fin_aid_docs(@znum)
           finaid_checks = Banner.fin_aid_checkboxes(@znum)
-
-
           comm_preferences = Communication.where(:znumber => @znum)
          
           
@@ -269,7 +267,7 @@ class StaticPagesController < ApplicationController
 
               if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
                 @immunization_complete = 0
-                break
+                #break
               else
                 @immunization_complete = 1
               end 
@@ -598,6 +596,14 @@ class StaticPagesController < ApplicationController
 
           end
 
+
+          get_all_holds = Banner.get_all_holds(@znum)
+
+          if get_all_holds.count >= 1
+            @holds_exist = 1
+          else 
+            @holds_exist = 0
+          end
 
           #@emergency_complete = 0
           #@fau_alert_complete = 0
