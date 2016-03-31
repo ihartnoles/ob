@@ -340,7 +340,7 @@ Hello, <%= session[:cas_user] %>!
 			  	
 			  		<% if communication_bypass == 1 %>			  								  										
 						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>						
 					<% end %>
 
@@ -552,7 +552,7 @@ Hello, <%= session[:cas_user] %>!
 			 
 						<% if @deposit_bypass == 1 %>			  										
 								<div class="alert alert-warning">
-									<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+									<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 								</div>
 
 								
@@ -625,7 +625,7 @@ Hello, <%= session[:cas_user] %>!
 			   <div class="step-content">
 			   	<% if finaid_bypass == 1 %>			  		
 						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
 			    <% end %>
 		  				
@@ -892,7 +892,7 @@ Hello, <%= session[:cas_user] %>!
 
 		  		<% if immunization_bypass == 1 %>			  											  								  										
 						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>						
 			    <% end %>
 
@@ -1032,7 +1032,7 @@ Hello, <%= session[:cas_user] %>!
 
 		  		<% if residency_bypass == 1 %>			  									  											  								  										
 						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>						
 			    <% end %>
 
@@ -1111,7 +1111,7 @@ Hello, <%= session[:cas_user] %>!
 
 		  		<% if @housingmealplanbypass == 1 %>			  		
 							<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>						
 			    <% end %>
 
@@ -1282,7 +1282,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  		<% if aleksbypass == 1 %>		
 		  			<div class="alert alert-warning">
-		  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+		  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 		  			</div>
 
 		  			
@@ -1354,7 +1354,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<% if orientationbypass == 1 %>			  		
 					
 					<div class="alert alert-warning">
-		  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+		  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 		  			</div>
 
 		  			
@@ -1460,13 +1460,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 		  
-		  <% if  (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && ( orientation_complete == 1  || orientationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if  (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1 %>
 		   	<a id="lc_href" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="lc_href" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		  <% if (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && ( orientation_complete == 1  || orientationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 12 --> <%= get_statusicon(learning_comm_available,  learning_comm_complete, learning_commbypass) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  </div>
@@ -1480,7 +1480,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 			  	<% if learning_commbypass == 1 %>			  		
 						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>						
 			    <% end %>
 				
@@ -1645,7 +1645,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 			  	<% if oars_bypass == 1 %>			  		
 					<div class="alert alert-warning">
-						<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 					</div>
 				<% end %>
 
@@ -1654,7 +1654,9 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 			  		<p><b>What is OARS?</b></p>
 			  		<ul>
-			  			<li>OARS is the web-based advising system that you will be required to use in your first semester only. Why? It gives you “early” and “easy” access to the course selection/advising process from the comfort of your own home.  No waiting until New Student Orientation to design your schedule! OARS is NOT meant to replace face-to-face academic advising. You will have an opportunity to meet with your assigned advisor when you come to Orientation should you want to do so. </li>
+			  			<li>OARS is the web-based advising system that you will be required to use in your first semester only.</li>
+			  			<li>Why? It gives you “early” and “easy” access to the course selection/advising process from the comfort of your own home.  No waiting until New Student Orientation to design your schedule!</li>
+			  			<li>OARS is NOT meant to replace face-to-face academic advising. You will have an opportunity to meet with your assigned advisor when you come to Orientation should you want to do so.</li>
 			  		</ul>
 
 			  		<p><br>When you log in you will find easy to follow instructions, a sample class schedule for your major, Jump Start courses, and course descriptions.</p>
@@ -1719,7 +1721,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  		<% if faualertbypass == 1 %>			  		
 					<div class="alert alert-warning">
-						<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 					</div>
 				<% end %>
 
@@ -1800,7 +1802,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  		<% if registrationbypass == 1 %>			  		
 						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  Please note this requirement has NOT been fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
 				<% end %>
 				
@@ -1952,7 +1954,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  		<% if tuition_bypass == 1 %>			  		
 						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
 				<% end %>
 
@@ -2088,7 +2090,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 				<% if emergencybypass == 1 %>			  		
 						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  The does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
 				<% end %>
 					
@@ -3401,7 +3403,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
     <% end %>
 
-    <% if  (learning_comm_available == 1 || learning_commbypass == 1) && ( orientation_available == 1 && orientation_complete == 1  || orientationbypass == 1 ) %>
+    <% if  (learning_comm_available == 1 || learning_commbypass == 1)%>
 	/* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-learning") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
