@@ -660,8 +660,8 @@ Hello, <%= session[:cas_user] %>!
 			  					<p>
 			  				</div>
 			  				<br>
-
-
+			  				
+			  			<div id="finaiddeets" <% if @finaidneedflag == "NO"%>style="display: none;"<%end%> >
 			  				<h3 class="title">The Financial Aid Steps</h3>
 			  				<p>
 			  					<!-- <ol> -->
@@ -835,24 +835,10 @@ Hello, <%= session[:cas_user] %>!
 				<!-- <button type="button" class="btn btn-danger">Continue</button> -->
 
 				<% end %>
+			</div><!-- end of deets -->
 
 				<% if  (finaid_available == 1 || finaid_bypass == 1) %>
-	  				<%#= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
-	  					<!-- 
-	  					<h3 class="title">Do you need Financial Aid?</h3>
-	  					<p></p>
-	  					<p>
-	  						<div class="checkbox">
-		  					     <%#= radio_button_tag 'finaid_choice', 'YES' %>Yes, I do.
-	  					    </div>
-	  					    <div class="checkbox">
-	  						 	<%#= radio_button_tag 'finaid_choice', 'NO' %>No, I'm not interested.
-	  						</div>
-	  					<p> -->
-			  	<%# end %>
-			  			
-
-				 <%# if  (finaid_available == 1 || finaid_bypass == 1) ||  @fafsa_complete == 0 %>
+	  				
 						<div class="buttons-box text-right">
 			  		 		<%#= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -3014,18 +3000,18 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 	
 	 });
 	
-
-	$("#parkingbutton").click(function(){
-    $.post("https://fau.t2hosted.com/cmn/auth.aspx",
-	    {personid: "Z23173907"},
-	    function(data){
-	        $('#result').html(data);
-	    });
-	});
-
 	/* BEGIN: title click functions */
 	
 	/* END: button click functions */
+
+	 $('input[type=radio][name=needFinAid]').change(function() {
+	        if (this.value == 'NO') {
+	           $("#finaiddeets").hide();	           
+	        }
+	        else if (this.value == 'YES') {
+	           $("#finaiddeets").show();          
+	        }
+	});
 
 
 	 function clearNavBar(){
