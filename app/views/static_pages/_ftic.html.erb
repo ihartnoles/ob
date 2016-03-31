@@ -2991,17 +2991,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	});
 
 
- 	
-	// $('#verifyBut').click(function () {
-	//   // $('#step-2').collapse('hide');
-	//   // $('#step-2').prev().addClass('collapsed');
-	//   // $('#step-3').collapse('show');
-	//   // $('#step-3').prev().removeClass('collapsed');
-	 
-	//   updateMeter('10');
-	// })
-	
-
 	$('#welcomeBut').click(function () {
 	  $('#step-1').collapse('hide');
 	  $('#step-1').prev().addClass('collapsed');
@@ -3012,22 +3001,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 
 	  //updateMeter('10');
 	})
-
-	 // $('#lcButPassthru').click(function (e) {
-	 //   $('#step-learning').collapse('hide');
-	 //   $('#step-learning').prev().addClass('collapsed');
-	 //   $('#step-oars').collapse('hide');
-	 //   $('#step-oars').prev().addClass('collapsed');	 	
-	 // });
-
-	
-
-	 // $('#verifySaveBut').click(function (e) {
-	 // 	if ( !$("input[name=verify_info]:checked").is(":checked")) {
-	 // 		alert('Please tell us if your information is correct.');
-	 // 		e.preventDefault();
-	 // 	}	 	
-	 // });
 
 	$(function() {
 	 	$('.page-box-content').css('visibility','visible').delay(700).hide().fadeIn(700);
@@ -3040,14 +3013,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 	'hideOnOverlayClick': true
 	 	
 	 });
-
-
-	 // $("#btnForm").fancybox({
-	 // 	'autoScale': true,
-	 // 	'autoDimensions': true,
-	 // 	'hideOnOverlayClick': true
-	 	
-	 // });
 	
 
 	$("#parkingbutton").click(function(){
@@ -3057,32 +3022,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	        $('#result').html(data);
 	    });
 	});
-
-	/*
-	$("#mobileText, #mobilePhone").click(function() {
-	  //alert('Ohhhh KAY!!!!');
-	  $("#mobileForm").toggle();
-	});
-	*/
-
-
-	/* close parent after child window closes
-	$('#claimAccountBut').click(function(event) {
-	    event.preventDefault();
-	    //window.open($(this).attr(""), "popupWindow", "width=600,height=600,scrollbars=yes");
-
-	    var child = window.open("http://accountst.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");
-	    var timer = setInterval(checkChild, 500);
-
-	    function checkChild() {
-			    if (child.closed) {
-			        alert("Child window closed");   
-			        clearInterval(timer);
-			    }
-			}
-	});
-	*/
-	 
 
 	/* BEGIN: title click functions */
 	
@@ -3108,14 +3047,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 }
 
 	 
-	 // function progressMeter() {
-	 	 
-	 // 	var increment =  (11/20 * 100);
-
-	 // 	$("#metercontainer").attr("data-appear-progress-animation", increment + '%');
-	 //  	$('#meterdisplay').text(increment + '% Completed');
-	 //  	$("#meterdisplay").attr("style",'width: ' + increment + '%; text-indent: 10px;');
-	 // }
 	     
  });
 </script>
@@ -3192,8 +3123,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 	<% if  learning_commbypass == 0 %>
 
 		 	if(  $('input[type=radio][name=join_lc]:radio:checked').val() == "Yes" && $('input[type=radio][name=lc_choice]:radio:checked').val() == "CCLC" ) {
-		 		//alert('they clicked YES and CCLC');
-
 		 		if ( $("#cclc_type").val().length <= 0 ) {
 		 			 alert('Please select your CCLC Community if you wish to join the Commuting Connections Learning Community (CCLC) Program');
 		 			 e.preventDefault();
@@ -3205,8 +3134,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		 		}
 
 		 	}
-		<%# else %>
-		  //$( "#lcform" ).submit();
+		
 	 	<% end %>
 	   
 	    
@@ -3252,12 +3180,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
  	
 	 $('#contactBut').click(function (e) {
-	    
-	    // alert('contactBut clicked');
-
-	    // alert(!$('#contactByPhone').is(':checked'));
-	    // alert(!$('#contactByEmail').is(':checked'));
-
 	    <% if  communication_bypass == 0  %>
 
 	    if ( !$('#contactByPhone').is(':checked') && !$('#contactByEmail').is(':checked') ){
@@ -3306,9 +3228,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#verifyhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-verify').removeClass('collapse').addClass('collapse in');
 
-		     //scrollToElement('#step-verify');
-
-		     $('#step-verify').ScrollTo({
+		    $('#step-verify').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
 			 });
@@ -3323,8 +3243,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		    $('#visahref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-visa').removeClass('collapse').addClass('collapse in');
-
-		     //scrollToElement('#step-visa');
 
 		    $('#step-visa').ScrollTo({
 				    duration: 2000,
@@ -3342,8 +3260,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#medicalhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-intl-medical').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-intl-medical');
-
 		    $('#step-intl-medical').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3359,8 +3275,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		    $('#intlorienthref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-intl-orientation').removeClass('collapse').addClass('collapse in');
-
-		    //scrollToElement('#step-intl-orientation');
 
 		    $('#step-intl-orientation').ScrollTo({
 				    duration: 2000,
@@ -3380,8 +3294,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#deposithref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-deposit').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-deposit');
-
 		    $('#step-deposit').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3400,9 +3312,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#communicationhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-comm').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-comm');
-
-		     $('#step-comm').ScrollTo({
+ 	        $('#step-comm').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
 			});
@@ -3417,9 +3327,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#finaidhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-finaid').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-finaid');
-
-		     $('#step-finaid').ScrollTo({
+		    $('#step-finaid').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
 			});
@@ -3436,8 +3344,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#immunizationhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-immunization').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-immunization');
-
 		    $('#step-immunization').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3453,8 +3359,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		    $('#residencyhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-residency').removeClass('collapse').addClass('collapse in');
-
-		    //scrollToElement('#step-residency');
 
 		    $('#step-residency').ScrollTo({
 				    duration: 2000,
@@ -3474,8 +3378,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#housinghref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-housing').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-housing');
-
 		    $('#step-housing').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3491,7 +3393,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#alekshref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-aleks').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-aleks');
 		    $('#step-aleks').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3507,7 +3408,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#orientationhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-orientation').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-orientation');
 		    $('#step-orientation').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3524,7 +3424,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#lc_href').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-learning').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-learning');
 		    $('#step-learning').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3540,8 +3439,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#oarshref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-oars').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-oars');
-		     $('#step-oars').ScrollTo({
+		    $('#step-oars').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
 			});
@@ -3568,7 +3466,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#tuitionhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-tuition').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-tuition');
 		    $('#step-tuition').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3584,8 +3481,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#emergencyhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-emergency').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-emergency');
-		     $('#step-emergency').ScrollTo({
+		    $('#step-emergency').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
 			});
@@ -3600,7 +3496,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#alerthref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-faualert').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-faualert');
 		    $('#step-faualert').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3616,7 +3511,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#owlcardhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-owlcard').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement($('#step-owlcard'));
 		    $('#step-owlcard').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
@@ -3631,8 +3525,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		    $('#bookhref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-bookadvance').removeClass('collapse').addClass('collapse in');
-
-		    //scrollToElement('#step-bookadvance');
 
 		    $('#step-bookadvance').ScrollTo({
 				    duration: 2000,
@@ -3649,7 +3541,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    $('#vehiclehref').removeClass('collapsed step-title').addClass('step-title');
 		    $('#step-vehicle').removeClass('collapse').addClass('collapse in');
 
-		    //scrollToElement('#step-vehicle');
 		    $('#step-vehicle').ScrollTo({
 				    duration: 2000,
 				    durationMode: 'all'
