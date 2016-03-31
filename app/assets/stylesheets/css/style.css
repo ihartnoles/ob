@@ -1729,7 +1729,7 @@ div.jp-audio {
 
 /* Tables */
 .table {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 18px;
   margin-bottom: 22px;
   text-align: center;
@@ -8471,7 +8471,7 @@ a.big-icon:hover {
   background: #ffffff;
 }
 #checkoutsteps .step-content label {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 22px;
 }
 #checkoutsteps .step-content .radio,
