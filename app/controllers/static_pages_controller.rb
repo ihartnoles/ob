@@ -825,9 +825,9 @@ class StaticPagesController < ApplicationController
         @access = 1
       end
 
-       puts YAML::dump('*** DUH HELLO ***')
-       puts YAML::dump(netid)
-       puts YAML::dump(@access)
+       # puts YAML::dump('*** DUH HELLO ***')
+       # puts YAML::dump(netid)
+       # puts YAML::dump(@access)
    end 
 
 
