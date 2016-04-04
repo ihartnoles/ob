@@ -131,27 +131,55 @@ class Banner < ActiveRecord::Base
 	#BEGIN: QUERIES TO BANINST1.AWS_ONBOARDING_FINAID
 
 		def self.fin_aid_docs(id)
-			#get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind  from BANINST1.AWS_ONBOARDING_FINAID WHERE Z_NUMBER=#{connection.quote(id)}")
-			get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
-									      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
-									             WHEN '01' THEN 'Spring'
-									             WHEN '08' THEN 'Fall'
-									             WHEN '05' THEN 'Summer'
-									          ELSE ''
-									      END as term ,
+				get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
+										      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+										             WHEN '01' THEN 'Spring'
+										             WHEN '08' THEN 'Fall'
+										             WHEN '05' THEN 'Summer'
+										          ELSE ''
+										      END as term ,
 
-									      RORSTAT_AIDY_CODE,
+										      RORSTAT_AIDY_CODE,
 
-									     CASE RORSTAT_AIDY_CODE 
-									     	WHEN '1617' THEN '2016-2017'
-									     	WHEN '1516' THEN '2015-2016'
-									     	WHEN '1415' THEN '2014-2015'
+										     CASE RORSTAT_AIDY_CODE 
+										     	WHEN '1617' THEN '2016-2017'
+										     	WHEN '1516' THEN '2015-2016'
+										     	WHEN '1415' THEN '2014-2015'
 
-									     END as finaidyear, 
-									     rtvtreq_code, 
-									     rorstat_all_req_comp_date
-									     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
-									     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
+										     END as finaidyear, 
+										     summer_app,
+										     rtvtreq_code, 
+										     rorstat_all_req_comp_date
+										     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
+										     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
+
+		end
+
+
+		def self.fin_aid_docs_multiterm(id,aidyear)
+				get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
+										      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+										             WHEN '01' THEN 'Spring'
+										             WHEN '08' THEN 'Fall'
+										             WHEN '05' THEN 'Summer'
+										          ELSE ''
+										      END as term ,
+
+										      RORSTAT_AIDY_CODE,
+
+										     CASE RORSTAT_AIDY_CODE 
+										     	WHEN '1617' THEN '2016-2017'
+										     	WHEN '1516' THEN '2015-2016'
+										     	WHEN '1415' THEN '2014-2015'
+
+										     END as finaidyear, 
+										     summer_app,
+										     rtvtreq_code, 
+										     rorstat_all_req_comp_date
+										     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
+										     and RORSTAT_AIDY_CODE=#{connection.quote(aidyear)}
+										     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
+
 		end
 
 		def self.fin_aid_checkboxes(id)
@@ -161,12 +189,36 @@ class Banner < ActiveRecord::Base
 		def self.fin_aid_acceptance(id)
 			get = connection.exec_query("SELECT rpratrm_accept_date, rpratrm_period from BANINST1.AWS_ONBOARDING_FINAID_AWARDS WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
+
+
+		def self.fin_aid_semesters(id)
+			get = connection.exec_query("select distinct saradap_term_code_entry, summer_app, rorstat_aidy_code,  
+											 CASE RORSTAT_AIDY_CODE 
+										     	WHEN '1617' THEN '2016-2017'
+										     	WHEN '1516' THEN '2015-2016'
+										     	WHEN '1415' THEN '2014-2015'
+										     END as finaidyear 
+										 from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
+										 order by rorstat_aidy_code asc")
+		end
+
+
+		def self.distinct_fin_aid_semesters(id)
+			get = connection.exec_query("select distinct rorstat_aidy_code, CASE RORSTAT_AIDY_CODE 
+										     	WHEN '1617' THEN '2016-2017'
+										     	WHEN '1516' THEN '2015-2016'
+										     	WHEN '1415' THEN '2014-2015'
+										     END as finaidyear
+										 from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
+										 order by rorstat_aidy_code asc")
+		end
 	
 		def self.residency_status(id)
 			get = connection.exec_query("SELECT SGBSTDN_RESD_CODE, STATE from BANINST1.AWS_ONBOARDING_ADDRESS WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		def self.fin_aid_awards(id)
+
 			get = connection.exec_query("SELECT RFRBASE_FUND_TITLE, RPRATRM_PERIOD, 
 												SUBSTR( RPRATRM_PERIOD, 1 , 4 ) as year,
    											  CASE SUBSTR(RPRATRM_PERIOD, 5 , 6 )
@@ -181,7 +233,7 @@ class Banner < ActiveRecord::Base
   								        rpratrm_decline_date
 									    FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS
 									    WHERE Z_NUMBER=#{connection.quote(id)} 
-									    ORDER BY RFRBASE_FUND_TITLE ASC")
+									    ORDER BY term, RFRBASE_FUND_TITLE ASC")
 		end
 
 	#END:QUERIES TO BANINST1.AWS_ONBOARDING_FINAID

@@ -94,43 +94,79 @@ module StaticPagesHelper
 
 
       def fin_aid_docs(znum,term)
-      output = Banner.fin_aid_docs(znum)
+        output = Banner.fin_aid_docs(znum)
 
-      tmp = ''
-      doc_status = ''
+        tmp = ''
+        doc_status = ''
 
-      if output.count > 0
-        output.each do |o| 
-             if !o.nil?
+        if output.count > 0
+          output.each do |o| 
+               if !o.nil?
 
-               case o['rrrareq_sat_ind']
-                 when 'Y'
-                    doc_status = "<img src='/assets/Check_8x8.png' alt=''>".html_safe
-                 when 'N'
-                    doc_status = "<img src='/assets/Delete_8x8.png' alt='' >".html_safe
-                 else
-                    doc_status = "undetermined"
-                end
+                 case o['rrrareq_sat_ind']
+                   when 'Y'
+                      doc_status = "<img src='/assets/Check_8x8.png' alt=''>".html_safe
+                   when 'N'
+                      doc_status = "<img src='/assets/Delete_8x8.png' alt='' >".html_safe
+                   else
+                      doc_status = "undetermined"
+                  end
 
-              if term == 'Summer'
-                # need to update the last status to reflect summer data
-                 tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td align='center'>#{doc_status}</td><td>#{doc_status}</td></tr>"
-              else
-                 tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td align='center'>#{doc_status}</td></tr>"
-              end 
-             else
-               tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
-             end        
-        end
+                if term == 'Summer'
+                  # need to update the last status to reflect summer data
+                   tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td align='center'>#{doc_status}</td><td>#{doc_status}</td></tr>"
+                else
+                   tmp <<  "<tr><td>#{o['rtvtreq_long_desc']} - #{o['finaidyear']}</td><td align='center'>#{doc_status}</td></tr>"
+                end 
+               else
+                 tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
+               end        
+            end
 
+               return tmp.html_safe
+
+          else
+             tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
            return tmp.html_safe
+          end 
+         end
+     
+      def fin_aid_docs_multiterm(znum,aidyear)
+          output = Banner.fin_aid_docs_multiterm(znum,aidyear)
 
-      else
-         tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
-       return tmp.html_safe
-      end 
-     end
+          tmp = ''
+          doc_status = ''
 
+          if output.count > 0
+            output.each do |o| 
+              if !o.nil?
+                                
+                  
+                  if o['rrrareq_sat_ind'] == 'Y'
+                    doc_status_one = "<img src='/assets/Check_8x8.png' alt=''>".html_safe
+                  else
+                    doc_status_one = "<img src='/assets/Delete_8x8.png' alt=''>".html_safe
+                  end
+
+
+                  # need to update the last status to reflect summer data
+                  tmp <<  "<tr><td>#{o['rtvtreq_long_desc']}</td><td>#{o['finaidyear']}</td><td>#{doc_status_one}</td></tr>"
+
+                 
+               else
+                 tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
+               end     
+            end
+
+            return tmp.html_safe
+
+          else
+             tmp =  "<tr><td>You DO NOT have FAFSA information on file.</td></tr>"
+             return tmp.html_safe
+          end #end of if output.count
+
+
+      end
 
      def registered_hours(znum)
       output = Banner.registered_hours(znum)

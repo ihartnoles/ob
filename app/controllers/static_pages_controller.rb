@@ -342,15 +342,22 @@ class StaticPagesController < ApplicationController
 
           #begin finaidacceptance
             fin_aid_acceptance = Banner.fin_aid_acceptance(@znum)
-
-            # puts YAML::dump('**********BEGIN fin_aid_acceptance**********')
-            # puts YAML::dump(fin_aid_acceptance)
-            # puts YAML::dump('**********END**********')
+            
+            #@fin_aid_semesters = Banner.fin_aid_semesters(@znum)
+            @fin_aid_semesters = Banner.distinct_fin_aid_semesters(@znum)
+            
 
             if fin_aid_acceptance.nil? || fin_aid_acceptance.blank? || fin_aid_acceptance.count == 0
               @fin_aid_acceptance = 0
               @summer_fin_aid_acceptance = 0
+              @fin_aid_term_one = 'Summer'
+              @fin_aid_term_two = 'Fall'
             else 
+
+                # 01 = Spring
+                # 05 = Summer
+                # 08 = Fall
+
                fin_aid_acceptance.each do |fa|
                  if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == '201601' || fa['rpratrm_period'] == '201608')
                   @fin_aid_acceptance = 1
@@ -363,9 +370,7 @@ class StaticPagesController < ApplicationController
                  else 
                   @summer_fin_aid_acceptance = 0
                  end
-
-               end 
-              
+               end              
             end
 
           #end finaidacceptance
@@ -392,7 +397,7 @@ class StaticPagesController < ApplicationController
             @finaidyear = o['finaidyear']
             @aidy= o['rorstat_aidy_code']
 
-            if o['term'] == 'Summer'
+            if o['summer_app'] == 'Y'
               #set up summer flags
               if  o['fafsa_flg'] == 'Y' && o['rorstat_aidy_code'] == '1516'
                 @summer_fafsa_complete = 1

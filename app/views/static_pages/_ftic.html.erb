@@ -675,11 +675,14 @@ Hello, <%= session[:cas_user] %>!
 			  							<thead>
 						  				<tr>
 						  					<th class="product-name">Step</th>
-						  					<% if @term == 'Summer'%>
-						  						<th class="product-total">Summer Term</th><th class="product-total">Fall Term</th>
+						  					<% if @term == 'Summer'%>						  					
+						  						<% @fin_aid_semesters.each do |fas| %>
+									  			  <th class="product-total"><%= fas['finaidyear'] %></th>
+									  			<% end %>
 						  					<% else %>
-						  						<th class="product-total"><%= @term %> Term</th>
+						  						  <th class="product-total"><%#= @term %> Term</th>
 						  					<% end %>
+						  					<!-- <th class="product-total">Aid Year</th><th class="product-total">Status</th> -->
 						  				</tr>
 						  				</thead>
 
@@ -796,14 +799,22 @@ Hello, <%= session[:cas_user] %>!
 						  				<tr>
 						  					<th class="product-name">FAFSA Document</th>
 						  					<% if @term == 'Summer' %>
-						  						<th class="product-total">Summer Term</th><th class="product-total">Fall Term</th>
+						  						<th class="product-total">Aid Year</th><th class="product-total">Status</th>
+						  						<%# @fin_aid_semesters.each do |fas| %>
+									  			  <!-- <th class="product-total"><%#= fas['semester'] %> <%#= fas['year'] %></th> -->
+									  			<%# end %>
 						  					<% else %>
 						  						<th class="product-total"><%= @term %> Term</th>
 						  					<% end %>						  					
 						  				</tr>
 						  			</thead>
-
-						  				<%= fin_aid_docs(znum,@term) %>
+						  				<% if @term == 'Summer' %>
+						  						<% @fin_aid_semesters.each do |fas| %>						  								
+						  								<%= fin_aid_docs_multiterm(znum,fas['rorstat_aidy_code']) %>
+						  						<% end %>
+						  				<% else %>
+						  					<%= fin_aid_docs(znum,@term) %>
+						  				<% end %>
 						  		</table>
 						  		<br>
 
@@ -1460,7 +1471,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		  <li class="panel">
 		  
-		  <% if  (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1 %>
+		  <% if  (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1)  %>
 		   	<a id="lc_href" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="lc_href" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
@@ -1785,7 +1796,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		   	
 		   	<% if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
 			  <div class="number">
-				  <% if (dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 || aleks_complete == 0 || orientation_complete == 0) && registrationbypass == 0 %>
+				  <% if (dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 || orientation_complete == 0) && registrationbypass == 0 %>
 				    <span class="badge badge-important label label-danger">incomplete <i class='fa fa-times'></i></span>
 				  <% else %>
 				  	<!-- Step 14 --><%= get_statusicon(reg_available, reg_complete, registrationbypass) %>
@@ -2345,7 +2356,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 		   <li class="panel">
 		  	
-		  	<% if congrats_available == 1 && (residency_complete == 1 && @reg_complete == 1 &&  dep_complete_flag == 1 && account_complete == 1 && oars_complete == 1 && fau_alert_complete == 1 && immunization_complete == 1 && @orientation_complete == 1 && aleks_complete == 1 && @finaid_complete == 1)  %>
+		  	<% if congrats_available == 1 && (residency_complete == 1 && @reg_complete == 1 &&  dep_complete_flag == 1 && account_complete == 1 && oars_complete == 1 && fau_alert_complete == 1 && immunization_complete == 1 && @orientation_complete == 1 && @finaid_complete == 1)  %>
 				<a id="congratshref" href="#step-congrats" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="congratshref" href="#step-congrats" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
@@ -3536,7 +3547,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		}
 	<% end %>
 
-	<% if congrats_available == 1 && (residency_complete == 1 || @reg_complete == 1 ||  dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || fau_alert_complete == 1 || immunization_complete == 1 || @orientation_complete == 1 || aleks_complete == 1)%>
+	<% if congrats_available == 1 && (residency_complete == 1 || @reg_complete == 1 ||  dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || fau_alert_complete == 1 || immunization_complete == 1 || @orientation_complete == 1 )%>
 	  if (window.location.href.indexOf("#step-congrats") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
