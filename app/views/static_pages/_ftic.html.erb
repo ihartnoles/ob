@@ -417,8 +417,9 @@ Hello, <%= session[:cas_user] %>!
 										<% if @contact_mobile_number %>
 											
 											
-												<input type="text" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @contact_mobile_number %>" <%# if @contact_mobile_flag == 1 %><%# end %> >
-											
+												<!-- <input type="text" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @contact_mobile_number %>" > -->
+											<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @contact_mobile_number %>" >
+																				
 
 											
 
@@ -430,7 +431,7 @@ Hello, <%= session[:cas_user] %>!
 										
 										<% else %>
 											
-											<input type="text" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @phone_area %><%= @phone_number %>" <%# if @contact_mobile_flag == 1 %><%# end %> >
+											<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @phone_area %><%= @phone_number %>" <%# if @contact_mobile_flag == 1 %><%# end %> >
 
 										<!-- 	<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @phone_area %><%= @phone_number %>" 
 											  data-bv-trigger="blur"
@@ -444,7 +445,7 @@ Hello, <%= session[:cas_user] %>!
 										<div>
 											<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
 											<%# if  (communication_available == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
-												<%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>										
+												<br><%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>										
 											<%# end %>
 										</div>
 									
@@ -687,8 +688,8 @@ Hello, <%= session[:cas_user] %>!
 						  				</thead>
 
 			  							<tr>
-			  								<td>1. &nbsp;
-			  									<a href="http://fafsa.gov" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete your Free Application for Federal Student Aid at FAFSA.gov</a>
+			  								<td>1.
+			  									<a href="http://fafsa.gov" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete your free Application for Federal Student Aid at FAFSA.gov</a>
 			  								</td>
 
 			  								<% if @term == 'Summer'%>
@@ -2616,6 +2617,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 <script src="/assets/jquery.royalslider.min.js"></script>
 <script src="/assets/jquery.tubular.1.0.js"></script>
 <!-- <script src="/assets/SmoothScroll.js"></script> -->
+<script src="/assets/intlTelInput.js"></script>
 <script src="/assets/jquery-scrollto.js"></script>
 <script src="/assets/country.js"></script>
 <script src="/assets/spin.min.js"></script>
@@ -2974,19 +2976,33 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
       /* END: listening for child windows  */
      
      
- 	$("#mobilenumber").mask("(999) 999-9999");
+ // 	$("#mobilenumber").mask("(999) 999-9999");
 
- 	$("#mobilenumber").on("blur", function() {
-	    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+ // 	$("#mobilenumber").on("blur", function() {
+	//     var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
 	    
-	    if( last.length == 3 ) {
-	        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
-	        var lastfour = move + last;
+	//     if( last.length == 3 ) {
+	//         var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
+	//         var lastfour = move + last;
 	        
-	        var first = $(this).val().substr( 0, 9 );
+	//         var first = $(this).val().substr( 0, 9 );
 	        
-	        $(this).val( first + '-' + lastfour );
-	    }
+	//         $(this).val( first + '-' + lastfour );
+	//     }
+	// });
+
+
+	$("#mobilenumber").intlTelInput({
+		// dropdownContainer: "body",
+		 // geoIpLookup: function(callback) {
+	  //       $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+	  //         var countryCode = (resp && resp.country) ? resp.country : "";
+	  //         callback(countryCode);
+	  //       });
+	  //     },
+	     //initialCountry: "US",
+		 numberType: "MOBILE",
+		 utilsScript: "/assets/utils.js"
 	});
 
 
