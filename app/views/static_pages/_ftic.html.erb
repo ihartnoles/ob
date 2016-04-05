@@ -344,7 +344,7 @@ Hello, <%= session[:cas_user] %>!
 						</div>						
 					<% end %>
 
-				  		 <p>Stay up to date with the student onboarding process. Receive notifications about outstanding issues or items which require your attention.</p>
+				  		 <p>Stay up to date with your progress! Receive notifications about outstanding issues or items which require your attention. Please note the notifications/updates you receive are specific to this process. All other official university communication will occur thru your FAU email address.</p>
 
 				  		 <p>Please select at least one option:</p>
 			
@@ -408,39 +408,41 @@ Hello, <%= session[:cas_user] %>!
 									    <% end %>
 
 
-										<label>Mobile number: <span class="required">*</span></label>
+										<label>Mobile number: <!-- <span class="required">*</span> --></label>
 
 										<%#= text_field_tag :mobilenumber, :required => true, :pattern => "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" %>
 
 										
 										<%#= @contact_mobile_number %> <br>
-										<% if @contact_mobile_number %>
-											
-											
-												<!-- <input type="text" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @contact_mobile_number %>" > -->
-											<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @contact_mobile_number %>" >
+										
+
+										<!-- <input type="text" class="form-control" name="mobilenumber" id="mobilenumber" value="<%#= @contact_mobile_number %>" > -->
+											<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @displaynumber %>" placeholder="" >
+											<input type="hidden" name="countrycode" id="countrycode" value="">
+
+											<span id="valid-msg" class="hide">✓ Valid</span>
+											<span id="error-msg" class="hide">Invalid number</span>
 																				
 
 											
 
-											<!-- <input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @contact_mobile_number %>"
+											<!-- <input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%#= @contact_mobile_number %>"
 											  data-bv-trigger="blur"
 											  data-bv-message="The mobile number is not valid"
 											  required data-bv-notempty-message="The mobile number is required and cannot be empty"
 											  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" data-bv-regexp-message="The mobile number can only consist of alphabetical, number, dot and underscore"> -->
 										
-										<% else %>
+										
 											
-											<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @phone_area %><%= @phone_number %>" <%# if @contact_mobile_flag == 1 %><%# end %> >
+											<!-- <input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%#= @phone_area %><%#= @phone_number %>" <%# if @contact_mobile_flag == 1 %><%# end %> > -->
 
-										<!-- 	<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%= @phone_area %><%= @phone_number %>" 
+										<!-- 	<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="" 
 											  data-bv-trigger="blur"
 											  data-bv-message="The mobile number is not valid"
 											  required data-bv-notempty-message="The mobile number is required and cannot be empty"
 											  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" data-bv-regexp-message="The mobile number can only consist of alphabetical, number, dot and underscore"> -->
 
-										<% end %>
-
+										
 										
 										<div>
 											<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
@@ -2991,21 +2993,8 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	//     }
 	// });
 
-
-	$("#mobilenumber").intlTelInput({
-		// dropdownContainer: "body",
-		 // geoIpLookup: function(callback) {
-	  //       $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-	  //         var countryCode = (resp && resp.country) ? resp.country : "";
-	  //         callback(countryCode);
-	  //       });
-	  //     },
-	     //initialCountry: "US",
-		 numberType: "MOBILE",
-		 utilsScript: "/assets/utils.js"
-	});
-
-
+	
+    
 	$('#welcomeBut').click(function () {
 	  $('#step-1').collapse('hide');
 	  $('#step-1').prev().addClass('collapsed');
@@ -3089,6 +3078,61 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		    //$(window).scrollTop(ele.offset().top).scrollLeft(ele.offset().left);
 		    $('html, body').animate({scrollTop: $("#"+ele).offset().top}, 2000);
 	 }
+
+
+	 // BEGIN: phone number functions
+	var telInput = $("#mobilenumber"),
+  	errorMsg = $("#error-msg"),
+  	validMsg = $("#valid-msg");
+
+	telInput.intlTelInput({
+		// dropdownContainer: "body",
+		geoIpLookup: function(callback) {
+	  	      $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+	  	        var countryCode = (resp && resp.country) ? resp.country : "";
+	  	        callback(countryCode);
+	  	      });
+	  	    },
+
+	     initialCountry: "<%=@countrycode %>",
+		 numberType: "MOBILE",
+		 utilsScript: "/assets/utils.js"
+	});
+
+	var reset = function() {
+	  telInput.removeClass("error");
+	  errorMsg.addClass("hide");
+	  validMsg.addClass("hide");
+	 
+	};
+
+	// on blur: validate
+	telInput.blur(function() {
+	  reset();
+	  if ($.trim(telInput.val())) {
+	    if (telInput.intlTelInput("isValidNumber")) {
+	      validMsg.removeClass("hide");
+	    } else {
+	      telInput.addClass("error");
+	      errorMsg.removeClass("hide");
+	    }
+	  }
+	});
+
+	telInput.on("countrychange", function(e, countryData) {
+  		var c = telInput.intlTelInput("getSelectedCountryData");
+  		//alert(c.iso2);
+  		$("#countrycode").val('');
+  		$("#countrycode").val(c.iso2);
+	});
+
+
+	// on keyup / change flag: reset
+	telInput.on("keyup change", reset);
+	// END: Phone number functions
+
+
+
 
 	 /*Int'l functions*/
 

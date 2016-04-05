@@ -98,6 +98,17 @@ select,
 textarea {
   font-family: 'Arimo', sans-serif;
 }
+
+#error-msg {
+  color: red;
+}
+#valid-msg {
+  color: #00C900;
+}
+input.error {
+  border: 1px solid #FF7C7C;
+}
+
 .page-box {
   min-height: 100%;
   height: auto !important;

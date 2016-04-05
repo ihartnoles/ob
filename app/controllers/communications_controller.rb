@@ -33,6 +33,7 @@ class CommunicationsController < ApplicationController
      @communication.contactByEmail = params[:contactByEmail] 
      @communication.contactByPhone = params[:contactByPhone]
      @communication.contactMobileNumber = params[:mobilenumber]     
+     @communication.countrycode = params[:countrycode]   
      @communication.save   
     
 

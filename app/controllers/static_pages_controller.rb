@@ -56,14 +56,23 @@ class StaticPagesController < ApplicationController
               @contact_email_flag =  ''
               @contact_mobile_flag = ''
               @contact_mobile_number = ''
+              @countrycode = ''
           else
             comm_preferences.each do |cp|
               @contact_id = cp['id']
               @contact_email_flag =  cp['contactByEmail']
               @contact_mobile_flag = cp['contactByPhone']
               @contact_mobile_number = cp['contactMobileNumber']
+              @countrycode = cp['countrycode']
               #puts YAML::dump(@contact_mobile_number)
             end
+
+            if !@contact_mobile_number.blank?
+                @displaynumber = @contact_mobile_number
+            else
+                @displaynumber = [@phone_area, @phone_number].join('.')
+            end           
+
           end
 
           #pull the commmunication pref. data for the particular znumber
