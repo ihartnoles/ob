@@ -386,7 +386,7 @@ Hello, <%= session[:cas_user] %>!
 							
 								<!-- <form class="form-box register-form form-validator"> -->
 								  <!-- <h3 class="title">Mobile Phone Information</h3> -->
-								  <p>If you wish to be contacted by mobile please enter the mobile number where we can contact you.</p>
+								  
 								  
 								  <!-- 
 								  <div class="form-group">
@@ -395,7 +395,7 @@ Hello, <%= session[:cas_user] %>!
 					              </div> 
 					              `-->
 
-								  <div class="form-group">
+								 
 								  
 									    <%= hidden_field_tag :znumber, @znum %>
 									    <%= hidden_field_tag :netid, @displayname %>
@@ -407,6 +407,9 @@ Hello, <%= session[:cas_user] %>!
 									    	<%= hidden_field_tag :znum, @znum %>									    
 									    <% end %>
 
+									  <div id="phonenumberdiv" class="form-group" <% if @contact_mobile_flag == 0 || @contact_mobile_flag.blank? %> style="display: none;" <% end %> >
+
+									  	<p>If you wish to be contacted by mobile please enter the mobile number where we can contact you.</p>
 
 										<label>Mobile number: <!-- <span class="required">*</span> --></label>
 
@@ -445,14 +448,16 @@ Hello, <%= session[:cas_user] %>!
 										
 										
 										<div>
-											<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
+
+										</div>
+											
+										
+									
+								  </div>
+								<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
 											<%# if  (communication_available == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
 												<br><%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>										
 											<%# end %>
-										</div>
-									
-								  </div>
-								
 																
 							  </div>
 							  <%# end %>
@@ -3236,6 +3241,16 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	 <% end %>
 
 
+	 $('#contactByPhone').change(function() {
+
+       if($('#contactByPhone').is(':checked')) {
+	 		$("#phonenumberdiv").show();
+	 	} else {
+	 		$("#phonenumberdiv").hide();
+	 	} 	
+
+	 }); 
+
 
  	
 	 $('#contactBut').click(function (e) {
@@ -3249,9 +3264,10 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	    
 	    if($('#contactByPhone').is(':checked')) {
 	    	 
-	    	//alert('contactByPhone is CHECKED');
+	    	
 
 	    	//alert( $('#mobilenumber').val().length );
+	    	$("#phonenumberdiv").show();
 
 	    	if ( $("#mobilenumber").val().length <= 0 )  {
 	 			alert('Please enter your valid phone number');
