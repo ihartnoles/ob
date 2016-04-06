@@ -416,25 +416,25 @@ module StaticPagesHelper
 
            case o['sprhold_hldd_code']
                  when 'AB','AC','TD','TZ'
-                    details = "- Please contact the Admissions Office at 561-297-3040".html_safe
+                    details = "- Please contact the <a href='http://www.fau.edu/admissions/contact.php' target='_blank'>Admissions Office</a> at 561-297-3040".html_safe
                  when 'AR'
-                    details = "- Please contact the Controllers Office at 561-297-6101 ".html_safe
+                    details = "- Please contact the <a href='http://www.fau.edu/controller/student-services/' target='_blank'>Controllers Office</a> at 561-297-6102 ".html_safe
                  when 'EG'
-                    details = "- Please contact the College of Engineering at 561-297-2780 or <a href='mailto:jeffries@fau.edu'>jeffries@fau.edu</a>".html_safe
+                    details = "- Please contact the <a href='http://www.dessa.fau.edu/' target='_blank'>College of Engineering</a> at 561-297-2780 or <a href='mailto:engineering-advising@fau.edu'>engineering-advising@fau.edu</a>".html_safe
                  when 'HD'
-                    details = "- Please contact the HS Dual Enrollment Registrar at 561-297-2009".html_safe
+                    details = "- Please contact the <a href='http://www.fau.edu/registrar/' target='_blank'>HS Dual Enrollment Registrar</a> at 561-297-2009".html_safe
                  when 'IM'
-                    details = "- Please contact Student Health Services at 561-297-0049".html_safe
+                    details = "- Please contact  <a href='http://www.fau.edu/shs/' target='_blank'>Student Health Services</a> at 561-297-0049".html_safe
                  when 'IS','MM'
-                    details = "- Please contact International Student and Scholar Services at 561-297-3049 or <a href='mailto:isss@fau.edu'>isss@fau.edu</a>".html_safe
+                    details = "- Please contact <a href='http://www.fau.edu/isss/' target='_blank'>International Student and Scholar Services</a> at 561-297-3049 or <a href='mailto:isss@fau.edu'>isss@fau.edu</a>".html_safe
                  when 'NV'
-                    details = "- Please contact Navitas at FAU at 561-297-4689 <a href='mailto:admissionsFAU@navitas.com'>admissionsFAU@navitas.com</a>".html_safe
+                    details = "- Please contact <a href='https://www.fau.navitas.com/' target='_blank'>Navitas at FAU</a> at 561-297-4689 <a href='mailto:admissionsFAU@navitas.com'>admissionsFAU@navitas.com</a>".html_safe
                  when 'OA','OR','OT'
-                    details = "- Please contact the Orientation Office at 561-297-2733 or <a href='mailto:orientme@fau.edu'>orientme@fau.edu</a>".html_safe
+                    details = "- Please contact the <a href='http://www.fau.edu/orientation/about/office-info.php' target='_blank'>Orientation Office</a> at 561-297-2733 or <a href='mailto:orientme@fau.edu'>orientme@fau.edu</a>".html_safe
                  when 'RB'
-                    details = "- Please contact the Registrar's Office at 561-297-3050 or <a href='mailto:registrar@fau.edu'>registrar@fau.edu</a>".html_safe
+                    details = "- Please contact the <a href='http://www.fau.edu/registrar/' target='_blank'>Registrar's Office</a> at 561-297-3050 or <a href='mailto:registrar@fau.edu'>registrar@fau.edu</a>".html_safe
                  when 'UN'
-                    details = "- Please contact Freshman Advising at 561-297-3064 or <a href='mailto:advisingservices@fau.edu'>advisingservices@fau.edu</a>".html_safe
+                    details = "- Please contact <a href='https://www.fau.edu/uas/' target='_blank'>Freshman Advising</a> at 561-297-3064 or <a href='mailto:advisingservices@fau.edu'>advisingservices@fau.edu</a>".html_safe
                  else
                     details = ""
                 end
