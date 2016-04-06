@@ -66,7 +66,7 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.immunization_status(id)
-			get = connection.exec_query("SELECT sprhold_hldd_code, im_exists from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)} AND sprhold_hldd_code = 'IM'")
+			get = connection.exec_query("SELECT sprhold_hldd_code, im_exists from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 
