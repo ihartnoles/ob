@@ -63,7 +63,10 @@ Hello, <%= session[:cas_user] %>!
 	      <h4 class="title">
 	      	Welcome to FAU <%= get_fullname(znum) %>! Let's get started!</h4>
 
+	     <% cache('welcometext') do %>
 	      <p>We want your transition to college life to be as smooth as possible. Below is a checklist of things to keep in mind and tasks you will need to complete prior to your arrival on campus.</p><br>
+	     <% end %>
+
 	     <% if params[:links] %>
 	     <hr>
 	      <p>
@@ -101,19 +104,14 @@ Hello, <%= session[:cas_user] %>!
 			
 			<div id="step-1" class="collapse in">
 			  <div class="step-content">
-			
+					
+				
 					<h3 class="title">Go Owls!</h3>
 					
 					<a name="raptors"></a>
 
 					<p>Congratulations on your acceptance to Florida Atlantic University for <%= term_display %> <%= year_display %>!  We are so excited to have you join the Owl family!  This is an exciting time, with lots of steps to prepare for your first day on campus.  Please read through these pages carefully, as there is a lot of information to know before you arrive on campus. 
-										
-					
-					<!-- <p>
-					<div align="center">
-						<iframe width="640" height="390" frameborder="0" style="max-width:100%;" allowfullscreen="" src="//www.youtube.com/embed?listtype=playlist&nnMTKjhOVq8&list=PLnOOOyLqcjkjTUf4XLmwuBUomAq70Bfsc&rel=0&index=1"></iframe>
-					</div>
-					</p> -->
+								
 
 					<div align="center">
 
@@ -124,30 +122,7 @@ Hello, <%= session[:cas_user] %>!
 
 						<%#= image_tag "data:image/jpeg;base64,#{@OwlImage}" %> 	
 
-					</div>
-									
-				<!-- 	<div id="divForm" style="display:none">
-						<div class="row">					     
-					     	<div class="bottom-padding col-sm-12 col-md-12">
-								<div class="title-box">
-								  <h2 class="title">Additional Information</h2>
-								</div>
-								
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis aliquam id pariatur accusantium perspiciatis deserunt officiis similique nihil dolor blanditiis dignissimos iure praesentium vero suscipit doloribus aperiam unde hic non sint neque molestiae consectetur voluptatum beatae ratione corporis repellat labore est ipsa voluptates temporibus! Possimus?</p>
-
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis aliquam id pariatur accusantium perspiciatis deserunt officiis similique nihil dolor blanditiis dignissimos iure praesentium vero suscipit doloribus aperiam unde hic non sint neque molestiae consectetur voluptatum beatae ratione corporis repellat labore est ipsa voluptates temporibus! Possimus?</p>
-
-
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis aliquam id pariatur accusantium perspiciatis deserunt officiis similique nihil dolor blanditiis dignissimos iure praesentium vero suscipit doloribus aperiam unde hic non sint neque molestiae consectetur voluptatum beatae ratione corporis repellat labore est ipsa voluptates temporibus! Possimus?</p>
-
-								<!-- <button class="btn btn-block">Dont Wait - Join Us Now</button> -->
-							<!--  </div>					    
-						</div>
-					</div>
-					 -->
-
-
-					
+					</div>	
 					
 					
 					<br><button type="button" class="btn btn-continue btn-danger" id="welcomeBut">Continue</button>
@@ -157,80 +132,12 @@ Hello, <%= session[:cas_user] %>!
 			</div>
 		  </li>
 
-		   <!-- <li class="panel">
-		  	
-		  	<%# if  account_available == 1 || account_bypass == 1%>
-				<a id="accounthref" href="#step-account" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="accounttitle">			
-			<%# else %>
-				<a id="accounthref" href="#step-account" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="accounttitle">
-			<%# end %>
-
-			
-			<%# if account_available == 1 %>
-			 <!--  <div class="number"><%= get_statusicon(account_available, account_complete, account_bypass) %></div> -->
-			<%# end %>
-            
-            <!-- <h6><b>CREATE ACCOUNT</b></h6> -->
-
-			<!-- </a> -->
-			
-			<!-- <div id="step-account" class="collapse">
-			  <div class="step-content">
-			  	<h3 class="title">Claiming Your Account</h3>
-			  		
-			  		<%# if account_bypass == 1 %>			  		
-							<p> An administrator has bypassed (overridden) this section for you.</p>
-					<%# else %>						
-				  		 <p>The FAUNet ID is the account name you will use to login to many of the systems you will utilize in your daily life at Florida Atlantic University. It is a part of your official FAU e-mail address (e.g., FAUNetID@fau.edu). All students, faculty and staff are automatically granted a FAUNet ID and may claim their account by logging into the MyFAU portal. While many online services provided by the University require a separate password, OIT is working to synchronize these passwords while striving to improve the security of the system.</p>
-
-				  		   <!--<a title="FAU Account Claiming" href="#" id="claimAccountBut">[Startz claiming your account]</a> -->
-
-				  		<%# if account_complete == 1 %>
-
-				  			<!-- <div class="alert alert-border <%#if account_complete == 1 %>alert-success<%#else%>alert-danger<%#end%> text-center fade in">
-								<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
-							<!-- 	<p>
-								<strong>Congrats on claiming your account! <br> You can now use your netid and password to access all the electronic systems critical to your daily life at FAU!</strong>
-								</p>					
-					        </div> -->
-
-					        <!-- <div class="buttons-box text-right">
-				  		 		<%#= form_tag('/update_ftic_account_module' , {:class => 'register-form form-validator'})  do %>
-				  		 		 	<%#= hidden_field_tag :znumber, @znum %>
-								    <%#= hidden_field_tag :netid, @displayname %>
-								    <%#= hidden_field_tag :ftic_id, @ftic_id %>
-								    <%#= hidden_field_tag :account, 1 %>
-								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-									<%# if params[:znum] %>
-									   	<%#= hidden_field_tag :znum, @znum %>									    
-									<%# end %>
-							    	 <!-- <button type="submit" class="btn btn-danger" id="accountBut">Continue</button>	 -->	
-						 		<%# end %>				 
-						 	<!-- </div> -->
-						 
-
-					     <%# else %>
-				  		<!--  <div class="alert alert-border alert-danger text-center fade in">
-					  		 <p>
-					  		 	<strong>You must claim your FAU account before going any further. Please click on the link below to claim your account.<br>When you have completed the process you will have to log into this system again.</strong>
-					  		 	<a title="FAU Account Claiming" href="https://accountst.fau.edu">[Start claiming your account]</a>
-					  		 </p>			  		
-				  		 </div> -->
-				  		
-						<%# end %>
-					<%# end %>
-			 <!--  </div>
-			</div>
-		  </li> -->
-
+		
 		   <li class="panel">
 		  	
-		  	<!-- <a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify">-->
-
+		  	
 			<% if (@verify_available == 1 || @verify_bypass == 1) && ( account_complete == 1 ) %>
-				<a id="verifyhref" href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" >
-			<%# elsif  (@verify_available == 1 || @verify_bypass == 1) %>
-				<!-- <a href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="verify"> -->
+				<a id="verifyhref" href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" >		
 			<% else %>
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" >
 			<% end %>	
@@ -339,14 +246,18 @@ Hello, <%= session[:cas_user] %>!
 			  	<h3 class="title">How do you want to be contacted?</h3>
 			  	
 			  		<% if communication_bypass == 1 %>			  								  										
-						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
-						</div>						
+						<% cache('bypassalert') do %>
+							<div class="alert alert-warning">
+								<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							</div>	
+						<% end %>											
 					<% end %>
 
+					<% cache('commpreftext') do %>
 				  		 <p>Stay up to date with your progress! Receive notifications about outstanding issues or items which require your attention. Please note the notifications/updates you receive are specific to this process. All other official university communication will occur through your FAU email address.</p>
 
 				  		 <p>Please select at least one option:</p>
+				  	<% end %>
 			
 			
 						<!-- <form>
@@ -380,22 +291,7 @@ Hello, <%= session[:cas_user] %>!
 									<input type="checkbox" name="contactByPhone" id="contactByPhone" value="1" > Mobile/Text Messages
 								 <% end %>
 						  	</label>
-						  <!-- </div> -->
-
-						 
-							
-								<!-- <form class="form-box register-form form-validator"> -->
-								  <!-- <h3 class="title">Mobile Phone Information</h3> -->
-								  
-								  
-								  <!-- 
-								  <div class="form-group">
-									<label>Full name: <span class="required">*</span></label>
-					                <input type="text" class="form-control" name="fullName" data-bv-trigger="keyup" required data-bv-notempty-message="The full name cannot be empty">
-					              </div> 
-					              `-->
-
-								 
+						 								 
 								  
 									    <%= hidden_field_tag :znumber, @znum %>
 									    <%= hidden_field_tag :netid, @displayname %>
@@ -409,14 +305,10 @@ Hello, <%= session[:cas_user] %>!
 
 									  <div id="phonenumberdiv" class="form-group" <% if @contact_mobile_flag == 0 || @contact_mobile_flag.blank? %> style="display: none;" <% end %> >
 
-									  	<p>If you wish to be contacted by mobile please enter the mobile number where we can contact you.</p>
+									  	<p>Please enter the mobile number where we can contact you.</p>
 
-										<label>Mobile number: <!-- <span class="required">*</span> --></label>
-
-										<%#= text_field_tag :mobilenumber, :required => true, :pattern => "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" %>
-
-										
-										<%#= @contact_mobile_number %> <br>
+										<label>Mobile number:</label>
+										<br>
 										
 
 										<!-- <input type="text" class="form-control" name="mobilenumber" id="mobilenumber" value="<%#= @contact_mobile_number %>" > -->
@@ -424,29 +316,7 @@ Hello, <%= session[:cas_user] %>!
 											<input type="hidden" name="countrycode" id="countrycode" value="">
 
 											<span id="valid-msg" class="hide">✓ Valid</span>
-											<span id="error-msg" class="hide">Invalid number</span>
-																				
-
-											
-
-											<!-- <input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%#= @contact_mobile_number %>"
-											  data-bv-trigger="blur"
-											  data-bv-message="The mobile number is not valid"
-											  required data-bv-notempty-message="The mobile number is required and cannot be empty"
-											  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" data-bv-regexp-message="The mobile number can only consist of alphabetical, number, dot and underscore"> -->
-										
-										
-											
-											<!-- <input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="<%#= @phone_area %><%#= @phone_number %>" <%# if @contact_mobile_flag == 1 %><%# end %> > -->
-
-										<!-- 	<input type="tel" class="form-control" name="mobilenumber" id="mobilenumber" value="" 
-											  data-bv-trigger="blur"
-											  data-bv-message="The mobile number is not valid"
-											  required data-bv-notempty-message="The mobile number is required and cannot be empty"
-											  pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" data-bv-regexp-message="The mobile number can only consist of alphabetical, number, dot and underscore"> -->
-
-										
-										
+											<span id="error-msg" class="hide">Invalid number</span>			
 										<div>
 
 										</div>
@@ -454,14 +324,12 @@ Hello, <%= session[:cas_user] %>!
 										
 									
 								  </div>
-								<!-- <input type="submit" name="submit" value="save" id="contactBut" > -->
-											<%# if  (communication_available == 1 ) && ( @deposit_complete == 1 || @deposit_bypass == 1) || communication_bypass == 1 %>
-												<br><%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>										
-											<%# end %>
+							
+									<br><%= submit_tag "Continue", :id=> "contactBut",  class: "btn btn-danger" %>										
+										
 																
 							  </div>
-							  <%# end %>
-
+							  
 						  <div class="clearfix"></div>					  
 				  		
 					    <% end %>
@@ -473,19 +341,11 @@ Hello, <%= session[:cas_user] %>!
 
 
 	<% if @isInternationalStudent == 1 %>	
-		    <li class="panel">
+		    <li class="panel">		  	
 		  	
-		  	<%# if  @deposit_available == 1 && @deposit_complete== 0 %>
-				<a id="visahref" href="#step-visa" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle">
-			<%# elsif  (@deposit_available == 1 && @deposit_complete == 1 ) || @deposit_bypass == 1 %>
-				<!-- <a href="#step-1A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle"> -->
-			<%# else %>
-				<!-- <a href="#step-1A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="studentvisatitle"> -->
-			<%# end %>
-
-
+			<a id="visahref" href="#step-visa" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="studentvisatitle">
+			
 			  <div class="number"><!-- Step 2 -->
-			  	<%#= get_statusicon(deposit_available, deposit_complete, deposit_bypass) %> 
 			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i>
 			  </div>
 			  <h6><b>INTERNATIONAL STUDENT VISA PROCESSING</b></h6>
@@ -493,13 +353,9 @@ Hello, <%= session[:cas_user] %>!
 			
 			<div id="step-visa" class="collapse">
 			  <div class="step-content">
+			  	<% cache('intlvisatext') do %>
 			  	<h3 class="title">International Student Visa Processing</h3>
-			 
-						<%# if @deposit_bypass == 1 %>			  		
-							<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
-						<%# else %>
-
-					  		<p>Congratulations and Welcome to FAU! International students who wish to study in the U.S. must obtain the appropriate visa classification in order to engage in full-time study (F-1 visa or J-1 visa). International Student and Scholar Services (ISSS) assists international students in obtaining the Certification of Eligibility (I-20 or DS-2019), required to obtain the F-1 or J-1 visa classification.</p> 
+			 		  		<p>Congratulations and Welcome to FAU! International students who wish to study in the U.S. must obtain the appropriate visa classification in order to engage in full-time study (F-1 visa or J-1 visa). International Student and Scholar Services (ISSS) assists international students in obtaining the Certification of Eligibility (I-20 or DS-2019), required to obtain the F-1 or J-1 visa classification.</p> 
 							
 							<p>If you have any questions pertaining to the information below, email <a href="mailto:ISSSAdmissionDocs@fau.edu">ISSSAdmissionDocs@fau.edu</a> </p>
 
@@ -521,9 +377,7 @@ Hello, <%= session[:cas_user] %>!
 							<p>If you currently hold another non-immigrant visa classification (for example, B-1/B-2, F-2, H-4, L-2, E-2, etc.) and wish to request a change of status to F-1 or J-1, email <a href="mailto:isss@fau.edu">isss@fau.edu</a> for an appointment (in-person or via phone/skype) with an ISSS advisor.</p>
 
 							<p>If you are applying for permanent residence (‘green card’) or hold other types of immigration classifications (i.e., Deferred Action, political asylum, temporary protected status, etc.) you do not need to supply documentation to ISSS. Please contact Admissions directly at <a href="mailto:admissions@fau.edu">admissions@fau.edu</a>. Once your record is updated with the appropriate information, you will no longer see the International Student Visa Processing information in your account.</p>
-
-	
-			   			  <%# end %>
+    		   			 <% end %>
 
                          <div class="buttons-box text-right">
 						  <button type="button" class="btn btn-danger" id="visaBut">Continue</button>						 
@@ -536,11 +390,8 @@ Hello, <%= session[:cas_user] %>!
 	
 	<% end %>
 
-		  <li class="panel">
-		  	
-		  	<%#if  deposit_available == 1 && deposit_complete== 0 %>
-				<!-- <a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle"> -->
-			<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) %>
+		  <li class="panel">		  	
+		  	<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) %>
 				<a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
 			<% else %>
 				<a id="deposithref" href="#step-deposit" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
@@ -559,24 +410,22 @@ Hello, <%= session[:cas_user] %>!
 			  	<h3 class="title">Paying Your Admissions Deposit:</h3>
 			 
 						<% if @deposit_bypass == 1 %>			  										
+							<% cache('bypassalert') do %>
 								<div class="alert alert-warning">
 									<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 								</div>
-
-								
+							<% end %>								
 						<% end %>
 
 						<%# else %>
-
+						<% cache('admissiondeposittext') do %>
 					  		<p>The non-refundable admissions deposit is for admitted freshman students only.</p>
 					 		 
 					 		<p>All admitted freshmen must confirm their intention to enroll and secure their space in the class with a $200.00 <strong>non-refundable</strong> deposit. The $200 is applied to your tuition and fees for the semester in which you are admitted to FAU. It will be forfeited if you pay the deposit and choose not to enroll at FAU for that term, or if you submit a change of entry request for a different term. Your space will be released to another applicant if the deposit is not received by<span style="text-decoration: underline;"> May 1 or within two weeks of admission if admitted after May 1 <sup>st</sup></span>.
-	                         <br><br>The deposit is applied to your account when you enroll and will be used toward your tuition and fees. It will be forfeited if you do not enroll. <a title="FAU Admissions Deposit" href="http://www.fau.edu/admissions/tuitiondeposit.php" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a></p>
-					 		
-					 		 <!-- <a href="https://epay.fau.edu:8443/C20081test_tsa/web/welcome.jsp" target="_blank">Pay Tuition Touchnet:</a> -->
+	                         <br><br>The deposit is applied to your account when you enroll and will be used toward your tuition and fees. It will be forfeited if you do not enroll. <a title="FAU Admissions Deposit" href="http://www.fau.edu/admissions/tuitiondeposit.php" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a></p>				 		
+					 	<% end %>
 
 					 		<div class="alert alert-border  <%if deposit_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
-								<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 								<p>
 									<strong>
 										<%= get_tuition_deposit_status(znum) %>
@@ -614,27 +463,22 @@ Hello, <%= session[:cas_user] %>!
 
 
 		  <% if @isInternationalStudent != 1 %>  
-		  <li class="panel">
-		  	<% #if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
-			   <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<%# else %>
-               <!-- <a id="finaidhref" href="#step-finaid" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
-			<%# end %>
-
-			<%# if (finaid_available == 1 || finaid_bypass == 1)  && (residency_complete == 1 || residency_bypass == 1 ) %>
+		  <li class="panel">		  	
+			  <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
 			  <div class="number"><!-- Step 6 --><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> </div>
-			<%# end %>
-
+			
 			  <h6><b>FINANCIAL AID</b></h6>
 			</a>
 			
 			<div id="step-finaid" class="collapse">
 			   <!--  Begin FIRST FIN AID PANEL  -->
 			   <div class="step-content">
-			   	<% if finaid_bypass == 1 %>			  		
+			   	<% if finaid_bypass == 1 %>		
+			   		<% cache('bypassalert') do %>	  		
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
+					<% end %>
 			    <% end %>
 		  				
 							<% if @fafsa_complete == 0 || @fafsa_complete.nil? && ( @finaidneedflag.nil?|| @finaidneedflag  == "YES") %>
@@ -645,9 +489,11 @@ Hello, <%= session[:cas_user] %>!
 			  				<% end %>
 
 			  				<% if @finaidneedflag  == "NO" %>
+	  							<% cache('finaidalert') do %>
 	  							<div class="alert alert-warning text-center fade in">
 			  						<b>You have indicated you are NOT interested in Financial Aid. As such you may skip this section. Should your situation change please remember there are strict deadlines as to when you can apply for Financial Aid.</b>
 			  					</div>
+			  					<% end %>
 			  				<% end %>
 
 			  				<%# if @fafsa_complete == 1 %>
@@ -658,12 +504,10 @@ Hello, <%= session[:cas_user] %>!
 			  					<p></p>
 			  					<p>
 			  						<div class="checkbox">
-				  					     <%= radio_button_tag 'needFinAid', 'YES', !!(@finaidneedflag == "YES" || @finaidneedflag.nil?) %>
-				  					     <!-- <input name="needFinAid" id="needFinAid" type="radio" value="1"> --> Yes, I do.
+				  					     <%= radio_button_tag 'needFinAid', 'YES', !!(@finaidneedflag == "YES" || @finaidneedflag.nil?) %>Yes, I do.
 			  					    </div>
 			  					    <div class="checkbox">
-			  						 	<%= radio_button_tag 'needFinAid', 'NO', !!(@finaidneedflag == "NO") %>
-			  						 	<!-- <input name="needFinAid" id="needFinAid" type="radio" value="0"> --> No, I'm not interested.
+			  						 	<%= radio_button_tag 'needFinAid', 'NO', !!(@finaidneedflag == "NO") %>No, I'm not interested.
 			  						</div>
 			  					<p>
 			  				</div>
@@ -672,13 +516,7 @@ Hello, <%= session[:cas_user] %>!
 			  			<div id="finaiddeets" <% if @finaidneedflag == "NO"%>style="display: none;"<%end%> >
 			  				<h3 class="title">The Financial Aid Steps</h3>
 			  				<p>
-			  					<!-- <ol> -->
-			  						<%# if @fafsa_complete == 0 %>
-			  							
-			  							<!-- <li> <img src="/assets/Delete_8x8.png" alt="" >&nbsp;<a href="http://fafsa.gov" target="_blank">Complete your Free Application for Federal Student Aid at FAFSA.gov</a></li> -->
-
-			  						<%# else %>
-			  						
+			  							  						
 			  						<table class="table table-striped text-left order-details">
 			  							<thead>
 						  				<tr>
@@ -688,9 +526,8 @@ Hello, <%= session[:cas_user] %>!
 									  			  <th class="product-total"><%= fas['finaidyear'] %></th>
 									  			<% end %>
 						  					<% else %>
-						  						  <th class="product-total"><%#= @term %> Term</th>
-						  					<% end %>
-						  					<!-- <th class="product-total">Aid Year</th><th class="product-total">Status</th> -->
+						  						  <th class="product-total"><%= @term %></th>
+						  					<% end %>						  				
 						  				</tr>
 						  				</thead>
 
@@ -774,9 +611,6 @@ Hello, <%= session[:cas_user] %>!
 			  							</tr>
 			  						</table>
 				  			<%# end %>
-
-			  					<!-- </ol> -->
-			  						
 			  						
 			  				</p> 
 
@@ -790,16 +624,16 @@ Hello, <%= session[:cas_user] %>!
                   <br>
 
                   	<% if @fafsa_complete == 1 %>
+					  	<% cache('finaiddoctext') do %>	
 					  		<h3 class="title">Your Financial Aid Documents</h3>
 
-					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 
-					  			<!-- <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" target="_blank">[More Information]</a> | 
-					  			<a title="FAU Financial Aid Forms" href="http://www.fau.edu/finaid/resources/forms.php" target="_blank">[FAFSA Form Information]</a> | -->
+					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 		  			
 					  			
 
 					  			<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
 
 					  		</p>
+					  	<% end %>
 
 					  	
 						  		<table class="table table-striped text-left order-details">
@@ -807,12 +641,12 @@ Hello, <%= session[:cas_user] %>!
 						  				<tr>
 						  					<th class="product-name">FAFSA Document</th>
 						  					<% if @term == 'Summer' %>
-						  						<th class="product-total">Aid Year</th><th class="product-total">Status</th>
+						  						<th  align="right">Aid Year</th><th align="right">Status</th>
 						  						<%# @fin_aid_semesters.each do |fas| %>
 									  			  <!-- <th class="product-total"><%#= fas['semester'] %> <%#= fas['year'] %></th> -->
 									  			<%# end %>
 						  					<% else %>
-						  						<th class="product-total"><%= @term %> Term</th>
+						  						<th  align="right">Aid Year</th><th align="right"><%#= @term %> Status</th>
 						  					<% end %>						  					
 						  				</tr>
 						  			</thead>
@@ -849,10 +683,7 @@ Hello, <%= session[:cas_user] %>!
 						  		<br>
 
 					  		</p>
-
 								
-				<!-- <button type="button" class="btn btn-danger">Continue</button> -->
-
 				<% end %>
 			</div><!-- end of deets -->
 
@@ -875,10 +706,6 @@ Hello, <%= session[:cas_user] %>!
 				<% end %>
 			   </div>
 			    <!--  END FIRST FIN AID PANEL  -->
-
-
-		
-
 			</div>
 		  </li>
 		<% end %>
@@ -910,40 +737,26 @@ Hello, <%= session[:cas_user] %>!
 		  		<h3 class="title">Immunization Policy</h3>
 
 		  		<% if immunization_bypass == 1 %>			  											  								  										
+					<% cache('bypassalert') do %>
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
-						</div>						
+						</div>					
+					<% end %>	
 			    <% end %>
 
-		  		<p>To comply with Florida Board of Governors Regulations, prior to registration, all students must submit a signed FAU Immunization Form and documented proof of immunizations to measles and rubella. In addition, all students must provide documentation of vaccinations against meningococcal meningitis and hepatitis B or provide a signed waiver for each declined vaccination. Students will not be allowed to register for classes until all documentation has been approved by the Student Health Services Immunization Office.</p>
-
-		  		<!-- <p>
-		  			
-		  			<strong>		  				
-		  				<div class="alert alert-info">
-				 			<%= get_immunization_status(znum) %><br>
-						</div>
-		  			</strong>
-		  		</p> -->
-
+			    <% cache('immtxt') do %>
+		  			<p>To comply with Florida Board of Governors Regulations, prior to registration, all students must submit a signed FAU Immunization Form and documented proof of immunizations to measles and rubella. In addition, all students must provide documentation of vaccinations against meningococcal meningitis and hepatitis B or provide a signed waiver for each declined vaccination. Students will not be allowed to register for classes until all documentation has been approved by the Student Health Services Immunization Office.</p>
+		  		<% end %>
 
 		  		<div class="alert alert-border <%if @immunization_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
-					
-					<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 					<p>
 						<strong>
 							<%= get_immunization_status(znum) %>
 						</strong>
 					</p>					
    			    </div>
-		  		
 
-		  		<!-- <div class="buttons-box text-right">
-				  <button type="button" class="btn btn-danger" id="immunizationBut">Continue</button> 
-				</div> -->
-
-				 <% if  (immunization_available == 1 && @immunization_complete == 1 ) || immunization_bypass == 1 && deposit_complete == 1%>
-						   	
+				 <% if  (immunization_available == 1 && @immunization_complete == 1 ) || immunization_bypass == 1 && deposit_complete == 1%>						   	
 						   	<div class="buttons-box text-right">
 				  		 		<%= form_tag('/update_ftic_immunization_module' , {:class => 'register-form form-validator'})  do %>
 				  		 		 	<%= hidden_field_tag :znumber, @znum %>
@@ -959,11 +772,6 @@ Hello, <%= session[:cas_user] %>!
 						 		<% end %>				 
 						 	</div>
 						 <% end %>
-					
-				<!-- communication pref and immunization holds -->
-
-
-
 			  </div> 
 			
 			</div>
@@ -973,14 +781,8 @@ Hello, <%= session[:cas_user] %>!
 
 
 <% if @isInternationalStudent == 1 %>	
-		  <li class="panel">
-		  <%# if emergency_available == 1 && emergency_complete == 0 %>
-		  	<a id="medicalhref" href="#step-intl-medical" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <%# elsif (emergency_available == 1 && emergency_complete == 1) || emergencybypass == 1 %>
-		  	<!-- <a href="#step-5A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
-		  <%# else %>
-		    <!-- <a href="#step-5A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" -->
-		  <%# end %>
+		  <li class="panel">		
+		  	<a id="medicalhref" href="#step-intl-medical" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
 
 			  <div class="number"><!-- Step 15 --> <%#= get_statusicon(emergency_available, emergency_complete, emergencybypass) %>
 			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i>
@@ -989,14 +791,10 @@ Hello, <%= session[:cas_user] %>!
 			</a>
 			
 			<div id="step-intl-medical" class="collapse">				   
-			  <div class="step-content">			  		
+			  <div class="step-content">
+			  <% cache('intlmedtext') do %>			  		
 		  		<h3 class="title">International Student Medical Insurance</h3>
-				<!-- <p> Please be on the lookout for the FAU Alert and Statement of Responsibility forms/screens when you login to Self Service for the first time. You  must verify and submit both before the respective holds are lifted and access is granted to Self Service.</p> -->
-
-				<%# if emergencybypass == 1 %>			  		
-						<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
-				<%# else %>
-					
+			
 					 <p>
 					 	All international students are permitted to register for classes at Florida Atlantic University (FAU) only after demonstrating that they hold medical insurance coverage which meets the guidelines set by the Florida Board of Governors Regulation BOG 6.009 and FAU Regulation 4.009 International students with F-1 and J-1 status are required to maintain continuous insurance coverage throughout the entire duration of their association with FAU (including any period authorized for academic training or authorized vacation or leave).  International students beginning enrollment in the fall semester must show proof of insurance for the full academic year, including the summer semester.  Students beginning enrollment in the spring or summer semesters, must have coverage extending from at least the beginning of the term to the third week of August. Misrepresenting or willfully failing to maintain appropriate medical insurance coverage will result in serious consequences for the student.
 					 </p>
@@ -1011,11 +809,10 @@ Hello, <%= session[:cas_user] %>!
 					 	<strong>OPTION II</strong><br>
 							Students who wish to seek medical insurance coverage under a non-FAU plan must submit the <a href="http://www.fau.edu/shs/PDFs/Alternate_Insurance_Form_2015_2016.pdf" onclick="window.open(this.href, 'insurance form','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Alternate Insurance Compliance Form</a> in lieu of purchasing the FAU insurance plan for international students.
 					 </p>
+				<% end %>
 					 <p>
-					 	<!-- <em><b>MM hold is manually removed by Student Health Services.</b></em> -->
-					 </p>
-				<%# end %>
-
+					 	
+					 </p>				
 					<div class="buttons-box text-right">
 						  <button type="button" class="btn btn-danger" id="medicalBut">Continue</button>						 
 					</div>
@@ -1033,29 +830,24 @@ Hello, <%= session[:cas_user] %>!
 		  <% else %>
 		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
-
 		  
 		  <% if (residency_available == 1  || residency_bypass == 1 || residency_complete == 1 )  &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 7 --> <%= get_statusicon(residency_available, residency_complete, residency_bypass) %> </div>
 		  <% end %>
-
 			  <h6><b>RESIDENCY VALIDATION</b></h6>
-			</a>
-			
-			<div id="step-residency" class="collapse">	
-
-			   
-			  <div class="step-content">
-			  		
+			</a>			
+			<div id="step-residency" class="collapse">				   
+			  <div class="step-content">			  		
 		  		<h3 class="title">Residency for tuition purposes</h3>
-
-		  		<% if residency_bypass == 1 %>			  									  											  								  										
-						<div class="alert alert-warning">
-							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
-						</div>						
+		  		<% if residency_bypass == 1 %>					  											  								  										
+						<% cache('bypassalert') do %>
+							<div class="alert alert-warning">
+								<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							</div>	
+						<% end %>					
 			    <% end %>
 
-
+			    <% cache('residencytxt') do %>
 			  		<p>Florida Residency for Tuition Purposes refers to whether you are an in-state Florida resident or an out-of-state resident, and this classification determines your tuition cost as defined by Florida state statute 1009.21 and the State Board of Education Rule 6A-10.044. Students are encouraged to review the following documents for additional information.<br> 
 	                     <br>All applicants must complete the Residency Classification for Tuition Purposes section of the application and submit the required documentation, regardless of the duration of their presence in Florida. A Florida resident for tuition purposes is defined as an individual who has resided in the state for 12 consecutive months while not enrolled in an institution of higher learning, prior to the beginning of classes, and who has established legal ties in Florida according to Florida Statute 1009.21.<br> 
 	                     <br>Florida Legislature has recently implemented significant changes to Florida Statute 1009.21. For updated information, please visit <a title="Florida Legislature" href="http://www.flsenate.gov/data/session/2009/Senate/bills/amendments/pdf/sb1696c2588994.pdf" target="_blank">here</a>. Florida residency content can be found beginning on page 10. 
@@ -1063,6 +855,8 @@ Hello, <%= session[:cas_user] %>!
 	                    <a title="FAU Residency Guidelines" href="http://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&Search_String=&URL=1000-1099/1009/Sections/1009.21.html" onclick="window.open(this.href, 'residency','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> | <a href="http://www.fau.edu/finaid/other/cost-of-attendance.php" onclick="window.open(this.href, 'attendance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Cost of Attendance]</a>
 
 	                 </p>
+	               <% end %>
+
 
 	                    <div class="alert alert-border <%if residency_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
 							<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
@@ -1129,17 +923,20 @@ Hello, <%= session[:cas_user] %>!
 		  		<h3 class="title">On-Campus Housing </h3>
 
 		  		<% if @housingmealplanbypass == 1 %>			  		
-							<div class="alert alert-warning">
+					<% cache('bypassalert') do %>
+						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>						
+					<% end %>
 			    <% end %>
 
-
-		  		<p>
-		  		   All full-time freshmen are required to live in University Housing. Exemptions are made for students residing with their parent or legal guardian within a 30-mile commutable radius of the campus or students who
-		  		   are at least 21 years of age. Students who wish to be exempt must apply prior to the start of the academic year.
-		  		 <a title="FAU Housing" href="http://www.fau.edu/housing/" onclick="window.open(this.href, 'housing','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> 
-		  		</p>
+			    <% cache('housingtxt') do %>
+			  		<p>
+			  		   All full-time freshmen are required to live in University Housing. Exemptions are made for students residing with their parent or legal guardian within a 30-mile commutable radius of the campus or students who
+			  		   are at least 21 years of age. Students who wish to be exempt must apply prior to the start of the academic year.
+			  		 <a title="FAU Housing" href="http://www.fau.edu/housing/" onclick="window.open(this.href, 'housing','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> 
+			  		</p>
+		  		<% end %>
 
 		  		<h3 class="title">Housing Requirement</h3>
 
@@ -1226,18 +1023,19 @@ Hello, <%= session[:cas_user] %>!
 
 	              <h3 class="title">Meal Plan Status</h3>
 	                 <% if @housing_exemption == 1 ||  @housing_fee_required == 0 %>	
-	                 	  <div class="alert alert-border alert-info text-center fade in">
-	                 	  	<p>Students who either commute (drive to school) or live in the upperclassmen student apartments (Innovation Village, University Village) can purchase any of these particular meal plan options known as a profiler package!</p>
+	                 	  <% cache('mealplantxt') do %>
+		                 	  <div class="alert alert-border alert-info text-center fade in">
+		                 	  	<p>Students who either commute (drive to school) or live in the upperclassmen student apartments (Innovation Village, University Village) can purchase any of these particular meal plan options known as a profiler package!</p>
 
-							<p>
+								<p>
+									By purchasing one of these profiler meal plan packages, you will avoid waiting in the occasional longer lines, sales tax when paying cash or credit at the Atlantic Dining Hall, and save that parking spot! You can even save an average of $175 dollars with a commuter meal plan.  <br>
 
-By purchasing one of these profiler meal plan packages, you will avoid waiting in the occasional longer lines, sales tax when paying cash or credit at the Atlantic Dining Hall, and save that parking spot! You can even save an average of $175 dollars with a commuter meal plan.  <br>
-
-<div align="center">
-	<br><a id="mealplan" class="btn btn-info" href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">Purchase a meal plan</a>
-</div>
-							</p>
-	                 	  </div>
+									<div align="center">
+										<br><a id="mealplan" class="btn btn-info" href="http://www.dineoncampus.com/fau/show.cfm?cmd=commuters" target="_blank">Purchase a meal plan</a>
+									</div>
+								</p>
+		                 	  </div>
+		                 	<% end %>
 	                 <% else %>
 		             	 <div class="alert alert-border <%if @meal_plan_selected == 1 %>alert-success<%else%>alert-info<%end%> text-center fade in">
 			              <% if @meal_plan_selected == 1 %>
@@ -1300,19 +1098,18 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		
 
 		  		<% if aleksbypass == 1 %>		
+		  			<% cache('bypassalert') do %>
 		  			<div class="alert alert-warning">
 		  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 		  			</div>
-
-		  			
+		  			<% end %>		  			
 				<% end %>		
-					 
 
-				<%# else %>
-
-			  		<p>
-					FAU has adopted a mandatory placement exam to determine math proficiency known as ALEKS. All entering freshmen are required to take the ALEKS test. <a title="ALEKS information" href="http://www.fau.edu/mathplacement" onclick="window.open(this.href, 'aleks','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>.
-					</p>
+					<% cache('alextxt') do %>			 				
+				  		<p>
+						FAU has adopted a mandatory placement exam to determine math proficiency known as ALEKS. All entering freshmen are required to take the ALEKS test. <a title="ALEKS information" href="http://www.fau.edu/mathplacement" onclick="window.open(this.href, 'aleks','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>.
+						</p>
+					<% end %>
 
 
 
@@ -1371,18 +1168,19 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">New Student Orientation</h3>
 
 		  		<% if orientationbypass == 1 %>			  		
-					
-					<div class="alert alert-warning">
-		  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
-		  			</div>
-
-		  			
+					<% cache('bypassalert') do %>
+						<div class="alert alert-warning">
+			  				<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+			  			</div>
+			  		<% end %>		  			
 				<% end %>
 
-					<p>
-						All new incoming students are required to complete an orientation session.  Freshman students are required to complete a two-day orientation program.  Please read more about your orientation session 
-						<a href="http://www.fau.edu/orientation/" onclick="window.open(this.href, 'orientation','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">here</a>
-					</p>	
+					<% cache('orientationtxt') do %>
+						<p>
+							All new incoming students are required to complete an orientation session.  Freshman students are required to complete a two-day orientation program.  Please read more about your orientation session 
+							<a href="http://www.fau.edu/orientation/" onclick="window.open(this.href, 'orientation','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">here</a>
+						</p>	
+					<% end %>
 
 					<div class="alert alert-border <%if orientation_complete == 1 %>alert-success<%else%>alert-danger<%end%> text-center fade in">
 							<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
@@ -1425,15 +1223,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	<% if @isInternationalStudent == 1 %>	
 
 		   <li class="panel">
-
-		   	<%# if orientation_available == 1 && orientation_complete == 0 || orientation_complete.nil? %>
 				<a id="intlorienthref" href="#step-intl-orientation" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-			<%# elsif  (orientation_available == 1 && orientation_complete == 1) || orientationbypass == 1 %>
-				<!-- <a href="#step-13A" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
-			<%# else %>
-				<!-- <a href="#step-13A" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
-			<%# end %>
-
 			  <div class="number"><!-- Step 13 --><%#= get_statusicon(orientation_available, orientation_complete, orientationbypass) %>
 			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i>
 			  </div>
@@ -1441,12 +1231,9 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			</a>
 			
 			<div id="step-intl-orientation" class="collapse">				   
-			  <div class="step-content">			  		
+			  <div class="step-content">	
+			  <% cache('intlorientationtxt') do %>		  		
 		  		<h3 class="title">International Student Orientation</h3>
-
-		  		<%# if orientationbypass == 1 %>			  		
-						<!-- <p> An administrator has bypassed (overridden) this section for you.</p> -->
-				<%# else %>
 
 					<p>
 						In addition to the university-wide student orientation, international students holding F-1 or J-1 visa classification must also register for mandatory immigration check-in and international orientation. 
@@ -1456,15 +1243,8 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					<p>Register for mandatory <a href="https://docs.google.com/forms/d/1nMaxZuzgsDps14fS_F5C7e3WMc-EAjzX-EdHu2HLOyE/viewform?c=0&w=1" onclick="window.open(this.href, 'immigration','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Immigration Check-in</a>.</p>
 					<p>Register for mandatory <a href="https://docs.google.com/forms/d/1GBYhv4bhBzBwbrY-fAwoTSKnIQYyzGEM4WRbGMYngL0/viewform" onclick="window.open(this.href, 'iso','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">International Student Orientation</a>.</p>
 					
-					<p><em>After the two steps above are complete, the IS hold should be removed. Currently, these holds are manually removed after the students complete these two steps.</em></p>
-
-
-					
-					<!-- <p>
-						<a title="FAU Orientation" href="http://www.fau.edu/orientation/about/HowDoISignup.php" target="_blank">[More Information]</a>
-					</p> -->
-
-				<%# end %>
+					<p><em>After the two steps above are complete, the IS hold should be removed. Currently, these holds are manually removed after the students complete these two steps.</em></p>	
+			 	<% end %>				
 
 				<div class="buttons-box text-right">
 						  <button type="button" class="btn btn-danger" id="intlOrientationBut">Continue</button>						 
@@ -1498,12 +1278,14 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  <div class="step-content">			 
 
 			  	<% if learning_commbypass == 1 %>			  		
+					<% cache('bypassalert') do %>	
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
-						</div>						
+						</div>	
+					<% end %>					
 			    <% end %>
 				
-
+			    <% cache('lctxt') do %>
 			  		<h3 class="title">Learning Community Information</h3>
 					<p>Learning Communities help you make a fast, smooth, and easy transition to FAU!</p>
 					<p>Connect with 20-24 other students who share similar interests by taking your core classes together your freshman year. Learning Communities make it easier to meet people, make friends and form study groups while connecting you through shared experiences and themed activities.</p>	
@@ -1545,7 +1327,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 					<hr>
 			
 					<p><strong>Would you like to join one of FAU’s Learning Communities for the Fall 2016 – Spring 2017 academic year?</strong></p>
-
+				<% end %>
 								
 						<%= form_tag('/save_lc', {:class => 'form-horizontal', :role => 'form', :id=> "lcForm"}) do %>
 
@@ -1604,44 +1386,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 									 	If you wish to change your Learning Community please contact the <a href="https://www.fau.edu/class/" target="_blank">Center for Learning and Student Success</a><br> by phone at (561) 297-0906 or by email at: <a href="mailto:stay@fau.edu">stay@fau.edu</a>.
 									 </div>
 								<% end %>
-
-
 								<br>
 
-								<%#= submit_tag 'Save' , :id=> "lcBut"%>
-
-								
-											
-				<%# end %>
-
-				<% if  learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1 %>
-						<button type="submit" class="btn btn-danger" id="lcBut">Continue</button>
-				<% end %>	
-
-				<% end %>	
-
-				 <%# if  (learning_comm_available == 1 && learning_comm_complete == 1 ) || learning_commbypass == 1 %>
-						<!-- 
-						<div class="buttons-box text-right"> -->
-			  		 		<%#= form_tag('/update_ftic_learning_module' , {:class => 'register-form form-validator'})  do %>
-			  		 		 	<%#= hidden_field_tag :znumber, @znum %>
-							    <%#= hidden_field_tag :netid, @displayname %>
-							    <%#= hidden_field_tag :ftic_id, @ftic_id %>
-							    <%#= hidden_field_tag :learning_comm, 1 %>
-							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-								<%# if params[:znum] %>
-								   	<%#= hidden_field_tag :znum, @znum %>									    
-								<%# end %>
-						    	<!--  <button type="submit" class="btn btn-danger" id="learningBut">Continue</button> -->		
-					 		<%# end %>				 
-					<!--
-						</div> 
-					 -->
-				<%# end %>
-
-				
-
-			  </div>
+								<% if  learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1 %>
+										<button type="submit" class="btn btn-danger" id="lcBut">Continue</button>
+								<% end %>	
+						<% end %>	
+				</div>
 			</div>
 		  </li>
 
@@ -1663,39 +1414,36 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  <div class="step-content">	
 
 			  	<% if oars_bypass == 1 %>			  		
+					<% cache('bypassalert') do %>
 					<div class="alert alert-warning">
 						<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 					</div>
+					<% end %>
 				<% end %>
+					<% cache('oarstxt') do %>
+				  		<h3 class="title">Online Advising & Resource System</h3>
+				  		<p>Welcome to OARS! You may be a little nervous about choosing classes, but DON'T WORRY! The instructions are very user-friendly and help is just a phone call or mouse click away.</p>
 
-			  		<h3 class="title">Online Advising & Resource System</h3>
-			  		<p>Welcome to OARS! You may be a little nervous about choosing classes, but DON'T WORRY! The instructions are very user-friendly and help is just a phone call or mouse click away.</p>
+				  		<p><b>What is OARS?</b></p>
+				  		<ul>
+				  			<li>OARS is the web-based advising system that you will be required to use in your first semester only.</li>
+				  			<li>Why? It gives you “early” and “easy” access to the course selection/advising process from the comfort of your own home.  No waiting until New Student Orientation to design your schedule!</li>
+				  			<li>OARS is NOT meant to replace face-to-face academic advising. You will have an opportunity to meet with your assigned advisor when you come to Orientation should you want to do so.</li>
+				  		</ul>
 
-			  		<p><b>What is OARS?</b></p>
-			  		<ul>
-			  			<li>OARS is the web-based advising system that you will be required to use in your first semester only.</li>
-			  			<li>Why? It gives you “early” and “easy” access to the course selection/advising process from the comfort of your own home.  No waiting until New Student Orientation to design your schedule!</li>
-			  			<li>OARS is NOT meant to replace face-to-face academic advising. You will have an opportunity to meet with your assigned advisor when you come to Orientation should you want to do so.</li>
-			  		</ul>
+				  		<p><br>When you log in you will find easy to follow instructions, a sample class schedule for your major, Jump Start courses, and course descriptions.</p>
 
-			  		<p><br>When you log in you will find easy to follow instructions, a sample class schedule for your major, Jump Start courses, and course descriptions.</p>
+				  		<p><b>It usually takes three (3) to five (5) business days for your advisor to review and approve your submitted OARS form.</b> After three to five business days, log back into OARS and read your advisor's comments then take the next step to completing your schedule.</p>
 
-			  		<p><b>It usually takes three (3) to five (5) business days for your advisor to review and approve your submitted OARS form.</b> After three to five business days, log back into OARS and read your advisor's comments then take the next step to completing your schedule.</p>
-
-			  		<p><b>Important Jump Start Information:</b> All incoming freshman students who are admitted to FAU for the summer semester (or opt to begin in the summer semester) will be participating in the Jump Start Program. As part of the Summer Jump Start Program, you will be taking three (3) courses. Two of these courses are 3 credits each and apply to the Intellectual Foundations Program (IFP) or help prepare you for a course in the IFP, and the third course is the “Learning Community Experience (SLS 1412), Jump Start Edition”! This course is a FREE 0-credit class designed to help you master success strategies, connect with other students, and establish a strong foundation for your FAU experience.  For more information on Jump Start go to: <a title="OARS Jumpstart information" href="http://www.fau.edu/uas/jumpstart.php" onclick="window.open(this.href, 'oars','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">http://www.fau.edu/uas/jumpstart.php</a> </p>
-
-
-						<!--  <a title="OARS information" href="http://www.fau.edu/uas/oars.php" onclick="window.open(this.href, 'oars','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a> -->
-						
-
+				  		<p><b>Important Jump Start Information:</b> All incoming freshman students who are admitted to FAU for the summer semester (or opt to begin in the summer semester) will be participating in the Jump Start Program. As part of the Summer Jump Start Program, you will be taking three (3) courses. Two of these courses are 3 credits each and apply to the Intellectual Foundations Program (IFP) or help prepare you for a course in the IFP, and the third course is the “Learning Community Experience (SLS 1412), Jump Start Edition”! This course is a FREE 0-credit class designed to help you master success strategies, connect with other students, and establish a strong foundation for your FAU experience.  For more information on Jump Start go to: <a title="OARS Jumpstart information" href="http://www.fau.edu/uas/jumpstart.php" onclick="window.open(this.href, 'oars','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">http://www.fau.edu/uas/jumpstart.php</a> </p>
+				  	<% end %>
 
 					 <div class="alert alert-border <%if oars_complete == 1 %>alert-success<%else%>alert-danger<%end%>  text-center fade in">
 							<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 							<strong>					
 								<%= oars_status(znum) %>
 							</strong>
-					 </div>
-			  		
+					 </div>		
 			  	
 
 			  	  <% if  (oars_available == 1 && oars_complete == 1 ) || oars_bypass == 1 %>
@@ -1739,12 +1487,16 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">FAU Alert and Notification System</h3>
 
 		  		<% if faualertbypass == 1 %>			  		
-					<div class="alert alert-warning">
-						<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
-					</div>
+					<% cache('bypassalert') do %>
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>
+					<% end %>
 				<% end %>
 
-					<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. <a title="FAU Alert"  href="http://www.fau.edu/emergency/universityalerts.php" onclick="window.open(this.href, 'fau alert','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
+					<% cache('faualerttxt') do %>
+						<p>FAU Alert is the alert and notification system used to inform the University community of potential or actual emergency events or threats.&nbsp; It comprises of several tools including blast e-mails, text messages, call-out, outdoor warning sirens, and indoor notification systems. <a title="FAU Alert"  href="http://www.fau.edu/emergency/universityalerts.php" onclick="window.open(this.href, 'fau alert','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
+					<% end %>
 	               
 					<% if fau_alert_complete == 1 %>
 						 <p>Your FAU Alert information on file is:<br>
@@ -1790,12 +1542,6 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		   <li class="panel">
 		   	
 		   	<% if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) && ( dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || immunization_complete ==1)%>		   	
-
-		   		<!-- dep_complete_flag : <%#= dep_complete_flag %>
-		   		account_complete :<%#= account_complete %>
-		   		oars_complete_flag : <%#= oars_complete_flag %>
-				immunization_complete : <%#= immunization_complete %> -->
-		   	
 		   		<a id="reg_href" href="#step-registration" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   	<% else %>
 		   		<a id="reg_href" href="#step-registration" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
@@ -1820,9 +1566,11 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">Register for Classes</h3>
 
 		  		<% if registrationbypass == 1 %>			  		
+					<% cache('bypassalert') do %>
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  Please note this requirement has NOT been fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
+					<% end %>
 				<% end %>
 				
 
@@ -1865,7 +1613,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  			</ol>
 
 			  		<% else %>
-
+			  			<% cache('regtxt') do %>
 								<p>The University has a policy on Timely Graduation which encourages students at FAU to graduate in 4 years. Most degree programs at FAU require 120 credit hours to obtain a Bachelor’s degree. Full-time undergraduate students are those who are registered for 12 or more credits in any semester. A typical undergraduate course load is 15 or 16 credits with 18 credits being the maximum. Registrations exceeding this maximum must be approved in advance by the dean of the college.</p>
 
 								<p>The maximum undergraduate load in the summer semester is 9 credits each for short terms 2 and 3, and 18 credits for the full term 1. The maximum for the entire summer (whatever combination is taken) may not exceed 18 credits. Registrations exceeding this maximum must be approved in advance by the dean of the college.</p>
@@ -1881,8 +1629,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 
 								<p>Your registration status:</p>
-
-								<%# if @reg_complete == 1 %>
+						<% end %>							
 
 									<div class="alert alert-border alert-info text-center fade in">
 											<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
@@ -1898,35 +1645,21 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 												</strong>
 											</table>									
 									</div>
-								<%# else %>
-
+							
+								<% cache('academiccaltxt') do %>
 									<h3 class="title">The FAU Academic Calendar</h3>
 
 									<p>The Registrar's Office maintains several Academic Calendars.  You can view them  <a href="https://www.fau.edu/registrar/registration/calendar.php" onclick="window.open(this.href, 'academic calendar','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">here</a> .</p>
+								<% end %>
 
 
 									<% if  @reg_complete == 0 %>
-
 										<div class="alert alert-border alert-danger text-center fade in">
 											Fall/Spring term students must be registered for at least 12 credit hours!<br> Summer term students must be registered for at least 6 credit hours!<br>
 											<a id="registration" class='btn btn-danger' href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">Register for Classes Now</a>
-										</div>
-									
+										</div>									
 									<% end %>
-
-								<%# end %>
-
-
-					
-
-						
-						<!-- <p>
-							<a href="http://www.fau.edu/uas/registration.php" target="_blank">[More Information]</a> |  <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">[Your Registration Info]</a>
-						</p> -->
-
 				  		<% end %>
-
-
 		  		<%# end %>
 		  		<br>
 		  		  <% if  (reg_available == 1 || registrationbypass == 1 || reg_complete == 1)%>
@@ -1971,10 +1704,12 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  <div class="step-content">			  		
 		  		<h3 class="title">Tuition and Billing Services</h3>
 
-		  		<% if tuition_bypass == 1 %>			  		
+		  		<% if tuition_bypass == 1 %>		
+		  			<% cache('bypassalert') do %>	  		
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
+					<% end %>
 				<% end %>
 
 						<% if residency_complete == 0 || @reg_complete == 0 ||  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 ||  @orientation_complete == 0 %>
@@ -2030,6 +1765,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 						
 
 						<% else %>
+							<% cache('tuitionpaytxt') do %>
 							 <p>
 							  	<b>
 								Before paying your tuition you may want to take a look at our  <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
@@ -2050,17 +1786,10 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 							 </p>
 
 			                  <p>
-			                  	<a id="finaidpayment" class="btn btn-danger" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Pay Your Tuition Now</a>
-			                   <!--  <a href='http://www.fau.edu/registrar/pdf/acadcal1516.pdf' target='_blank'>
-			              	   		[More Information]
-			              	    </a>  | 
-			              	     <a href='http://www.fau.edu/controller/student_information/pdfs/Summer_2015_Fee_Bulletin_2.pdf ' target='_blank'>
-			              	   		[Fee Payment Information]
-			              	    </a> -->
-
-			              	   
+			                  	<a id="finaidpayment" class="btn btn-danger" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Pay Your Tuition Now</a>         	   
 
 			              	  </p>
+			              	 <% end %>
 						
 						<% end %>
 	              <%# end %>
@@ -2105,12 +1834,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			<div id="step-emergency" class="collapse">				   
 			  <div class="step-content">			  		
 		  		<h3 class="title">Emergency Contacts</h3>
-				<!-- <p> Please be on the lookout for the FAU Alert and Statement of Responsibility forms/screens when you login to Self Service for the first time. You  must verify and submit both before the respective holds are lifted and access is granted to Self Service.</p> -->
-
+			
 				<% if emergencybypass == 1 %>			  		
+					<% cache('bypassalert') do %>
 						<div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
 						</div>
+					<% end %>
 				<% end %>
 					
 					 <p>Your emergency contact on file is:<br>
@@ -2167,9 +1897,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">Get Your Owl Card</b></h3>
 
 		  		<% if owlcard_bypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
+						<% cache('bypassalert') do %>
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>
+						<% end %>
 				<% else %>
-
+					<% cache('owlcardtxt') do %>
 					<p>
 						All Florida Atlantic University students are required to obtain an OWL Card. It serves as your official photo identification, as well as your FAU debit card, library card, and ticket to certain university events. In addition, for those that choose, it can also serve as your BB&T ATM card, residence hall building key and meal plan card. You can obtain your OwlCard at orientation.
 					</p>
@@ -2191,6 +1925,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 							To obtain your OWL Card, visit the <a href="http://www.fau.edu/business-services/owl-card/locations.php" onclick="window.open(this.href, 'owl card center','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">OWL Card Center</a> on Florida Atlantic University's Boca Raton or Davie campus. Bring with you a photo ID, either your driver's license, military ID or passport. You must also be registered for classes within the current semester or have a current FAU employment contract or LLS membership card. <a href="http://www.fau.edu/business-services/owl-card/request.php" onclick="window.open(this.href, 'owl card info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
 						<% end %>
 					</p>
+					<% end %>
 				 <% end %>
 
 				 <% if  (owlcard_available == 1  || owlcard_bypass == 1) %>
@@ -2237,28 +1972,22 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 
 		  		<% if bookadvance_bypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
+						<% cache('bypassalert') do %>
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>
+						<% end %>
 				<% else %>
-					<p>A University monetary advance is available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees. <a href="http://www.fau.edu/finaid/other/sta.php" onclick="window.open(this.href, 'book advance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
-					</p>
+					<% cache('booktxt') do %>
+						<p>A University monetary advance is available to degree-seeking students enrolled at least half-time at FAU for assistance with purchasing textbooks, emergency funds relating to educational expenses and unanticipated living expenses until the disbursement of financial aid. Keep in mind that the Short Term Advance is NOT a source to assist with paying your tuition and other related fees. <a href="http://www.fau.edu/finaid/other/sta.php" onclick="window.open(this.href, 'book advance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[More Information]</a>
+						</p>
 
-					<p>
-						Maximum loan amount is $750 with a non-refundable processing of $7.50 assessed. Students must meet additional eligibility criteria.
-					</p>
+						<p>
+							Maximum loan amount is $750 with a non-refundable processing of $7.50 assessed. Students must meet additional eligibility criteria.
+						</p>			
 
-					<!-- <p>
-						To access the online Short Term Advance Application:<br>
-
-						<ol>
-						    <li>Log on to MyFAU</li>
-						    <li>Click on the "Money Matters!" tab</li>
-						    <li>Click on the "Short Term Advance Application" link</li>
-						</ol>
-
-					</p>
-					 -->
-
-					 <a class="btn btn-info" href="https://boc22finaid.fau.edu/short_loan/" onclick="window.open(this.href, 'short term advance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Apply for the Short Term Advance</a><br>
+						 <a class="btn btn-info" href="https://boc22finaid.fau.edu/short_loan/" onclick="window.open(this.href, 'short term advance','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Apply for the Short Term Advance</a><br>
+					<% end %>
 					 					
 				 <% end %>
 
@@ -2312,9 +2041,13 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 		  		<h3 class="title">Register your vehicle</h3>
 				  
 				 <% if vehicleregbypass == 1 %>			  		
-						<p> An administrator has bypassed (overridden) this section for you.</p>
+						<% cache('bypassalert') do %>
+							<div class="alert alert-warning">
+								<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+							</div>
+						<% end %>
 				<% else %>
-
+					<% cache('vehicletxt') do %>
 					  <p>
 	                 	Students are eligible to register for their <a href="http://www.fau.edu/parking/allpermits.php" onclick="window.open(this.href, 'parking','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">parking permits</a> 24 hours after they have registered for their classes. 
 	                  </p>
@@ -2328,19 +2061,12 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	              	   		Register Your Vehicle Now
 	              	   	</a> 
 
-	              	  <!--  	<div class="buttons-box text-right">
-			  		 		<%= form_tag('https://fau.t2hosted.com/cmn/auth.aspx' , {:class => 'register-form form-validator'})  do %>
-			  		 		 	<%= hidden_field_tag :znumber, @znum %>
-							    <button type="submit" class="btn btn-danger" id="learningBut">Register</button>		
-					 		<% end %>				 
-						</div> -->
-	              	   
-	              	   	<!-- <button type="button" id="parkingbutton" class="btn btn-link">[Register Here]!</button> -->
-
+	              	
 	              	   	<div id="result">
 
 	              	   	</div>
 	              	   </p>
+	              	  <% end %>
 	              	<% end %>
 
 	              	 <% if  vehicle_reg_available == 1 || vehicleregbypass == 1 %>
@@ -2382,10 +2108,8 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  <div class="step-content">			  		
 		  		<h3 class="title">You're "OWL" done!</h3>
 				  
-				 <% if congrats_available == 1 %>			  		
-						
-
-					  <p>
+				 <% if congrats_available == 1 %>	
+				 	  <p>
 	                 	You are ready to begin this next exciting stage of development and growth at Florida Atlantic University. You should be very proud of yourself. This is an exciting event that you have planned and dreamed about for many years!
 	                  </p>
 
@@ -2435,6 +2159,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 	      </div> 
 	    <% end %>
 
+	    <% cache('sidebar') do %>
 	      <div class="col-sm-3 sidebar checkout-progress">
 	       	<aside class="widget">
 			  <header>
@@ -2465,6 +2190,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 			  Have more questions? We are here to help. Get support by phone or email. Here are some useful <a href="http://fau.edu/studentresources/" target="_blank">student resources</a>.
 			 </aside>	
 		  </div>
+		 <% end %>
       
     </div>
   </div>
@@ -2475,6 +2201,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
 
 <%#= render 'footer' %>
 
+ <% cache('footer') do %>
 <footer id="footer" style="visibility:hidden">
   <div class="footer-top">
     <div class="container">
@@ -2595,6 +2322,7 @@ By purchasing one of these profiler meal plan packages, you will avoid waiting i
     </div>
   </div><!-- .footer-bottom -->
 </footer>
+<% end %>
 <div class="clearfix"></div>
 
 
