@@ -1186,7 +1186,7 @@ Hello, <%= session[:cas_user] %>!
 							<!-- <button data-dismiss="alert" class="close" type="button">×</button> -->
 							<p>
 							<strong>
-								<%= orientation_status(znum)%>
+								<%= orientation_status(znum,@netid)%>
 							</strong>
 							</p>
 					</div>
@@ -2134,13 +2134,13 @@ Hello, <%= session[:cas_user] %>!
 		</ul><!-- #checkoutsteps -->
       </article><!-- .content -->
  
-			
+		
 		<div class="bottom-padding col-xs-3">
 		  <div class="title-box">
 				<h2 class="title"><b>Your Progress</b></h2>
 		  </div>
 		  <div id="metercontainer" data-appear-progress-animation="0%" class="progress progress-striped active">
-		   <div id="meterdisplay" class="progress-bar progress-bar-fau" style="width: 0%; text-indent: 5px;">0% completed</div>
+		    <div id="meterdisplay" class="progress-bar progress-bar-fau" style="width: 0%; text-indent: 5px;">0% completed</div>
 		  </div>
 		</div>     
 
@@ -2809,17 +2809,17 @@ Hello, <%= session[:cas_user] %>!
 	  	$("#meterdisplay").attr("style",'width: ' + increment + '%; text-indent: 10px;');
 
 	 }
-   
+
     $(window).load(function(){
     	//alert('DIPLO');
     	
     	var totalsteps = 16;
         
-       var completed = <%=@start %>;
+        var completed = <%=@start %>;
 
     	var increment =  (parseInt(completed)/parseInt(totalsteps) * 100);
 
-	 	$("#metercontainer").attr("data-appear-progress-animation", parseInt(increment) + '%');
+	 	$("#metercontainer").attr("data-appear-progress-animation", parseInt(increment) + '%');	  		  	
 	  	$('#meterdisplay').text(parseInt(increment) + '% Completed');
 	  	$("#meterdisplay").attr("style",'width: ' + parseInt(increment) + '%; text-indent: 10px;');
 

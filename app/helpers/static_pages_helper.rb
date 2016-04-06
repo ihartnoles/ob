@@ -1,7 +1,7 @@
 module StaticPagesHelper
   
   
-	def orientation_status(znum)
+	def orientation_status(znum,netid)
     	output = Faudw.orientation_status(znum)
 
     	if output.count > 0
@@ -20,12 +20,14 @@ module StaticPagesHelper
   	    	 return tmp
          else
 
-          return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='http://www.fau.edu/orientation/' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a> <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
+           return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a> <br><br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
 
          end
       end
-      	 else
-      	 	return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='http://www.fau.edu/orientation/' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;'>Sign-up for Orientation Now</a> <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
+      	 else      	
+
+           return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a> <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
+
       	 end        
   	end
 
