@@ -1577,7 +1577,7 @@ Hello, <%= session[:cas_user] %>!
 
 			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 || immunization_complete == 0 || orientation_complete == 0 %>
 			  					  			
-			  			<p>You have <a href="https://sctformsalt.fau.edu:8070/TESTdad/bwskoacc.P_ViewHold" onclick="window.open(this.href, 'fau alert','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">holds</a> on your record which are preventing you from registering for classes. The holds are listed below:</p>
+			  			<p>You have <a id="holds" href="https://sctformsalt.fau.edu:8070/TESTdad/bwskoacc.P_ViewHold" onclick="window.open(this.href, 'fau alert','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">holds</a> on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
 			  			<ol>
 			  				<%# if dep_complete_flag == 0 %>
@@ -2425,6 +2425,23 @@ Hello, <%= session[:cas_user] %>!
 			    }  
 			}, 1000);         	
     	});
+
+
+      	$("#holds").click(function (e) {
+    		e.preventDefault();
+        	var win=window.open($(this).attr('href'),'','height=500,width=850,resize="yes",scrollbars=1');
+        	var a = window.location.href
+        	var regex = /\b#\w\w+.\w+/;
+
+        	var timer = setInterval(function() {   
+			    if(win.closed) {  
+			        clearInterval(timer);  
+			        location.reload(true);			        
+					window.location.href = a.replace(regex,'') + "#step-registration"
+			    }  
+			}, 1000);         	
+    	});
+    	
 
        $("#addresschange").click(function (e) {
     		e.preventDefault();
