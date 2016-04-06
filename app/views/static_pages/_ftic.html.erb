@@ -2135,7 +2135,7 @@ Hello, <%= session[:cas_user] %>!
       </article><!-- .content -->
  
 			
-		<div class="col-md-3">
+		<div class="bottom-padding col-xs-3">
 		  <div class="title-box">
 				<h2 class="title"><b>Your Progress</b></h2>
 		  </div>
@@ -2791,14 +2791,7 @@ Hello, <%= session[:cas_user] %>!
 	 	$(objectID).addClass("active");
 	 }
 
-	 function updateMeter(increment){
-	 	//$("#metercontainer").data("appear-progress-animation");
-	  	$("#metercontainer").attr("data-appear-progress-animation", increment + '%');
 	 
-	  	$('#meterdisplay').text(increment + '% Completed');
-	  	$("#meterdisplay").attr("style",'width: ' + increment + '%; text-indent: 10px;');
-
-	 }
 
 	 
 	     
@@ -2807,6 +2800,15 @@ Hello, <%= session[:cas_user] %>!
 
 
 <%= javascript_tag do %>
+   
+	function updateMeter(increment){
+	 	//$("#metercontainer").data("appear-progress-animation");
+	  	$("#metercontainer").attr("data-appear-progress-animation", increment + '%');
+	 
+	  	$('#meterdisplay').text(increment + '% Completed');
+	  	$("#meterdisplay").attr("style",'width: ' + increment + '%; text-indent: 10px;');
+
+	 }
    
     $(window).load(function(){
     	//alert('DIPLO');
