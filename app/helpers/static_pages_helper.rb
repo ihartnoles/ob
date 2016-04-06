@@ -417,7 +417,7 @@ module StaticPagesHelper
            case o['sprhold_hldd_code']
                  when 'AB','AC','TD','TZ'
                     details = "- Please contact the <a href='http://www.fau.edu/admissions/contact.php' target='_blank'>Admissions Office</a> at 561-297-3040".html_safe
-                 when 'AR'
+                 when 'AR','AT','AO'
                     details = "- Please contact the <a href='http://www.fau.edu/controller/student-services/' target='_blank'>Controllers Office</a> at 561-297-6102 ".html_safe
                  when 'EG'
                     details = "- Please contact the <a href='http://www.dessa.fau.edu/' target='_blank'>College of Engineering</a> at 561-297-2780 or <a href='mailto:engineering-advising@fau.edu'>engineering-advising@fau.edu</a>".html_safe
