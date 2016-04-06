@@ -2145,19 +2145,19 @@ Hello, <%= session[:cas_user] %>!
 		</div>     
 
 
-		<% unless @currentstep.nil? %>
-		 <div class="col-sm-3 sidebar checkout-progress">
+		<%# unless @currentstep.nil? %>
+		<!--  <div class="col-sm-3 sidebar checkout-progress">
 	       	<aside class="widget">
 			  <header>
 				<h2 class="title">Please complete the following</h2>
 			  </header>
 			   <div align="center">
-			 	<span class="badge badge-important label label-warning"><%=@currentstep.upcase %></span>
+			 	<span class="badge badge-important label label-warning"><%#=@currentstep.upcase %></span>
 			  </div>
 			  </br></br>
 			  </aside>	
-	      </div> 
-	    <% end %>
+	      </div>  -->
+	    <%# end %>
 
 	    <% cache('sidebar') do %>
 	      <div class="col-sm-3 sidebar checkout-progress">
