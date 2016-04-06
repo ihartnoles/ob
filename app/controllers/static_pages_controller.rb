@@ -300,14 +300,14 @@ class StaticPagesController < ApplicationController
                end
 
 
-               if o['rorstat_pckg_comp_date'].nil?
+               if o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?
                   @finaid_package_complete = 0
                else
                   @finaid_package_complete = 1
                end
 
               
-               if o['rorstat_all_req_comp_date'].nil?
+               if o['rorstat_all_req_comp_date'].nil? || o['rorstat_all_req_comp_date'].blank?
                   @eligibility_reqs_complete = 0
                else
                   @eligibility_reqs_complete = 1
@@ -389,7 +389,7 @@ class StaticPagesController < ApplicationController
           finaidflags = []
 
           finaid_status.each do |o|
-            if o['rrrareq_sat_ind'] == 'N' || o['rrrareq_sat_ind'].nil?
+            if o['rrrareq_sat_ind'] == 'N' || o['rrrareq_sat_ind'].nil? ||  @finaid_package_complete = 0 || @eligibility_reqs_complete = 0 ||  @fin_aid_acceptance = 0 || @tc_complete = 0
               #@finaid_complete = 0
               finaidflags.push('0')
             else
