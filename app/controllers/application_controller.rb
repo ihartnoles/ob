@@ -251,7 +251,7 @@ class ApplicationController < ActionController::Base
          break
      end
 
-     if  @finaid_complete == 0
+     if  @finaid_complete == 0 && @isInternationalStudent == 0
          currentstep = 'Financial Aid'
          break
      end
@@ -262,7 +262,7 @@ class ApplicationController < ActionController::Base
         break
      end
 
-     if @residency_complete == 0
+     if @residency_complete == 0 && @isInternationalStudent == 0
         currentstep = 'Residency'
         break
      end
