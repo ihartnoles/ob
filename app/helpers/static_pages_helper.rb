@@ -1,35 +1,43 @@
 module StaticPagesHelper
-  
-  
-	def orientation_status(znum,netid)
-    	output = Faudw.orientation_status(znum)
 
-    	if output.count > 0
-    	   output.each do |o| 
+	 def orientation_status(znum,netid)    	
+      or_hold = Banner.check_orientation_hold(znum)
+      output = Faudw.orientation_status(znum)
+      
+      if or_hold.count > 0          
+          #or_hold_exists = 1   
+          tmp =  "<a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a><br>".html_safe
+          return tmp
+      else
+          #or_hold_exists = 0
+          #BEGIN
+            if output.count > 0
+             output.each do |o| 
 
-         if !o.nil?
-  	    	 if o['attended'] == 'Yes'
-  	    	 	 tmp =  "You have attended an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You have completed this requirement!"
-  	    	 
-           elsif o['attended'] == 'No' && !o['sessiondate'].nil?
-             tmp = "You have signed up for an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You must attend and complete orientation. "
-           else
-  	    	 	 tmp =  "You have NOT attended an orientation session yet. You must attend and complete orientation. "
-  	    	 end
+             if !o.nil?
+               if o['attended'] == 'Yes'
+                 tmp =  "You have attended an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You have completed this requirement!"
+               
+               elsif o['attended'] == 'No' && !o['sessiondate'].nil?
+                 tmp = "You have signed up for an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You must attend and complete orientation. "
+               else
+                 tmp =  "<a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a><br>".html_safe
+               end
 
-  	    	 return tmp
-         else
+               return tmp
+             else
 
-           return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a> <br><br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
+               return "<a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a><br>".html_safe
 
-         end
-      end
-      	 else      	
+             end
+          end
+             else       
 
-           return "Our records indicate you have not yet attended an Orienation session. <br><br><a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a> <br> Also, please note orientation statuses are updated once daily. It is possible that your status is in the process of being updated.".html_safe
-
-      	 end        
-  	end
+               return "<a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a> <br> ".html_safe
+             end        
+          #END
+      end #end of or_hold.count
+  	end #end of orientation_status
 
 
      def aleks_status(znum,netid)

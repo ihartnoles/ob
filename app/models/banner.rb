@@ -103,7 +103,9 @@ class Banner < ActiveRecord::Base
 		end
 		#END: a test to consolidate aleks tution and account claim status
 
-
+		def self.check_orientation_hold(id)
+			get = connection.exec_query("SELECT SPRHOLD_HLDD_CODE FROM BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)} AND SPRHOLD_HLDD_CODE = 'OR' ")
+		end
 	#END: QUERIES TO BANINST1.AWS_ONBOARDING_MAIN
 	
 

@@ -64,7 +64,7 @@ Hello, <%= session[:cas_user] %>!
 	      	Welcome to FAU <%= get_fullname(znum) %>! Let's get started!</h4>
 
 	     <% cache('welcometext') do %>
-	      <p>We want your transition to college life to be as smooth as possible. Below is a checklist of things to keep in mind and tasks you will need to complete prior to your arrival on campus.</p><br>
+	      <p>We want your transition to college life to be as smooth as possible. Below is a checklist of tasks you will need to complete prior to your arrival on campus. Some task will not become available (be grayed out) until other tasks are complete. So try to complete as many as you can in order. Remember to click <b>Continue</b> to proceed through all modules!</p><br>
 	     <% end %>
 
 	     <% if params[:links] %>
@@ -206,7 +206,7 @@ Hello, <%= session[:cas_user] %>!
 						  		<tr>
 						  			<td><b>Your Major:</b></td>
 						  			<td><%= @major %></td>			
-						  			<td colspan="2"><em>If your major is incorrect you will get the opportunity to update it later during this process.</em></td>			  			
+						  			<td colspan="2"><em>Pre-Health Professions if your major is incorrect you will get the opportunity to update it during the OARS module.</em></td>			  			
 						  		</tr> 
 						  	    
 						  		<tr>
@@ -2165,7 +2165,9 @@ Hello, <%= session[:cas_user] %>!
 			  <header>
 				<h2 class="title">Did you know?</h2>
 			  </header>
-			 	You can revisit unlocked sections by clicking on the blue title bar for the section you want to go back to!</br>
+			 	<br><strong><div class="text-info">Information</div></strong> - Gives you good information to keep in mind. Click Continue to proceed.
+				<br><strong><div class="text-danger">Incomplete</div></strong>  - Requirements you must complete in order to successfully complete your onboarding.
+				<br><strong><div class="text-success">Completed</div></strong>   - Requirement has been successfully satisfied.</br>
 			  </aside>	
 	      </div> 
 
