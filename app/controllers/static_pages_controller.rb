@@ -267,9 +267,8 @@ class StaticPagesController < ApplicationController
 
             
             hold_checks.each do |o|
-              if o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA' || o['sprhold_hldd_code'] == 'UN'
-                @orientation_complete = 0
-                #break
+              if (o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA')
+                @orientation_complete = 0                
               else
                 @orientation_complete = 1
               end 
@@ -578,9 +577,9 @@ class StaticPagesController < ApplicationController
             orientation_status.each do |o|
               if o['attended'] == 'Yes' && !o['attended'].nil?
                 @orientation_complete = 1
-                break
-              else
-                @orientation_complete = 0
+              #   break
+              # else
+              #  @orientation_complete = 0
               end
             end
           end
