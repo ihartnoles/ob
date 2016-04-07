@@ -495,7 +495,7 @@ class StaticPagesController < ApplicationController
 
                     if @whc_student == 'Y'  #check if they are a wilkes honors college student
                       #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
-                      housing_fee_required = 1                   
+                        housing_fee_required = 1                   
                     else
                       #check zipcode radius for Boca Campus
                       if 
@@ -579,7 +579,7 @@ class StaticPagesController < ApplicationController
                 @orientation_complete = 1
               #   break
               # else
-              #  @orientation_complete = 0
+                @orientation_complete = 0
               end
             end
           end

@@ -554,6 +554,7 @@ Hello, <%= session[:cas_user] %>!
 			  								
 			  							</tr>
 
+			  						<% if @fafsa_complete == 1 %>
 			  							<tr>
 			  								<td>2.&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Complete Your Financial Aid Requirements</a></td>
 			  								
@@ -607,8 +608,9 @@ Hello, <%= session[:cas_user] %>!
 				  							<td align="center"><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
 				  							<% end %>		
 			  							</tr>
+			  						<% end %>  <!-- end of fafsa check -->
 			  						</table>
-				  			<%# end %>
+				  			
 			  						
 			  				</p> 
 
