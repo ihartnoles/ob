@@ -256,7 +256,7 @@ module StaticPagesHelper
   	 		output.each do |o| 
 
          if !o.nil?
-           tmp =  "You have completed OARS for #{o['semester_desc']}! Great work!"
+           tmp =  "You have completed OARS for #{o['semester_desc']}! Great work! <br> <a id='oars' class='btn btn-danger' title='OARS information' href='https://oars.fau.edu/login/login' >Go to OARS Now</a>"
          else
            tmp =  "You have NOT completed OARS. <br><br> <a id='oars' class='btn btn-danger' title='OARS information' href='https://oars.fau.edu/login/login' >Sign Up for OARS Now</a>"
          end
