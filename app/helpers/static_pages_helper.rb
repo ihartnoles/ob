@@ -6,7 +6,7 @@ module StaticPagesHelper
       
       if or_hold.count > 0          
           #or_hold_exists = 1   
-          tmp =  "<a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a><br>".html_safe
+          tmp =  "<a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a><br><br>Please note: If you paid your tuition deposit within the last 24 hours, the Orientation Sign Up may not be available yet. Please try again later.".html_safe
           return tmp
       else
           #or_hold_exists = 0
@@ -21,7 +21,7 @@ module StaticPagesHelper
                elsif o['attended'] == 'No' && !o['sessiondate'].nil?
                  tmp = "You have signed up for an orientation session (#{o['sessiontitle']}) on #{o['sessiondate']}. You must attend and complete orientation. "
                else
-                 tmp =  "<a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >Sign-up for Orientation Now</a><br>".html_safe
+                 tmp =  "Your Orientation Requirement has been satisfied. To find out more about your session visit the <a href='https://myfau.fau.edu/fau_sso/test_visualzen_ob.jsp?uname=#{netid}&znumy=#{znum}' class='btn btn-danger' onclick='window.open(this.href, \"orientation\",\"left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1\"); return false;' >New Student Orientation Reservation Site</a>. Please note, failure to attend orientation can prevent you from registering for courses.".html_safe
                end
 
                return tmp

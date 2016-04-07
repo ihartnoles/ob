@@ -1177,8 +1177,8 @@ Hello, <%= session[:cas_user] %>!
 
 					<% cache('orientationtxt') do %>
 						<p>
-							All new incoming students are required to complete an orientation session.  Freshman students are required to complete a two-day orientation program.  Please read more about your orientation session 
-							<a href="http://www.fau.edu/orientation/" onclick="window.open(this.href, 'orientation','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">here</a>
+							All new incoming students are required to complete an orientation session. Freshman students are required to complete a two-day orientation program. Visit the <a href="http://www.fau.edu/orientation/" onclick="window.open(this.href, 'orientation','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">New Student Orientation</a> site for more detailed information. 
+							
 						</p>	
 					<% end %>
 
@@ -2165,9 +2165,18 @@ Hello, <%= session[:cas_user] %>!
 			  <header>
 				<h2 class="title">Did you know?</h2>
 			  </header>
-			    <br>You can revisit unlocked sections by clicking on the blue title bar for the section you want to go back to!</br>
-			 	<br><strong><span class='badge badge-important label label-info'>Information</span></strong> - Gives you good information to keep in mind. Click Continue to proceed.
-				<br><strong><span class='badge badge-important label label-danger'>Incomplete</span></strong>  - Requirements you must complete in order to successfully complete your onboarding.
+			    You can revisit unlocked sections by clicking on the blue title bar for the section you want to go back to!</br> 				   
+	      </div> 
+
+	      <p>&nbsp;</p>
+
+	      <div class="col-sm-3 sidebar checkout-progress">
+	       	<aside class="widget">
+			  <header>
+				<h2 class="title">Status Information</h2>
+			  </header>
+			    <strong><span class='badge badge-important label label-info'>Information</span></strong> - Gives you good information to keep in mind. Click Continue to proceed.
+				<br><strong><span class='badge badge-important label label-danger'>Incomplete</span></strong>  - Requirements you must complete in order to successfully finish onboarding.
 				<br><strong><span class='badge badge-important label label-success'>Completed</span></strong>   - Requirement has been successfully satisfied.</br>
 			  </aside>	
 	      </div> 
