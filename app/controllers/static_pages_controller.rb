@@ -484,10 +484,6 @@ class StaticPagesController < ApplicationController
                        @term = o['term']            
                     end      
 
-                     # puts YAML::dump('***** START ******')
-                     # puts YAML::dump(@term)
-                     # puts YAML::dump('****** END ********')
-
                     if @married = 'M' ||  @age >= 21 || @term = 'Summer' #check if they are married ,over the age of 21, or enrolling in summer; Summer == NO FEE FOR HOUSING
                        @housing_fee_required = 0
                        @housing_fee_complete = 1 
@@ -495,24 +491,27 @@ class StaticPagesController < ApplicationController
 
                     if @whc_student == 'Y'  #check if they are a wilkes honors college student
                       #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
-                        housing_fee_required = 1                   
+                        @housing_fee_required = 1  
                     else
                       #check zipcode radius for Boca Campus
-                      if 
-                        housing_fee_required = HousingZipcode.where(:zip => @zipcode.gsub(/\D/, ''))
-                      else
-                        housing_fee_required = 1 
+                      if @housing_fee_required = 1 
+                          housing_fee_query = HousingZipcode.where(:zip => @zipcode.gsub(/\D/, ''))
+
+                          #determine if housing fee is required
+                          if housing_fee_query.count == 0 #no match found; must be outside of zipcode whitelist            
+                            @housing_fee_required = 1
+                            @housing_fee_complete = 0           
+                          else
+                            @housing_fee_required = 0
+                            @housing_fee_complete = 1        
+                          end
+
+                      # else
+                      #   @housing_fee_required = 1 
                       end
                     end
                    
-                    #determine if housing fee is required
-                    if housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
-                      @housing_fee_required = 1
-                      @housing_fee_complete = 0           
-                    else
-                      @housing_fee_required = 0
-                      @housing_fee_complete = 1        
-                    end
+                   
 
                     if deposit_received.count >= 1
                       @housing_fee_required = 0
