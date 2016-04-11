@@ -41,8 +41,10 @@ class StaticPagesController < ApplicationController
         
            #BEGIN: verify complete check
             #To DO: how do we determine if VERIFY has been completed?????  Maybe radio buttons?  Is this information correct  (Y/N)?
-            @verify_complete = 1
+          @verify_complete = 1
            #END: verify complete
+
+          @immunization_complete ||= 0
 
           #immunization_status = Banner.immunization_status(@znum)
           residency_status = Banner.residency_status(@znum)
@@ -168,8 +170,9 @@ class StaticPagesController < ApplicationController
           orientation_status = Faudw.orientation_status(@znum)
           registration_status = Banner.registered_hours(@znum)
           get_multistatus = Banner.get_multistatus(@znum)
-          hold_checks = Banner.immunization_status(@znum)
-          
+          immune_check = Banner.immunization_status(@znum)
+          orientation_check = Banner.check_orientation_hold(@znum)
+
           @welcome_complete = 1
 
             if get_multistatus.blank?
@@ -180,7 +183,7 @@ class StaticPagesController < ApplicationController
                @emergency_complete = 0
                @fau_alert_complete = 0
                @isInternationalStudent ||= 0
-               @immunization_complete = 0
+               #@immunization_complete = 0
             else
                 get_multistatus.each do |o|
 
@@ -265,21 +268,55 @@ class StaticPagesController < ApplicationController
                 end
             end
 
-            
-            hold_checks.each do |o|
-              if (o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA')
-                @orientation_complete = 0                
-              else
-                @orientation_complete = 1
-              end 
+           # if !orientation_check.nil?
+           #    orientation_check.each do |o|
+           #      if (o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA')
+           #        @orientation_complete = 0                
+           #      else
+           #        @orientation_complete = 1
+           #      end             
+           #    end #end of each loop
+           # else
+           #  @orientation_complete = 1
+           # end
 
-              if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
-                @immunization_complete = 0
-                #break
-              else
-                @immunization_complete = 1
-              end 
-            end
+
+             if !orientation_check.nil?
+                if orientation_check.count > 0 #begin
+                  orientation_check.each do |o|
+                    if (o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA')
+                      @orientation_complete = 0
+                      #break
+                    else
+                      @orientation_complete = 1
+                    end 
+                  end #end of each loop
+                else
+                   @orientation_complete = 1
+                end #end ouf count
+            else
+               @orientation_complete = 1
+            end #end of nil check
+
+
+
+
+          if !immune_check.nil?
+            if immune_check.count > 0 #begin
+              immune_check.each do |o|
+                if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
+                  @immunization_complete = 0
+                  #break
+                else
+                  @immunization_complete = 1
+                end 
+              end #end of each loop
+            else
+               @immunization_complete = 1
+            end #end ouf count
+        else
+           @immunization_complete = 1
+        end #end of nil check
 
 
           #begin finaidcheckboxes
@@ -577,7 +614,7 @@ class StaticPagesController < ApplicationController
               if o['attended'] == 'Yes' && !o['attended'].nil?
                 @orientation_complete = 1
               #   break
-              # else
+              else
                 @orientation_complete = 0
               end
             end

@@ -276,31 +276,30 @@ module StaticPagesHelper
 
       tmp = ''
 
-      if output.count > 0
-        output.each do |o| 
-
-
-         if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM' 
-          tmp <<  "You need to make sure your immunization records have been submitted and approved. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'> Review immunization requirements here </a>"                               
-         else           
-          tmp <<  "Your immunization records have been submitted and approved.  Thank you!"  
-         end
-         
-         return tmp.html_safe
-
-        end
-      else
-        tmp =  "You need to make sure your immunization records have been submitted and approved. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'> Review immunization requirements  here </a>"
-        return tmp.html_safe
-      end 
+      #if !output.nil?
+        if output.count > 0
+          output.each do |o| 
+           if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM' 
+            tmp =  "Your immunization records have NOT been submitted and approved. <br><br> <a id='immune' class='btn btn-danger' title='FAU Immunization Guidelines' href='http://www.fau.edu/shs/info_forms/immunizations.php' target='_blank'> Review immunization requirements here </a>"                 
+           else           
+            tmp = "Your immunization records have been submitted and approved.  Thank you!"           
+           end 
+           return tmp.html_safe
+          end
+        else
+          tmp =  "Your immunization records have been submitted and approved.  Thank you!"
+          return tmp.html_safe
+        end 
+       # else
+       #    tmp = "Z - Your immunization records have been submitted and approved.  Thank you!"   
+       #    return tmp.html_safe
+       #  end 
      end
 
 
      def get_residency_status(znum)
        output = Banner.residency_status(znum)
-
-      
-        if output.count > 0
+         if output.count > 0
           output.each do |o| 
              if o['sgbstdn_resd_code'].include?('T') || o['sgbstdn_resd_code'].include?('F') || o['sgbstdn_resd_code'].include?('R') || o['sgbstdn_resd_code'].include?('O')
                #let them know they are classified as a resident
