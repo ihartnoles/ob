@@ -193,13 +193,27 @@ Hello, <%= session[:cas_user] %>!
 						  		</tr>
 						  		<tr>
 						  			<td><b>Your Permanent Address:</b></td>
-						  			<td><%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %>&nbsp;</td>						  			
+						  			<td>
+						  				<% if !@city.blank? && !@state.blank? && !@zip.blank? %>
+						  					<%= @street %><br><%= @city %>,  <%= @state %> ,<%= @zip %>
+						  				<% else %>
+						  					No permanent address information on file.
+						  				<% end %>
+						  				&nbsp;
+						  			</td>						  			
 						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
 						  		</tr>
 
 						  		<tr>
 						  			<td><b>Your Local Address:</b></td>
-						  			<td><%= @street2 %><br><%= @city2 %>,  <%= @state2 %> ,<%= @zip2 %>&nbsp;</td>						  			
+						  			<td>
+						  				<% if !@city2.blank? && !@state2.blank? && !@zip2.blank? %>
+						  					<%= @street2 %><br><%= @city2 %>,  <%= @state2 %> ,<%= @zip2 %>
+						  				<% else %>
+						  					No local address information on file.
+						  				<% end %>
+						  				&nbsp;
+						  			</td>						  			
 						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange2" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
 						  		</tr>
 						  		
@@ -1159,10 +1173,10 @@ Hello, <%= session[:cas_user] %>!
 			<% end %>
 
 			<% if (orientation_available == 1 || orientationbypass == 1 || orientation_complete == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
-			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, orientation_complete, orientationbypass) %></div>
+			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, @orientation_complete, orientationbypass) %></div>
 			<% end %>
 
-			  <h6><b>ORIENTATION</b>: <%= @orientation_complete %></h6>
+			  <h6><b>ORIENTATION</b></h6>
 			</a>
 			
 			<div id="step-orientation" class="collapse">				   

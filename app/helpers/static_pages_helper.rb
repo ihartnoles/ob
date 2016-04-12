@@ -357,8 +357,7 @@ module StaticPagesHelper
            tmp =  "Your tuition deposit was paid on #{o['sarchkl_receive_date'].strftime('%x')}."
          else
            tmp =  "Your tuition deposit has NOT been paid yet!  <br> You will not be able to move forward until you've paid. <br> <br>           
-               <a id='tuitionlink' class='btn btn-danger' href='https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link' target='_blank'>Pay Your Tuition Deposit Now</a>
-              "
+               <a id='tuitionlink' class='btn btn-danger' href='https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link' target='_blank'>Pay Your Tuition Deposit Now</a>"
          end
          
 
@@ -366,7 +365,8 @@ module StaticPagesHelper
 
          end
       else
-        return "Tuition deposit status is pending."
+        return "Your tuition deposit has NOT been paid yet!  <br> You will not be able to move forward until you've paid. <br> <br>           
+               <a id='tuitionlink' class='btn btn-danger' href='https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link' target='_blank'>Pay Your Tuition Deposit Now</a>".html_safe
       end 
      end
 
