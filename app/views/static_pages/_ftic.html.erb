@@ -526,8 +526,18 @@ Hello, <%= session[:cas_user] %>!
 			  					<p>
 			  				</div>
 			  				<br>
+
+
 			  				
 			  			<div id="finaiddeets" <% if @finaidneedflag == "NO"%>style="display: none;"<%end%> >
+			  				<% if @term == 'Summer'%>
+				  				<div align="left">
+				  					<h3 class="title">Summer Aid Questions</h3>
+				  					<p>If you wish to apply for Summer Aid then you must answer <a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AI&aidy_in=<%=@aidy%>&calling_proc_name=">five questions</a>.</p>
+				  					<p>&nbsp;</p>
+				  				</div>
+				  			<% end %>
+
 			  				<h3 class="title">The Financial Aid Steps</h3>
 			  				<p>
 			  							  						
@@ -675,6 +685,9 @@ Hello, <%= session[:cas_user] %>!
 				  			
 			  						
 			  				</p> 
+
+
+			  			
 
 			  				<% cache('finaidcaltxt') do %>	
 				  				<h3 class="title">Financial Aid Calendar</h3>
