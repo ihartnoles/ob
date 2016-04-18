@@ -80,12 +80,20 @@ module StaticPagesHelper
                  status = "declined"
                end
 
+                if !o['rpratrm_cancel_date'].nil?
+                 status = "canceled"
+               end
+
                if !o['rpratrm_offer_amt'].nil?
                   amount =  o['rpratrm_offer_amt']
                end
 
                if !o['rpratrm_decline_amt'].nil?
                   amount =  o['rpratrm_decline_amt']
+               end
+
+               if !o['rpratrm_cancel_amt'].nil?
+                  amount =  o['rpratrm_cancel_amt']
                end
 
                tmp <<  "<tr><td>#{o['rfrbase_fund_title']}</td><td>#{o['term']} #{o['year']}</td><td>#{number_to_currency(amount)}</td><td>#{o['offerdate']}</td><td>#{status}</td></tr>"
@@ -140,6 +148,95 @@ module StaticPagesHelper
            return tmp.html_safe
           end 
          end
+
+
+      def fafsa_flag_by_term(znum,term)
+        output = Banner.fafsa_flag_by_term(znum,term)
+        tmp = ""    
+        if output.count > 0
+            output.each do |o| 
+               if !o.nil?               
+                 if o['fafsa_flg'] == 'Y'
+                    tmp = "<img src='/assets/Check_8x8.png' alt=''>"
+                  else
+                    tmp = "<img src='/assets/Delete_8x8.png' alt=''>"
+                  end
+               end
+
+               return tmp.html_safe                                
+            end
+               
+          else
+             
+             return tmp.html_safe
+          end #end of if output.count
+      end
+
+      def finaid_reqs_by_term(znum,term)
+        output = Banner.finaid_reqs_by_term(znum,term)
+        tmp = ""    
+        if output.count > 0
+            output.each do |o| 
+               if !o.nil?               
+                 if o['rorstat_all_req_comp_date'].nil? || o['rorstat_all_req_comp_date'].blank?
+                    tmp = "<img src='/assets/Delete_8x8.png' alt=''>"                    
+                  else
+                    tmp = "<img src='/assets/Check_8x8.png' alt=''>"
+                  end
+               end
+
+               return tmp.html_safe                                
+            end
+               
+          else
+             
+             return tmp.html_safe
+          end #end of if output.count
+      end
+
+      def finaid_tc_by_term(znum,term)
+        output = Banner.finaid_tc_by_term(znum,term)
+        tmp = ""    
+        if output.count > 0
+            output.each do |o| 
+               if !o.nil?               
+                 if o['rtvtreq_code'] == 'TERMS' && o['rrrareq_sat_ind'] == 'Y'
+                    tmp = "<img src='/assets/Check_8x8.png' alt=''>"             
+                  else                    
+                    tmp = "<img src='/assets/Delete_8x8.png' alt=''>"     
+                  end
+               end
+
+               return tmp.html_safe                                
+            end
+               
+          else
+             
+             return tmp.html_safe
+          end #end of if output.count
+      end
+
+      def fin_aid_acceptance_by_term(znum,term)
+        output = Banner.fin_aid_acceptance_by_term(znum,term)
+        tmp = ""    
+        if output.count > 0
+            output.each do |o| 
+               if !o.nil?               
+                 if !o['rpratrm_accept_date'].nil?
+                    tmp = "<img src='/assets/Check_8x8.png' alt=''>"             
+                  else                    
+                    tmp = "<img src='/assets/Delete_8x8.png' alt=''>"     
+                  end
+               end
+
+               return tmp.html_safe                                
+            end
+               
+          else
+             tmp = "<img src='/assets/Delete_8x8.png' alt=''>"
+             return tmp.html_safe
+          end #end of if output.count
+      end
      
       def fin_aid_docs_multiterm(znum,aidyear)
           output = Banner.fin_aid_docs_multiterm(znum,aidyear)
