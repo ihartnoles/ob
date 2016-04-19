@@ -530,10 +530,11 @@ Hello, <%= session[:cas_user] %>!
 
 			  				
 			  			<div id="finaiddeets" <% if @finaidneedflag == "NO"%>style="display: none;"<%end%> >
+			  				
 			  				<% if @term == 'Summer'%>
 				  				<div align="left">
 				  					<h3 class="title">Summer Aid Questions</h3>
-				  					<p>If you wish to apply for Summer Aid then you must answer <a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AI&aidy_in=<%=@aidy%>&calling_proc_name=">five questions</a>.</p>
+				  					<p>If you wish to apply for Summer Aid then you must answer five questions. Please <a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AI&aidy_in=<%=@aidy%>&calling_proc_name=">click here</a> to answer the questions.</p>
 				  					<p>&nbsp;</p>
 				  				</div>
 				  			<% end %>
@@ -548,7 +549,7 @@ Hello, <%= session[:cas_user] %>!
 						  					<% if @fin_aid_semesters.count > 0 %>
 						  					<%# if @term == 'Summer' %>						  					
 						  						<%@fin_aid_semesters.each do |fas| %>
-									  			  <th align="right"><%= fas['finaidyear'] %></th>
+									  			  <th align="right"><%= fas['finaidyear'] %> status</th>
 									  			<% end %>
 									  		<%# elsif @term == 'Summer' && (@summer_fafsa_complete == 0 || @summer_fafsa_complete.nil?)%>									  			  
 									  			 <!-- <th align="center">Summer</th>

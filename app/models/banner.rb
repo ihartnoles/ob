@@ -56,7 +56,6 @@ class Banner < ActiveRecord::Base
 		 	get = connection.exec_query("select distinct Z_NUMBER, L_NAME, F_NAME, GOBTPAC_EXTERNAL_USER, INT_STUDENT from BANINST1.AWS_ONBOARDING_MAIN WHERE SARADAP_STYP_CODE in ('B','E')")
 		end
 
-
 		def self.aleks_status(id)
 			get = connection.exec_query("SELECT aleks_taken, aleks_score FROM BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
@@ -71,6 +70,10 @@ class Banner < ActiveRecord::Base
 
 		def self.orientation_status(id)
 			get = connection.exec_query("SELECT sprhold_hldd_code, im_exists from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)} AND sprhold_hldd_code IN ('OR','OA')")
+		end
+
+		def self.transfer_status(id)
+			get = connection.exec_query("select distinct SGRSATT_ATTS_CODE, ATTS_DESC from BANINST1.AWS_ONBOARDING_ATTRB WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 
 		# def self.account_claimed_status(id)

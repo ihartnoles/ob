@@ -748,6 +748,14 @@ class StaticPagesController < ApplicationController
 		render layout: false
 	end 
 
+
+  def transfer
+    @title = 'Contact FAU Admissions'
+    @description = ''
+
+    #render layout: false
+  end 
+
   
 
   def fticsync

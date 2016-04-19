@@ -14,6 +14,7 @@ Ob::Application.routes.draw do
    get    '/main',             to: 'static_pages#main'
    get    '/home',             to: 'static_pages#home'
    get    '/unauthorized',     to: 'static_pages#unauthorized'
+   get    '/transfer',         to: 'static_pages#transfer'
    get    '/gatewayed_home',   to: 'static_pages#gatewayed_home'
    get    '/login',            to: 'login#login'
    match  '/do_manual_login',  to: 'login#do_manual_login', via: 'post'

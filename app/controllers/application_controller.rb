@@ -89,6 +89,17 @@ class ApplicationController < ActionController::Base
         end     
       
         record_activity("User Login")
+        
+        #begin: TRANSFER STATUS CHECK
+        transfer_status = Banner.transfer_status(znum)
+        if transfer_status.count > 0  
+           transfer_status.each do |ts|
+              if ts['sgrsatt_atts_code'] == 'TRAA'              
+              redirect_to transfer_path
+             end
+          end
+        end
+        #end: TRANSFER STATUS CHECK
 
        if znum.nil? || znum.empty? || znum.blank?
         #we can't find you in the system peaches
