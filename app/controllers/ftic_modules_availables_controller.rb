@@ -571,7 +571,11 @@ class FticModulesAvailablesController < ApplicationController
 
      if params[:znum]
         if params[:intl] == "0"
-           redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect 
+           if params[:term] == "Summer"
+              redirect_to "/home?znum=#{params[:znum]}#step-finalt" #redirect
+           else
+              redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect 
+           end
         else
            redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect
         end
@@ -579,7 +583,11 @@ class FticModulesAvailablesController < ApplicationController
      else
        
          if params[:intl] == "0"
-           redirect_to "/home#step-finaid" #redirect
+            if params[:term] == "Summer"
+              redirect_to "/home?znum=#{params[:znum]}#step-finalt" #redirect
+            else
+              redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect 
+            end
         else
            redirect_to "/home#step-immunization" #redirect
         end
@@ -695,6 +703,60 @@ class FticModulesAvailablesController < ApplicationController
      else
         redirect_to "/home#step-immunization"
      end  
+  end
+
+   def update_ftic_finaidalt_module
+    # @modules_available = FticModulesAvailable.find(params[:ftic_id])
+    # @modules_available.finaid = params[:finaid]
+    # @modules_available.immunization = 1 #unlock immunization
+    # @modules_available.save
+
+    record_activity("Module Update Fin Aid. Alt. | " + params[:znumber] + " | " + params[:netid])
+
+
+     if Finaidneed.find_by_znumber(params[:znumber]).nil? 
+      finaidneeds = Finaidneed.new
+      finaidneeds.znumber = params[:znumber]
+      finaidneeds.netid = params[:netid]
+      finaidneeds.needFinAidAlt = params[:needFinAidAlt]
+      finaidneeds.save(validate: false)   
+     else
+      finaidneeds = Finaidneed.find_by_znumber(params[:znumber]) 
+      finaidneeds.update_attributes(
+          :znumber => params[:znumber],          
+          :netid => params[:netid], 
+          :needFinAidAlt => params[:needFinAidAlt]
+      ) 
+     end
+
+     # if params[:znum]
+     #     redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect to deposit
+     # else
+     #    redirect_to "/home#step-immunization"
+     # end  
+
+     if params[:znum]
+        if params[:intl] == "0"
+           if params[:term] == "Summer"
+              redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect
+           else
+              redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect 
+           end
+        else
+           redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect
+        end       
+     else
+          if params[:intl] == "0"
+            if params[:term] == "Summer"
+              redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect
+            else
+              redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect 
+            end
+        else
+           redirect_to "/home#step-immunization" #redirect
+        end
+     end  
+
   end
 
    def update_ftic_housing_module

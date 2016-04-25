@@ -100,6 +100,7 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     polyglot (0.3.5)
+    puma (3.4.0)
     rack (1.4.7)
     rack-cache (1.5.1)
       rack (>= 0.4)
@@ -189,6 +190,7 @@ DEPENDENCIES
   jquery-rails
   multi_json
   paperclip
+  puma
   rack (~> 1.4.7)
   rails (= 3.2.13)
   rails_best_practices

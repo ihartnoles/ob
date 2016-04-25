@@ -9,6 +9,7 @@ group :development do
 	#gem 'uniform_notifier'
 	gem "rails_best_practices"
 end
+gem 'puma'
 gem 'activesupport'
 gem 'actionpack'
 gem 'multi_json'

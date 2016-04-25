@@ -24,12 +24,21 @@ class ApplicationController < ActionController::Base
       @znum = nil
       
       if !session[:cas_user].nil?
-         @displayname = session[:cas_user]
-     
+         @displayname = session[:cas_user]     
       else
          @displayname = 'N/A'
       end
       
+      # session[:current_summer_term] = '2015-2016'
+      # session[:current_summer_aidy] = '1516'
+      # session[:current_fall_term] = '2016-2017'
+      # session[:current_fall_aidy] = '1617'
+
+      @current_summer_term = '2015-2016'
+      @current_summer_aidy = '1516'
+      @current_fall_term = '2016-2017'
+      @current_fall_aidy = '1617'
+
       if params[:znum] 
         #this is to allow impersonation
         @znum = params[:znum]
@@ -127,6 +136,8 @@ class ApplicationController < ActionController::Base
             @immunization_bypass = a.immunizationbypass
             @finaid_available = a.finaid
             @finaid_bypass = a.finaidbypass
+            @summer_finaid_available = 1
+            @summer_finaid_bypass = 0
             @housing_fee_available = a.housingfee
             @housingfee_bypass = a.housingfeebypass
             @residency_available = a.residency

@@ -336,10 +336,17 @@ class StaticPagesController < ApplicationController
                end
 
 
-               if o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?
+               if (o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?)  &&  o['rorstat_aidy_code'] == @current_fall_aidy
                   @finaid_package_complete = 0
                else
                   @finaid_package_complete = 1
+               end
+
+
+                if (o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?) &&  o['rorstat_aidy_code'] == @current_summer_aidy
+                  @summer_finaid_package_complete = 0
+               else
+                  @summer_finaid_package_complete = 1
                end
 
               
@@ -381,8 +388,10 @@ class StaticPagesController < ApplicationController
           finaidneedflag = Finaidneed.find_by_znumber(@znum)
           if !finaidneedflag.nil?
               @finaidneedflag = finaidneedflag.needFinAid
+              @finaidneedflag_summer = finaidneedflag.needFinAidAlt
           else            
               @finaidneedflag = nil
+              @finaidneedflag_summer = nil
           end
 
           #begin finaidacceptance
@@ -433,6 +442,14 @@ class StaticPagesController < ApplicationController
               finaidflags.push('1')
             end
 
+            if (o['rrrareq_sat_ind'] == 'N' || o['rrrareq_sat_ind'].nil?) && o['RORSTAT_AIDY_CODE'] ==  @current_summer_aidy && (@summer_finaid_package_complete = 0 || @summer_eligibility_reqs_complete = 0 ||  @summer_fin_aid_acceptance = 0 || @summer_tc_complete = 0)
+              #@summer_finaid_complete = 0
+              finaidflags.push('S0')
+            else
+              #@summer_finaid_complete = 1
+              finaidflags.push('S1')
+            end
+
             if  o['fafsa_flg'] == 'Y'  
               @fafsa_complete = 1
             else
@@ -444,19 +461,19 @@ class StaticPagesController < ApplicationController
 
             if o['summer_app'] == 'Y'
               #set up summer flags
-              if  o['fafsa_flg'] == 'Y' && o['rorstat_aidy_code'] == '1516'
+              if  o['fafsa_flg'] == 'Y' && o['rorstat_aidy_code'] ==  @current_summer_aidy
                 @summer_fafsa_complete = 1
               else
                 @summer_fafsa_complete = 0
               end
 
-               if o['rorstat_all_req_comp_date'].nil? && o['rorstat_aidy_code'] == '1516'
+               if o['rorstat_all_req_comp_date'].nil? && o['rorstat_aidy_code'] ==  @current_summer_aidy
                   @summer_eligibility_reqs_complete = 0
                else
                   @summer_eligibility_reqs_complete = 1
                end
 
-               if o['rtvtreq_code'] == 'TERMS' && o['rrrareq_sat_ind'] == 'Y' && o['rorstat_aidy_code'] == '1516'
+               if o['rtvtreq_code'] == 'TERMS' && o['rrrareq_sat_ind'] == 'Y' && o['rorstat_aidy_code'] ==  @current_summer_aidy
                    @summer_tc_complete = 1
                else
                    @summer_tc_complete = 0
@@ -468,16 +485,27 @@ class StaticPagesController < ApplicationController
          
           if  finaidflags.include? '0'
             @finaid_complete = 0
+          elsif finaidflags.include? 'S0'
+            @summer_finaid_complete = 0
+          elsif finaidflags.include? 'S1'
+            @summer_finaid_complete = 1
           elsif finaidflags.empty?
              @finaid_complete = 0
+             @summer_finaid_complete = 0
           else
             @finaid_complete = 1
+            @summer_finaid_complete = 1
           end 
           #end finaidflags
 
           if @finaidneedflag == "NO"
              @finaid_complete = 1
           end
+
+          if @finaidneedflag_summer == "NO"
+             @summer_finaid_complete = 1
+          end
+
 
           #BEGIN housing
             housing_exemption = Housing.get_housing_exemption(@znum)

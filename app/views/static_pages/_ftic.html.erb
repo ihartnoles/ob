@@ -460,6 +460,7 @@ Hello, <%= session[:cas_user] %>!
 								    <%= hidden_field_tag :ftic_id, @ftic_id %>
 								    <%= hidden_field_tag :deposit, 1 %>
 								    <%= hidden_field_tag :intl, @isInternationalStudent %>
+								    <%= hidden_field_tag :term, @term %>
 								    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 									<% if params[:znum] %>
 									   	<%= hidden_field_tag :znum, @znum %>									    
@@ -477,11 +478,239 @@ Hello, <%= session[:cas_user] %>!
 
 
 		  <% if @isInternationalStudent != 1 %>  
+
+		  <% if @term == 'Summer' %>		
+		  <!-- BEGIN FIN AID ALT -->
+		  <li class="panel">		  	
+			  <a id="finaidalthref" href="#step-finalt" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
+			  <!-- 
+			  /******* 
+			  TO DO: create: summer_finaid_available & summer_finaid_bypass variables hook up to admin
+			  *****/
+			  -->
+			  <div class="number"><!-- Step 6 --><%= get_statusicon(@summer_finaid_available, @summer_finaid_complete, @summer_finaid_bypass) %> </div>
+			
+			  <h6><b>FINANCIAL AID (<%= @current_summer_term %>)</b></h6>
+			</a>
+			
+			<div id="step-finalt" class="collapse">
+			   <!--  Begin FIRST FIN AID ALT PANEL  -->
+			   <div class="step-content">
+			   	<% if finaid_bypass == 1 %>		
+			   		<% cache('bypassalert') do %>	  		
+						<div class="alert alert-warning">
+							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
+						</div>
+					<% end %>
+			    <% end %>
+		  				
+							<% if @summer_fafsa_complete == 0 || @summer_fafsa_complete.nil? && ( @finaidneedflag_summer.nil?|| @finaidneedflag_summer  == "YES") %>
+			  					<div class="alert alert-border alert-danger text-center fade in">
+			  						Our records indicate you have not completed your Free Application for Federal Student Aid (FAFSA) for Summer.<br>
+			  						If you are seeking Federal Student Aid you must <a href="http://fafsa.gov" onclick="window.open(this.href, 'fafsa','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">complete your Free Application for Federal Student Aid at FAFSA.gov</a>.<br><br>
+			  					</div>		
+			  				<% end %>
+
+			  				<% if @finaidneedflag_summer  == "NO" %>
+	  							<% cache('finaidalert') do %>
+	  							<div class="alert alert-warning text-center fade in">
+			  						<b>You have indicated you are NOT interested in Financial Aid. As such you may skip this section. Should your situation change please remember there are strict deadlines as to when you can apply for Financial Aid.</b>
+			  					</div>
+			  					<% end %>
+			  				<% end %>
+
+			  				<%# if @fafsa_complete == 1 %>
+			  				<%= form_tag('/update_ftic_finaidalt_module' , {:class => 'register-form form-validator'})  do %>
+			  				<br>
+			  				<div align="left">
+			  					<h3 class="title">Do you wish to apply for Summer Financial Aid?</h3>
+			  					<p></p>
+			  					<p>
+			  						<div class="checkbox">
+				  					     <%= radio_button_tag 'needFinAidAlt', 'YES', !!(@finaidneedflag_summer == "YES" || @finaidneedflag_summer.nil?) %>Yes, I do.
+			  					    </div>
+			  					    <div class="checkbox">
+			  						 	<%= radio_button_tag 'needFinAidAlt', 'NO', !!(@finaidneedflag_summer == "NO") %>No, I'm not interested.
+			  						</div>
+			  					<p>
+			  				</div>
+			  				<br>
+
+
+			  				
+			  			<div id="finaiddeetsalt" <% if @finaidneedflag_summer == "NO"%>style="display: none;"<%end%> >
+			  							  				
+			  				<div id="finaiddeetsalt" <% if @finaidneedflag_summer == "NO"%>style="display: none;"<%end%> >
+			  					<h3 class="title">Summer Financial Aid Questions</h3>
+			  					<p>If you wish to apply for Summer Financial Aid then you must answer five questions. Please <a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AI&aidy_in=<%=@aidy%>&calling_proc_name=">click here</a> to view and answer the questions.</p>
+			  					<p>&nbsp;</p>
+			  				</div>				  			
+
+			  				<h3 class="title">The Financial Aid Steps</h3>
+			  				<p> 						<table class="table table-striped text-left order-details">
+			  							<thead>
+						  				<tr>
+						  					<th class="product-name">Step</th>
+						  					<th align="left">Status</th>						  										  				
+						  				</tr>
+						  				</thead>
+			  							<tr>
+			  								<td>1.&nbsp;<a href="http://fafsa.gov" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete your free Application for Federal Student Aid at FAFSA.gov</a>
+			  								</td>
+			  								<td align="center">
+			  									<%= fafsa_flag_by_term(znum,@current_summer_term) %>
+			  								</td>
+			  							</tr>
+
+			  						<% if @summer_fafsa_complete == 1 %>
+			  							<tr>
+			  								<td>2.&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Complete Your Financial Aid Requirements</a></td>		  						   
+				  							<td align="center">	
+				  						    	<%= finaid_reqs_by_term(znum,@current_summer_term) %>
+				  						    </td>
+			  							</tr>
+			  						<% if  @summer_fafsa_complete ==1 && @summer_eligibility_reqs_complete == 1 %>
+			  							<tr>
+			  								<td>3.&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Terms & Conditions</a> 	
+				  							</td>
+				  							<td align="center">	
+				  						    	<%= finaid_tc_by_term(znum,@current_summer_term) %>
+				  						    </td>
+			  							</tr>
+
+			  							<tr>
+			  								<td>4.&nbsp;<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Accept Your Financial Aid Package</a> &nbsp;
+				  							</td>	  											  						
+				  							<td align="center">	
+				  						    	<%= fin_aid_acceptance_by_term(znum,@current_summer_term) %>
+				  						    </td>	
+			  							</tr>
+			  						<% else %>
+			  							<!--  -->
+			  							<% if (@summer_tc_complete.blank? || @summer_tc_complete.nil?) || (@summer_fin_aid_acceptance.blank? || @summer_fin_aid_acceptance.nil?)%>
+				  							<div class="alert alert-warning">
+												<p>The Financial Aid Office is processing your information. Please check back regularly for updates on your status.</p>
+											</div>												
+										<% end %>			
+			  						<% end %>
+
+			  						<% end %>  <!-- end of fafsa check -->
+			  						</table>
+				  			
+			  						
+			  				</p> 
+
+
+			  			
+
+			  				<% cache('finaidcaltxt') do %>	
+				  				<h3 class="title">Financial Aid Calendar</h3>
+				  				
+				  				<p>
+				  					*Dates are subject to change without notice.  Please see <a href="http://www.fau.edu/finaid/resources/dates.php" onclick="window.open(this.href, 'fau fin. aid. calendar','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Important Financial Aid Dates & Deadlines</a> for more details. <br> You also have the option to sync with the FAU Financial Aid Calendar. You can get new events and updates directly in your calendar.<iframe src="https://stanza.co/button/embed?calendar=https%3A%2F%2Fstanza.co%2Fschedules%2FFAUFinancialAid&amp;size=medium" style="border: none; margin: 0px; vertical-align: middle; height: 35px; width: 210px;"></iframe>
+				  				</p>
+			  				<% end %>
+			  				
+
+                  <br>
+
+                  	<% if @summer_fafsa_complete == 1 %>
+					  	<% cache('finaiddoctext') do %>	
+					  		<h3 class="title">Your Financial Aid Documents</h3>
+
+					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 		  			
+					  			
+
+					  			<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
+
+					  		</p>
+					  	<% end %>
+
+					  	
+						  		<table class="table table-striped text-left order-details">
+						  			<thead>
+						  				<tr>
+						  					<th class="product-name">FAFSA Document</th>
+						  					<% if @term == 'Summer' %>
+						  						<th  align="right">Aid Year</th><th align="right">Status</th>
+						  						<%# @fin_aid_semesters.each do |fas| %>
+									  			  <!-- <th class="product-total"><%#= fas['semester'] %> <%#= fas['year'] %></th> -->
+									  			<%# end %>
+						  					<% else %>
+						  						<th  align="right">Aid Year</th><th align="right"><%#= @term %> Status</th>
+						  					<% end %>						  					
+						  				</tr>
+						  			</thead>
+						  				<%# if @term == 'Summer' %>
+						  						<%# @fin_aid_semesters.each do |fas| %>						  								
+						  								<%#= fin_aid_docs_multiterm(znum,fas['rorstat_aidy_code']) %>
+						  						<%# end %>
+						  				<%# else %>
+						  					<%#= fin_aid_docs(znum,@term) %>
+						  				<%#end %>
+
+						  				<%= fin_aid_docs_multiterm(znum,@current_summer_aidy) %>
+						  		</table>
+						  		<br>
+
+
+
+					  		<h3 class="title">Your Financial Aid Awards</h3>
+					  		<p>
+			  					For more detailed information on the various types of financial aid which are available please see <a href="http://www.fau.edu/finaid/types-of-aid/" onclick="window.open(this.href, 'fin. aid types','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Types of Financial Aid</a>.
+			  				</p>
+					  		<p>
+					  			<table class="table table-striped text-left order-details">
+						  			<thead>
+						  				<tr>
+						  					<th class="product-name">Award</th>
+						  					<th class="product-total">Term</th>
+						  					<th class="product-total">Amount</th>
+						  					<th class="product-total">Offer Date</th>
+						  					<th class="product-total">Status</th>
+						  				</tr>
+						  			</thead>
+
+						  				<%= fin_aid_awards_multiterm(znum,@current_summer_aidy) %>
+						  		</table>
+						  		<br>
+
+					  		</p>
+								
+				<% end %>
+			</div><!-- end of deets -->
+
+				<% if  (finaid_available == 1 || finaid_bypass == 1) %>
+	  				
+						<div class="buttons-box text-right">
+			  		 		<%#= form_tag('/update_ftic_finaid_module' , {:class => 'register-form form-validator'})  do %>
+			  		 		 	<%= hidden_field_tag :znumber, @znum %>
+							    <%= hidden_field_tag :netid, @displayname %>
+							    <%= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%= hidden_field_tag :finaid, 1 %>
+							    <%= hidden_field_tag :term, @term %>
+							    <%= hidden_field_tag :intl, @isInternationalStudent %>
+							    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
+								<% if params[:znum] %>
+								   	<%= hidden_field_tag :znum, @znum %>									    
+								<% end %>
+						    	 <button type="submit" class="btn btn-danger" id="finaidBut">Continue</button>		
+					 		<% end %>				 
+						</div>
+				<% end %>
+			   </div>
+			    <!--  END FIRST FIN AID PANEL  -->
+			</div>
+		  </li>
+		 <% end %>
+		  <!-- END FIN AID ALT -->
+
+		  <!-- BEGIN FIN AID MAIN -->
 		  <li class="panel">		  	
 			  <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
 			  <div class="number"><!-- Step 6 --><%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> </div>
 			
-			  <h6><b>FINANCIAL AID</b></h6>
+			  <h6><b>FINANCIAL AID (<%= @current_fall_term %>) </b></h6>
 			</a>
 			
 			<div id="step-finaid" class="collapse">
@@ -531,13 +760,7 @@ Hello, <%= session[:cas_user] %>!
 			  				
 			  			<div id="finaiddeets" <% if @finaidneedflag == "NO"%>style="display: none;"<%end%> >
 			  				
-			  				<% if @term == 'Summer'%>
-				  				<div align="left">
-				  					<h3 class="title">Summer Aid Questions</h3>
-				  					<p>If you wish to apply for Summer Aid then you must answer five questions. Please <a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AI&aidy_in=<%=@aidy%>&calling_proc_name=">click here</a> to answer the questions.</p>
-				  					<p>&nbsp;</p>
-				  				</div>
-				  			<% end %>
+			  			
 
 			  				<h3 class="title">The Financial Aid Steps</h3>
 			  				<p>
@@ -546,17 +769,17 @@ Hello, <%= session[:cas_user] %>!
 			  							<thead>
 						  				<tr>
 						  					<th class="product-name">Step</th>
-						  					<% if @fin_aid_semesters.count > 0 %>
+						  					<%# if @fin_aid_semesters.count > 0 %>
 						  					<%# if @term == 'Summer' %>						  					
-						  						<%@fin_aid_semesters.each do |fas| %>
-									  			  <th align="right"><%= fas['finaidyear'] %> status</th>
-									  			<% end %>
+						  						<%#@fin_aid_semesters.each do |fas| %>
+									  			 <!--  <th align="right"><%#= fas['finaidyear'] %> status</th> -->
+									  			<%# end %>
 									  		<%# elsif @term == 'Summer' && (@summer_fafsa_complete == 0 || @summer_fafsa_complete.nil?)%>									  			  
 									  			 <!-- <th align="center">Summer</th>
 									  			 <th align="center">Fall</th> --> 									  			
-						  					<% else %>						  						 
+						  					<%# else %>						  						 
 						  						  <th align="left">Status</th>
-						  					<% end %>						  				
+						  					<%# end %>						  				
 						  				</tr>
 						  				</thead>
 
@@ -564,27 +787,11 @@ Hello, <%= session[:cas_user] %>!
 			  								<td>1.&nbsp;<a href="http://fafsa.gov" onclick="window.open(this.href, 'admissions','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Complete your free Application for Federal Student Aid at FAFSA.gov</a>
 			  								</td>
 
-			  								
-			  									<!-- this is fall data -->
-			  								
-			  								<% if !@fin_aid_semesters.nil? && @fin_aid_semesters.count > 0 %>
-						  									  					
-						  						<%@fin_aid_semesters.each do |sem| %>
-									  			  <!-- <th align="right"><%#= fas['finaidyear'] %></th> -->
-									  			  <td align="center">
-				  									<!-- <%# if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %> -->
-				  									<%#= fin_aid_docs(znum,@term) %>
-				  									<%#= sem['finaidyear'] %>
-				  									<%= fafsa_flag_by_term(znum,sem['finaidyear']) %>
-				  								  </td>
-									  			<% end %>
-									  										  			
-						  					<% else %>						  			
-			  									<td align="center">
-				  									<% if @fafsa_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>
-				  								</td>
-			  								<% end %>
-			  							<% #end %>
+			  								<!-- this is fall data -->
+			  								<td align="center">
+			  									<%= fafsa_flag_by_term(znum,@current_fall_term) %>
+			  								</td>  											  								
+			  							<%#end%>
 
 			  								
 			  							</tr>
@@ -592,37 +799,9 @@ Hello, <%= session[:cas_user] %>!
 			  						<% if @fafsa_complete == 1 %>
 			  							<tr>
 			  								<td>2.&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Complete Your Financial Aid Requirements</a></td>
-
-			  								<!-- fafsa_complete:<%#=@fafsa_complete %> | eligibility_reqs_complete:<%#=@eligibility_reqs_complete%>  -->
-			  								
-			  								<%# if @term == 'Summer'%>
-			  									
-				  								<!-- 
-				  								<td align="center">			  						
-					  								<%# if @summer_eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp;
-					  							</td>
-					  							
-					  							<td align="center">			  						
-				  									<%# if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp;
-				  								</td>
-				  								-->
-
-				  						    <% if !@fin_aid_semesters.nil? && @fin_aid_semesters.count > 0 %>
-				  						    	<%@fin_aid_semesters.each do |sem| %>
-				  						    		<td align="center">	
-				  						    			<%#= sem['finaidyear'] %>
-				  						    			<%= finaid_reqs_by_term(znum,sem['finaidyear']) %>
-				  						    		</td>
-				  						    	<% end %>
-				  							<% else %>
-				  								<!-- this is fall data -->
-				  								<td align="center">			  						
-				  									<% if @eligibility_reqs_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;
-				  								</td>
-				  							<% end %>
-
-
-				  							
+			  								<td align="center">	
+				  						    	<%= finaid_reqs_by_term(znum,@current_fall_term) %>
+				  						    </td>			  							
 			  							</tr>
 
 
@@ -630,47 +809,17 @@ Hello, <%= session[:cas_user] %>!
 			  						<% if (@fafsa_complete == 1 || @summer_fafsa_complete ==1) && (@eligibility_reqs_complete == 1 || @summer_eligibility_reqs_complete == 1)%>
 			  							<tr>
 			  								<td>3.&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Terms & Conditions</a> 	
-				  								
 				  							</td>
-				  							
-				  							<%# if @term == 'Summer'%>
-				  							<!-- need to update this to pull summer specific data -->
-				  							<!-- <td align="center"><%#if @summer_tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp;&nbsp;</td> -->
-				  							<!-- this is fall data -->
-				  							<!-- <td align="center"><%# if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp;&nbsp;</td> -->
-				  							<% if !@fin_aid_semesters.nil? && @fin_aid_semesters.count > 0 %>
-				  						    	<%@fin_aid_semesters.each do |sem| %>
-				  						    		<td align="center">	
-				  						    			<%#= sem['finaidyear'] %>
-				  						    			<%= finaid_tc_by_term(znum,sem['finaidyear']) %>
-				  						    		</td>
-				  						    	<% end %>
-				  							<% else %>
-				  							<!-- this is fall data -->
-				  							<td align="center"><% if @tc_complete == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;&nbsp;</td>
-				  							<% end %>
-				  							
+				  							<td align="center">	
+				  						    	<%= finaid_tc_by_term(znum,@current_fall_term) %>
+				  						    </td>				  							
 			  							</tr>
-
 			  							<tr>
 			  								<td>4.&nbsp;<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Accept Your Financial Aid Package</a> &nbsp;
 				  							</td>				  							
-				  							<%# if @term == 'Summer'%>
-				  							<!-- need to update this to pull summer specific data -->
-				  							<!-- <td align="center"><%# if @summer_fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp;</td> -->
-				  							<!-- this is fall data -->
-				  							<!-- <td align="center"><%# if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><%# else %><img src="/assets/Delete_8x8.png" alt="" ><%# end %>&nbsp;</td> -->
-				  							<% if !@fin_aid_semesters.nil? && @fin_aid_semesters.count > 0 %>
-				  						    	<%@fin_aid_semesters.each do |sem| %>
-				  						    		<td align="center">	
-				  						    			<%#= sem['finaidyear'] %>
-				  						    			<%= fin_aid_acceptance_by_term(znum,sem['finaidyear']) %>
-				  						    		</td>
-				  						    	<% end %>
-				  							<% else %>
-				  							<!-- this is fall data -->
-				  							<td align="center"><% if @fin_aid_acceptance == 1 %><img src="/assets/Check_8x8.png" alt="" ><% else %><img src="/assets/Delete_8x8.png" alt="" ><% end %>&nbsp;</td>
-				  							<% end %>		
+				  							<td align="center">	
+				  						    	<%= fin_aid_acceptance_by_term(znum,@current_fall_term) %>
+				  						    </td>
 			  							</tr>
 			  						<% else %>
 			  							<!--  -->
@@ -728,13 +877,7 @@ Hello, <%= session[:cas_user] %>!
 						  					<% end %>						  					
 						  				</tr>
 						  			</thead>
-						  				<% if @term == 'Summer' %>
-						  						<% @fin_aid_semesters.each do |fas| %>						  								
-						  								<%= fin_aid_docs_multiterm(znum,fas['rorstat_aidy_code']) %>
-						  						<% end %>
-						  				<% else %>
-						  					<%= fin_aid_docs(znum,@term) %>
-						  				<% end %>
+						  				<%= fin_aid_docs_multiterm(znum,session[:current_fall_aidy]) %>
 						  		</table>
 						  		<br>
 
@@ -756,7 +899,7 @@ Hello, <%= session[:cas_user] %>!
 						  				</tr>
 						  			</thead>
 
-						  				<%= fin_aid_awards(znum) %>
+						  				<%= fin_aid_awards_multiterm(znum,session[:current_fall_aidy]) %>
 						  		</table>
 						  		<br>
 
@@ -786,6 +929,7 @@ Hello, <%= session[:cas_user] %>!
 			    <!--  END FIRST FIN AID PANEL  -->
 			</div>
 		  </li>
+		  <!-- END FIN AID MAIN -->
 		<% end %>
 		  
 		 
@@ -2872,6 +3016,15 @@ Hello, <%= session[:cas_user] %>!
 	});
 
 
+	 $('input[type=radio][name=needFinAidAlt]').change(function() {
+	        if (this.value == 'NO') {
+	           $("#finaiddeetsalt").hide();	           
+	        }
+	        else if (this.value == 'YES') {
+	           $("#finaiddeetsalt").show();          
+	        }
+	});
+
 	 function clearNavBar(){
 	 	$('.progress-list li.active').removeClass('active');		
 	 }
@@ -3230,6 +3383,20 @@ Hello, <%= session[:cas_user] %>!
 			});
 		}
 	<%# end %>
+
+	 if (window.location.href.indexOf("#step-finalt") > -1) {
+		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+
+		    $('#finaidalthref').removeClass('collapsed step-title').addClass('step-title');
+		    $('#step-finalt').removeClass('collapse').addClass('collapse in');
+
+		    $('#step-finalt').ScrollTo({
+				    duration: 2000,
+				    durationMode: 'all'
+			});
+
+		}
 
 	<%# if  (finaid_available == 1 || finaid_bypass == 1)  && (residency_available == 1 && residency_complete == 1 || residency_bypass == 1 ) %>
 	 if (window.location.href.indexOf("#step-finaid") > -1) {

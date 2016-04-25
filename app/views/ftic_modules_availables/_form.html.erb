@@ -116,7 +116,50 @@
                 </div> <!-- END OF INTL. VISA -->
                 <% end %>
 
+                <!-- BEGIN: Communication -->
+                    <div class="col-sm-4 col-md-4 service alert alert-border">
+                     
+                        <div class="icon bg"><% if m.communication == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Communication Preference</h6></a>
+                        <div class="text-small">
+                          
+                          <% if @communication_complete == 1  %>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+                         
 
+                            <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                <%= f.label :communication, "Availability"  %><br>    
+                                <%= f.radio_button :communication, 1 %> <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :communication, 0 %> <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :communicationbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :communicationbypass, 1 %>  <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :communicationbypass, 0 %> <i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                <!-- END: Communication -->
+
+                <!-- BEGIN:deposit -->
                 <div class="col-sm-4 col-md-4 service alert alert-border">
                  
                     <div class="icon bg">
@@ -171,13 +214,12 @@
                                 
                 </div><!-- END OF DEPOSIT -->
 
-                <!-- account was here -->
+                <!-- BEGIN: Fin Aid -->
+                   <!-- hide FIN AID if it's an INTERNATIONAL STUDENT -->
+                      <% if @isInternationalStudent == 0 %>
+                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
-
-
-                        <div class="col-sm-4 col-md-4 service alert alert-border">
-                     
-                        <div class="icon bg"><% if m.communication == 1 %>
+                        <div class="icon bg"><% if m.finaid == 1 %>
                               <%#= image_tag('/assets/Check_16x16.png')  %>
                                <div class="icon icon-20"> 
                                 <i class="fa fa-unlock-alt"></i>
@@ -188,37 +230,40 @@
                                 <i class="fa fa-lock"></i>
                               </div>
                             <% end %></div>
-                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Communication Preference</h6></a>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Financial Aid</h6></a>
                         <div class="text-small">
-                          
-                          <% if @communication_complete == 1  %>
+                            
+                           <% if @finaid_complete == 1 %>
                                <div class="text-success"><b>COMPLETED</b></div><br>
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
 
-                          <%= @communication_complete %>
+
+                          <%= @finaid_complete %>
 
                             <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
 
                             <br><br>
                              <div class="row">
                                 <div class="col-sm-6 ">
-                                <%= f.label :communication, "Availability"  %><br>    
-                                <%= f.radio_button :communication, 1 %> <i class="fa fa-unlock-alt"></i>  &nbsp;<%= f.radio_button :communication, 0 %> <i class="fa fa-lock"></i>
+                                    <%= f.label :finaid, "Availability"  %><br>    
+                                    <%= f.radio_button :finaid, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :finaid, 0 %><i class="fa fa-lock"></i>
                                 </div>
 
                                  <div class="col-sm-6 "> 
-                                    <%= f.label :communicationbypass, "Bypass"  %><br>    
-                                    <%= f.radio_button :communicationbypass, 1 %>  <i class="fa fa-check"></i> &nbsp;<%= f.radio_button :communicationbypass, 0 %> <i class="fa fa-times-circle"></i>
+                                    <%= f.label :finaidbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :finaidbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :finaidbypass, 0 %><i class="fa fa-times-circle"></i>
                                 </div>  
                              </div>
 
                             </div>
                         </div>  
-                      
+                      <% end %>
 
+                <!-- END: Fin Aid -->
 
+                <!-- account was here -->
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                      
                         <div class="icon bg"><% if m.immunization == 1 %>
@@ -328,52 +373,7 @@
                       <% end %> 
                      
 
-                      <!-- hide FIN AID if it's an INTERNATIONAL STUDENT -->
-                      <% if @isInternationalStudent == 0 %>
-                         <div class="col-sm-4 col-md-4 service alert alert-border">
-                      
-                        <div class="icon bg"><% if m.finaid == 1 %>
-                              <%#= image_tag('/assets/Check_16x16.png')  %>
-                               <div class="icon icon-20"> 
-                                <i class="fa fa-unlock-alt"></i>
-                              </div>
-                            <% else %>
-                              <%#= image_tag('/assets/Delete_16x16.png')  %>
-                              <div class="icon icon-20 text-error"> 
-                                <i class="fa fa-lock"></i>
-                              </div>
-                            <% end %></div>
-                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Financial Aid</h6></a>
-                        <div class="text-small">
-                            
-                           <% if @finaid_complete == 1 %>
-                               <div class="text-success"><b>COMPLETED</b></div><br>
-                          <% else %>
-                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
-                          <% end %>
-
-
-                          <%= @finaid_complete %>
-
-                            <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
-
-                            <br><br>
-                             <div class="row">
-                                <div class="col-sm-6 ">
-                                    <%= f.label :finaid, "Availability"  %><br>    
-                                    <%= f.radio_button :finaid, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :finaid, 0 %><i class="fa fa-lock"></i>
-                                </div>
-
-                                 <div class="col-sm-6 "> 
-                                    <%= f.label :finaidbypass, "Bypass"  %><br>    
-                                    <%= f.radio_button :finaidbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :finaidbypass, 0 %><i class="fa fa-times-circle"></i>
-                                </div>  
-                             </div>
-
-                            </div>
-                        </div>  
-                      <% end %>
-
+                   
 
                         <!-- <div class="col-sm-4 col-md-4 service alert alert-border">
                       
@@ -645,6 +645,47 @@
                         </div>  
                       </a>
 
+                      <!-- BEGIN FAU Alert -->
+                      <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg"><% if m.faualert == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">FAU Alert</h6> </a>
+                        <div class="text-small">
+
+                          <% if @fau_alert_complete == 1 %>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+                            <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
+
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :faualert, "Availability"  %><br> 
+                                    <%= f.radio_button :faualert, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :faualert, 0 %> &nbsp; <i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :faualertbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :faualertbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :faualertbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div>  
+                      <!-- END FAU Alert -->
 
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
@@ -773,45 +814,7 @@
                     
 
 
-                        <div class="col-sm-4 col-md-4 service alert alert-border">
-                      
-                        <div class="icon bg"><% if m.faualert == 1 %>
-                              <%#= image_tag('/assets/Check_16x16.png')  %>
-                               <div class="icon icon-20"> 
-                                <i class="fa fa-unlock-alt"></i>
-                              </div>
-                            <% else %>
-                              <%#= image_tag('/assets/Delete_16x16.png')  %>
-                              <div class="icon icon-20 text-error"> 
-                                <i class="fa fa-lock"></i>
-                              </div>
-                            <% end %></div>
-                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">FAU Alert</h6> </a>
-                        <div class="text-small">
-
-                          <% if @fau_alert_complete == 1 %>
-                               <div class="text-success"><b>COMPLETED</b></div><br>
-                          <% else %>
-                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
-                          <% end %>
-
-                            <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
-
-                            <br><br>
-                             <div class="row">
-                                <div class="col-sm-6 ">
-                                    <%= f.label :faualert, "Availability"  %><br> 
-                                    <%= f.radio_button :faualert, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :faualert, 0 %> &nbsp; <i class="fa fa-lock"></i>
-                                </div>
-
-                                 <div class="col-sm-6 "> 
-                                    <%= f.label :faualertbypass, "Bypass"  %><br>    
-                                    <%= f.radio_button :faualertbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :faualertbypass, 0 %><i class="fa fa-times-circle"></i>
-                                </div>  
-                             </div>
-
-                            </div>
-                        </div>  
+                        
                      
 
 

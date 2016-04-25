@@ -111,6 +111,53 @@ module StaticPagesHelper
      end
 
 
+     def fin_aid_awards_multiterm(znum,aidyear)
+      output = Banner.fin_aid_awards_multiterm(znum,aidyear)
+      tmp = ''
+      doc_status = ''
+
+      if output.count > 0
+        output.each do |o| 
+             if !o.nil?              
+                
+               if !o['acceptdate'].nil?
+                 status = "accepted"
+               end
+
+               if !o['rpratrm_decline_date'].nil?
+                 status = "declined"
+               end
+
+                if !o['rpratrm_cancel_date'].nil?
+                 status = "canceled"
+               end
+
+               if !o['rpratrm_offer_amt'].nil?
+                  amount =  o['rpratrm_offer_amt']
+               end
+
+               if !o['rpratrm_decline_amt'].nil?
+                  amount =  o['rpratrm_decline_amt']
+               end
+
+               if !o['rpratrm_cancel_amt'].nil?
+                  amount =  o['rpratrm_cancel_amt']
+               end
+
+               tmp <<  "<tr><td>#{o['rfrbase_fund_title']}</td><td>#{o['term']} #{o['year']}</td><td>#{number_to_currency(amount)}</td><td>#{o['offerdate']}</td><td>#{status}</td></tr>"
+             else
+               tmp =  "<tr><td colspan='4'>You DO NOT have award information on file.</td></tr>"
+             end        
+        end
+
+           return tmp.html_safe
+
+      else
+         tmp =  "<tr><td colspan='4'>You DO NOT have award information on file.</td></tr>"
+       return tmp.html_safe
+      end 
+     end
+
       def fin_aid_docs(znum,term)
         output = Banner.fin_aid_docs(znum)
 

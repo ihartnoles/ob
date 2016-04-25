@@ -158,7 +158,7 @@ class Banner < ActiveRecord::Base
 										     summer_app,
 										     rtvtreq_code, 
 										     rorstat_all_req_comp_date
-										     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}
+										     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}										    
 										     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
 
 		end
@@ -254,7 +254,7 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.fin_aid_checkboxes(id)
-			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR') AND rorstat_all_req_comp_date is not null")
+			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date, rorstat_aidy_code from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR') AND rorstat_all_req_comp_date is not null")
 		end
 
 		def self.fin_aid_acceptance(id)
@@ -308,6 +308,29 @@ class Banner < ActiveRecord::Base
 									    WHERE Z_NUMBER=#{connection.quote(id)} 
 									    ORDER BY term, RFRBASE_FUND_TITLE ASC")
 		end
+
+		def self.fin_aid_awards_multiterm(id,aidyear)
+
+			get = connection.exec_query("SELECT RFRBASE_FUND_TITLE, RPRATRM_PERIOD, 
+												SUBSTR( RPRATRM_PERIOD, 1 , 4 ) as year,
+   											  CASE SUBSTR(RPRATRM_PERIOD, 5 , 6 )
+									             WHEN '01' THEN 'Spring'
+									             WHEN '08' THEN 'Fall'
+									             WHEN '05' THEN 'Summer'
+									          ELSE ''
+									      END as term,
+									    RPRATRM_AIDY_CODE as finaidyear,
+									    RPRATRM_OFFER_AMT, RPRATRM_DECLINE_AMT, rpratrm_cancel_amt,
+									    TO_CHAR(RPRATRM_OFFER_DATE,'MM/DD/YYYY') as offerdate, 
+									    TO_CHAR(RPRATRM_ACCEPT_DATE,'MM/DD/YYYY') as acceptdate, 
+									    rpratrm_decline_date,
+									    rpratrm_cancel_date
+									    FROM BANINST1.AWS_ONBOARDING_FINAID_AWARDS
+									    WHERE Z_NUMBER=#{connection.quote(id)} 
+									    AND RPRATRM_AIDY_CODE=#{connection.quote(aidyear)}
+									    ORDER BY term, RFRBASE_FUND_TITLE ASC")
+		end
+
 
 	#END:QUERIES TO BANINST1.AWS_ONBOARDING_FINAID
 
