@@ -172,7 +172,7 @@ class Banner < ActiveRecord::Base
 		def self.fafsa_flag_by_term(id,year)			 
 			  case year
                when '2016-2017'
-                  aidy = '1617'
+                  aidy = "1617"
                when '2015-2016'
                   aidy = "1516"
                else
@@ -188,7 +188,7 @@ class Banner < ActiveRecord::Base
 		def self.finaid_reqs_by_term(id,year)			 
 			  case year
                when '2016-2017'
-                  aidy = '1617'
+                  aidy = "1617"
                when '2015-2016'
                   aidy = "1516"
                else
@@ -204,7 +204,7 @@ class Banner < ActiveRecord::Base
 		def self.finaid_tc_by_term(id,year)			 
 			  case year
                when '2016-2017'
-                  aidy = '1617'
+                  aidy = "1617"
                when '2015-2016'
                   aidy = "1516"
                else

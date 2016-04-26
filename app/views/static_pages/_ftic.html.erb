@@ -512,7 +512,7 @@ Hello, <%= session[:cas_user] %>!
 			  				<% end %>
 
 			  				<% if @finaidneedflag_summer  == "NO" %>
-	  							<% cache('finaidalert') do %>
+	  							<% cache('finaidalertalt') do %>
 	  							<div class="alert alert-warning text-center fade in">
 			  						<b>You have indicated you are NOT interested in Financial Aid. As such you may skip this section. Should your situation change please remember there are strict deadlines as to when you can apply for Financial Aid.</b>
 			  					</div>
@@ -877,7 +877,7 @@ Hello, <%= session[:cas_user] %>!
 						  					<% end %>						  					
 						  				</tr>
 						  			</thead>
-						  				<%= fin_aid_docs_multiterm(znum,session[:current_fall_aidy]) %>
+						  				<%= fin_aid_docs_multiterm(znum,@current_fall_aidy) %>
 						  		</table>
 						  		<br>
 
@@ -899,7 +899,7 @@ Hello, <%= session[:cas_user] %>!
 						  				</tr>
 						  			</thead>
 
-						  				<%= fin_aid_awards_multiterm(znum,session[:current_fall_aidy]) %>
+						  				<%= fin_aid_awards_multiterm(znum,@current_fall_aidy) %>
 						  		</table>
 						  		<br>
 
