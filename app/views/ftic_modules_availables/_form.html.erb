@@ -217,6 +217,52 @@
                 <!-- BEGIN: Fin Aid -->
                    <!-- hide FIN AID if it's an INTERNATIONAL STUDENT -->
                       <% if @isInternationalStudent == 0 %>
+                          <!-- BEGIN ALT FIN AID -->
+                         <% if @term == 'Summer' %>
+                          <div class="col-sm-4 col-md-4 service alert alert-border">
+                      
+                        <div class="icon bg">
+                            <% if m.summer_finaid == 1 %>
+                              <%#= image_tag('/assets/Check_16x16.png')  %>
+                               <div class="icon icon-20"> 
+                                <i class="fa fa-unlock-alt"></i>
+                              </div>
+                            <% else %>
+                              <%#= image_tag('/assets/Delete_16x16.png')  %>
+                              <div class="icon icon-20 text-error"> 
+                                <i class="fa fa-lock"></i>
+                              </div>
+                            <% end %></div>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Financial Aid Alt. (<%= @current_summer_term %>)</h6></a>
+                        <div class="text-small">
+                            
+                           <% if @summer_finaid_complete == 1 %>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
+                          <% else %>
+                              <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                          <% end %>
+
+
+                           <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
+                            <br><br>
+                             <div class="row">
+                                <div class="col-sm-6 ">
+                                    <%= f.label :summer_finaid, "Availability"  %><br>    
+                                    <%= f.radio_button :summer_finaid, 1 %><i class="fa fa-unlock-alt"></i> &nbsp;<%= f.radio_button :summer_finaid, 0 %><i class="fa fa-lock"></i>
+                                </div>
+
+                                 <div class="col-sm-6 "> 
+                                    <%= f.label :summer_finaidbypass, "Bypass"  %><br>    
+                                    <%= f.radio_button :summer_finaidbypass, 1 %><i class="fa fa-check"></i> &nbsp;<%= f.radio_button :summer_finaidbypass, 0 %><i class="fa fa-times-circle"></i>
+                                </div>  
+                             </div>
+
+                            </div>
+                        </div> 
+                        <% end %>
+                        <!-- END ALT FIN AID -->
+
+                          <!-- BEGIN: STANDARD FIN AID -->
                          <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.finaid == 1 %>
@@ -230,7 +276,7 @@
                                 <i class="fa fa-lock"></i>
                               </div>
                             <% end %></div>
-                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Financial Aid</h6></a>
+                        <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Financial Aid (<%= @current_fall_term %>)</h6></a>
                         <div class="text-small">
                             
                            <% if @finaid_complete == 1 %>
@@ -239,11 +285,7 @@
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
 
-
-                          <%= @finaid_complete %>
-
-                            <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
-
+                           <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
                             <br><br>
                              <div class="row">
                                 <div class="col-sm-6 ">
@@ -259,6 +301,7 @@
 
                             </div>
                         </div>  
+                        <!-- END STANDARD FIN AID -->
                       <% end %>
 
                 <!-- END: Fin Aid -->
@@ -285,9 +328,7 @@
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
 
-                          <%= @immunization_complete %>
-
-                            <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
+                           <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
 
                             <br><br>
                              <div class="row">
@@ -351,7 +392,13 @@
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
+                            
 
+                            <% if @FLA_resident == 1 %>
+                             <span class="text-info"><b>FL. Resident</b></span>
+                            <% else %>
+                             <span class="text-info"><b>Out of state</b></span>
+                            <% end %>
                             <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
 
                             <br><br>
@@ -426,8 +473,17 @@
                             <%# end %></div>
                         <a href="/fticadmin/<%= m.id %>/edit"><h6 class="title">Housing & Meal Plans</h6></a>
                         <div class="text-small">
-                            <div class="text-warning"><em><b>pending</b></em></div><br>
+                            <!-- <div class="text-warning"><em><b>pending</b></em></div><br> -->
                            <!--  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
+                             <% if @housing_fee_complete == 1 %>
+                               <div class="text-success"><b>COMPLETED</b></div><br>
+                            <% else %>
+                                <div class="text-danger"><b>INCOMPLETE</b></div><br>
+                            <% end %>
+
+                            <% unless @zipcode.nil? %>
+                            <span class="text-info"><b>ZIP:<%= @zipcode %></b></span>
+                            <% end %>
 
                             <br><br>
                              <div class="row">
@@ -474,6 +530,10 @@
                           <% else %>
                               <div class="text-danger"><b>INCOMPLETE</b></div><br>
                           <% end %>
+
+                          
+                              Aleks score:<% if !@aleks_score.nil? %> <%= @aleks_score %><%else%> N/A <% end %>
+                          
 
                             <!-- The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. -->
 

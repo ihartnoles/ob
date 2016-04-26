@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
          @displayname = 'N/A'
       end
       
-      # session[:current_summer_term] = '2015-2016'
+       session[:current_summer_term] = '2015-2016'
       # session[:current_summer_aidy] = '1516'
-      # session[:current_fall_term] = '2016-2017'
+       session[:current_fall_term] = '2016-2017'
       # session[:current_fall_aidy] = '1617'
 
       @current_summer_term = '2015-2016'

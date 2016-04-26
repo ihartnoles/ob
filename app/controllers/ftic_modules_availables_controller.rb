@@ -27,6 +27,10 @@ class FticModulesAvailablesController < ApplicationController
 
   # GET /modules_availables/1/edit
   def edit
+     
+    @current_summer_term = '2015-2016'
+    @current_fall_term = '2016-2017'
+     
     @modules_available = FticModulesAvailable.find(params[:id])
     #@modules_available =FticModulesAvailable.where(:znumber => params[:znum]) 
     @ma = FticModulesAvailable.where(:id =>  params[:id] )
@@ -42,6 +46,9 @@ class FticModulesAvailablesController < ApplicationController
     orientation_status = Faudw.orientation_status(@znum)
     registration_status = Banner.registered_hours(@znum)
     get_multistatus = Banner.get_multistatus(@znum)
+    immune_check = Banner.immunization_status(@znum)
+    orientation_check = Banner.check_orientation_hold(@znum)
+
 
     #BEGIN: To-Dos
       # @fau_alert_complete = 0
@@ -71,10 +78,10 @@ class FticModulesAvailablesController < ApplicationController
           comm_data = Communication.find(:all, :conditions => ["znumber = ? AND (contactByEmail = ? OR contactByPhone = ?) ", @znum, 1, 1])
 
           #set the flag appropriate
-          if comm_data.count == 0
-            @communication_complete = 0            
+          if comm_data.count>= 1
+            @communication_complete = 1
           else
-            @communication_complete = 1        
+            @communication_complete = 0
           end
 
          
@@ -100,16 +107,28 @@ class FticModulesAvailablesController < ApplicationController
             end
           #END verify your information question
 
-          #pull the student's zip
+            #pull the student's zip
           student_zip = Banner.find_student_zip_by_z(@znum)
 
-           
-          #set the zip
-          student_zip.each do |o| 
-             zipcode = o['zip']  
-             @zipcode = o['zip']                  
-          end     
+           # puts YAML::dump('**********AYYEEEEE**********')
+           # puts YAML::dump(student_zip)
 
+          #set the zip
+          if student_zip.count >= 1
+            student_zip.each do |o| 
+               zipcode = o['zip']  
+               @zipcode = o['zip']      
+               # puts YAML::dump('**********ZIIIIIIIP**********')
+               # puts YAML::dump(zipcode)
+               # puts YAML::dump('**********CODE**********')
+            end
+
+            if @zipcode.nil?
+              @zipcode = '00000'
+            end
+          else
+            @zipcode = '00000'
+          end              
 
     #BEGIN: multistatus check; just trying to limit the number of queries
    
@@ -121,23 +140,24 @@ class FticModulesAvailablesController < ApplicationController
                #@account_complete = 0
                @emergency_complete = 0
                @fau_alert_complete = 0
-               @isInternationalStudent = 0
-               @immunization_complete = 0
+               @isInternationalStudent ||= 0
+               #@immunization_complete = 0
             else
                 get_multistatus.each do |o|
                   
-                  if o['im_exists'] == 'Y' && o['sprhold_hldd_code'] == 'IM'
-                    @immunization_complete = 0
-                  else
-                    @immunization_complete = 1
-                  end 
+                  @fname =  o['f_name']
+                  @lname =  o['l_name']
+                  @netid =  o['gobtpac_external_user']
 
+                 
+
+                  #@OwlImage = RestClient.get('https://devserviceawards.fau.edu/test2.cfm?fname=Peter&lname=Griffon')
+                  
                   if o['whc_student'] == 'N' || o['whc_student'].nil?
                     @isHonorsCollege = 0
                   else
                     @isHonorsCollege = 1
                   end 
-
 
                   if o['int_student'] == 'N' || o['int_student'].nil?
                     @isInternationalStudent = 0
@@ -145,17 +165,21 @@ class FticModulesAvailablesController < ApplicationController
                     @isInternationalStudent = 1
                   end 
 
-
-
                   if o['aleks_taken'] == 'N' || o['aleks_taken'].nil?
                     @aleks_complete = 0
                   else
                     @aleks_complete = 1
                   end 
 
+                  if o['aleks_score'].nil?
+                    @aleks_score = ''
+                  else
+                    @aleks_score = o['aleks_score']
+                  end  
+
                   if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
                     @deposit_complete ||= 1   #change this back to 1
-                    @dep_complete_flag = 1
+                    @dep_complete_flag = 1                    
                   else
                     @deposit_complete ||= 0
                     @dep_complete_flag = 0
@@ -172,13 +196,13 @@ class FticModulesAvailablesController < ApplicationController
                     @emergency_complete = 0
                   else
                     @emergency_complete = 1
-                    @emergency_contact = o['spremrg_contact_name']
-                    @emergency_street = o['spremrg_street_line1']
-                    @emergency_city = o['spremrg_city']
-                    @emergency_state = o['spremrg_stat_code']
-                    @emergency_zip = o['spremrg_zip']
-                    @emergency_phone_area = o['spremrg_phone_area']
-                    @emergency_phone_number = o['spremrg_phone_number']
+                    # @emergency_contact = o['spremrg_contact_name']
+                    # @emergency_street = o['spremrg_street_line1']
+                    # @emergency_city = o['spremrg_city']
+                    # @emergency_state = o['spremrg_stat_code']
+                    # @emergency_zip = o['spremrg_zip']
+                    # @emergency_phone_area = o['spremrg_phone_area']
+                    # @emergency_phone_number = o['spremrg_phone_number']
                   end 
 
                   #BEGIN: FAU Alert info
@@ -186,38 +210,63 @@ class FticModulesAvailablesController < ApplicationController
                      @fau_alert_complete = 0
                   else
                     @fau_alert_complete = 1
-                    @fau_alert_phone_area = o['gwrr911_phone_area']
-                    @fau_alert_phone_number = o['gwrr911_phone_number']
-                    @fau_alert_tele_code = o['gwrr911_tele_code']
-                    @fau_alert_text_capable = o['gwrr911_text_capable']                    
+                    # @fau_alert_phone_area = o['gwrr911_phone_area']
+                    # @fau_alert_phone_number = o['gwrr911_phone_number']
+                    # @fau_alert_tele_code = o['gwrr911_tele_code']
+                    # @fau_alert_text_capable = o['gwrr911_text_capable']                    
                   end 
                   #END: FAU Alert Info
 
-                  @term_display = o['term']
-                  @year_display = o['year']
+                   @term_display = o['term']
+                  # @year_display = o['year']
                   
-                  @email      = o['goremal_email_address']
-                  @phone_area      = o['sprtele_phone_area']
-                  @phone_number      = o['sprtele_phone_number']
+                  # @email        = o['goremal_email_address']
+                  # @phone_area   = o['sprtele_phone_area']
+                  # @phone_number = o['sprtele_phone_number'] 
                  
                 end #end of multistatus loop
             end
             #END: multistatus check
-     
-              # if immunization_status.blank? || immunization_status.count == 0
-              #      @immunization_complete = 0
-              #  else
-              #   immunization_status.each do |o|
-              #     if o['imm_hold_flg'] == 'Y' || o['imm_hold_flg'].nil?
-              #       @immunization_complete = 0
-              #     else
-              #       @immunization_complete = 1
-              #     end 
-              #   end
-              #  end
+
+              if !orientation_check.nil?
+                if orientation_check.count > 0 #begin
+                  orientation_check.each do |o|
+                    if (o['sprhold_hldd_code'] == 'OR' || o['sprhold_hldd_code'] == 'OA')
+                      @orientation_complete = 0
+                      #break
+                    else
+                      @orientation_complete = 1
+                    end 
+                  end #end of each loop
+                else
+                   @orientation_complete = 1
+                end #end ouf count
+            else
+               @orientation_complete = 1
+            end #end of nil check
 
 
-            #begin finaidcheckboxes
+
+
+          if !immune_check.nil?
+            if immune_check.count > 0 #begin
+              immune_check.each do |o|
+                if o['im_exists'] == 'Y' &&  o['sprhold_hldd_code'] == 'IM'
+                  @immunization_complete = 0
+                  #break
+                else
+                  @immunization_complete = 1
+                end 
+              end #end of each loop
+            else
+               @immunization_complete = 1
+            end #end ouf count
+        else
+           @immunization_complete = 1
+        end #end of nil check
+
+
+          #begin finaidcheckboxes
             finaidchecks = []
 
             finaid_checks.each do |o|
@@ -234,14 +283,21 @@ class FticModulesAvailablesController < ApplicationController
                end
 
 
-               if o['rorstat_pckg_comp_date'].nil?
+               if (o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?)  &&  o['rorstat_aidy_code'] == @current_fall_aidy
                   @finaid_package_complete = 0
                else
                   @finaid_package_complete = 1
                end
 
+
+                if (o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?) &&  o['rorstat_aidy_code'] == @current_summer_aidy
+                  @summer_finaid_package_complete = 0
+               else
+                  @summer_finaid_package_complete = 1
+               end
+
               
-               if o['rorstat_all_req_comp_date'].nil?
+               if o['rorstat_all_req_comp_date'].nil? || o['rorstat_all_req_comp_date'].blank?
                   @eligibility_reqs_complete = 0
                else
                   @eligibility_reqs_complete = 1
@@ -265,30 +321,67 @@ class FticModulesAvailablesController < ApplicationController
                   @application_complete = 0
                 end 
 
+
             end
 
-            #begin finaidacceptance
+            # puts YAML::dump('**********BEGIN**********')
+            # puts YAML::dump(finaidchecks)
+            # puts YAML::dump('**********END**********')
+
+          #end
+
+          #query to see if they indicated if they need financial aid or not
+          
+          finaidneedflag = Finaidneed.find_by_znumber(@znum)
+          if !finaidneedflag.nil?
+              @finaidneedflag = finaidneedflag.needFinAid
+              @finaidneedflag_summer = finaidneedflag.needFinAidAlt
+          else            
+              @finaidneedflag = nil
+              @finaidneedflag_summer = nil
+          end
+
+          #begin finaidacceptance
             fin_aid_acceptance = Banner.fin_aid_acceptance(@znum)
+            
+            #@fin_aid_semesters = Banner.fin_aid_semesters(@znum)
+            @fin_aid_semesters = Banner.distinct_fin_aid_semesters(@znum)
+            
 
             if fin_aid_acceptance.nil? || fin_aid_acceptance.blank? || fin_aid_acceptance.count == 0
               @fin_aid_acceptance = 0
+              @summer_fin_aid_acceptance = 0
+              @fin_aid_term_one = 'Summer'
+              @fin_aid_term_two = 'Fall'
             else 
-               fin_aid_acceptance.each do |fa|
-                 if fa['rpratrm_accept_date'].nil?
-                  @fin_aid_acceptance = 0
-                 else 
-                  @fin_aid_acceptance = 1
-                 end
-               end 
-              
-            end
-            #end finaidacceptance
 
-            #begin finaidflags
+                # 01 = Spring
+                # 05 = Summer
+                # 08 = Fall
+
+               fin_aid_acceptance.each do |fa|
+                 if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == '201601' || fa['rpratrm_period'] == '201608')
+                  @fin_aid_acceptance = 1
+                 else 
+                  @fin_aid_acceptance = 0
+                 end
+
+                 if !fa['rpratrm_accept_date'].nil? && fa['rpratrm_period'] == '201605'
+                  @summer_fin_aid_acceptance = 1
+                 else 
+                  @summer_fin_aid_acceptance = 0
+                 end
+               end              
+            end
+
+          #end finaidacceptance
+
+
+          #begin finaidflags
           finaidflags = []
 
           finaid_status.each do |o|
-            if o['rrrareq_sat_ind'] == 'N' || o['rrrareq_sat_ind'].nil?
+            if o['rrrareq_sat_ind'] == 'N' || o['rrrareq_sat_ind'].nil? ||  @finaid_package_complete = 0 || @eligibility_reqs_complete = 0 ||  @fin_aid_acceptance = 0 || @tc_complete = 0
               #@finaid_complete = 0
               finaidflags.push('0')
             else
@@ -296,31 +389,76 @@ class FticModulesAvailablesController < ApplicationController
               finaidflags.push('1')
             end
 
-            if  o['fafsa_flg'] == 'N'
-              @fafsa_complete = 0
+            if (o['rrrareq_sat_ind'] == 'N' || o['rrrareq_sat_ind'].nil?) && o['RORSTAT_AIDY_CODE'] ==  @current_summer_aidy && (@summer_finaid_package_complete = 0 || @summer_eligibility_reqs_complete = 0 ||  @summer_fin_aid_acceptance = 0 || @summer_tc_complete = 0)
+              #@summer_finaid_complete = 0
+              finaidflags.push('S0')
             else
+              #@summer_finaid_complete = 1
+              finaidflags.push('S1')
+            end
+
+            if  o['fafsa_flg'] == 'Y'  
               @fafsa_complete = 1
+            else
+              @fafsa_complete = 0
             end
 
             @finaidyear = o['finaidyear']
+            @aidy= o['rorstat_aidy_code']
+
+            if o['summer_app'] == 'Y'
+              #set up summer flags
+              if  o['fafsa_flg'] == 'Y' && o['rorstat_aidy_code'] ==  @current_summer_aidy
+                @summer_fafsa_complete = 1
+              else
+                @summer_fafsa_complete = 0
+              end
+
+               if o['rorstat_all_req_comp_date'].nil? && o['rorstat_aidy_code'] ==  @current_summer_aidy
+                  @summer_eligibility_reqs_complete = 0
+               else
+                  @summer_eligibility_reqs_complete = 1
+               end
+
+               if o['rtvtreq_code'] == 'TERMS' && o['rrrareq_sat_ind'] == 'Y' && o['rorstat_aidy_code'] ==  @current_summer_aidy
+                   @summer_tc_complete = 1
+               else
+                   @summer_tc_complete = 0
+               end
+            end
+
           end
 
          
           if  finaidflags.include? '0'
             @finaid_complete = 0
+          elsif finaidflags.include? 'S0'
+            @summer_finaid_complete = 0
+          elsif finaidflags.include? 'S1'
+            @summer_finaid_complete = 1
           elsif finaidflags.empty?
              @finaid_complete = 0
+             @summer_finaid_complete = 0
           else
             @finaid_complete = 1
+            @summer_finaid_complete = 1
           end 
           #end finaidflags
 
+          if @finaidneedflag == "NO"
+             @finaid_complete = 1
+          end
+
+          if @finaidneedflag_summer == "NO"
+             @summer_finaid_complete = 1
+          end
+
 
           #BEGIN housing
-          housing_exemption = Housing.get_housing_exemption(@znum)
-          housing_reqs = Banner.additional_housing_reqs(@znum)
-          deposit_received = Housing.get_housing_deposit(@znum)
-          meal_plan_info = Housing.get_meal_plan(@znum)
+            housing_exemption = Housing.get_housing_exemption(@znum)
+            housing_reqs = Banner.additional_housing_reqs(@znum)
+            deposit_received = Housing.get_housing_deposit(@znum)
+            meal_plan_info = Housing.get_meal_plan(@znum)
 
 
             #BEGIN: meal plan info
@@ -335,7 +473,8 @@ class FticModulesAvailablesController < ApplicationController
             #END: meal plan info
 
             #set a default deposit received to 0
-            @housing_deposit_received = 0           
+            @housing_deposit_received = 0
+           
 
             if housing_exemption.count >= 1
               #they have a housing exemption
@@ -364,39 +503,36 @@ class FticModulesAvailablesController < ApplicationController
 
                     if @whc_student == 'Y'  #check if they are a wilkes honors college student
                       #check zipcode radius for Jupiter Campus; WHC students have to live on Jupiter Campus
-                      housing_fee_required = 1                   
+                        @housing_fee_required = 1  
                     else
                       #check zipcode radius for Boca Campus
-                      if 
-                        housing_fee_required = HousingZipcode.where(:zip => @zipcode)
-                      else
-                        housing_fee_required = 1 
+                      if @housing_fee_required = 1 
+                          housing_fee_query = HousingZipcode.where(:zip => @zipcode.gsub(/\D/, ''))
+
+                          #determine if housing fee is required
+                          if housing_fee_query.count == 0 #no match found; must be outside of zipcode whitelist            
+                            @housing_fee_required = 1
+                            @housing_fee_complete = 0           
+                          else
+                            @housing_fee_required = 0
+                            @housing_fee_complete = 1        
+                          end
                       end
                     end
-                   
-                    #determine if housing fee is required
-                    if housing_fee_required.count == 0 #no match found; must be outside of zipcode whitelist            
-                      @housing_fee_required = 1
-                      @housing_fee_complete = 0           
-                    else
-                      @housing_fee_required = 0
-                      @housing_fee_complete = 1        
-                    end
+                                    
 
                     if deposit_received.count >= 1
                       @housing_fee_required = 0
                       @housing_fee_complete = 1
                       @housing_deposit_received = 1
-                    end           
-                    
-
+                    end
                   end
               #END housing reqs
             end 
           #END housing
 
 
-           #@residency_complete = 0
+          #@residency_complete = 0
           if residency_status.count <= 0
                @residency_complete = 0
                @FLA_resident = 0
@@ -415,8 +551,6 @@ class FticModulesAvailablesController < ApplicationController
           #TO DO: make this dynamic
           @housing_meal_plans_complete = 1
          
-
-
           #@oars_complete = 1
           if oars_status.blank?
              @oars_complete = 0
@@ -434,12 +568,13 @@ class FticModulesAvailablesController < ApplicationController
           end
 
         
-          if orientation_status.blank?
+          if orientation_status.blank? || orientation_status.count <= 0
               @orientation_complete = 0
           else
             orientation_status.each do |o|
               if o['attended'] == 'Yes' && !o['attended'].nil?
                 @orientation_complete = 1
+              #   break
               else
                 @orientation_complete = 0
               end
@@ -472,10 +607,22 @@ class FticModulesAvailablesController < ApplicationController
           end
 
 
-    
-      
-     render layout: 'admin'
+          get_all_holds = Banner.get_all_holds(@znum)
 
+          if get_all_holds.count >= 1
+            @holds_exist = 1
+          else 
+            @holds_exist = 0
+          end
+
+          #@emergency_complete = 0
+          #@fau_alert_complete = 0
+          @owlcard_complete = 0
+          @bookadvance_complete = 1
+          @tuition_complete = 0
+          @vehicle_reg_complete = 0   
+
+          render layout: 'admin'
   end
 
   # POST /modules_availables
@@ -504,7 +651,9 @@ class FticModulesAvailablesController < ApplicationController
   def update
     @modules_available = FticModulesAvailable.find(params[:id])
 
-    model_params = params[:ftic_modules_available].permit( :znumber, :netid, :f_name, :l_name, :welcome, :deposit, :depositbypass, :account, :accountbypass, :communication, :communicationbypass, :immunization, :immunizationbypass, :finaid, :finaidbypass, :housingfee, :housingfeebypass, :residency, :residencybypass, :housingmealplan, :housingmealplanbypass, :aleks, :aleksbypass, :oars, :oarsbypass, :learning_comm,  :learning_commbypass, 
+    model_params = params[:ftic_modules_available].permit( :znumber, :netid, :f_name, :l_name, :welcome, :deposit, :depositbypass, :account, :accountbypass, :communication, :communicationbypass, :immunization, :immunizationbypass, 
+        :summer_finaid, :summer_finaidbypass,
+        :finaid, :finaidbypass, :housingfee, :housingfeebypass, :residency, :residencybypass, :housingmealplan, :housingmealplanbypass, :aleks, :aleksbypass, :oars, :oarsbypass, :learning_comm,  :learning_commbypass, 
         :orientation, :orientationbypass, 
         :registrationbypass, :registration, :emergency, :emergencybypass, :faualert,  :faualertbypass, :owlcard, :owlcardbypass, :bookadvance, :bookadvancebypass ,:tution, :tuitionbypass, :vehiclereg, :vehicleregbypass,
         :verify, :verifybypass, :intl_medical, :intl_medical_bypass, :intl_visa, :intl_visa_bypass, :intl_orientation, :intl_orientation_bypass )
@@ -581,12 +730,11 @@ class FticModulesAvailablesController < ApplicationController
         end
        
      else
-       
-         if params[:intl] == "0"
+        if params[:intl] == "0"
             if params[:term] == "Summer"
-              redirect_to "/home?znum=#{params[:znum]}#step-finalt" #redirect
+              redirect_to "/home?#step-finalt" #redirect
             else
-              redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect 
+              redirect_to "/home?#step-finaid" #redirect 
             end
         else
            redirect_to "/home#step-immunization" #redirect
@@ -748,9 +896,9 @@ class FticModulesAvailablesController < ApplicationController
      else
           if params[:intl] == "0"
             if params[:term] == "Summer"
-              redirect_to "/home?znum=#{params[:znum]}#step-finaid" #redirect
+              redirect_to "/home?#step-finaid" #redirect
             else
-              redirect_to "/home?znum=#{params[:znum]}#step-immunization" #redirect 
+              redirect_to "/home?#step-immunization" #redirect 
             end
         else
            redirect_to "/home#step-immunization" #redirect

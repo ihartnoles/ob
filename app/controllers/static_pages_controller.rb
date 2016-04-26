@@ -189,9 +189,7 @@ class StaticPagesController < ApplicationController
 
                   @fname =  o['f_name']
                   @lname =  o['l_name']
-                  @netid =  o['gobtpac_external_user']
-
-                 
+                  @netid =  o['gobtpac_external_user']                
 
                   #@OwlImage = RestClient.get('https://devserviceawards.fau.edu/test2.cfm?fname=Peter&lname=Griffon')
                   
@@ -811,6 +809,12 @@ class StaticPagesController < ApplicationController
          newstudent.immunizationbypass = 0
          newstudent.finaid = 1
          newstudent.finaidbypass = 0
+         if bs['term'] == "Summer"
+          newstudent.summer_finaid = 1
+         else
+          newstudent.summer_finaid = 0
+         end
+         newstudent.summer_finaidbypass = 0
          newstudent.housingfee = 0
          newstudent.housingfeebypass = 0
          newstudent.residency = 0
@@ -841,14 +845,11 @@ class StaticPagesController < ApplicationController
          newstudent.vehicleregbypass = 0
          newstudent.congrats = 0
          newstudent.isactive = 1
-         
          if bs['int_student'] == "Y"
           newstudent.isInternational = 1
          else
           newstudent.isInternational = 0
          end
-
-
          newstudent.intl_medical = 0
          newstudent.intl_medical_bypass = 0
          newstudent.intl_visa = 0
@@ -864,6 +865,12 @@ class StaticPagesController < ApplicationController
          else
           isInternational = 0
          end
+
+         if bs['term'] == "Summer"
+          summer_finaid = 1
+         else
+          summer_finaid = 0
+         end
         
          student.update_attributes(
           :netid => bs['gobtpac_external_user'],
@@ -873,6 +880,7 @@ class StaticPagesController < ApplicationController
           :isInternational => isInternational,
           :communication => 1,
           :finaid => 1,
+          :summer_finaid => summer_finaid,
           :immunization => 1
          ) 
         end

@@ -53,7 +53,12 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.find_newstudents
-		 	get = connection.exec_query("select distinct Z_NUMBER, L_NAME, F_NAME, GOBTPAC_EXTERNAL_USER, INT_STUDENT from BANINST1.AWS_ONBOARDING_MAIN WHERE SARADAP_STYP_CODE in ('B','E')")
+		 	get = connection.exec_query("select distinct Z_NUMBER, L_NAME, F_NAME, GOBTPAC_EXTERNAL_USER, INT_STUDENT, CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+									             WHEN '01' THEN 'Spring'
+									             WHEN '08' THEN 'Fall'
+									             WHEN '05' THEN 'Summer'
+									          ELSE ''
+									      END as term  from BANINST1.AWS_ONBOARDING_MAIN WHERE SARADAP_STYP_CODE in ('B','E')")
 		end
 
 		def self.aleks_status(id)
