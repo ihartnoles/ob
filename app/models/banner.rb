@@ -220,7 +220,7 @@ class Banner < ActiveRecord::Base
 		def self.fin_aid_acceptance_by_term(id,year)			 
 			  case year
                when '2016-2017'
-                  aidy = '1617'
+                  aidy = "1617"
                when '2015-2016'
                   aidy = "1516"
                else
