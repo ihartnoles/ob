@@ -408,6 +408,19 @@ class FticModulesAvailablesController < ApplicationController
 
             if o['summer_app'] == 'Y'
               #set up summer flags
+
+              #BEGIN: check if summer five questions answered
+              five_questions = Banner.summer_five_questions(@znum)
+
+              if five_questions.count >= 5
+                 @summer_fivequestions_complete = 1
+              else
+                 @summer_fivequestions_complete = 0
+                 finaidflags.push('SQ')
+              end 
+
+              #END: check if summer five questions answered
+
               if  o['fafsa_flg'] == 'Y' && o['rorstat_aidy_code'] ==  @current_summer_aidy
                 @summer_fafsa_complete = 1
               else

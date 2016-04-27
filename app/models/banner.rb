@@ -142,6 +142,10 @@ class Banner < ActiveRecord::Base
 
 
 	#BEGIN: QUERIES TO BANINST1.AWS_ONBOARDING_FINAID
+		def self.summer_five_questions(id)
+			get = connection.exec_query("SELECT count(*) from BANINST1.AWS_ONBOARDING_FINAID_SUM_APPL WHERE Z_NUMBER=#{connection.quote(id)}")
+		end
+
 
 		def self.fin_aid_docs(id)
 				get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
