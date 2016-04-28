@@ -800,7 +800,7 @@ Hello, <%= session[:cas_user] %>!
 			  							<tr>
 			  								<td>2.&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Complete Your Financial Aid Requirements</a></td>
 			  								<td align="center">	
-				  						    	<%= finaid_reqs_by_term(znum,@current_fall_term) %>
+			  									<%= finaid_reqs_by_term(znum,@current_fall_term) %>
 				  						    </td>			  							
 			  							</tr>
 
@@ -810,7 +810,7 @@ Hello, <%= session[:cas_user] %>!
 			  							<tr>
 			  								<td>3.&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Terms & Conditions</a> 	
 				  							</td>
-				  							<td align="center">	
+				  							<td align="center">					  								
 				  						    	<%= finaid_tc_by_term(znum,@current_fall_term) %>
 				  						    </td>				  							
 			  							</tr>

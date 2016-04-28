@@ -245,44 +245,51 @@ module StaticPagesHelper
         output = Banner.finaid_tc_by_term(znum,term)
         tmp = ""    
         if output.count > 0
-            output.each do |o| 
-               if !o.nil?               
-                 if o['rtvtreq_code'] == 'TERMS' && o['rrrareq_sat_ind'] == 'Y'
-                    tmp = "<img src='/assets/Check_8x8.png' alt=''>"             
-                  else                    
-                    tmp = "<img src='/assets/Delete_8x8.png' alt=''>"     
-                  end
-               end
+            #output.each do |o| 
+               #if !o.nil?               
+               #  if o['rtvtreq_code'] == 'TERMS' && o['rrrareq_sat_ind'] == 'Y'
+               #     tmp = "<img src='/assets/Check_8x8.png' alt=''>"             
+               #   else                    
+               #     tmp = "<img src='/assets/Delete_8x8.png' alt=''>"     
+               #   end
+               #end
 
-               return tmp.html_safe                                
-            end
-               
+               #return tmp.html_safe                                
+            #end
+             tmp = "<img src='/assets/Check_8x8.png' alt=''>"     
           else
-             
-             return tmp.html_safe
+             tmp = "<img src='/assets/Delete_8x8.png' alt=''>"  
+            
           end #end of if output.count
+
+        return tmp.html_safe
       end
 
       def fin_aid_acceptance_by_term(znum,term)
         output = Banner.fin_aid_acceptance_by_term(znum,term)
         tmp = ""    
         if output.count > 0
-            output.each do |o| 
-               if !o.nil?               
-                 if !o['rpratrm_accept_date'].nil?
-                    tmp = "<img src='/assets/Check_8x8.png' alt=''>"             
-                  else                    
-                    tmp = "<img src='/assets/Delete_8x8.png' alt=''>"     
-                  end
-               end
+            # output.each do |o| 
+            #    if !o.nil?               
+            #      if !o['rpratrm_accept_date'].nil?
+            #         tmp = "<img src='/assets/Check_8x8.png' alt=''>"             
+            #       else                    
+            #         tmp = "<img src='/assets/Delete_8x8.png' alt=''>"     
+            #       end
+            #    end
 
-               return tmp.html_safe                                
-            end
+            #    return tmp.html_safe                                
+            # end
+             tmp = "<img src='/assets/Check_8x8.png' alt=''>"
                
           else
+             # tmp = "<img src='/assets/Delete_8x8.png' alt=''>"
+             # return tmp.html_safe
              tmp = "<img src='/assets/Delete_8x8.png' alt=''>"
-             return tmp.html_safe
+              
           end #end of if output.count
+
+          return tmp.html_safe
       end
      
       def fin_aid_docs_multiterm(znum,aidyear)

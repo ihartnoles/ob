@@ -175,9 +175,9 @@ class Banner < ActiveRecord::Base
 
 		def self.fafsa_flag_by_term(id,year)			 
 			  case year
-               when '2016-2017'
+               when "2016-2017"
                   aidy = "1617"
-               when '2015-2016'
+               when "2015-2016"
                   aidy = "1516"
                else
                   aidy = ""
@@ -191,9 +191,9 @@ class Banner < ActiveRecord::Base
 
 		def self.finaid_reqs_by_term(id,year)			 
 			  case year
-               when '2016-2017'
+               when "2016-2017"
                   aidy = "1617"
-               when '2015-2016'
+               when "2015-2016"
                   aidy = "1516"
                else
                   aidy = ""
@@ -207,9 +207,9 @@ class Banner < ActiveRecord::Base
 		
 		def self.finaid_tc_by_term(id,year)			 
 			  case year
-               when '2016-2017'
+               when "2016-2017"
                   aidy = "1617"
-               when '2015-2016'
+               when "2015-2016"
                   aidy = "1516"
                else
                   aidy = ""
@@ -217,15 +217,17 @@ class Banner < ActiveRecord::Base
 
 			  get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind from BANINST1.AWS_ONBOARDING_FINAID_REQDOC 
 											 WHERE Z_NUMBER=#{connection.quote(id)} 
-											 AND RORSTAT_AIDY_CODE = #{connection.quote(aidy)}")
+											 AND RORSTAT_AIDY_CODE = #{connection.quote(aidy)} 
+											 AND rtvtreq_code='TERMS'
+											 AND rrrareq_sat_ind='Y'")
 		end
 
 		
 		def self.fin_aid_acceptance_by_term(id,year)			 
 			  case year
-               when '2016-2017'
+               when "2016-2017"
                   aidy = "1617"
-               when '2015-2016'
+               when "2015-2016"
                   aidy = "1516"
                else
                   aidy = ""
@@ -233,7 +235,8 @@ class Banner < ActiveRecord::Base
 
 			  get = connection.exec_query("SELECT rpratrm_accept_date from BANINST1.AWS_ONBOARDING_FINAID_AWARDS 
 											 WHERE Z_NUMBER=#{connection.quote(id)} 
-											 AND RPRATRM_AIDY_CODE= #{connection.quote(aidy)}")
+											 AND RPRATRM_AIDY_CODE= #{connection.quote(aidy)}
+											 AND rpratrm_accept_date is not null")
 		end
 
 		def self.fin_aid_docs_multiterm(id,aidyear)
