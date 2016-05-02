@@ -614,7 +614,17 @@ Hello, <%= session[:cas_user] %>!
 
                   <br>
 
-                  	<% if @summer_fafsa_complete == 1 %>
+               	    <% if @summer_fafsa_complete == 1 && @summer_eligibility_reqs_complete == 1  %>
+					  	<h3 class="title">Financial Aid Estimator</h3>
+
+					  	<p>
+					  		This is a tool to help you determine what you need to pay the University and represents only an ESTIMATE of what financial aid may disburse based on your enrollment and award status now. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. The disbursement estimates and Term Balance displayed on this page shall not be binding on Florida Atlantic University. Please see the <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%=@current_summer_term_in%>" target='_blank'>Financial Aid Estimator</a>.<br>
+					  	</p>
+
+
+					  	<!-- https://sctformsalt.fau.edu:8070/TESTdad/kwr_finaid_calc.P_ViewAcctTerm -->
+
+
 					  	<%# cache('finaiddoctext') do %>	
 					  		<!-- <h3 class="title">Your Financial Aid Documents</h3> -->
 
@@ -850,7 +860,12 @@ Hello, <%= session[:cas_user] %>!
 
                   <br>
 
-                  	<% if @fafsa_complete == 1 %>
+                  	 <% if @summer_fafsa_complete == 1 && @summer_eligibility_reqs_complete == 1  %>
+					  	<h3 class="title">Financial Aid Estimator</h3>
+
+					  	<p>
+					  		This is a tool to help you determine what you need to pay the University and represents only an ESTIMATE of what financial aid may disburse based on your enrollment and award status now. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. The disbursement estimates and Term Balance displayed on this page shall not be binding on Florida Atlantic University. Please see the <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%=@current_fall_term_in%>" target='_blank'>Financial Aid Estimator</a>.<br>
+					  	</p>
 					  	<%# cache('finaiddoctext') do %>	
 					  		<!-- <h3 class="title">Your Financial Aid Documents</h3>
 
@@ -1991,7 +2006,7 @@ Hello, <%= session[:cas_user] %>!
 							<% cache('tuitionpaytxt') do %>
 							 <p>
 							  	<b>
-								Before paying your tuition you may want to take a look at our  <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
+								Before paying your tuition you may want to take a look at our  <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%@current_summer_term_in%>" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
 								</b>
 							 </p>
 							 <hr>

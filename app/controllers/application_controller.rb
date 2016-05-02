@@ -35,8 +35,10 @@ class ApplicationController < ActionController::Base
       # session[:current_fall_aidy] = '1617'
 
       @current_summer_term = '2015-2016'
+      @current_summer_term_in = '201605'
       @current_summer_aidy = '1516'
       @current_fall_term = '2016-2017'
+      @current_fall_term_in = '201608'
       @current_fall_aidy = '1617'
 
       if params[:znum] 

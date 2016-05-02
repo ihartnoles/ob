@@ -148,7 +148,9 @@ class Banner < ActiveRecord::Base
 
 
 		def self.fin_aid_docs(id)
-				get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
+				get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, 
+					                         SARADAP_TERM_CODE_ENTRY,
+											 SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
 										      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
 										             WHEN '01' THEN 'Spring'
 										             WHEN '08' THEN 'Fall'
