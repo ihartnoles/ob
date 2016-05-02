@@ -615,32 +615,32 @@ Hello, <%= session[:cas_user] %>!
                   <br>
 
                   	<% if @summer_fafsa_complete == 1 %>
-					  	<% cache('finaiddoctext') do %>	
-					  		<h3 class="title">Your Financial Aid Documents</h3>
+					  	<%# cache('finaiddoctext') do %>	
+					  		<!-- <h3 class="title">Your Financial Aid Documents</h3> -->
 
-					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 		  			
+					  		<!-- <p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 		  			
 					  			
 
 					  			<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
 
-					  		</p>
-					  	<% end %>
+					  		</p> -->
+					  	<%#end %>
 
 					  	
-						  		<table class="table table-striped text-left order-details">
+						  		<!-- <table class="table table-striped text-left order-details">
 						  			<thead>
 						  				<tr>
-						  					<th class="product-name">FAFSA Document</th>
-						  					<% if @term == 'Summer' %>
-						  						<th  align="right">Aid Year</th><th align="right">Status</th>
+						  					<th class="product-name">FAFSA Document</th> -->
+						  					<%# if @term == 'Summer' %>
+						  						<!-- <th  align="right">Aid Year</th><th align="right">Status</th> -->
 						  						<%# @fin_aid_semesters.each do |fas| %>
 									  			  <!-- <th class="product-total"><%#= fas['semester'] %> <%#= fas['year'] %></th> -->
 									  			<%# end %>
-						  					<% else %>
-						  						<th  align="right">Aid Year</th><th align="right"><%#= @term %> Status</th>
-						  					<% end %>						  					
-						  				</tr>
-						  			</thead>
+						  					<%# else %>
+						  						<!-- <th  align="right">Aid Year</th><th align="right"><%#= @term %> Status</th> -->
+						  					<%# end %>						  					
+						  				<!-- </tr>
+						  			</thead> -->
 						  				<%# if @term == 'Summer' %>
 						  						<%# @fin_aid_semesters.each do |fas| %>						  								
 						  								<%#= fin_aid_docs_multiterm(znum,fas['rorstat_aidy_code']) %>
@@ -649,9 +649,9 @@ Hello, <%= session[:cas_user] %>!
 						  					<%#= fin_aid_docs(znum,@term) %>
 						  				<%#end %>
 
-						  				<%= fin_aid_docs_multiterm(znum,@current_summer_aidy) %>
-						  		</table>
-						  		<br>
+						  				<%#= fin_aid_docs_multiterm(znum,@current_summer_aidy) %>
+						  		<!-- </table> -->
+						  		<!-- <br>
 
 
 
@@ -669,13 +669,13 @@ Hello, <%= session[:cas_user] %>!
 						  					<th class="product-total">Offer Date</th>
 						  					<th class="product-total">Status</th>
 						  				</tr>
-						  			</thead>
+						  			</thead> -->
 
-						  				<%= fin_aid_awards_multiterm(znum,@current_summer_aidy) %>
-						  		</table>
-						  		<br>
+						  				<%#= fin_aid_awards_multiterm(znum,@current_summer_aidy) %>
+						  		<!--</table>
+						  	 	<br>
 
-					  		</p>
+					  		</p> -->
 								
 				<% end %>
 			</div><!-- end of deets -->
@@ -851,39 +851,39 @@ Hello, <%= session[:cas_user] %>!
                   <br>
 
                   	<% if @fafsa_complete == 1 %>
-					  	<% cache('finaiddoctext') do %>	
-					  		<h3 class="title">Your Financial Aid Documents</h3>
+					  	<%# cache('finaiddoctext') do %>	
+					  		<!-- <h3 class="title">Your Financial Aid Documents</h3>
 
 					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 		  			
 					  			
 
 					  			<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
 
-					  		</p>
-					  	<% end %>
+					  		</p> -->
+					  	<%# end %>
 
 					  	
-						  		<table class="table table-striped text-left order-details">
+						  		<!-- <table class="table table-striped text-left order-details">
 						  			<thead>
 						  				<tr>
-						  					<th class="product-name">FAFSA Document</th>
-						  					<% if @term == 'Summer' %>
-						  						<th  align="right">Aid Year</th><th align="right">Status</th>
+						  					<th class="product-name">FAFSA Document</th> -->
+						  					<%# if @term == 'Summer' %>
+						  						<!-- <th  align="right">Aid Year</th><th align="right">Status</th> -->
 						  						<%# @fin_aid_semesters.each do |fas| %>
 									  			  <!-- <th class="product-total"><%#= fas['semester'] %> <%#= fas['year'] %></th> -->
 									  			<%# end %>
-						  					<% else %>
-						  						<th  align="right">Aid Year</th><th align="right"><%#= @term %> Status</th>
-						  					<% end %>						  					
-						  				</tr>
+						  					<%# else %>
+						  						<!-- <th  align="right">Aid Year</th><th align="right"><%#= @term %> Status</th> -->
+						  					<%# end %>						  					
+						  				<!-- </tr>
 						  			</thead>
-						  				<%= fin_aid_docs_multiterm(znum,@current_fall_aidy) %>
+						  				<%#= fin_aid_docs_multiterm(znum,@current_fall_aidy) %>
 						  		</table>
-						  		<br>
+						  		<br> -->
 
 
 
-					  		<h3 class="title">Your Financial Aid Awards</h3>
+					  		<!-- <h3 class="title">Your Financial Aid Awards</h3>
 					  		<p>
 			  					For more detailed information on the various types of financial aid which are available please see <a href="http://www.fau.edu/finaid/types-of-aid/" onclick="window.open(this.href, 'fin. aid types','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">Types of Financial Aid</a>.
 			  				</p>
@@ -897,13 +897,14 @@ Hello, <%= session[:cas_user] %>!
 						  					<th class="product-total">Offer Date</th>
 						  					<th class="product-total">Status</th>
 						  				</tr>
-						  			</thead>
+						  			</thead> -->
 
-						  				<%= fin_aid_awards_multiterm(znum,@current_fall_aidy) %>
-						  		</table>
+						  				<%#= fin_aid_awards_multiterm(znum,@current_fall_aidy) %>
+						  	<!-- 	
+						  	    </table>
 						  		<br>
 
-					  		</p>
+					  		</p> -->
 								
 				<% end %>
 			</div><!-- end of deets -->
