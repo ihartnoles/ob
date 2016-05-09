@@ -291,6 +291,19 @@ module StaticPagesHelper
 
           return tmp.html_safe
       end
+
+      def fin_aid_mpm_by_term(znum,term)
+        output = Banner.fin_aid_mpm_by_term(znum,term)
+        tmp = ""    
+        if output.count > 0
+            tmp = "<img src='/assets/Check_8x8.png' alt=''>"               
+          else
+             tmp = "<img src='/assets/Delete_8x8.png' alt=''>"
+        end #end of if output.count
+
+        return tmp.html_safe
+      end
+
      
       def fin_aid_docs_multiterm(znum,aidyear)
           output = Banner.fin_aid_docs_multiterm(znum,aidyear)

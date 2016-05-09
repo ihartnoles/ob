@@ -585,6 +585,14 @@ Hello, <%= session[:cas_user] %>!
 				  						    	<%= fin_aid_acceptance_by_term(znum,@current_summer_term) %>
 				  						    </td>	
 			  							</tr>
+
+			  							<tr>
+			  								<td>5.&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm"  target="_blank">Master Promisory Note & Entrance Requirements</a>
+				  							</td>	  											  						
+				  							<td align="center">	
+				  						    	<%= fin_aid_mpm_by_term(znum,@current_summer_term) %>
+				  						    </td>	
+			  							</tr>
 			  						<% else %>
 			  							<!--  -->
 			  							<% if (@summer_tc_complete.blank? || @summer_tc_complete.nil?) || (@summer_fin_aid_acceptance.blank? || @summer_fin_aid_acceptance.nil?)%>
@@ -830,6 +838,13 @@ Hello, <%= session[:cas_user] %>!
 				  							<td align="center">	
 				  						    	<%= fin_aid_acceptance_by_term(znum,@current_fall_term) %>
 				  						    </td>
+			  							</tr>
+			  							<tr>
+			  								<td>5.&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm"  target="_blank">Master Promisory Note & Entrance Requirements</a>
+				  							</td>	  											  						
+				  							<td align="center">	
+				  						    	<%= fin_aid_mpm_by_term(znum,@current_fall_term) %>
+				  						    </td>	
 			  							</tr>
 			  						<% else %>
 			  							<!--  -->

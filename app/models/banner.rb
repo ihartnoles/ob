@@ -241,6 +241,22 @@ class Banner < ActiveRecord::Base
 											 AND rpratrm_accept_date is not null")
 		end
 
+		def self.fin_aid_mpm_by_term(id,year)			 
+			  case year
+               when "2016-2017"
+                  aidy = "1617"
+               when "2015-2016"
+                  aidy = "1516"
+               else
+                  aidy = ""
+              end
+
+			  get = connection.exec_query("SELECT mpn_sat_ind from BANINST1.AWS_ONBOARDING_FINAID_REQDOC 
+											 WHERE Z_NUMBER=#{connection.quote(id)} 
+											 AND RRRAREQ_AIDY_CODE= #{connection.quote(aidy)}
+											 AND mpn_sat_ind ='Y'")
+		end
+
 		def self.fin_aid_docs_multiterm(id,aidyear)
 				get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
 										      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
