@@ -737,22 +737,32 @@ class StaticPagesController < ApplicationController
       case studentype
        when "ftic"
          @table_label = "First Time in College Queue"
-         @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
+         #@modules_availables = FticModulesAvailable.select("id,netid,znumber,f_name,l_name,current_step").where(:isactive => 1).order(:netid)
        when "intl"
          @table_label = "International Queue"
-         @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
+         #@modules_availables = FticModulesAvailable.select("id,netid,znumber,f_name,l_name,current_step").where(:isactive => 1).order(:netid)
        when "transfer"
          @table_label = "Transfer Queue"
-         @modules_availables = FticModulesAvailable.where(:isactive => 1).order(:netid)
+         #@modules_availables = FticModulesAvailable.select("id,netid,znumber,f_name,l_name,current_step").where(:isactive => 1).order(:netid)
        else
          @table_label = "Student Queue"
-         @modules_availabless = FticModulesAvailable.where(:isactive => 1).order(:netid)
+         #@modules_availabless = FticModulesAvailable.select("id,netid,znumber,f_name,l_name,current_step").where(:isactive => 1).order(:netid)
        end
 
         render layout: 'admin'
      else
         redirect_to unauthorized_path
      end
+  end
+
+  def dashdata
+    #@message = Message.new(message_params)
+    @modules_availables = FticModulesAvailable.select("id,netid,znumber,f_name,l_name,current_step").where(:isactive => 1).order(:netid)
+
+    respond_to do |format|
+      #format.json { render json: { "language" => @languages.as_json(:root => false) }.to_json }
+      format.json { render json: { "iTotalRecords" =>  @modules_availables.count , "iTotalDisplayRecords" => @modules_availables.count , "aaData" => @modules_availables.as_json(:root => false) }.to_json  }
+    end
   end
 
   def dashstats

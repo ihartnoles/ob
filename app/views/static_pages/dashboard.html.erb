@@ -97,7 +97,7 @@
 	        <h2 class="title"><%= @table_label %></h2>
 	      </div>
 	      <div class="table-responsive">
-			<table id="ftictable" class="table table-striped table-bordered text-left my-orders-table">
+			<table id="ftictable" class="table table-striped table-hover text-left my-orders-table">
              <thead>
 	          <tr >
 	            <th>Netid</th>
@@ -105,31 +105,11 @@
 	            <th>First</th>
 	            <th>Last</th>
 	            <th>Module</th>
-	            <th>Actions</th>  	            
-	                      
+	            <th>Actions</th>                    
 	          </tr>
 	        </thead>
-       		 <tbody>
-       		 <% @modules_availables.each do |modules_available| %>
-             <tr>
-              <td><%= modules_available.netid %></td>
-	              <td><%= modules_available.znumber %></td>
-	              <td><%= modules_available.f_name %></td>
-	              <td><%= modules_available.l_name %></td>
-	              <td class="text-info"><em><%= modules_available.current_step %></em></td>
-	              <td>
-	              	 <div class="btn-group">
-	              	 	<!-- <a href="/moduledetail/<%= modules_available.id %>/<%= modules_available.znumber %>"  target="_blank">Details</a> | -->
-	                 	<%= link_to 'Modules', edit_ftic_modules_available_path(modules_available, :znum => "#{modules_available.znumber}" ), :target => "_blank" %> |
-	                 	<a href="/home?znum=<%= modules_available.znumber %>" target="_blank">Proxy</a> |
-	                 	<a href="/activity_log/<%= modules_available.znumber %>"  target="_blank">Log</a> |
-	                 	<a href="/messages/new/<%= modules_available.znumber %>" target="_blank">Send Message</a>                
-	             	</div>
-	              </td>
-              </tr>
-              <% end %>
-
-        	</tbody>
+       		 <tbody>	
+             </tbody>
       	</table>
 
          </div><!-- .responsive -->
@@ -148,11 +128,11 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="/assets/jquery.dataTables.min.js"></script>
+<!-- <script src="/assets/jquery.dataTables.min.js"></script> -->
 <!-- <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script> -->
 <!-- <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script> -->
 
-<script src="/assets/price-regulator/jshashtable-2.1_src.js"></script>
+<!-- <script src="/assets/price-regulator/jshashtable-2.1_src.js"></script>
 <script src="/assets/price-regulator/jquery.numberformatter-1.2.3.js"></script>
 <script src="/assets/price-regulator/tmpl.js"></script>
 <script src="/assets/price-regulator/jquery.dependClass-0.1.js"></script>
@@ -172,8 +152,8 @@
 <script src="/assets/jquery.stellar.min.js"></script>
 <script src="/assets/jquery.selectBox.min.js"></script>
 <script src="/assets/jquery.royalslider.min.js"></script>
-<script src="/assets/jquery.tubular.1.0.js"></script>
-<!-- <script src="/assets/SmoothScroll.js"></script> -->
+<script src="/assets/jquery.tubular.1.0.js"></script> -->
+<!-- <script src="/assets/SmoothScroll.js"></script>
 <script src="/assets/country.js"></script>
 <script src="/assets/spin.min.js"></script>
 <script src="/assets/ladda.min.js"></script>
@@ -192,20 +172,37 @@
 <script src="/assets/bootstrap-datepicker.js"></script>
 <script src="/assets/jplayer/jquery.jplayer.min.js"></script>
 <script src="/assets/jplayer/jplayer.playlist.min.js"></script>
-<script src="/assets/jquery.scrollbar.min.js"></script>
+<script src="/assets/jquery.scrollbar.min.js"></script> -->
+
 
 <script type="text/javascript">
 $(document).ready(function(){
-   $('#ftictable').dataTable( {
-    "scrollX": true,
+ $('#ftictable').dataTable( {
+    "bProcessing": true,
+    "bServerSide": false,
+    "sAjaxSource": "/dashdata.json",
     "aoColumns": [
-      null,
-      { "asSorting": [ "asc" ] },
-      { "bSortable": false },
-      { "bSortable": false },
-      { "bSortable": false },
-      { "bSortable": false }
-      
-    ] } );
+        { mData: "netid"   , "bSortable": true},
+        { mData: "znumber" , "bSortable": true },
+        { mData: "f_name"  , "bSortable": true },
+        { mData: "l_name"  , "bSortable": true},
+        { mData: "current_step" , "bSortable": true },
+        {		   
+		    'mRender': function(data, type, row) {
+		        return '<a href="/fticadmin/' + row.id + '/edit?znum=' + row.znumber +'" target=\"_blank\">Modules</a> | <a href="/home?znum=' + row.znumber + '"target=\"_blank\">Proxy</a> | <a href="/activity_log/' + row.znumber + '" target=\"_blank\">Logs</a>';
+		    }
+		    , "bSortable": false
+		}
+    ],
+    "fnServerData": function ( sSource, aoData, fnCallback, oSettings ) {
+      oSettings.jqXHR = $.ajax( {
+        "dataType": 'json',
+        "type": "GET",
+        "url": sSource,
+        "data": aoData,
+        "success": fnCallback
+      } );
+    }
+  } );
 });
 </script>
