@@ -7,7 +7,7 @@ Ob::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   #resources :housing_zipcodes
   resources :activity_logs
-  get       '/activity_log/:znum',  to: 'activity_logs#znumber'
+  get       '/activity_log/:znum',  to: 'activity_logs#showlogs'
   resources :ftic_modules_availables , :path => "fticadmin"
   
   #static actions

@@ -181,6 +181,7 @@ $(document).ready(function(){
     "bProcessing": true,
     "bServerSide": false,
     "sAjaxSource": "/dashdata.json",
+    "deferRender": true,
     "aoColumns": [
         { mData: "netid"   , "bSortable": true},
         { mData: "znumber" , "bSortable": true },
@@ -189,7 +190,7 @@ $(document).ready(function(){
         { mData: "current_step" , "bSortable": true },
         {		   
 		    'mRender': function(data, type, row) {
-		        return '<a href="/fticadmin/' + row.id + '/edit?znum=' + row.znumber +'" target=\"_blank\">Modules</a> | <a href="/home?znum=' + row.znumber + '"target=\"_blank\">Proxy</a> | <a href="/activity_log/' + row.znumber + '" target=\"_blank\">Logs</a>';
+		        return '<a href="/fticadmin/' + row.id + '/edit?znum=' + row.znumber +'" target=\"_blank\">Modules</a> | <a href="/home?znum=' + row.znumber + '"target=\"_blank\">Proxy</a> | <a href="/activity_log/' + row.znumber + '?netid=' +row.netid+ '" target=\"_blank\">Logs</a>';
 		    }
 		    , "bSortable": false
 		}
