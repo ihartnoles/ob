@@ -168,7 +168,8 @@ class Banner < ActiveRecord::Base
 										     END as finaidyear, 
 										     summer_app,
 										     rtvtreq_code, 
-										     rorstat_all_req_comp_date
+										     rorstat_all_req_comp_date,
+										     mpn_type, mpn_sat_ind
 										     from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)}										    
 										     ORDER BY finaidyear desc , rtvtreq_long_desc asc")
 
@@ -258,7 +259,7 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.fin_aid_docs_multiterm(id,aidyear)
-				get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
+				get = connection.exec_query("SELECT fafsa_flg, rtvtreq_long_desc, rrrareq_sat_ind, mpm_type, SUBSTR( SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
 										      CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
 										             WHEN '01' THEN 'Spring'
 										             WHEN '08' THEN 'Fall'
@@ -284,7 +285,7 @@ class Banner < ActiveRecord::Base
 		end
 
 		def self.fin_aid_checkboxes(id)
-			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date, rorstat_aidy_code from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR') AND rorstat_all_req_comp_date is not null")
+			get = connection.exec_query("SELECT rtvtreq_code, rrrareq_sat_ind, rorstat_pckg_comp_date, rorstat_all_req_comp_date, rorstat_aidy_code, mpn_type, mpn_sat_ind from BANINST1.AWS_ONBOARDING_FINAID_REQDOC WHERE Z_NUMBER=#{connection.quote(id)} and rtvtreq_code in ('TERMS','ISIR') AND rorstat_all_req_comp_date is not null")
 		end
 
 		def self.fin_aid_acceptance(id)

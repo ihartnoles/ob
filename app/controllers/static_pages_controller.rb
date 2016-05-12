@@ -333,6 +333,12 @@ class StaticPagesController < ApplicationController
                     finaidchecks.push('APP1')
                end
 
+               if (o['mpn_type'] == 'S' || o['mpn_type'] == 'N') && o['mpn_sat_ind'] == 'N'
+                   #application_complete = 1
+                    finaidchecks.push('MPN')
+               end
+
+
 
                if (o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?)  &&  o['rorstat_aidy_code'] == @current_fall_aidy
                   @finaid_package_complete = 0
@@ -411,13 +417,13 @@ class StaticPagesController < ApplicationController
                 # 08 = Fall
 
                fin_aid_acceptance.each do |fa|
-                 if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == '201601' || fa['rpratrm_period'] == '201608')
+                 if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == @current_spring_term_in || fa['rpratrm_period'] == @current_fall_term_in)
                   @fin_aid_acceptance = 1
                  else 
                   @fin_aid_acceptance = 0
                  end
 
-                 if !fa['rpratrm_accept_date'].nil? && fa['rpratrm_period'] == '201605'
+                 if !fa['rpratrm_accept_date'].nil? && fa['rpratrm_period'] == @current_summer_term_in
                   @summer_fin_aid_acceptance = 1
                  else 
                   @summer_fin_aid_acceptance = 0
@@ -453,6 +459,13 @@ class StaticPagesController < ApplicationController
             else
               @fafsa_complete = 0
             end
+
+            if  !o['mpn_type'].nil? || !o['mpn_type'].blank?
+              @mpn_type = o['mpn_type']
+            else
+              @mpn_type = 'n/a'
+            end
+
 
             @finaidyear = o['finaidyear']
             @aidy= o['rorstat_aidy_code']
@@ -498,6 +511,9 @@ class StaticPagesController < ApplicationController
             @finaid_complete = 0
           elsif finaidflags.include? 'S0'
             @summer_finaid_complete = 0
+          elsif finaidflags.include? 'MPN'
+             @summer_finaid_complete = 0
+             @finaid_complete = 0
           elsif finaidflags.include? 'SQ' #summer SSB questions not answered
             @summer_finaid_complete = 0
           elsif finaidflags.include? 'S1'

@@ -70,15 +70,15 @@ Hello, <%= session[:cas_user] %>!
 	     <% if params[:links] %>
 	     <hr>
 	      <p>
-	          <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link" target="_blank">Pay Tuition</a><br>
+	          <a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link" target="_blank">Pay Tuition</a><br>
 	          <a href="https://epay.fau.edu:8443/C20081test_tsa/web/welcome.jsp" target="_blank">Pay Tuition Touchnet</a><br>
-		      <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">Registration</a><br>
-              <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank">  Emergency Contacts</a><br>
-              <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank"> FAU Alert</a><br>
+		      <a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">Registration</a><br>
+              <a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank">  Emergency Contacts</a><br>
+              <a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank"> FAU Alert</a><br>
              
               <!-- <a href="https://sctformsalt.fau.edu:8070/TESTdad/twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" target="_blank">Fin. Aid. Info</a><br> -->
              
-              <a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" target="_blank">Fin. Aid. Info</a><br>
+              <a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" target="_blank">Fin. Aid. Info</a><br>
               <a href="http://www.fau.edu/finaid/resources/forms.php" target="_blank"> Fin aid Forms</a><br>
 
 
@@ -189,7 +189,7 @@ Hello, <%= session[:cas_user] %>!
 						  		<tr>
 						  			<td><b>Your Name:</b></td>
 						  			<td><%= @fname %> <%= @mname %> <%= @lname %>&nbsp;</td>	
-						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="namechange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <%# end %></td>					  			
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="namechange" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwgkoinf.P_DispUpdName" target="_blank">[Name Change Information]</a> <%# end %></td>					  			
 						  		</tr>
 						  		<tr>
 						  			<td><b>Your Permanent Address:</b></td>
@@ -201,7 +201,7 @@ Hello, <%= session[:cas_user] %>!
 						  				<% end %>
 						  				&nbsp;
 						  			</td>						  			
-						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
 						  		</tr>
 
 						  		<tr>
@@ -214,7 +214,7 @@ Hello, <%= session[:cas_user] %>!
 						  				<% end %>
 						  				&nbsp;
 						  			</td>						  			
-						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange2" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
+						  			<td colspan="2"><%# if !!(@verify_info.nil? || @verify_info == 'No')%><a id="addresschange2" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwgkogad.P_SelectAtypUpdate" target="_blank">[Address Change Information]</a> <%# end %></td>
 						  		</tr>
 						  		
 						  		<tr>
@@ -542,7 +542,7 @@ Hello, <%= session[:cas_user] %>!
 			  							  				
 			  				<div id="finaiddeetsalt" <% if @finaidneedflag_summer == "NO"%>style="display: none;"<%end%> >
 			  					<h3 class="title">Summer Financial Aid Questions</h3>
-			  					<p>If you wish to apply for Summer Financial Aid then you must answer five questions. Please <a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AI&aidy_in=<%=@aidy%>&calling_proc_name=">click here</a> to view and answer the questions.</p>
+			  					<p>If you wish to apply for Summer Financial Aid then you must answer five questions. Please <a id="FAreqs" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AI&aidy_in=<%=@aidy%>&calling_proc_name=">click here</a> to view and answer the questions.</p>
 			  					<p>&nbsp;</p>
 			  				</div>				  			
 
@@ -564,14 +564,14 @@ Hello, <%= session[:cas_user] %>!
 
 			  						<% if @summer_fafsa_complete == 1 %>
 			  							<tr>
-			  								<td>2.&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Complete Your Financial Aid Requirements</a></td>		  						   
+			  								<td>2.&nbsp;<a id="FAreqs" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Complete Your Financial Aid Requirements</a></td>		  						   
 				  							<td align="center">	
 				  						    	<%= finaid_reqs_by_term(znum,@current_summer_term) %>
 				  						    </td>
 			  							</tr>
 			  						<% if  @summer_fafsa_complete ==1 && @summer_eligibility_reqs_complete == 1 %>
 			  							<tr>
-			  								<td>3.&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Terms & Conditions</a> 	
+			  								<td>3.&nbsp;<a id="FAtc" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Terms & Conditions</a> 	
 				  							</td>
 				  							<td align="center">	
 				  						    	<%= finaid_tc_by_term(znum,@current_summer_term) %>
@@ -579,20 +579,22 @@ Hello, <%= session[:cas_user] %>!
 			  							</tr>
 
 			  							<tr>
-			  								<td>4.&nbsp;<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Accept Your Financial Aid Package</a> &nbsp;
+			  								<td>4.&nbsp;<a id="FApackage" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Accept Your Financial Aid Package</a> &nbsp;
 				  							</td>	  											  						
 				  							<td align="center">	
 				  						    	<%= fin_aid_acceptance_by_term(znum,@current_summer_term) %>
 				  						    </td>	
 			  							</tr>
 
+			  							<% if  !@mpn_type.nil? && (@mpn_type == 'S' || @mpn_type == 'N') %>
 			  							<tr>
-			  								<td>5.&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm"  target="_blank">Master Promisory Note & Entrance Requirements</a>
+			  								<td>5.&nbsp;<a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm"  target="_blank">Master Promisory Note & Entrance Requirements</a>
 				  							</td>	  											  						
 				  							<td align="center">	
 				  						    	<%= fin_aid_mpm_by_term(znum,@current_summer_term) %>
 				  						    </td>	
 			  							</tr>
+			  							<% end %>
 			  						<% else %>
 			  							<!--  -->
 			  							<% if (@summer_tc_complete.blank? || @summer_tc_complete.nil?) || (@summer_fin_aid_acceptance.blank? || @summer_fin_aid_acceptance.nil?)%>
@@ -626,7 +628,7 @@ Hello, <%= session[:cas_user] %>!
 					  	<h3 class="title">Financial Aid Estimator</h3>
 
 					  	<p>
-					  		This is a tool to help you determine what you need to pay the University and represents only an ESTIMATE of what financial aid may disburse based on your enrollment and award status now. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. The disbursement estimates and Term Balance displayed on this page shall not be binding on Florida Atlantic University. Please see the <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%=@current_summer_term_in%>" target='_blank'>Financial Aid Estimator</a>.<br>
+					  		This is a tool to help you determine what you need to pay the University and represents only an ESTIMATE of what financial aid may disburse based on your enrollment and award status now. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. The disbursement estimates and Term Balance displayed on this page shall not be binding on Florida Atlantic University. Please see the <a id="finaidest" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%=@current_summer_term_in%>" target='_blank'>Financial Aid Estimator</a>.<br>
 					  	</p>
 
 
@@ -639,7 +641,7 @@ Hello, <%= session[:cas_user] %>!
 					  		<!-- <p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 		  			
 					  			
 
-					  			<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
+					  			<a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
 
 					  		</p> -->
 					  	<%#end %>
@@ -816,7 +818,7 @@ Hello, <%= session[:cas_user] %>!
 
 			  						<% if @fafsa_complete == 1 %>
 			  							<tr>
-			  								<td>2.&nbsp;<a id="FAreqs" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Complete Your Financial Aid Requirements</a></td>
+			  								<td>2.&nbsp;<a id="FAreqs" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkelig.P_DisplayTabs?tab_type=ER&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Complete Your Financial Aid Requirements</a></td>
 			  								<td align="center">	
 			  									<%= finaid_reqs_by_term(znum,@current_fall_term) %>
 				  						    </td>			  							
@@ -826,26 +828,28 @@ Hello, <%= session[:cas_user] %>!
 
 			  						<% if (@fafsa_complete == 1 || @summer_fafsa_complete ==1) && (@eligibility_reqs_complete == 1 || @summer_eligibility_reqs_complete == 1)%>
 			  							<tr>
-			  								<td>3.&nbsp;<a id="FAtc" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Terms & Conditions</a> 	
+			  								<td>3.&nbsp;<a id="FAtc" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Terms & Conditions</a> 	
 				  							</td>
 				  							<td align="center">					  								
 				  						    	<%= finaid_tc_by_term(znum,@current_fall_term) %>
 				  						    </td>				  							
 			  							</tr>
 			  							<tr>
-			  								<td>4.&nbsp;<a id="FApackage" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Accept Your Financial Aid Package</a> &nbsp;
+			  								<td>4.&nbsp;<a id="FApackage" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=AA&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm">Accept Your Financial Aid Package</a> &nbsp;
 				  							</td>				  							
 				  							<td align="center">	
 				  						    	<%= fin_aid_acceptance_by_term(znum,@current_fall_term) %>
 				  						    </td>
 			  							</tr>
-			  							<tr>
-			  								<td>5.&nbsp;<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm"  target="_blank">Master Promisory Note & Entrance Requirements</a>
-				  							</td>	  											  						
-				  							<td align="center">	
-				  						    	<%= fin_aid_mpm_by_term(znum,@current_fall_term) %>
-				  						    </td>	
-			  							</tr>
+			  							<% if  @mpn_type.present? && (@mpn_type == 'S' || @mpn_type == 'N') %>
+				  							<tr>
+				  								<td>5.&nbsp;<a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwrkrhst.P_DisplayTabs?tab_type=TC&aidy_in=<%=@aidy%>&calling_proc_name=bwrksumm.P_DispSumm"  target="_blank">Master Promisory Note & Entrance Requirements</a>
+					  							</td>	  											  						
+					  							<td align="center">	
+					  						    	<%= fin_aid_mpm_by_term(znum,@current_fall_term) %>
+					  						    </td>	
+				  							</tr>
+			  							<% end %>
 			  						<% else %>
 			  							<!--  -->
 			  							<% if (@tc_complete.blank? || @tc_complete.nil?) || (@fin_aid_acceptance.blank? || @fin_aid_acceptance.nil?)%>
@@ -879,7 +883,7 @@ Hello, <%= session[:cas_user] %>!
 					  	<h3 class="title">Financial Aid Estimator</h3>
 
 					  	<p>
-					  		This is a tool to help you determine what you need to pay the University and represents only an ESTIMATE of what financial aid may disburse based on your enrollment and award status now. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. The disbursement estimates and Term Balance displayed on this page shall not be binding on Florida Atlantic University. Please see the <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%=@current_fall_term_in%>" target='_blank'>Financial Aid Estimator</a>.<br>
+					  		This is a tool to help you determine what you need to pay the University and represents only an ESTIMATE of what financial aid may disburse based on your enrollment and award status now. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. The disbursement estimates and Term Balance displayed on this page shall not be binding on Florida Atlantic University. Please see the <a id="finaidest" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%=@current_fall_term_in%>" target='_blank'>Financial Aid Estimator</a>.<br>
 					  	</p>
 					  	<%# cache('finaiddoctext') do %>	
 					  		<!-- <h3 class="title">Your Financial Aid Documents</h3>
@@ -887,7 +891,7 @@ Hello, <%= session[:cas_user] %>!
 					  		<p> Complete your Free Application for Federal Student Aid at FAFSA.gov (available January 1). The FAU priority deadline is March 1. Check your FAU email frequently for important financial aid correspondence. For more information, visit the Financial Aid website at <a title="FAU Financial Aid Information" href="http://www.fau.edu/finaid" onclick="window.open(this.href, 'fau fin. aid.','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">www.fau.edu/finaid</a> or call 561-297-3530. 		  			
 					  			
 
-					  			<a href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
+					  			<a href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_FinAidMainMnu" onclick="window.open(this.href, 'fin aid info','left=20,top=20,width=500,height=500,toolbar=1,resizable=1, scrollbars=1'); return false;">[Your Financial Aid Information]</a>
 
 					  		</p> -->
 					  	<%# end %>
@@ -1766,7 +1770,7 @@ Hello, <%= session[:cas_user] %>!
 
 	               <br>
 
-	                <a id="faualert" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">Update Your FAU Alert Information</a></p>
+	                <a id="faualert" class="btn btn-info" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=lwgkr911.p_initial_fau_alert_load" target="_blank">Update Your FAU Alert Information</a></p>
                <%# end %>
 
 
@@ -1830,7 +1834,7 @@ Hello, <%= session[:cas_user] %>!
 
 			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 || immunization_complete == 0 || orientation_complete == 0 %>
 			  					  			
-			  			<p>You have <a id="holds" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewHold" target="_blank">holds</a> on your record which are preventing you from registering for classes. The holds are listed below:</p>
+			  			<p>You have <a id="holds" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwskoacc.P_ViewHold" target="_blank">holds</a> on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
 			  			<ol>
 			  				<%# if dep_complete_flag == 0 %>
@@ -1909,7 +1913,7 @@ Hello, <%= session[:cas_user] %>!
 									<% if  @reg_complete == 0 %>
 										<div class="alert alert-border alert-danger text-center fade in">
 											Fall/Spring term students must be registered for at least 12 credit hours!<br> Summer term students must be registered for at least 6 credit hours!<br>
-											<a id="registration" class='btn btn-danger' href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">Register for Classes Now</a>
+											<a id="registration" class='btn btn-danger' href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=twbkwbis.P_GenMenu?name=bmenu.P_RegMnu" target="_blank">Register for Classes Now</a>
 										</div>									
 									<% end %>
 				  		<% end %>
@@ -2021,7 +2025,7 @@ Hello, <%= session[:cas_user] %>!
 							<% cache('tuitionpaytxt') do %>
 							 <p>
 							  	<b>
-								Before paying your tuition you may want to take a look at our  <a id="finaidest" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%@current_summer_term_in%>" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
+								Before paying your tuition you may want to take a look at our  <a id="finaidest" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%@current_summer_term_in%>" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
 								</b>
 							 </p>
 							 <hr>
@@ -2039,7 +2043,7 @@ Hello, <%= session[:cas_user] %>!
 							 </p>
 
 			                  <p>
-			                  	<a id="finaidpayment" class="btn btn-danger" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Pay Your Tuition Now</a>         	   
+			                  	<a id="finaidpayment" class="btn btn-danger" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwskoacc.P_ViewAcct" target="_blank">Pay Your Tuition Now</a>         	   
 
 			              	  </p>
 			              	 <% end %>
@@ -2104,7 +2108,7 @@ Hello, <%= session[:cas_user] %>!
 					 </p>
 					
 
-				 	<br><a id="emerg" class="btn btn-info" href="https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> Update Your Emergency Contact Information</a><br>
+				 	<br><a id="emerg" class="btn btn-info" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwgkoemr.P_ViewEmrgContacts" target="_blank"> Update Your Emergency Contact Information</a><br>
 				<%# end %>
 
 				  <% if  (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1)|| emergencybypass == 1 %>
