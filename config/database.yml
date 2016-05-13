@@ -63,7 +63,7 @@ bannertest:
 
 bannerprod:
    adapter: oracle_enhanced
-   database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=banorprd.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=FAUP)))"
+   database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=bannerprd.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=FAUP)))"
    username: ihartstein
    password: ikeORA60
 
