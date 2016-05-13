@@ -61,7 +61,7 @@ Hello, <%= session[:cas_user] %>!
     <div class="container">
       <article class="content col-sm-9">	
 	      <h4 class="title">
-	      	Welcome to FAU <%= get_fullname(znum) %>! Let's get started!  ban: <%=ENV['banner_db_source'] %> | cas:<%=ENV['cas_source'] %></h4>
+	      	Welcome to FAU <%= get_fullname(znum) %>! Let's get started!</h4>
 
 	     <% cache('welcometext') do %>
 	      <p>We want your transition to college life to be as smooth as possible. Below is a checklist of tasks you will need to complete prior to your arrival on campus. Some task will not become available (be grayed out) until other tasks are complete. So try to complete as many as you can in order. Remember to click <b>Continue</b> to proceed through all modules!</p><br>
