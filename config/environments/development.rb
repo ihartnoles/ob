@@ -60,7 +60,7 @@ Ob::Application.configure do
   config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[Error Report]",
-    :sender_address => %{"Onboarding Exception Notifier" <ihartstein@fau.edu>},
+    :sender_address => %{"Onboarding (DEV) Exception Notifier" <ihartstein@fau.edu>},
     :exception_recipients => %w{ihartstein@fau.edu}
   }
 

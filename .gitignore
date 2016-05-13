@@ -16,3 +16,5 @@
 
 # Ignore yml configs
 /config/*.yml
+# Ignore application configuration
+/config/application.yml

@@ -39,6 +39,7 @@ gem 'rest-client'
 gem 'unf_ext', '~> 0.0.7.1'
 
 gem 'turbolinks'
+gem 'figaro'
 
 # Gems used only for assets and not required
 # in production environments by default.
