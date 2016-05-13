@@ -38,6 +38,8 @@ gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'
 gem 'rest-client'
 gem 'unf_ext', '~> 0.0.7.1'
 
+gem 'turbolinks'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

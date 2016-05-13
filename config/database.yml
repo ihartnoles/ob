@@ -45,7 +45,6 @@ production:
    password: ikeFAU61
 
 
-
 faudw:
    adapter: oracle_enhanced
    database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=odsprod.fau.edu)(PORT=1550)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=FAUDW)))"
