@@ -61,6 +61,13 @@ bannertest:
    #username: ihartstein
    #password: ikeORACLE60
 
+bannerprod:
+   adapter: oracle_enhanced
+   database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=banorprd.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=FAUP)))"
+   username: ihartstein
+   password: ikeORA60
+
+
 oimdev:
    adapter: oracle_enhanced
    database: "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=boc22ora06.fau.edu)(PORT=1550)))(CONNECT_DATA=(SID=OIMD)))"

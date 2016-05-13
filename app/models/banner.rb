@@ -3,7 +3,9 @@ class Banner < ActiveRecord::Base
 	self.abstract_class = true
 	self.table_name="BANINST1.AWS_ONBOARDING_MAIN"
 
-	establish_connection(:bannertest)
+
+	establish_connection(:bannerprod)
+	#establish_connection(:bannertest)
 
 
 	#BEGIN: QUERIES TO BANINST1.AWS_ONBOARDING_MAIN
