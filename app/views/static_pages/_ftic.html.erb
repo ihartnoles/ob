@@ -257,7 +257,7 @@ Hello, <%= session[:cas_user] %>!
 			
 			<div id="step-comm" class="collapse">
 			  <div class="step-content">
-			  	<h3 class="title">How do you want to be contacted?</h3>
+			  	<h3 class="title">How you will be contacted</h3>
 			  	
 			  		<% if communication_bypass == 1 %>			  								  										
 						<% cache('bypassalert') do %>
@@ -268,9 +268,11 @@ Hello, <%= session[:cas_user] %>!
 					<% end %>
 
 					<% cache('commpreftext') do %>
-				  		 <p>Stay up to date with your progress! Receive notifications about outstanding issues or items which require your attention. Please note the notifications/updates you receive are specific to this process. All other official university communication will occur through your FAU email address.</p>
+				  		 <p>You will receive notifications about outstanding issues or items which require your attention to your FAU email. All official university communication will occur through your FAU email address.</p>
 
-				  		 <p>You may optionally provide a mobile number below. We may use this number for communication purposes in the future. If you want to provide the number please click on the checkbox below.</p>
+				  		 <p><b>Your FAU email address is: <%= @email %></b></p>
+
+				  		 <p>A mobile number may be provided below as an optional communication method that may be utilized in the future. If you want include your mobile number please clock the checkbox below.</p>
 				  	<% end %>
 			
 			
