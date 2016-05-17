@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Netid:</b>
+  <%= @user_module.netid %>
+</p>
+
+<p>
+  <b>Userid:</b>
+  <%= @user_module.userid %>
+</p>
+
+<p>
+  <b>Module:</b>
+  <%= @user_module.module %>
+</p>
+
+<p>
+  <b>Module:</b>
+  <%= @user_module.module_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_module_path(@user_module) %> |
+<%= link_to 'Back', user_modules_path %>

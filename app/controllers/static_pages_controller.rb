@@ -950,18 +950,11 @@ class StaticPagesController < ApplicationController
 
    def authenticate_for_admin(netid)
       user = User.where(:netid => netid)
-
       if user.count == 0 #no info found
-        #bounce 'em
-        #return redirect_to unauthorized_path
         @access = 0
       else
         @access = 1
-      end
-
-       # puts YAML::dump('*** DUH HELLO ***')
-       # puts YAML::dump(netid)
-       # puts YAML::dump(@access)
+      end       
    end 
 
 

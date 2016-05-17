@@ -97,7 +97,6 @@ class FticModulesAvailablesController < ApplicationController
            @access_list.push('residency')      
        end
 
-
        if  a.module == 'housing'
            @access_list.push('housing')      
        end

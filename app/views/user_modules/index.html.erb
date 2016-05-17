@@ -1,0 +1,29 @@
+<h1>Listing user_modules</h1>
+
+<table>
+  <tr>
+    <th>Netid</th>
+    <th>Userid</th>
+    <th>Module</th>
+    <th>Module</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_modules.each do |user_module| %>
+  <tr>
+    <td><%= user_module.netid %></td>
+    <td><%= user_module.userid %></td>
+    <td><%= user_module.module %></td>
+    <td><%= user_module.module_id %></td>
+    <td><%= link_to 'Show', user_module %></td>
+    <td><%= link_to 'Edit', edit_user_module_path(user_module) %></td>
+    <td><%= link_to 'Destroy', user_module, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User module', new_user_module_path %>

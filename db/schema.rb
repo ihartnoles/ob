@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160229141815) do
+ActiveRecord::Schema.define(:version => 20160517141612) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "netid"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20160229141815) do
     t.integer  "contactByEmail"
     t.integer  "contactByPhone"
     t.string   "contactMobileNumber", :limit => 50
+    t.string   "countrycode",         :limit => 50
     t.datetime "created_at"
   end
 
@@ -65,6 +66,14 @@ ActiveRecord::Schema.define(:version => 20160229141815) do
     t.string   "znumber",    :limit => 50
     t.string   "netid",      :limit => 50
     t.string   "reason",     :limit => 50
+    t.datetime "created_at"
+  end
+
+  create_table "finaidneeds", :force => true do |t|
+    t.string   "znumber",       :limit => 50
+    t.string   "netid",         :limit => 50
+    t.string   "needFinAid",    :limit => 50
+    t.string   "needFinAidAlt", :limit => 50
     t.datetime "created_at"
   end
 
@@ -88,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20160229141815) do
     t.integer  "immunizationbypass"
     t.integer  "finaid"
     t.integer  "finaidbypass"
+    t.integer  "summer_finaid"
+    t.integer  "summer_finaidbypass"
     t.integer  "housingfee"
     t.integer  "housingfeebypass"
     t.integer  "residency"
@@ -206,12 +217,22 @@ ActiveRecord::Schema.define(:version => 20160229141815) do
     t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
+  create_table "user_modules", :force => true do |t|
     t.string   "netid"
-    t.integer  "module_id"
+    t.integer  "userid"
     t.string   "module"
+    t.integer  "module_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "netid"
+    t.string   "access_level"
+    t.integer  "module_id"
+    t.string   "module"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "verifies", :force => true do |t|

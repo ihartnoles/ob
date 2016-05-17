@@ -1,0 +1,30 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :netid %><br>
+    <%= f.text_field :netid, :class => 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :access_level %><br>
+    <%#= f.text_field :access_level, :class => 'form-control' %>
+    <%= f.select(:access_level, [['Admin', 'admin'], ['Power User', 'poweruser']], {} ,{:class => 'form-control'}) %>
+  </div>
+  <div class="field">
+    <%= f.label :module %><br>
+    <%= f.select(:module, [['Aleks','aleks'],['Book Advance','bookadvance'],['Communication','communication'],['Deposit','deposit'],['Emergency','emergency'], ['Fin. Aid. - Fall/Spring','finaid'] , ['Fin. Aid. - Summer','finaidsummer'], ['Housing','housing'], ['Immunization','immunization'], ['International','intl'], ['Learning. Comm.', 'learning comm'], ['OARS', 'oars'], ['Owl Card', 'owlcard'], ['Orientation', 'orientation'], ['Registration', 'registration'], ['Residency', 'residency'], ['Tuition', 'tuition'], ['Vehicle Registration', 'vehiclereg'], ['Verify', 'verify'], ['Welcome', 'welcome']], {} ,{:class => 'form-control'}) %>
+  </div>
+   <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

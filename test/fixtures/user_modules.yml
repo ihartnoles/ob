@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  netid: MyString
+  userid: 1
+  module: MyString
+  module_id: 1
+
+two:
+  netid: MyString
+  userid: 1
+  module: MyString
+  module_id: 1
