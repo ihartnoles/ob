@@ -475,7 +475,7 @@ module StaticPagesHelper
                 tmp =  "You have a Florida residential address but you are currently classified as a NON-RESIDENT. <br>  Because of this classification You will pay $518.55 more per credit hour than residents! <br> Please see <a href='http://www.fau.edu/registrar/residency/index.php' target='_blank'>Florida Residency Guidelines</a>"
                else
                 #don't taunt the NON-RESIDENTS with the cost of tution!
-                tmp =  "You are classified as a NON-RESIDENT."
+                tmp =  "You are classified as a NON-RESIDENT. If this status is incorrect please see <a href='http://www.fau.edu/registrar/residency/index.php' target='_blank'>Florida Residency Guidelines</a>."
                end
              end
              return tmp.html_safe
