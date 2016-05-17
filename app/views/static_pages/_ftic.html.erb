@@ -270,11 +270,12 @@ Hello, <%= session[:cas_user] %>!
 					<% cache('commpreftext') do %>
 				  		 <p>Stay up to date with your progress! Receive notifications about outstanding issues or items which require your attention. Please note the notifications/updates you receive are specific to this process. All other official university communication will occur through your FAU email address.</p>
 
-				  		 <p>Please select at least one option:</p>
+				  		 <p>You may optionally provide a mobile number below. We may use this number for communication purposes in the future. If you want to provide the number please click on the checkbox below.</p>
 				  	<% end %>
 			
 			
-						<!-- <form>
+						<!-- 
+						<form>
 						  <div>
 							<label class="radio"><input type="radio" name="register"> Email</label>
 							<label class="radio"><input type="radio" name="register"> Text</label>
@@ -288,14 +289,14 @@ Hello, <%= session[:cas_user] %>!
 						  <div class="col-sm-12 col-md-12 box register" >
 						  <!-- <div class="col-sm-6 col-md-6"> -->
 
-						  	<label class="checkbox">
-						  		 <% if @contact_email_flag == 1 %> 
-						  		 	<input type="checkbox" name="contactByEmail" id="contactByEmail" value="1" checked="checked"> Email me at: <b><%= @email %></b>
-						  		 <% else %> 
-						  		 	<input type="checkbox" name="contactByEmail" id="contactByEmail" value="1" > Email me at: <b><%= @email %></b>
-						  		 <% end %> 
+						  	<!-- <label class="checkbox">
+						  		 <%# if @contact_email_flag == 1 %> 
+						  		 	<input type="checkbox" name="contactByEmail" id="contactByEmail" value="1" checked="checked"> Email me at: <b><%#= @email %></b>
+						  		 <%# else %> 
+						  		 	<input type="checkbox" name="contactByEmail" id="contactByEmail" value="1" > Email me at: <b><%#= @email %></b>
+						  		 <%# end %> 
 								
-						  	</label>
+						  	</label> -->
 
 						  
 						  	<label class="checkbox">
@@ -311,7 +312,7 @@ Hello, <%= session[:cas_user] %>!
 									    <%= hidden_field_tag :netid, @displayname %>
 									    <%= hidden_field_tag :id, @contact_id %>
 									    <%= hidden_field_tag :ftic_id, @ftic_id %>
-
+									    <%= hidden_field_tag :contactByEmail, 1 %>
 									    <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
 									    <% if params[:znum] %>
 									    	<%= hidden_field_tag :znum, @znum %>									    
@@ -3280,11 +3281,13 @@ Hello, <%= session[:cas_user] %>!
  	
 	 $('#contactBut').click(function (e) {
 	    <% if  communication_bypass == 0  %>
-
+        
+        /*
 	    if ( !$('#contactByPhone').is(':checked') && !$('#contactByEmail').is(':checked') ){
 	 		alert('Please choose your communication preferences.');
 	 		e.preventDefault();
 	 	}
+	 	*/
 
 	    
 	    if($('#contactByPhone').is(':checked')) {
