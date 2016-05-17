@@ -64,7 +64,7 @@ Hello, <%= session[:cas_user] %>!
 	      	Welcome to FAU <%= get_fullname(znum) %>! Let's get started!</h4>
 
 	     <% cache('welcometext') do %>
-	      <p>We want your transition to college life to be as smooth as possible. Below is a checklist of tasks you will need to complete prior to your arrival on campus. Some task will not become available (be grayed out) until other tasks are complete. So try to complete as many as you can in order. Remember to click <b>Continue</b> to proceed through all modules!</p><br>
+	      <p>We want your transition to college life to be as smooth as possible. Below is a checklist of tasks you will need to complete prior to your arrival on campus. Some tasks will not become available (be grayed out) until other tasks are complete. So try to complete as many as you can in order. Remember to click <b>Continue</b> to proceed through all modules!</p><br>
 	     <% end %>
 
 	     <% if params[:links] %>

@@ -84,8 +84,8 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    user = User.find(params[:id])
+    user.destroy
 
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-      params.require(:user).permit(:module, :module_id, :access_level, :netid, :created_at, :updated_at)
+      params.require(:user).permit(:id, :module, :module_id, :access_level, :netid, :created_at, :updated_at)
   end
 
 
