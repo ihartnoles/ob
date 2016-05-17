@@ -31,14 +31,16 @@
 
        
 
-       
+       <div class="row">
+         <%= @access_list %>
+       </div>
        
 
           <div class="row">
               <!-- <div class="sidebar col-sm-12 col-md-12" id="sidebar"> -->
+               
                 
-                
-                
+                <% if @access_list.include?('welcome') || @access_list.include?('all') %>
                 <div class="col-sm-4 col-md-4 service alert alert-border">
                   
                     <div class="icon bg"> <% if m.welcome == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
@@ -62,9 +64,10 @@
                     </div>  
                      
                 </div> <!-- END OF WELCOME -->
+              <% end %>
 
 
-                 
+              <% if @access_list.include?('verify') || @access_list.include?('all') %>     
                  <div class="col-sm-4 col-md-4 service alert alert-border">
                   
                     <div class="icon bg"> <% if m.verify == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
@@ -86,13 +89,12 @@
                                <%= f.radio_button :verifybypass, 1 %> <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :verifybypass, 0 %>  <i class="fa fa-times-circle"></i>  
                             </div>
                         </div>
-                    </div>  
-
-
-                     
-                </div> <!-- END OF WELCOME -->
+                    </div>               
+                  </div> <!-- END OF WELCOME -->
+                <% end %>
 
                 <% if @isInternationalStudent == 1 %>
+                <% if @access_list.include?('intl') || @access_list.include?('all') %>    
                  <div class="col-sm-4 col-md-4 service alert alert-border">                  
                     <div class="icon bg"> <% if m.intl_visa == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
 
@@ -115,8 +117,12 @@
                     </div>                     
                 </div> <!-- END OF INTL. VISA -->
                 <% end %>
+                <% end %>
 
+
+                
                 <!-- BEGIN: Communication -->
+                <% if @access_list.include?('communication') || @access_list.include?('all') %>  
                     <div class="col-sm-4 col-md-4 service alert alert-border">
                      
                         <div class="icon bg"><% if m.communication == 1 %>
@@ -157,9 +163,13 @@
 
                             </div>
                         </div>  
+                    <% end %>
                 <!-- END: Communication -->
+                
 
+              
                 <!-- BEGIN:deposit -->
+                 <% if @access_list.include?('deposit') || @access_list.include?('all') %> 
                 <div class="col-sm-4 col-md-4 service alert alert-border">
                  
                     <div class="icon bg">
@@ -210,15 +220,21 @@
                                 <%= f.radio_button :depositbypass, 1 %>  <i class="fa fa-check"></i>&nbsp;<%= f.radio_button :depositbypass, 0 %> <i class="fa fa-times-circle"></i>    
                              </div>  
                        </div>
-                    </div>
-                                
-                </div><!-- END OF DEPOSIT -->
+                    </div>                                
+                </div>
+                <% end %>
+                <!-- END OF DEPOSIT -->
+               
 
                 <!-- BEGIN: Fin Aid -->
                    <!-- hide FIN AID if it's an INTERNATIONAL STUDENT -->
                       <% if @isInternationalStudent == 0 %>
                           <!-- BEGIN ALT FIN AID -->
+
                          <% if @term == 'Summer' %>
+                          
+                           <% if @access_list.include?('finaidsummer') || @access_list.include?('all') %>
+
                           <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg">
@@ -262,9 +278,11 @@
                             </div>
                         </div> 
                         <% end %>
+                        <% end %>
                         <!-- END ALT FIN AID -->
 
                           <!-- BEGIN: STANDARD FIN AID -->
+                        <% if @access_list.include?('finaid') || @access_list.include?('all') %>
                          <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.finaid == 1 %>
@@ -305,10 +323,12 @@
                         </div>  
                         <!-- END STANDARD FIN AID -->
                       <% end %>
+                    <% end %>
 
                 <!-- END: Fin Aid -->
 
                 <!-- account was here -->
+                <% if @access_list.include?('immunization') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                      
                         <div class="icon bg"><% if m.immunization == 1 %>
@@ -347,8 +367,10 @@
 
                             </div>
                         </div>  
+                      <% end %>
                 
                     <% if @isInternationalStudent == 1 %>     
+                    <% if @access_list.include?('intl') || @access_list.include?('all') %>
                       <div class="col-sm-4 col-md-4 service alert alert-border">                  
                           <div class="icon bg"> <% if m.intl_medical == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
 
@@ -371,9 +393,11 @@
                           </div>     
                       </div> <!-- END OF INTL. VISA -->
                     <% end %>
+                    <% end %>
 
                     <!-- hide RESIDENCY if it's an INTERNATIONAL STUDENT -->
                     <% if @isInternationalStudent == 0 %>
+                        <% if @access_list.include?('residency') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.residency == 1 %>
@@ -418,7 +442,7 @@
 
                             </div>
                         </div> 
-
+                        <% end %>
                       <% end %> 
                      
 
@@ -459,7 +483,7 @@
                         </div>   -->
                       
 
-
+                      <% if @access_list.include?('housing') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><%# if m.housingmealplan == 1 %>
@@ -508,9 +532,9 @@
 
                             </div>
                         </div>  
-                      
+                      <% end %>
 
-
+                      <% if @access_list.include?('aleks') || @access_list.include?('all') %>
                        <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.aleks == 1 %>
@@ -554,9 +578,10 @@
 
                             </div>
                         </div>  
+                      <% end %>
                       
 
-
+                      <% if @access_list.include?('orientation') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.orientation == 1 %>
@@ -596,9 +621,11 @@
 
                             </div>
                         </div>  
+                      <% end %>
                       
 
                     <% if @isInternationalStudent == 1 %>
+                      <% if @access_list.include?('intl') || @access_list.include?('all') %>
                       <div class="col-sm-4 col-md-4 service alert alert-border">                  
                         <div class="icon bg"> <% if m.intl_orientation == 1 %><i class="fa fa-unlock-alt"></i><% else %><i class="fa fa-lock"></i><% end %></div>
 
@@ -621,8 +648,10 @@
                         </div>     
                     </div> <!-- END OF INTL. ORIENTATION -->
                     <% end %>
+                    <% end %>
 
 
+                    <% if @access_list.include?('learning comm') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.learning_comm == 1 %>
@@ -663,9 +692,10 @@
 
                             </div>
                         </div>  
+                      <% end %>
                       
 
-
+                      <% if @access_list.include?('oars') || @access_list.include?('all') %>
                        <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.oars == 1 %>
@@ -706,8 +736,10 @@
                             </div>
                         </div>  
                       </a>
+                      <% end %>
 
                       <!-- BEGIN FAU Alert -->
+                    <% if @access_list.include?('faualert') || @access_list.include?('all') %>
                       <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.faualert == 1 %>
@@ -747,8 +779,10 @@
 
                             </div>
                         </div>  
+                      <% end %>
                       <!-- END FAU Alert -->
 
+                       <% if @access_list.include?('registration') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.registration == 1 %>
@@ -788,9 +822,10 @@
 
                             </div>
                         </div>  
-                      
+                      <% end %>
 
 
+                      <% if @access_list.include?('tuition') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                      
                         <div class="icon bg"><% if m.tution == 1 %>
@@ -830,9 +865,10 @@
 
                             </div>
                         </div>  
+                      <% end %>
                       
 
-
+                      <% if @access_list.include?('emergency') || @access_list.include?('all') %>
                        <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.emergency == 1 %>
@@ -873,13 +909,10 @@
 
                             </div>
                         </div>  
-                    
-
-
-                        
+                       <% end %>                        
                      
 
-
+                       <% if @access_list.include?('owlcard') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.owlcard == 1 %>
@@ -916,8 +949,9 @@
 
                             </div>
                         </div>  
-                      
+                    <% end %>
 
+                    <% if @access_list.include?('bookadvance') || @access_list.include?('all') %>
                       <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.bookadvance == 1 %>
@@ -955,9 +989,10 @@
 
                             </div>
                         </div>  
+                      <% end %>
                       
 
-
+                      <%if @access_list.include?('vehiclereg') || @access_list.include?('all') %>
                         <div class="col-sm-4 col-md-4 service alert alert-border">
                       
                         <div class="icon bg"><% if m.vehiclereg == 1 %>
@@ -994,38 +1029,15 @@
 
                             </div>
                         </div>  
-                      
-
-                     
+                      <% end %>                    
                     </div><!-- END OF ROW -->
-                    
-                 
-
-                  
-
-
-
-
-          
         <!-- </div>  --><!--.row -->
 
               <div class="actions">
                 <%= f.submit "Save" , :class => 'btn btn-primary'%>
               </div>
-
-             
-         
-         
-        
-
-        <% end %><! -- end of form -->
-  
+        <% end %><!-- end of form -->  
   <!-- </div> -->
-
   <% end %>
-
 <!-- </div> -->
-
-
   </div><!-- .container -->
-

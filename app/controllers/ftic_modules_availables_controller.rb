@@ -49,6 +49,100 @@ class FticModulesAvailablesController < ApplicationController
     immune_check = Banner.immunization_status(@znum)
     orientation_check = Banner.check_orientation_hold(@znum)
 
+    get_user_access = User.select("netid,access_level,module").where(:netid => session[:cas_user])
+     
+    @access_list = []
+
+     get_user_access.each do |a|
+
+       #detect admin up here and break out of loop
+       if a.access_level == 'admin'
+          @access_list.push('all') 
+          break         
+       end
+
+       if  a.module == 'welcome'
+           @access_list.push('welcome')       
+       end
+
+       if  a.module == 'verify'
+           @access_list.push('verify')      
+       end
+
+       if  a.module == 'communication'
+           @access_list.push('communication')      
+       end
+
+       if  a.module == 'intl'
+           @access_list.push('intl')      
+       end
+
+       if  a.module == 'deposit'
+           @access_list.push('deposit')      
+       end
+
+       if  a.module == 'finaidsummer'
+           @access_list.push('finaidsummer')      
+       end
+
+       if  a.module == 'finaid'
+           @access_list.push('finaid')      
+       end
+
+       if  a.module == 'immunization'
+           @access_list.push('immunization')      
+       end
+
+       if  a.module == 'residency'
+           @access_list.push('residency')      
+       end
+
+
+       if  a.module == 'housing'
+           @access_list.push('housing')      
+       end
+
+       if  a.module == 'aleks'
+           @access_list.push('aleks')      
+       end
+
+       if  a.module == 'orientation'
+           @access_list.push('orientation')      
+       end
+
+       if  a.module == 'learning comm'
+           @access_list.push('learning comm')      
+       end
+
+       if  a.module == 'oars'
+           @access_list.push('oars')      
+       end
+
+       if  a.module == 'registration'
+           @access_list.push('registration')      
+       end
+
+       if  a.module == 'tuition'
+           @access_list.push('tuition')      
+       end
+
+       if  a.module == 'emergency'
+           @access_list.push('emergency')      
+       end
+
+       if  a.module == 'owlcard'
+           @access_list.push('owlcard')      
+       end
+
+       if  a.module == 'bookadvance'
+           @access_list.push('bookadvance')      
+       end
+
+       if  a.module == 'vehiclereg'
+           @access_list.push('vehiclereg')      
+       end
+
+    end
 
     #BEGIN: To-Dos
       # @fau_alert_complete = 0
