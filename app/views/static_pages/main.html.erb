@@ -127,7 +127,7 @@
      <% if request.server_name.include?('owldone') %>
      window.open("http://accounts.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");
     <% else %>
-     window.location.replace("https://accountst.fau.edu/");      
+     window.location.replace("https://accountst.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");      
     <% end %>
   });
 
