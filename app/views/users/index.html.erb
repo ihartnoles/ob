@@ -24,7 +24,8 @@
           <td><%= user.netid %></td>
           <td><%= user.access_level %></td>
           <td><%= user.module %></td>
-          <td><%#= link_to 'Show', user %><%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%#= link_to 'Show', user %><%= link_to 'Edit', edit_user_path(user) %> | <%= link_to "Delete", user_path(user), :method => :delete %>
+            <%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
       </table>

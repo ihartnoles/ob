@@ -4,16 +4,16 @@ class UsersController < ApplicationController
   def index
     authenticate_for_useradmin(session[:cas_user])
 
-    if @access == 1
+    # if @access == 1
       @users = User.order(:netid).all
 
       # respond_to do |format|
       #   format.html # index.html.erb
       #   format.json { render json: @users }
       # end
-    else
-        redirect_to unauthorized_path
-    end
+    # else
+    #     redirect_to unauthorized_path and return
+    # end
 
     render layout: 'admin'
   end
@@ -106,9 +106,7 @@ class UsersController < ApplicationController
    def authenticate_for_useradmin(netid)
       user = User.where(:netid => netid, :access_level => 'admin')
       if user.count == 0 #no info found
-        @access = 0
-      else
-        @access = 1
+         redirect_to(unauthorized_path) and return
       end       
    end 
 
