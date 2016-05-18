@@ -35,7 +35,6 @@ Ob::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = false
   
-
   # config.after_initialize do
   #   Bullet.enable = false
   #   Bullet.alert = false
@@ -43,9 +42,7 @@ Ob::Application.configure do
   #   Bullet.console = false   
   #   Bullet.rails_logger = false   
   #   Bullet.add_footer = false   
-  # end
-
- 
+  # end 
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
