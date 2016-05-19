@@ -398,42 +398,7 @@ class StaticPagesController < ApplicationController
               @finaidneedflag_summer = nil
           end
 
-          #begin finaidacceptance
-            fin_aid_acceptance = Banner.fin_aid_acceptance(@znum)
-            
-            #@fin_aid_semesters = Banner.fin_aid_semesters(@znum)
-            @fin_aid_semesters = Banner.distinct_fin_aid_semesters(@znum)
-            
-
-            if fin_aid_acceptance.nil? || fin_aid_acceptance.blank? || fin_aid_acceptance.count == 0
-              @fin_aid_acceptance = 0
-              @summer_fin_aid_acceptance = 0
-              @fin_aid_term_one = 'Summer'
-              @fin_aid_term_two = 'Fall'
-            else 
-
-                # 01 = Spring
-                # 05 = Summer
-                # 08 = Fall
-
-               fin_aid_acceptance.each do |fa|
-                 if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == @current_spring_term_in || fa['rpratrm_period'] == @current_fall_term_in)
-                  @fin_aid_acceptance = 1
-                 else 
-                  @fin_aid_acceptance = 0
-                 end
-
-                 if !fa['rpratrm_accept_date'].nil? && fa['rpratrm_period'] == @current_summer_term_in
-                  @summer_fin_aid_acceptance = 1
-                 else 
-                  @summer_fin_aid_acceptance = 0
-                 end
-               end              
-            end
-
-          #end finaidacceptance
-
-
+          
           #begin finaidflags
           finaidflags = []
 
@@ -534,6 +499,41 @@ class StaticPagesController < ApplicationController
           if @finaidneedflag_summer == "NO"
              @summer_finaid_complete = 1
           end
+
+          #begin finaidacceptance
+            fin_aid_acceptance = Banner.fin_aid_acceptance(@znum)
+            
+            #@fin_aid_semesters = Banner.fin_aid_semesters(@znum)
+            @fin_aid_semesters = Banner.distinct_fin_aid_semesters(@znum)
+            
+
+            if fin_aid_acceptance.nil? || fin_aid_acceptance.blank? || fin_aid_acceptance.count == 0
+              @fin_aid_acceptance = 0
+              @summer_fin_aid_acceptance = 0
+              @fin_aid_term_one = 'Summer'
+              @fin_aid_term_two = 'Fall'
+            else 
+                # 01 = Spring
+                # 05 = Summer
+                # 08 = Fall
+               @fin_aid_acceptance = 0
+
+               fin_aid_acceptance.each do |fa|
+                 if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == @current_spring_term_in || fa['rpratrm_period'] == @current_fall_term_in)
+                  @fin_aid_acceptance = 1
+                 #else 
+                 # @fin_aid_acceptance = 0
+                 end
+
+                 if !fa['rpratrm_accept_date'].nil? && fa['rpratrm_period'] == @current_summer_term_in
+                  @summer_fin_aid_acceptance = 1
+                 else 
+                  @summer_fin_aid_acceptance = 0
+                 end
+               end              
+            end
+          #end finaidacceptance
+
 
 
           #BEGIN housing
