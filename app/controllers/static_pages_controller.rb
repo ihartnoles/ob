@@ -506,7 +506,7 @@ class StaticPagesController < ApplicationController
 
           end
 
-         
+                
           if  finaidflags.include? '0'
             @finaid_complete = 0
           elsif finaidflags.include? 'S0'
