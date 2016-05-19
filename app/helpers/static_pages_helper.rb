@@ -520,7 +520,7 @@ module StaticPagesHelper
          if o['sarchkl_admr_code'] == 'TUTD' && !o['sarchkl_receive_date'].nil?
            tmp =  "Your tuition deposit was paid on #{o['sarchkl_receive_date'].strftime('%x')}."
          else
-           tmp =  "Your tuition deposit has NOT been paid yet!  <br> You will not be able to move forward until you've paid. <br> <br>           
+           tmp =  "Your tuition deposit has NOT been paid yet!  <br> You will not be able to move forward until you've paid. <br> <br>  It may take 24 - 48 hours for your deposit to reflect as paid.<br>         
                <a id='tuitionlink' class='btn btn-danger' href='https://sctformsalt.fau.edu:8484/ssomanager/c/SSB?pkg=wsak_touchnet.p_touchnet_link' target='_blank'>Pay Your Tuition Deposit Now</a>"
          end
          
