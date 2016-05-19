@@ -334,8 +334,8 @@ class StaticPagesController < ApplicationController
                end
 
                if (o['mpn_type'] == 'S' || o['mpn_type'] == 'N') && o['mpn_sat_ind'] == 'N'
-                   #application_complete = 1
-                    finaidchecks.push('MPN')
+                  #application_complete = 1
+                  finaidchecks.push('MPN')
                end
 
 

@@ -115,20 +115,20 @@
 
   $("#btnNetID").click(function() {    
    
-  <% if request.server_name.include?('10.16.10.141') %>
-     window.location.replace("http://10.16.10.141:3000/home");
-  <% else %>
-     window.location.replace("https://obdev.fau.edu/home");      
-  <% end %>
+  <%# if request.server_name.include?('10.16.10.141') %>
+     /* window.location.replace("http://10.16.10.141:3000/home"); */
+  <%# else %>
+     window.location.replace("<%=ENV['login_link']%>");      
+  <%# end %>
    
   });
   
   $("#btnClaimNetID").click(function() {    
-     <% if request.server_name.include?('owldone') %>
-     window.open("http://accounts.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");
-    <% else %>
-     window.open("https://accountst.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");      
-    <% end %>
+     <%# if request.server_name.include?('owldone') %>
+     /* window.open("https://accounts.fau.edu/", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");*/
+    <%# else %>
+     window.open("<%=ENV['acct_link']%>", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");      
+    <%# end %>
   });
 
 <% end %>

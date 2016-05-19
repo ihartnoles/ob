@@ -8,7 +8,7 @@ group :development do
 	#gem 'bullet'
 	#gem 'uniform_notifier'
 	gem "rails_best_practices"
-	gem "meta_request"
+	#gem "meta_request"
 end
 gem 'puma'
 gem 'activesupport'
