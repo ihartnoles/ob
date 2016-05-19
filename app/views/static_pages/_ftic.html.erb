@@ -495,10 +495,11 @@ Hello, <%= session[:cas_user] %>!
 			   <% if (@summer_fafsa_complete == 1  && @summer_eligibility_reqs_complete == 1 && @summer_fin_aid_acceptance == 1 && @summer_tc_complete == 1) %>
 			  		<span class="badge badge-important label label-success">completed <i class="fa fa-check"></i></span>
 			  	<% else %>
-			  		<%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> 
+			  		<%#= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> 
+			  		 <div class="number"><!-- Step 6 --><%= get_statusicon(@summer_finaid_available, @summer_finaid_complete, @summer_finaid_bypass) %> </div>
 			  	<% end %>
 
-			  <div class="number"><!-- Step 6 --><%= get_statusicon(@summer_finaid_available, @summer_finaid_complete, @summer_finaid_bypass) %> </div>
+			 
 			
 			  <h6><b>FINANCIAL AID (<%= @current_summer_term %>)</b></h6>
 			</a>
