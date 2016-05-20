@@ -105,6 +105,8 @@ class FticModulesAvailable < ActiveRecord::Base
             owlcard = 1
             bookadvance = 1
             immunization = 1
+            oars = 1
+            faualert = 1
          else
             residency  = 0
             housingfee = 0
@@ -116,6 +118,8 @@ class FticModulesAvailable < ActiveRecord::Base
             owlcard = 0
             bookadvance = 0
             immunization = 0
+            oars = 0
+            faualert = 0
          end
 
         
@@ -137,7 +141,9 @@ class FticModulesAvailable < ActiveRecord::Base
           :emergency => emergency,
           :owlcard => owlcard,
           :bookadvance => bookadvance,
-          :immunization => immunization
+          :immunization => immunization,
+          :oars => oars,
+          :faualert => faualert
          ) 
         end
 

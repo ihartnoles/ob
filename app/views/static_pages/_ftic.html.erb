@@ -1753,7 +1753,7 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 		  
-		   <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1)%>
+		   <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1)  &&  (deposit_complete == 1 || deposit_bypass == 1)%>
 		   
 		    <%# if fau_alert_available == 1 %>
 		   	<a id="alerthref" href="#step-faualert" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
@@ -1761,7 +1761,7 @@ Hello, <%= session[:cas_user] %>!
 		    <a id="alerthref" href="#step-faualert" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   <% end %>
 
-		    <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1) && ( emergency_complete == 1  || emergencybypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		    <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
 		    <%# if fau_alert_available == 1 %>
 			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></div>
 			<% end %>
