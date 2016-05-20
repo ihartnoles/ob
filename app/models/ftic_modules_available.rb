@@ -94,6 +94,30 @@ class FticModulesAvailable < ActiveRecord::Base
           summer_finaid = 0
          end
 
+         if bs['deposit'] == 1
+            residency  = 1
+            housingfee = 1
+            aleks = 1
+            orientation = 1
+            learning_comm = 1
+            tution = 1
+            emergency = 1
+            owlcard = 1
+            bookadvance = 1
+            immunization = 1
+         else
+            residency  = 0
+            housingfee = 0
+            aleks = 0
+            orientation = 0
+            learning_comm = 0
+            tution = 0
+            emergency = 0
+            owlcard = 0
+            bookadvance = 0
+            immunization = 0
+         end
+
         
          student.update_attributes(
           :netid => bs['gobtpac_external_user'],
@@ -104,7 +128,16 @@ class FticModulesAvailable < ActiveRecord::Base
           :communication => 1,
           :finaid => 1,
           :summer_finaid => summer_finaid,
-          :immunization => 1
+          :residency  => residency
+          :housingfee => housingfee
+          :aleks => aleks
+          :orientation => orientation
+          :learning_comm => learning_comm
+          :tution => tution
+          :emergency => emergency
+          :owlcard => owlcard
+          :bookadvance => bookadvance
+          :immunization => immunization
          ) 
         end
 
