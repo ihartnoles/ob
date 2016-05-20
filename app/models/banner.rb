@@ -63,12 +63,14 @@ class Banner < ActiveRecord::Base
 				# 					             WHEN '05' THEN 'Summer'
 				# 					          ELSE ''
 				# 					      END as term  from BANINST1.AWS_ONBOARDING_MAIN WHERE SARADAP_STYP_CODE in ('B','E')")
-			get = connection.exec_query("select distinct Z_NUMBER, L_NAME, F_NAME, GOBTPAC_EXTERNAL_USER, INT_STUDENT, CASE SUBSTR(SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+			get = connection.exec_query("select distinct A.Z_NUMBER, A.L_NAME, A.F_NAME, A.GOBTPAC_EXTERNAL_USER, A.INT_STUDENT, CASE SUBSTR(A.SARADAP_TERM_CODE_ENTRY, 5 , 6 )
 									             WHEN '01' THEN 'Spring'
 									             WHEN '08' THEN 'Fall'
 									             WHEN '05' THEN 'Summer'
 									          ELSE ''
-									      END as term  from BANINST1.AWS_ONBOARDING_MAIN WHERE Z_NUMBER in (
+									      END as term, B.sarchkl_admr_code, B.sarchkl_receive_date  from BANINST1.AWS_ONBOARDING_MAIN A 
+									      LEFT JOIN BANINST1.AWS_ONBOARDING_ADDRESS B ON B.SGBSTDN_PIDM = A.SGBSTDN_PIDM
+									      WHERE A.Z_NUMBER in (
 									      	'Z23376289',
 											'Z23224442',
 											'Z23395645',

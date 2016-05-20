@@ -94,7 +94,7 @@ class FticModulesAvailable < ActiveRecord::Base
           summer_finaid = 0
          end
 
-         if bs['deposit'] == 1
+         if bs['sarchkl_admr_code'] == "TUTD" && !bs['sarchkl_receive_date'].nil?
             residency  = 1
             housingfee = 1
             aleks = 1
