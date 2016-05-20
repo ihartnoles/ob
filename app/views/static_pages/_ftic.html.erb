@@ -1828,14 +1828,16 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		   	
-		   	<% if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) && ( dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || immunization_complete ==1)%>		   	
+		   	<% if (deposit_complete == 1 || deposit_bypass == 1) %>
+		   	<%# if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) && ( dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || immunization_complete ==1)%>		   	
 		   		<a id="reg_href" href="#step-registration" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   	<% else %>
 		   		<a id="reg_href" href="#step-registration" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   	<% end %>
 
 		   	
-		   	<% if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
+		   	<% if (deposit_complete == 1 || deposit_bypass == 1) %>
+		   	<%# if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
 			  <div class="number">
 				  <% if (dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 || orientation_complete == 0) && registrationbypass == 0 %>
 				    <span class="badge badge-important label label-danger">incomplete <i class='fa fa-times'></i></span>
