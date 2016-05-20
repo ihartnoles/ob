@@ -128,15 +128,15 @@ class FticModulesAvailable < ActiveRecord::Base
           :communication => 1,
           :finaid => 1,
           :summer_finaid => summer_finaid,
-          :residency  => residency
-          :housingfee => housingfee
-          :aleks => aleks
-          :orientation => orientation
-          :learning_comm => learning_comm
-          :tution => tution
-          :emergency => emergency
-          :owlcard => owlcard
-          :bookadvance => bookadvance
+          :residency  => residency,
+          :housingfee => housingfee,
+          :aleks => aleks,
+          :orientation => orientation,
+          :learning_comm => learning_comm,
+          :tution => tution,
+          :emergency => emergency,
+          :owlcard => owlcard,
+          :bookadvance => bookadvance,
           :immunization => immunization
          ) 
         end
