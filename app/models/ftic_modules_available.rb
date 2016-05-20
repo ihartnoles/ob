@@ -4,7 +4,7 @@ class FticModulesAvailable < ActiveRecord::Base
       #            :housingmealplan, :aleks, :oars, :learning_comm, :orientation, :registration, :emergency, :faualert, :owlcard, :bookadvance, :tuition,
       #            :vehiclereg, :isactive
 
-	def self.sync
+  def self.sync
       @Bannerstuds = Banner.find_newstudents
 
       @Bannerstuds.each do | bs |

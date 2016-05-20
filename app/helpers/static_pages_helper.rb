@@ -563,7 +563,7 @@ module StaticPagesHelper
         output.each do |o| 
 
          if !o['deposit_received'].nil?
-           tmp =  "Our records indicate you have made a housing deposit. <br> Your housing deposit was received on #{o['deposit_received'].strftime('%x')}."
+           tmp =  "Our records indicate you have made a housing deposit. <br> Your housing deposit was received on #{o['deposit_received'].strftime('%x')}.<br><a id='housing' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>[Access Additional Housing Information Here]</a>"
          else
            tmp =  "Your housing deposit has NOT been paid yet!  <br><br>            
                <a id='housing' class='btn btn-danger' title='FAU Housing' href='https://talon.fau.edu/sso/housing' target='_blank'>Pay Your Housing Deposit Now</a>"

@@ -814,11 +814,20 @@ class FticModulesAvailablesController < ApplicationController
 
    def update_ftic_deposit_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
-    @modules_available.deposit = params[:deposit]
-    
-    if params[:intl] == "1"
-      @modules_available.immunization = 1 #unlock immunization
-    end
+    @modules_available.deposit    = params[:deposit]
+    @modules_available.residency  = 1
+    @modules_available.housingfee = 1
+    @modules_available.aleks = 1
+    @modules_available.orientation = 1
+    @modules_available.learning_comm = 1
+    @modules_available.tution = 1
+    @modules_available.emergency = 1
+    @modules_available.owlcard = 1
+    @modules_available.bookadvance = 1
+
+    #if params[:intl] == "1"
+     @modules_available.immunization = 1 #unlock immunization
+    #end
 
     @modules_available.save
 
