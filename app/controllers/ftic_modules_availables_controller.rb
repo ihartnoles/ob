@@ -1101,6 +1101,7 @@ class FticModulesAvailablesController < ApplicationController
   def update_ftic_tuition_module
     @modules_available = FticModulesAvailable.find(params[:ftic_id])
     @modules_available.tution = params[:tution]
+    @modules_available.oars = 1
     @modules_available.emergency = 1 #unlock emergency contacts
     @modules_available.save
 

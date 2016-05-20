@@ -1680,14 +1680,14 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		    <%# if oars_available == 1 %>
-		   	<% if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && ( learning_comm_complete == 1  || learning_commbypass == 1 ) && (deposit_complete == 1 || deposit_bypass == 1) %>
+		   	<% if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1) %>
 				<a id="oarshref" href="#step-oars" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
 			<% else %>
 				<a id="oarshref" href="#step-oars" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			 <%# if oars_available == 1 %>
-			<%if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && ( learning_comm_complete == 1  || learning_commbypass == 1 ) && (deposit_complete == 1 || deposit_bypass == 1) %>
+			<%if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1) %>
 			  <div class="number"><!-- Step 11 --> <%= get_statusicon(oars_available, oars_complete, oars_bypass) %></div>
 			<% end %>
 
