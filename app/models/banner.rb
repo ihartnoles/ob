@@ -478,7 +478,7 @@ class Banner < ActiveRecord::Base
 	#END:QUERIES TO BANINST1.AWS_ONBOARDING_FINAID
 
 		def self.get_all_holds(id)
-			get = connection.exec_query("SELECT Z_NUMBER, SPRHOLD_HLDD_CODE, STVHLDD_DESC from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)} AND STVHLDD_REG_HOLD_IND = 'Y'")
+			get = connection.exec_query("SELECT Z_NUMBER, SPRHOLD_HLDD_CODE, STVHLDD_DESC from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
 	
 
