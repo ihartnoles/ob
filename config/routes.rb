@@ -1,4 +1,7 @@
 Ob::Application.routes.draw do
+  resources :moduledates
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   #root 'static_pages#login'
@@ -11,6 +14,8 @@ Ob::Application.routes.draw do
   resources :ftic_modules_availables , :path => "fticadmin"
   resources :users
   resources :user_modules
+
+   get    '/dashboard/report',   to: 'reports#reportone'
    get    '/dashboard/:type',  to: 'static_pages#dashboard'
    get    '/dashdata/',        to: 'static_pages#dashdata'
    post   '/dashdata/',        to: 'static_pages#dashdata'

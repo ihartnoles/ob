@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @moduledate.name %>
+</p>
+
+<p>
+  <b>Opendate:</b>
+  <%= @moduledate.opendate %>
+</p>
+
+<p>
+  <b>Closedate:</b>
+  <%= @moduledate.closedate %>
+</p>
+
+
+<%= link_to 'Edit', edit_moduledate_path(@moduledate), {:class => 'btn btn-info'}  %> |
+<%= link_to 'Back', moduledates_path, {:class => 'btn btn-info'}  %>

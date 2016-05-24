@@ -480,6 +480,31 @@ class Banner < ActiveRecord::Base
 		def self.get_all_holds(id)
 			get = connection.exec_query("SELECT Z_NUMBER, SPRHOLD_HLDD_CODE, STVHLDD_DESC from BANINST1.AWS_ONBOARDING_HOLD WHERE Z_NUMBER=#{connection.quote(id)}")
 		end
+
+
+		def self.ftic_base_report
+			get = connection.exec_query("SELECT A.Z_NUMBER, A.GOBTPAC_EXTERNAL_USER, A.L_NAME, A.F_NAME, SUBSTR( A.SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,												          
+			       CASE SUBSTR(A.SARADAP_TERM_CODE_ENTRY, 5 , 6 )
+			               WHEN '01' THEN 'Spring'
+			               WHEN '08' THEN 'Fall'
+			               WHEN '05' THEN 'Summer'
+			            ELSE ''
+			        END as term,							                            
+			        A.int_student, A.goremal_email_address, 					                   
+			        CASE WHEN B.sarchkl_admr_code = 'TUTD' AND B.sarchkl_receive_date is NOT NULL  THEN 'paid'
+			             ELSE 'unpaid'
+			        END as deposit_status, 			        			       
+			        CASE when C.im_exists = 'Y'  AND C.sprhold_hldd_code = 'IM' THEN 'complete' ELSE 'incomplete' END as immunization_status,
+			        CASE when B.sgbstdn_resd_code IN ('T','F','R','O') THEN 'resident' ELSE 'non-resident' END as residency_status,
+			        CASE when  A.aleks_taken = 'Y' THEN 'complete' ELSE 'incomplete' END as aleks_status,
+			        CASE when C.sprhold_hldd_code = 'OR' THEN 'complete' ELSE 'incomplete' END as orientation_status,
+			        CASE when (B.spremrg_first_name is null OR  B.spremrg_last_name is null OR B.spremrg_street_line1 is null OR B.spremrg_city is null) THEN 'incomplete' ELSE 'complete' END as emer_contact_status,
+			        CASE when (B.gwrr911_phone_area is null OR  B.gwrr911_phone_number is null) THEN 'incomplete' ELSE 'complete' END as fau_alert_status		        			                               
+			        FROM BANINST1.AWS_ONBOARDING_MAIN A
+			        LEFT JOIN BANINST1.AWS_ONBOARDING_ADDRESS B ON B.SGBSTDN_PIDM = A.SGBSTDN_PIDM
+			        LEFT JOIN BANINST1.AWS_ONBOARDING_HOLD C ON C.SGBSTDN_PIDM = A.SGBSTDN_PIDM
+			        WHERE A.SARADAP_STYP_CODE in ('B','E')")
+		end
 	
 
 end

@@ -1,0 +1,26 @@
+<h1>Model open/close dates</h1>
+
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Module</th>
+    <th>Open</th>
+    <th>Close</th>
+    <th>Actions</th>   
+  </tr>
+</thead>
+<% @moduledates.each do |moduledate| %>
+  <tr>
+    <td><%= moduledate.name %></td>
+    <td><%= moduledate.opendate %></td>
+    <td><%= moduledate.closedate %></td>
+    <td colspan="3"><%= link_to 'Show', moduledate %>
+    <%= link_to 'Edit', edit_moduledate_path(moduledate) %>
+    <%= link_to 'Destroy', moduledate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Module Date', new_moduledate_path, {:class => 'btn btn-info'}  %>

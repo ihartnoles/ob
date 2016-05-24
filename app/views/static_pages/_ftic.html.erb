@@ -62,7 +62,7 @@ Hello, <%= session[:cas_user] %>!
       <article class="content col-sm-9">	
 	      <h4 class="title">
 	      	Welcome to FAU <%= get_fullname(znum) %>! Let's get started!</h4>
-
+	 
 	     <% cache('welcometext') do %>
 	      <p>We want your transition to college life to be as smooth as possible. Below is a checklist of tasks you will need to complete prior to your arrival on campus. Some tasks will not become available (be grayed out) until other tasks are complete. So try to complete as many as you can in order. Remember to click <b>Continue</b> to proceed through all modules!</p><br>
 	     <% end %>
@@ -136,17 +136,19 @@ Hello, <%= session[:cas_user] %>!
 		   <li class="panel">
 		  	
 		  	
-			<% if (@verify_available == 1 || @verify_bypass == 1) %>
+			<% if (@verify_available == 1 || @verify_bypass == 1) && ( Time.now.utc >= @verify_module_open  && Time.now.utc <= @verify_module_close) %>
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" >		
 			<% else %>
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" >
 			<% end %>	
 			
-			<% if (@verify_available == 1 || @verify_bypass == 1) %>
+			<% if (@verify_available == 1 || @verify_bypass == 1) && ( Time.now.utc >= @verify_module_open  && Time.now.utc <= @verify_module_close) %>
 			  <div class="number"><!-- Step 3 --><%#= get_statusicon(@verify_available, @verify_info_complete, verify_bypass) %><span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span></div>
+			<% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>VERIFY YOUR INFORMATION</b></h6>
+			  <h6><b>VERIFY YOUR INFORMATION</b>   <% if Time.now.utc <= @verify_module_open %> <b>- (opens on  <%=@verify_module_open %>)</b><% end %> </h6>
 			</a>
 			
 			<div id="step-verify" class="collapse">
@@ -242,17 +244,20 @@ Hello, <%= session[:cas_user] %>!
 
 		    <li class="panel">
 
-		  	<%# if  (communication_available == 1  || communication_bypass == 1) &&  deposit_complete == 1  %>
+		  	<% if  Time.now.utc >= @comm_module_open  && Time.now.utc <= @comm_module_close  %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
-			<%# else %>
-				<!-- <a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
-			<%# end %>
+			<% else %>
+				 <a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+			<% end %>
 
 			<%# if (communication_available == 1 || communication_bypass == 1 ) && deposit_complete == 1 %>
+			<% if Time.now.utc >= @comm_module_open  && Time.now.utc <= @comm_module_close  %>
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
-			<%# end %>
+			<% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
+			<% end %>
 
-			  <h6><b>COMMUNICATION PREFERENCE</b> <%= %> </h6>
+			  <h6><b>COMMUNICATION PREFERENCE</b>  <% if Time.now.utc <= @comm_module_open %> <b>- (opens on  <%=@comm_module_open %>)</b><% end %> </h6>
 			</a>
 			
 			<div id="step-comm" class="collapse">
@@ -272,9 +277,9 @@ Hello, <%= session[:cas_user] %>!
 				    <% end %>
 
 				  		 <p><b>Your FAU email address is: <%= @email %></b></p>
-				  		 
+
 				  	<% cache('commpreftext2') do %>
-				  		 <p>A mobile number may be provided below as an optional communication method that may be utilized in the future. If you want include your mobile number please clock the checkbox below.</p>
+				  		 <p>A mobile number may be provided below as an optional communication method that may be utilized in the future. If you want include your mobile number please click the checkbox below.</p>
 				  	<% end %>
 			
 			

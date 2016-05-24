@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyText
+  opendate: 2016-05-24
+  closedate: 2016-05-24
+
+two:
+  name: MyText
+  opendate: 2016-05-24
+  closedate: 2016-05-24

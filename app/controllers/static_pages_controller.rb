@@ -37,6 +37,17 @@ class StaticPagesController < ApplicationController
           #TO DO: Query for WHC_STUDENT
           #@isHonorsCollege = 1
 
+          #BEGIN:modules_open/close
+          verify_dates = Moduledate.select("opendate,closedate").find_by_name('Verify Your Information')
+          @verify_module_open = verify_dates.opendate
+          @verify_module_close = verify_dates.closedate
+
+          comm_dates = Moduledate.select("opendate,closedate").find_by_name('Communication Preference')
+          @comm_module_open = comm_dates.opendate
+          @comm_module_close = comm_dates.closedate
+          
+          #END:modules_open/close
+
           @account_complete = 1  
         
            #BEGIN: verify complete check

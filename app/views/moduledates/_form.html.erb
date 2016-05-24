@@ -1,0 +1,49 @@
+ <div class="row">
+    &nbsp;
+   </div>
+  <div class="container">
+    <div class="row">
+      <article class="col-sm-12 col-md-12 content">
+    <div class="my-account margin-top">
+      
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+        <div class="title-box">
+          <h2 class="title">New Module Date</h2>
+        </div>
+
+<%= form_for(@moduledate) do |f| %>
+  <% if @moduledate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@moduledate.errors.count, "error") %> prohibited this moduledate from being saved:</h2>
+
+      <ul>
+      <% @moduledate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "" %><br />
+    <%= f.text_area :name, :class => 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :opendate, "open date" %><br />
+    <%= f.date_select :opendate,{},{:class => 'form-control'} %>
+  </div>
+  <div class="field">
+    <%= f.label :closedate, "close date" %><br />
+    <%= f.date_select :closedate, {} ,{:class => 'form-control'} %>
+  </div>
+  <div class="actions">
+    <%= f.submit "save", :class => 'btn btn-danger' %>
+  </div>
+<% end %>
+</div>        
+      </div>     
+    </div>
+      </article><!-- .content -->
+     </div>
+  </div>
