@@ -554,6 +554,20 @@ module StaticPagesHelper
 
   	 end
 
+     def get_module_open_txt(termcode,modulename)
+        moduleinfo =  Moduledate.select("opendate").where("name=? AND termvalue=?", modulename, termcode).first
+          #moduleinfo.each do |s|           
+            @module_open_date = moduleinfo.opendate           
+          #end
+
+          if @module_open_date == 'N/A'
+            return "TBA"
+          else
+            return "<b>- (opens on  #{@module_open_date.strftime('%m/%d/%Y')})</b>".html_safe
+          end
+
+     end
+
     
 
      def get_housing_deposit(znum)

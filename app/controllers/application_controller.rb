@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
       @current_fall_term_in = '201608'
       @current_fall_aidy = '1617'
 
-      @current_spring_term_in = '201601'
+      @current_spring_term_in = '201608'
 
    
       if request.server_name.include?('owldone')
@@ -486,7 +486,96 @@ class ApplicationController < ActionController::Base
           puts 'Could not get message charge, double check your settings and internet connection'
       end
   end
+
+# BEGIN module open dates
+  # def summer_module_opendates
+  #   verify_summer_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_summer_term_in)
+    
+  #   if verify_summer_dates.count > 0 
+  #     verify_summer_dates.each do |s|
+  #       @verify_module_summer_open = s.opendate
+  #       @verify_module_summer_close = s.closedate
+  #       @verify_module_summer_term = s.termvalue
+  #     end
+  #   else
+  #       @verify_module_summer_open = 'N/A'
+  #       @verify_module_summer_close ='N/A'
+  #       @verify_module_summer_term = 'N/A' 
+  #   end
+    
+  #   comm_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_summer_term_in)
+  #   if verify_summer_dates.count > 0 
+  #     comm_summer_dates.each do |s|
+  #      @comm_module_summer_open = s.opendate
+  #      @comm_module_summer_close = s.closedate
+  #      @comm_module_summer_term = s.termvalue 
+  #     end
+  #   else
+  #      @comm_module_summer_open = 'N/A'
+  #      @comm_module_summer_close = 'N/A'
+  #      @comm_module_summer_term = 'N/A'
+  #   end
+  # end
+
+  # def fall_module_opendates
+  #   verify_fall_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_fall_term_in)
+    
+  #   if verify_fall_dates.count > 0
+  #     verify_fall_dates.each do |f|
+  #       @verify_module_fall_open = f.opendate
+  #       @verify_module_fall_close = f.closedate
+  #       @verify_module_fall_term = f.termvalue
+  #     end
+  #   else
+  #       @verify_module_fall_open = 'N/A'
+  #       @verify_module_fall_close = 'N/A'
+  #       @verify_module_fall_term = 'N/A'
+  #   end
+
+  #    comm_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_fall_term_in)
+  #    if comm_fall_dates.count > 0
+  #      comm_fall_dates.each do |f|
+  #        @comm_module_fall_open = f.opendate
+  #        @comm_module_fall_close = f.closedate
+  #        @comm_module_fall_term = f.termvalue 
+  #      end
+  #    else
+  #       @comm_module_fall_open = 'N/A'
+  #       @comm_module_fall_close = 'N/A'
+  #       @comm_module_fall_term = 'N/A'
+  #    end
+  # end
   
+
+  # def spring_module_opendates
+  #   verify_spring_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_spring_term_in)
+  #   if verify_spring_dates.count > 0
+  #     verify_spring_dates.each do |sp|
+  #       @verify_module_spring_open = sp.opendate
+  #       @verify_module_spring_close = sp.closedate
+  #       @verify_module_spring_term = sp.termvalue
+  #     end
+  #   else
+  #     @verify_module_spring_open = 'N/A'
+  #     @verify_module_spring_close = 'N/A'
+  #     @verify_module_spring_term = 'N/A'
+  #   end
+
+  #   comm_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_spring_term_in)
+  #   if comm_spring_dates.count > 0
+  #     comm_spring_dates.each do |sp| 
+  #      @comm_module_spring_open = sp.opendate
+  #      @comm_module_spring_close = sp.closedate
+  #      @comm_module_spring_term = sp.termvalue 
+  #     end
+  #   else
+  #      @comm_module_spring_open = 'N/A'
+  #      @comm_module_spring_close = 'N/A'
+  #      @comm_module_spring_term = 'N/A'
+  #   end
+  # end
+# END open modules
+
 
   protected
     def render_not_found(exception)

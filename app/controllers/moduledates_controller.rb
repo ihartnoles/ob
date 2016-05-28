@@ -1,6 +1,8 @@
 class ModuledatesController < ApplicationController
   # GET /moduledates
   # GET /moduledates.json
+
+  before_filter :authenticate_for_admin
   def index
     @moduledates = Moduledate.all
 
@@ -81,12 +83,22 @@ class ModuledatesController < ApplicationController
     end
   end
 
+   protected
+
+   def authenticate_for_admin
+      user = User.where(:netid => session[:cas_user])
+      if user.count == 0 #no info found
+       redirect_to unauthorized_path
+      end       
+   end 
+
+
   private
 
     # Use this method to whitelist the permissible parameters. Example:
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def moduledate_params
-      params.require(:moduledate).permit(:closedate, :name, :opendate)
+      params.require(:moduledate).permit(:closedate, :name, :opendate, :termvalue)
     end
 end

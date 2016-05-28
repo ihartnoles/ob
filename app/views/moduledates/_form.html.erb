@@ -37,6 +37,10 @@
     <%= f.label :closedate, "close date" %><br />
     <%= f.date_select :closedate, {} ,{:class => 'form-control'} %>
   </div>
+  <div class="field">
+    <%= f.label :termname, "term" %><br />
+    <%= f.select(:termvalue, options_for_select([["Select One", ""],["Fall 2016", "201608"],["Summer 2016","201605"],["Spring 2017","201701"],["Fall 2017","201708"]]), {} ,{:class => 'form-control'}) %>
+  </div>
   <div class="actions">
     <%= f.submit "save", :class => 'btn btn-danger' %>
   </div>

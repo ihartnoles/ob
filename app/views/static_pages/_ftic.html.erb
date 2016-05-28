@@ -116,7 +116,7 @@ Hello, <%= session[:cas_user] %>!
 					<div align="center">
 
 						
-						<iframe src="https://devserviceawards.fau.edu/test.cfm?fname=<%=@fname%>&lname=<%=@lname%>" width="640" height="548" scrolling="no" frameborder="0"></iframe>
+						<iframe src="https://serviceawards.fau.edu/test.cfm?fname=<%=@fname%>&lname=<%=@lname%>" width="640" height="548" scrolling="no" frameborder="0"></iframe>
 
 						<%#=@OwlImage %>
 
@@ -124,9 +124,9 @@ Hello, <%= session[:cas_user] %>!
 
 					</div>	
 					
-					
+					<%# if ( Time.now.utc >= @verify_module_summer_open  && Time.now.utc <= @verify_module_summer_close &&  @verify_module_summer_term == @current_summer_term_in ) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) %>
 					<br><button type="button" class="btn btn-continue btn-danger" id="welcomeBut">Continue</button>
-					
+					<%# end %>
 					
 			  </div>
 			</div>
@@ -136,19 +136,22 @@ Hello, <%= session[:cas_user] %>!
 		   <li class="panel">
 		  	
 		  	
-			<% if (@verify_available == 1 || @verify_bypass == 1) && ( Time.now.utc >= @verify_module_open  && Time.now.utc <= @verify_module_close) %>
+			<%# if (@verify_available == 1 || @verify_bypass == 1) && ( ( Time.now.utc >= @verify_module_summer_open  && Time.now.utc <= @verify_module_summer_close &&  @verify_module_summer_term == @current_summer_term_in ) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in)) %>
+			<% if @verify_available == 1 || @verify_bypass == 1 %>
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" >		
 			<% else %>
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" >
 			<% end %>	
+
 			
-			<% if (@verify_available == 1 || @verify_bypass == 1) && ( Time.now.utc >= @verify_module_open  && Time.now.utc <= @verify_module_close) %>
+			<%# if (@verify_available == 1 || @verify_bypass == 1) && ( ( Time.now.utc >= @verify_module_summer_open  && Time.now.utc <= @verify_module_summer_close &&  @verify_module_summer_term == @current_summer_term_in ) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in)) %>
+			<% if @verify_available == 1 || @verify_bypass == 1 %>
 			  <div class="number"><!-- Step 3 --><%#= get_statusicon(@verify_available, @verify_info_complete, verify_bypass) %><span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span></div>
 			<% else %>
 				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>VERIFY YOUR INFORMATION</b>   <% if Time.now.utc <= @verify_module_open %> <b>- (opens on  <%=@verify_module_open %>)</b><% end %> </h6>
+			  <h6><b>VERIFY YOUR INFORMATION</b> <%#= get_module_open_txt(@term_code_entry,'Verify Your Information') %></h6>
 			</a>
 			
 			<div id="step-verify" class="collapse">
@@ -244,20 +247,20 @@ Hello, <%= session[:cas_user] %>!
 
 		    <li class="panel">
 
-		  	<% if  Time.now.utc >= @comm_module_open  && Time.now.utc <= @comm_module_close  %>
+		  	<%# if  Time.now.utc >= @comm_module_open  && Time.now.utc <= @comm_module_close  %>
 				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
-			<% else %>
-				 <a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
-			<% end %>
+			<%# else %>
+				 <!-- <a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+ -->			<%# end %>
 
 			<%# if (communication_available == 1 || communication_bypass == 1 ) && deposit_complete == 1 %>
-			<% if Time.now.utc >= @comm_module_open  && Time.now.utc <= @comm_module_close  %>
+			<%# if Time.now.utc >= @comm_module_open  && Time.now.utc <= @comm_module_close  %>
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
-			<% else %>
-				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
-			<% end %>
+			<%# else %>
+				<!-- <div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div> -->
+			<%# end %>
 
-			  <h6><b>COMMUNICATION PREFERENCE</b>  <% if Time.now.utc <= @comm_module_open %> <b>- (opens on  <%=@comm_module_open %>)</b><% end %> </h6>
+			  <h6><b>COMMUNICATION PREFERENCE</b><%#= get_module_open_txt(@term_code_entry,'Communication Preference') %> </h6>
 			</a>
 			
 			<div id="step-comm" class="collapse">
@@ -1544,38 +1547,36 @@ Hello, <%= session[:cas_user] %>!
 	<% end %>
 
 
-		  <li class="panel">
+		  <!-- <li class="panel"> -->
 		  
-		  <%# if learning_comm_available == 1 %>
-		  <% if  (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1)  %>
-		   	<a id="lc_href" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
-		  <% else %>
-		    <a id="lc_href" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
-		  <% end %>
+		  <%# if  (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1)  %>
+		   <!-- 	<a id="lc_href" href="#step-learning" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse"> -->
+		  <%# else %>
+		    <!-- <a id="lc_href" href="#step-learning" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle=""> -->
+		  <%# end %>
 
-		  <%# if learning_comm_available == 1 %>
-		  <% if (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
-			  <div class="number"><!-- Step 12 --> <%= get_statusicon(learning_comm_available,  learning_comm_complete, learning_commbypass) %>
-			  	<!-- information <i class='fa fa-info'></i> -->
-			  </div>
-		  <% end %>
+		   <%# if (learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			 <!--  <div class="number"><%= get_statusicon(learning_comm_available,  learning_comm_complete, learning_commbypass) %>
+			  	
+			  </div> -->
+		  <%# end %>
 
-			  <h6><b>LEARNING COMMUNITIES</b></h6>
-			</a>
+			  <!-- <h6><b>LEARNING COMMUNITIES</b></h6>
+			</a> -->
 			
-			<div id="step-learning" class="collapse">				   
-			  <div class="step-content">			 
+			<!-- <div id="step-learning" class="collapse">				   
+			  <div class="step-content">	 -->		 
 
-			  	<% if learning_commbypass == 1 %>			  		
-					<% cache('bypassalert') do %>	
-						<div class="alert alert-warning">
+			  	<%# if learning_commbypass == 1 %>			  		
+					<%# cache('bypassalert') do %>	
+						<!-- <div class="alert alert-warning">
 							<p><b> ATTENTION: An administrator has bypassed (overridden) this section for you. This is to let you continue getting ready.  This does NOT mean this requirement is fulfilled. Further action may be required on your part. Please click CONTINUE to proceed to the next step.</b> </p>
-						</div>	
-					<% end %>					
-			    <% end %>
+						</div>	 -->
+					<%# end %>					
+			    <%# end %>
 				
-			    <% cache('lctxt') do %>
-			  		<h3 class="title">Learning Community Information</h3>
+			    <%# cache('lctxt') do %>
+			  		<!-- <h3 class="title">Learning Community Information</h3>
 					<p>Learning Communities help you make a fast, smooth, and easy transition to FAU!</p>
 					<p>Connect with 20-24 other students who share similar interests by taking your core classes together your freshman year. Learning Communities make it easier to meet people, make friends and form study groups while connecting you through shared experiences and themed activities.</p>	
 
@@ -1615,75 +1616,75 @@ Hello, <%= session[:cas_user] %>!
 				
 					<hr>
 			
-					<p><strong>Would you like to join one of FAU’s Learning Communities for the Fall 2016 – Spring 2017 academic year?</strong></p>
-				<% end %>
+					<p><strong>Would you like to join one of FAU’s Learning Communities for the Fall 2016 – Spring 2017 academic year?</strong></p> -->
+				<%# end %>
 								
-						<%= form_tag('/save_lc', {:class => 'form-horizontal', :role => 'form', :id=> "lcForm"}) do %>
+						<%#= form_tag('/save_lc', {:class => 'form-horizontal', :role => 'form', :id=> "lcForm"}) do %>
 
 							
-							    <%= hidden_field_tag :znumber, @znum %>
-							    <%= hidden_field_tag :netid, @displayname %>
-							    <%= hidden_field_tag :id, @lc_id %>
-							    <%= hidden_field_tag :ftic_id, @ftic_id %>
-							    <%= hidden_field_tag :learning_comm, 1 %>
+							    <%#= hidden_field_tag :znumber, @znum %>
+							    <%#= hidden_field_tag :netid, @displayname %>
+							    <%#= hidden_field_tag :id, @lc_id %>
+							    <%#= hidden_field_tag :ftic_id, @ftic_id %>
+							    <%#= hidden_field_tag :learning_comm, 1 %>
 
 							     <!-- yes this is on purpose! to determine if an admin is impersonating a student -->
-							    <% if params[:znum] %>
-							    	<%= hidden_field_tag :znum, @znum %>									    
-							    <% end %>
+							    <%# if params[:znum] %>
+							    	<%#= hidden_field_tag :znum, @znum %>									    
+							    <%# end %>
 
 							    
-		    				    <div class="radio">
-		    				    	<%= radio_button_tag 'join_lc', 'Yes', !!(@join_lc.nil? || @join_lc == 'Yes') %>Yes<br>
-								</div>
+		    				    <!-- <div class="radio">
+		    				    	<%#= radio_button_tag 'join_lc', 'Yes', !!(@join_lc.nil? || @join_lc == 'Yes') %>Yes<br>
+								</div> -->
 								
-							    <div class="radio">
-							    	<%= radio_button_tag 'join_lc', 'No' , !!(@join_lc.nil? || @join_lc == 'No')  %>Not at this time. You can come back and join at any time. <br>Please remember…Learning Communities fill on a first come first serve basis and they fill up quickly.  The priority application closes on May 1st and applications are accepted until July 20th.<br>
-							    </div>
+							   <!--  <div class="radio">
+							    	<%#= radio_button_tag 'join_lc', 'No' , !!(@join_lc.nil? || @join_lc == 'No')  %>Not at this time. You can come back and join at any time. <br>Please remember…Learning Communities fill on a first come first serve basis and they fill up quickly.  The priority application closes on May 1st and applications are accepted until July 20th.<br>
+							    </div> -->
 
 
-							    <div id="lc_options" <% if @join_lc == 'Yes' %> <% else %> style="display:none" <% end %>>
+							    <!-- <div id="lc_options" <%# if @join_lc == 'Yes' %> <%# else %> style="display:none" <%# end %>>
 								    <br><strong>Please select one below:</strong>
 								    <div class="radio">
-								    	<%= radio_button_tag 'lc_choice', 'RLC', !!(@lc_choice.nil? || @lc_choice == 'RLC') %>I choose to participate in the RLC program for the Fall 2016-Spring 2017 semesters (application must be filled out through your Housing Contract). If you have already filled out your RLC application through your housing contract, select this option.<br>
+								    	<%#= radio_button_tag 'lc_choice', 'RLC', !!(@lc_choice.nil? || @lc_choice == 'RLC') %>I choose to participate in the RLC program for the Fall 2016-Spring 2017 semesters (application must be filled out through your Housing Contract). If you have already filled out your RLC application through your housing contract, select this option.<br>
 								    </div>
 
 								    <div class="radio">
-								    	<%= radio_button_tag 'lc_choice', 'CCLC', !!(@lc_choice.nil? || @lc_choice == 'CCLC') %>I choose to participate in a CCLC for the Fall 2016-Spring 2017 semesters.  By selecting a community you will be agreeing to the CCLC <a href="/16_17_CCLC_Program_Agreement.pdf" onClick="return popup(this,'Selecting Coursework', 800, 400)" target="_blank">Program Agreement</a> and joining the CCLC program for the Fall 2016-Spring 2017 academic year.  <b> By selecting this option, I confirm that I have read the <a href="/16_17_CCLC_Program_Agreement.pdf" onClick="return popup(this,'Selecting Coursework', 800, 400)" target="_blank">Program Agreement</a>, that I understand it and that I agree to be bound by it. </b></p>
+								    	<%#= radio_button_tag 'lc_choice', 'CCLC', !!(@lc_choice.nil? || @lc_choice == 'CCLC') %>I choose to participate in a CCLC for the Fall 2016-Spring 2017 semesters.  By selecting a community you will be agreeing to the CCLC <a href="/16_17_CCLC_Program_Agreement.pdf" onClick="return popup(this,'Selecting Coursework', 800, 400)" target="_blank">Program Agreement</a> and joining the CCLC program for the Fall 2016-Spring 2017 academic year.  <b> By selecting this option, I confirm that I have read the <a href="/16_17_CCLC_Program_Agreement.pdf" onClick="return popup(this,'Selecting Coursework', 800, 400)" target="_blank">Program Agreement</a>, that I understand it and that I agree to be bound by it. </b></p>
 
 								    </div>
-								</div>
+								</div> -->
 
 								
 
-								<div id="cclc_options"  <% if @join_lc == 'Yes' && @lc_choice == 'CCLC' %> <% else %> style="display:none" <% end %>>
+								<!-- <div id="cclc_options"  <%# if @join_lc == 'Yes' && @lc_choice == 'CCLC' %> <%# else %> style="display:none" <%# end %>>
 									 <br>
 									<br><strong>Please select a CCLC community:</strong>
-									 <%= select_tag :cclc_type, options_for_select([["Select One", ""],"Arts & Letters", "Business", "Direct-Admit Nursing (only for students who have been accepted into the DA Nursing Program)", "Education" , "Engineering & Computer Science" , "Explore" , "Healthy Owls" , "Leadership" , "Pre-Health Professions (must have at least a 24 ACT or an 1100 Verbal/Math combined SAT score to join)", "Psychology" , "Science" , "Social Justice (for Criminal Justice, Public Safety, & Social Work majors)" , "The Urban Male Initiative" ], :selected => @cclc_type), :class => 'form-control' %>
+									 <%#= select_tag :cclc_type, options_for_select([["Select One", ""],"Arts & Letters", "Business", "Direct-Admit Nursing (only for students who have been accepted into the DA Nursing Program)", "Education" , "Engineering & Computer Science" , "Explore" , "Healthy Owls" , "Leadership" , "Pre-Health Professions (must have at least a 24 ACT or an 1100 Verbal/Math combined SAT score to join)", "Psychology" , "Science" , "Social Justice (for Criminal Justice, Public Safety, & Social Work majors)" , "The Urban Male Initiative" ], :selected => @cclc_type), :class => 'form-control' %>
 
 									 <br>
 
 									 <strong>Please type in your full name:</strong>
-									 <%= text_field_tag :signature, @signature, class: "form-control" %>
+									 <%#= text_field_tag :signature, @signature, class: "form-control" %>
 									
 								</div>
 
-								<br>
+								<br> -->
 
-								<% if @join_lc == 'Yes' %> 
-									 <div class="alert alert-border alert-info text-center fade in">
+								<%# if @join_lc == 'Yes' %> 
+									<!--  <div class="alert alert-border alert-info text-center fade in">
 									 	If you wish to change your Learning Community please contact the <a href="https://www.fau.edu/class/" target="_blank">Center for Learning and Student Success</a><br> by phone at (561) 297-0906 or by email at: <a href="mailto:stay@fau.edu">stay@fau.edu</a>.
-									 </div>
-								<% end %>
-								<br>
+									 </div> -->
+								<%# end %>
+								<!-- <br>
 
-								<% if  learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1 %>
+								<%# if  learning_comm_available == 1 || learning_commbypass == 1 || learning_comm_complete == 1 %>
 										<button type="submit" class="btn btn-danger" id="lcBut">Continue</button>
-								<% end %>	
-						<% end %>	
+								<%# end %>	
+						<%# end %>	
 				</div>
 			</div>
-		  </li>
+		  </li> -->
 
 		   <li class="panel">
 		    <%# if oars_available == 1 %>
@@ -3238,8 +3239,10 @@ Hello, <%= session[:cas_user] %>!
 		$('#intlOrientationBut').click(function () {
 		  $('#step-intl-orientation').collapse('hide');
 		  $('#step-intl-orientation').prev().addClass('collapsed');
-		  $('#step-learning').collapse('hide');
-		  $('#step-learning').prev().addClass('collapsed');
+		  $('#step-oars').collapse('hide');
+		  $('#step-oars').prev().addClass('collapsed');
+		  //$('#step-learning').collapse('hide');
+		  //$('#step-learning').prev().addClass('collapsed');
 		  //updateMeter('10');
 		})
 	 <% end %>

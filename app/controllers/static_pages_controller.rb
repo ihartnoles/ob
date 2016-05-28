@@ -38,14 +38,9 @@ class StaticPagesController < ApplicationController
           #@isHonorsCollege = 1
 
           #BEGIN:modules_open/close
-          verify_dates = Moduledate.select("opendate,closedate").find_by_name('Verify Your Information')
-          @verify_module_open = verify_dates.opendate
-          @verify_module_close = verify_dates.closedate
-
-          comm_dates = Moduledate.select("opendate,closedate").find_by_name('Communication Preference')
-          @comm_module_open = comm_dates.opendate
-          @comm_module_close = comm_dates.closedate
-          
+          # summer_module_opendates   
+          # fall_module_opendates      
+          # spring_module_opendates
           #END:modules_open/close
 
           @account_complete = 1  
@@ -200,7 +195,8 @@ class StaticPagesController < ApplicationController
 
                   @fname =  o['f_name']
                   @lname =  o['l_name']
-                  @netid =  o['gobtpac_external_user']                
+                  @netid =  o['gobtpac_external_user']       
+                  @term_code_entry = o['saradap_term_code_entry']          
 
                   #@OwlImage = RestClient.get('https://devserviceawards.fau.edu/test2.cfm?fname=Peter&lname=Griffon')
                   
@@ -351,7 +347,7 @@ class StaticPagesController < ApplicationController
 
 
 
-               if (o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?)  &&  o['rorstat_aidy_code'] == @current_fall_aidy
+               if (o['rorstat_pckg_comp_date'].nil? || o['rorstat_pckg_comp_date'].blank?)  &&  o['rorstat_aidy_code'] == @current_summer_aidy
                   @finaid_package_complete = 0
                else
                   @finaid_package_complete = 1
@@ -530,7 +526,7 @@ class StaticPagesController < ApplicationController
                @fin_aid_acceptance = 0
 
                fin_aid_acceptance.each do |fa|
-                 if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == @current_spring_term_in || fa['rpratrm_period'] == @current_fall_term_in)
+                 if !fa['rpratrm_accept_date'].nil? && (fa['rpratrm_period'] == @current_spring_term_in || fa['rpratrm_period'] == @current_summer_term_in)
                   @fin_aid_acceptance = 1
                  #else 
                  # @fin_aid_acceptance = 0

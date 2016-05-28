@@ -204,6 +204,7 @@ class Banner < ActiveRecord::Base
 			# spremrg fields = emergency contact info on file
 		def self.get_multistatus(id)
 			get = connection.exec_query("SELECT A.GOBTPAC_EXTERNAL_USER, A.L_NAME, A.F_NAME,
+				                           A.SARADAP_TERM_CODE_ENTRY,
 									       SUBSTR( A.SARADAP_TERM_CODE_ENTRY, 1 , 4 ) as year,
 									          CASE SUBSTR(A.SARADAP_TERM_CODE_ENTRY, 5 , 6 )
 									                 WHEN '01' THEN 'Spring'
