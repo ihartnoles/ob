@@ -1872,7 +1872,7 @@ Hello, <%= session[:cas_user] %>!
 				
 
 
-			  		<% if  dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || fau_alert_complete == 0 || immunization_complete == 0 || orientation_complete == 0 %>
+			  		<% if  dep_complete_flag == 0 || oars_complete == 0 ||immunization_complete == 0  %>
 			  					  			
 			  			<p>You have <a id="holds" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=bwskoacc.P_ViewHold" target="_blank">holds</a> on your record which are preventing you from registering for classes. The holds are listed below:</p>
 
