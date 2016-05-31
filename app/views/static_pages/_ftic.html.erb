@@ -1812,7 +1812,7 @@ Hello, <%= session[:cas_user] %>!
                <%# end %>
 
 
-                 <% if  (fau_alert_available == 1 && fau_alert_complete == 1 ) || faualertbypass == 1 %>
+                 <% if  (fau_alert_available == 1) || faualertbypass == 1 %>
 						<div class="buttons-box text-right">
 			  		 		<%= form_tag('/update_ftic_alert_module' , {:class => 'register-form form-validator'})  do %>
 			  		 		 	<%= hidden_field_tag :znumber, @znum %>
