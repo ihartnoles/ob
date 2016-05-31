@@ -48,7 +48,11 @@ class FticModulesAvailable < ActiveRecord::Base
          newstudent.learning_commbypass = 0
          newstudent.orientation = 0
          newstudent.orientationbypass = 0
-         newstudent.registration = 0
+         if bs['sarchkl_admr_code'] == 'TUTD' && !bs['sarchkl_receive_date'].nil?
+          newstudent.registration = 1
+         else
+          newstudent.registration = 0
+         end
          newstudent.registrationbypass = 0
          newstudent.emergency = 0
          newstudent.emergencybypass = 0
@@ -107,6 +111,7 @@ class FticModulesAvailable < ActiveRecord::Base
             immunization = 1
             oars = 1
             faualert = 1
+            registration = 1
          else
             residency  = 0
             housingfee = 0
@@ -120,6 +125,7 @@ class FticModulesAvailable < ActiveRecord::Base
             immunization = 0
             oars = 0
             faualert = 0
+            registration = 0
          end
 
         
@@ -143,7 +149,8 @@ class FticModulesAvailable < ActiveRecord::Base
           :bookadvance => bookadvance,
           :immunization => immunization,
           :oars => oars,
-          :faualert => faualert
+          :faualert => faualert,
+          :registration => registration
          ) 
         end
 
