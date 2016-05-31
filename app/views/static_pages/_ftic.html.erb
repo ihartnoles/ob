@@ -1847,7 +1847,7 @@ Hello, <%= session[:cas_user] %>!
 		   	<% if (deposit_complete == 1 || deposit_bypass == 1) %>
 		   	<%# if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
 			  <div class="number">
-				  <% if (dep_complete_flag == 0 || account_complete == 0 || oars_complete == 0 || immunization_complete == 0 || orientation_complete == 0) && registrationbypass == 0 %>
+				  <% if (dep_complete_flag == 0 || oars_complete == 0 || immunization_complete == 0 ) && registrationbypass == 0 %>
 				    <span class="badge badge-important label label-danger">incomplete <i class='fa fa-times'></i></span>
 				  <% else %>
 				  	<!-- Step 14 --><%= get_statusicon(reg_available, reg_complete, registrationbypass) %>
