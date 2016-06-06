@@ -1205,7 +1205,7 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	<%# if housing_fee_available == 1 %>
-			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || @housing_fee_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1)  && ( (Time.now.utc >= @housing_module_summer_open  && Time.now.utc <= @housing_module_summer_close &&  @housing_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_fall_open  && Time.now.utc <= @housing_module_fall_close &&  @housing_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || ) &&  (deposit_complete == 1 || deposit_bypass == 1)  && ( (Time.now.utc >= @housing_module_summer_open  && Time.now.utc <= @housing_module_summer_close &&  @housing_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_fall_open  && Time.now.utc <= @housing_module_fall_close &&  @housing_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
@@ -2431,7 +2431,7 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		  	
-		  	<% if congrats_available == 1 && (residency_complete == 1 && @reg_complete == 1 &&  dep_complete_flag == 1 && account_complete == 1 && oars_complete == 1 && fau_alert_complete == 1 && immunization_complete == 1 && @orientation_complete == 1 && @finaid_complete == 1)  %>
+		  	<% if congrats_available == 1 && (residency_complete == 1 && reg_complete == 1 &&  tuition_complete == 1 && dep_complete_flag == 1 && account_complete == 1 && oars_complete == 1 && fau_alert_complete == 1 && immunization_complete == 1 && @orientation_complete == 1 && @finaid_complete == 1 && @housing_fee_complete == 1 && aleks_complete == 1)  %>
 				<a id="congratshref" href="#step-congrats" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="congratshref" href="#step-congrats" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
@@ -3766,7 +3766,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if congrats_available == 1 && (residency_complete == 1 || @reg_complete == 1 ||  dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || fau_alert_complete == 1 || immunization_complete == 1 || @orientation_complete == 1 )%>
+	<% if congrats_available == 1 && (residency_complete == 1 && reg_complete == 1 &&  tuition_complete == 1 && dep_complete_flag == 1 && account_complete == 1 && oars_complete == 1 && fau_alert_complete == 1 && immunization_complete == 1 && @orientation_complete == 1 && @finaid_complete == 1 && @housing_fee_complete == 1 && aleks_complete == 1)  %>
 	  if (window.location.href.indexOf("#step-congrats") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
