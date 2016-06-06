@@ -671,8 +671,8 @@ class StaticPagesController < ApplicationController
           end
 
         
-          if  orientation_status.count <= 0
-              @orientation_complete = 1
+          if  orientation_status.count = 0
+              @orientation_complete = 1              
           else
             orientation_status.each do |o|
               if o['attended'] == 'Yes' && !o['attended'].nil?
