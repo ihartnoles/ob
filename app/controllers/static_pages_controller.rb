@@ -671,7 +671,7 @@ class StaticPagesController < ApplicationController
           end
 
         
-          if  orientation_status.count = 0
+          if  orientation_status.count == 0
               @orientation_complete = 1              
           else
             orientation_status.each do |o|
