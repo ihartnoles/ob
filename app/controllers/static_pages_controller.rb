@@ -38,9 +38,9 @@ class StaticPagesController < ApplicationController
           #@isHonorsCollege = 1
 
           #BEGIN:modules_open/close
-          # summer_module_opendates   
-          # fall_module_opendates      
-          # spring_module_opendates
+           summer_module_opendates   
+           fall_module_opendates      
+           spring_module_opendates
           #END:modules_open/close
 
           @account_complete = 1  
@@ -671,8 +671,8 @@ class StaticPagesController < ApplicationController
           end
 
         
-          if orientation_status.blank? || orientation_status.count <= 0
-              @orientation_complete = 0
+          if  orientation_status.count <= 0
+              @orientation_complete = 1
           else
             orientation_status.each do |o|
               if o['attended'] == 'Yes' && !o['attended'].nil?

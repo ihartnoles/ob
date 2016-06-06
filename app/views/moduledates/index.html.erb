@@ -1,6 +1,6 @@
 <h1>Module open/close dates</h1>
 
-<table class="table table-striped table-bordered table-hover">
+<table id="datetable" class="table table-striped table-bordered table-hover">
   <thead>
   <tr>
     <th>Module</th>
@@ -26,3 +26,13 @@
 <br />
 
 <%= link_to 'New Module Date', new_moduledate_path, {:class => 'btn btn-info'}  %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script> 
+
+<script type="text/javascript">
+$(document).ready(function(){
+ $('#datetable').dataTable();
+});
+</script>

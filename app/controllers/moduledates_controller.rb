@@ -37,13 +37,13 @@ class ModuledatesController < ApplicationController
   # GET /moduledates/1/edit
   def edit
     @moduledate = Moduledate.find(params[:id])
+    @termval =  @moduledate.termvalue
   end
 
   # POST /moduledates
   # POST /moduledates.json
   def create
-    @moduledate = Moduledate.new(moduledate_params)
-
+    @moduledate = Moduledate.new(moduledate_params)   
     respond_to do |format|
       if @moduledate.save
         format.html { redirect_to @moduledate, notice: 'Moduledate was successfully created.' }
@@ -83,6 +83,7 @@ class ModuledatesController < ApplicationController
     end
   end
 
+  
    protected
 
    def authenticate_for_admin

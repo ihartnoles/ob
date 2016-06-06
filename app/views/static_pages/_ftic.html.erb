@@ -136,22 +136,21 @@ Hello, <%= session[:cas_user] %>!
 		   <li class="panel">
 		  	
 		  	
-			<%# if (@verify_available == 1 || @verify_bypass == 1) && ( ( Time.now.utc >= @verify_module_summer_open  && Time.now.utc <= @verify_module_summer_close &&  @verify_module_summer_term == @current_summer_term_in ) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in)) %>
-			<% if @verify_available == 1 || @verify_bypass == 1 %>
+			<% if (@verify_available == 1 || @verify_bypass == 1) && ( (Time.now.utc >= @verify_module_summer_open  && Time.now.utc <= @verify_module_summer_close &&  @verify_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+			<%# if @verify_available == 1 || @verify_bypass == 1 %>
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" >		
 			<% else %>
 				<a id="verifyhref" href="#step-verify" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" >
 			<% end %>	
 
 			
-			<%# if (@verify_available == 1 || @verify_bypass == 1) && ( ( Time.now.utc >= @verify_module_summer_open  && Time.now.utc <= @verify_module_summer_close &&  @verify_module_summer_term == @current_summer_term_in ) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in)) %>
-			<% if @verify_available == 1 || @verify_bypass == 1 %>
+			<% if (@verify_available == 1 || @verify_bypass == 1) && ( (Time.now.utc >= @verify_module_summer_open  && Time.now.utc <= @verify_module_summer_close &&  @verify_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 			  <div class="number"><!-- Step 3 --><%#= get_statusicon(@verify_available, @verify_info_complete, verify_bypass) %><span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span></div>
 			<% else %>
 				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>VERIFY YOUR INFORMATION</b> <%#= get_module_open_txt(@term_code_entry,'Verify Your Information') %></h6>
+			  <h6><b>VERIFY YOUR INFORMATION</b>	<% if (Time.now.utc < @verify_module_summer_open  && Time.now.utc >= @verify_module_summer_close &&  @verify_module_summer_term == @term_code_entry) || (Time.now.utc < @verify_module_fall_open  && Time.now.utc >= @verify_module_fall_close &&  @verify_module_fall_term == @term_code_entry) || (Time.now.utc < @verify_module_fall_open  && Time.now.utc >= @verify_module_fall_close &&  @verify_module_fall_term == @term_code_entry ) || (Time.now.utc < @verify_module_spring_open  && Time.now.utc >= @verify_module_spring_close &&  @verify_module_spring_term == @@term_code_entry) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc >= @verify_module_spring_close &&  @verify_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Verify Your Information') %><% end %></h6>
 			</a>
 			
 			<div id="step-verify" class="collapse">
@@ -247,20 +246,19 @@ Hello, <%= session[:cas_user] %>!
 
 		    <li class="panel">
 
-		  	<%# if  Time.now.utc >= @comm_module_open  && Time.now.utc <= @comm_module_close  %>
-				<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
-			<%# else %>
-				 <!-- <a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
- -->			<%# end %>
+			<% if (@communication_available == 1 || @communication_bypass == 1) && ( (Time.now.utc >= @comm_module_summer_open  && Time.now.utc <= @comm_module_summer_close &&  @comm_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @comm_module_fall_open  && Time.now.utc <= @comm_module_fall_close &&  @comm_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc <= @comm_module_spring_close &&  @comm_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc <= @comm_module_spring_close &&  @comm_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+		  		<a id="communicationhref" href="#step-comm" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">		
+			<% else %>
+				<a id="communicationhref" href="#step-comm" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
+			<% end %>
 
-			<%# if (communication_available == 1 || communication_bypass == 1 ) && deposit_complete == 1 %>
-			<%# if Time.now.utc >= @comm_module_open  && Time.now.utc <= @comm_module_close  %>
+			<% if (@communication_available == 1 || @communication_bypass == 1) && ( (Time.now.utc >= @comm_module_summer_open  && Time.now.utc <= @comm_module_summer_close &&  @comm_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @comm_module_fall_open  && Time.now.utc <= @comm_module_fall_close &&  @comm_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc <= @comm_module_spring_close &&  @comm_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc <= @comm_module_spring_close &&  @comm_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 			  <div class="number"><!-- Step 4 --> <%= get_statusicon(communication_available, communication_complete, communication_bypass) %> </div>
-			<%# else %>
-				<!-- <div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div> -->
-			<%# end %>
+			<% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
+			<% end %>
 
-			  <h6><b>COMMUNICATION PREFERENCE</b><%#= get_module_open_txt(@term_code_entry,'Communication Preference') %> </h6>
+			  <h6><b>COMMUNICATION PREFERENCE</b><% if (Time.now.utc < @comm_module_summer_open  && Time.now.utc >= @comm_module_summer_close &&  @comm_module_summer_term == @term_code_entry) || (Time.now.utc < @comm_module_fall_open  && Time.now.utc >= @comm_module_fall_close &&  @comm_module_fall_term == @term_code_entry) || (Time.now.utc < @comm_module_fall_open  && Time.now.utc >= @comm_module_fall_close &&  @comm_module_fall_term == @term_code_entry ) || (Time.now.utc < @comm_module_spring_open  && Time.now.utc >= @comm_module_spring_close &&  @comm_module_spring_term == @@term_code_entry) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc >= @comm_module_spring_close &&  @comm_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Communication Preference') %><% end %></h6>
 			</a>
 			
 			<div id="step-comm" class="collapse">
@@ -418,18 +416,20 @@ Hello, <%= session[:cas_user] %>!
 	<% end %>
 
 		  <li class="panel">		  	
-		  	<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) %>
+		  	<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) && ( (Time.now.utc >= @deposit_module_summer_open  && Time.now.utc <= @deposit_module_summer_close &&  @deposit_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @deposit_module_fall_open  && Time.now.utc <= @deposit_module_fall_close &&  @deposit_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @deposit_module_spring_open  && Time.now.utc <= @deposit_module_spring_close &&  @deposit_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @deposit_module_spring_open  && Time.now.utc <= @deposit_module_spring_close &&  @deposit_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 				<a id="deposithref" href="#step-deposit" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse" id="deposittitle">
 			<% else %>
 				<a id="deposithref" href="#step-deposit" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="" id="deposittitle">
 			<% end %>
 
 			
-			<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  @verify_available == 1 %>
+			<% if   ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) && ( (Time.now.utc >= @deposit_module_summer_open  && Time.now.utc <= @deposit_module_summer_close &&  @deposit_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @deposit_module_fall_open  && Time.now.utc <= @deposit_module_fall_close &&  @deposit_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @deposit_module_spring_open  && Time.now.utc <= @deposit_module_spring_close &&  @deposit_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @deposit_module_spring_open  && Time.now.utc <= @deposit_module_spring_close &&  @deposit_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 			  <div class="number"><!-- Step 2 --><%= get_statusicon(deposit_available,  @deposit_complete, deposit_bypass) %> </div>
+			<% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>PAY DEPOSIT</b></h6>
+			  <h6><b>PAY DEPOSIT</b><% if (Time.now.utc >= @deposit_module_summer_open  && Time.now.utc >= @deposit_module_summer_close &&  @deposit_module_summer_term == @term_code_entry) || (Time.now.utc >= @deposit_module_fall_open  && Time.now.utc >= @deposit_module_fall_close &&  @deposit_module_fall_term == @term_code_entry) || (Time.now.utc >= @deposit_module_fall_open  && Time.now.utc >= @deposit_module_fall_close &&  @deposit_module_fall_term == @term_code_entry ) || (Time.now.utc >= @deposit_module_spring_open  && Time.now.utc >= @deposit_module_spring_close &&  @deposit_module_spring_term == @@term_code_entry) || (Time.now.utc >= @deposit_module_spring_open  && Time.now.utc >= @deposit_module_spring_close &&  @deposit_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Pay Deposit') %><% end %></h6>
 			</a>
 			
 			<div id="step-deposit" class="collapse">
@@ -494,15 +494,18 @@ Hello, <%= session[:cas_user] %>!
 
 		  <% if @term == 'Summer' %>		
 		  <!-- BEGIN FIN AID ALT -->
-		  <li class="panel">		  	
-			  <a id="finaidalthref" href="#step-finalt" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
-			  <!-- 
-			  /******* 
-			  TO DO: create: summer_finaid_available & summer_finaid_bypass variables hook up to admin
-			  *****/
-			  -->
+		  <li class="panel">
 
-			   <% if (@summer_fafsa_complete == 1  && @summer_eligibility_reqs_complete == 1 && @summer_fin_aid_acceptance == 1 && @summer_tc_complete == 1) %>
+		  <% if ( @summer_finaid_available == 1 || @summer_finaid_bypass ==1 ) && ( (Time.now.utc >= @fin_aid_module_summer_open  && Time.now.utc <= @fin_aid_module_summer_close &&  @fin_aid_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) )%>
+		       <a id="finaidalthref" href="#step-finalt" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
+		  <% else %>
+			    <a id="finaidalthref" href="#step-finalt" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="collapse">
+		  <% end %>	
+
+
+		  		<% if  ( @summer_finaid_available == 1 || @summer_finaid_bypass ==1 ) && (Time.now.utc < @fin_aid_module_summer_open  && Time.now.utc >= @fin_aid_module_summer_close &&  @fin_aid_module_summer_term == @term_code_entry)%>
+			    	<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>	
+			    <% elsif (@summer_fafsa_complete == 1  && @summer_eligibility_reqs_complete == 1 && @summer_fin_aid_acceptance == 1 && @summer_tc_complete == 1) %>
 			  		<span class="badge badge-important label label-success">completed <i class="fa fa-check"></i></span>
 			  	<% else %>
 			  		<%#= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> 
@@ -511,9 +514,10 @@ Hello, <%= session[:cas_user] %>!
 
 			 
 			
-			  <h6><b>FINANCIAL AID (<%= @current_summer_term %>)</b></h6>
+			  <h6><b>FINANCIAL AID (<%= @current_summer_term %>)</b><% if (Time.now.utc < @fin_aid_module_summer_open  && Time.now.utc >= @fin_aid_module_summer_close &&  @fin_aid_module_summer_term == @term_code_entry ) %><%= get_module_open_txt(@term_code_entry,'Financial Aid') %><% end %></h6>
 			</a>
-			
+		 
+
 			<div id="step-finalt" class="collapse">
 			   <!--  Begin FIRST FIN AID ALT PANEL  -->
 			   <div class="step-content">
@@ -747,17 +751,26 @@ Hello, <%= session[:cas_user] %>!
 		  <!-- END FIN AID ALT -->
 
 		  <!-- BEGIN FIN AID MAIN -->
-		  <li class="panel">		  	
-			  <a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
+		   <li class="panel">		  	
+		   	  <% if (@finaid_available == 1 || @finaid_bypass == 1 ) && ((Time.now.utc >= @fin_aid_module_fall_open  && Time.now.utc <= @fin_aid_module_fall_close &&  @fin_aid_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @fin_aid_module_spring_open  && Time.now.utc <= @fin_aid_module_spring_close &&  @fin_aid_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @fin_aid_module_spring_open  && Time.now.utc <= @fin_aid_module_spring_close &&  @fin_aid_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+			  		<a id="finaidhref" href="#step-finaid" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">	
+			  <% else %>
+			  		<a id="finaidhref" href="#step-finaid" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="collapse">
+			  <% end %>
+
 			  <div class="number"><!-- Step 6 -->
-			  	<% if (@fafsa_complete == 1  && @eligibility_reqs_complete == 1 && @fin_aid_acceptance == 1 && @tc_complete == 1) %>
-			  		<span class="badge badge-important label label-success">completed <i class="fa fa-check"></i></span>
+			  	
+			  	<% if (@finaid_available == 1 || @finaid_bypass == 1 ) && (Time.now.utc < @fin_aid_module_fall_open  && Time.now.utc >= @fin_aid_module_fall_close &&  @fin_aid_module_fall_term == @term_code_entry) || (Time.now.utc < @fin_aid_module_fall_open  && Time.now.utc >= @fin_aid_module_fall_close &&  @fin_aid_module_fall_term == @term_code_entry ) || (Time.now.utc < @fin_aid_module_spring_open  && Time.now.utc >= @fin_aid_module_spring_close &&  @fin_aid_module_spring_term == @@term_code_entry) || (Time.now.utc >= @fin_aid_module_spring_open  && Time.now.utc >= @fin_aid_module_spring_close &&  @fin_aid_module_spring_term == @term_code_entry) %>
+			  		
+			  		<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>	
+			  	<% elsif (@fafsa_complete == 1  && @eligibility_reqs_complete == 1 && @fin_aid_acceptance == 1 && @tc_complete == 1) %>
+			  		<span class="badge badge-important label label-success">completed <i class="fa fa-check"></i></span>			  	
 			  	<% else %>
 			  		<%= get_statusicon(finaid_available, finaid_complete, finaid_bypass) %> 
 			  	<% end %>
 			  </div>
 			
-			  <h6><b>FINANCIAL AID (<%= @current_fall_term %>) </b></h6>
+			  <h6><b>FINANCIAL AID (<%= @current_fall_term %>) </b><% if (Time.now.utc < @fin_aid_module_fall_open  && Time.now.utc >= @fin_aid_module_fall_close &&  @fin_aid_module_fall_term == @term_code_entry) || (Time.now.utc < @fin_aid_module_fall_open  && Time.now.utc >= @fin_aid_module_fall_close &&  @fin_aid_module_fall_term == @term_code_entry ) || (Time.now.utc < @fin_aid_module_spring_open  && Time.now.utc >= @fin_aid_module_spring_close &&  @fin_aid_module_spring_term == @@term_code_entry) || (Time.now.utc >= @fin_aid_module_spring_open  && Time.now.utc >= @fin_aid_module_spring_close &&  @fin_aid_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Financial Aid') %><% end %></h6>
 			</a>
 			
 			<div id="step-finaid" class="collapse">
@@ -1000,17 +1013,19 @@ Hello, <%= session[:cas_user] %>!
 		  
 		  <li class="panel">
 		 
-		  <% if (immunization_available == 1 || immunization_bypass == 1 || @immunization_complete == 1 )  %>
+		  <% if (@immunization_available == 1 || @immunization_bypass == 1) && ( (Time.now.utc >= @immune_module_summer_open  && Time.now.utc <= @immune_module_summer_close &&  @immune_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @immune_module_fall_open  && Time.now.utc <= @immune_module_fall_close &&  @immune_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @immune_module_spring_open  && Time.now.utc <= @immune_module_spring_close &&  @immune_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @immune_module_spring_open  && Time.now.utc <= @immune_module_spring_close &&  @immune_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="immunizationhref" href="#step-immunization" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
-		  <% if  (immunization_available == 1 || immunization_bypass == 1 || @immunization_complete == 1)  %>
+		  <% if (@immunization_available == 1 || @immunization_bypass == 1) && ( (Time.now.utc >= @immune_module_summer_open  && Time.now.utc <= @immune_module_summer_close &&  @immune_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @immune_module_fall_open  && Time.now.utc <= @immune_module_fall_close &&  @immune_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @immune_module_spring_open  && Time.now.utc <= @immune_module_spring_close &&  @immune_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @immune_module_spring_open  && Time.now.utc <= @immune_module_spring_close &&  @immune_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 			  <div class="number"><!-- Step 5 --> <%= get_statusicon(immunization_available, @immunization_complete ,immunization_bypass) %></div>
+		  <% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 		  <% end %>
 
-			  <h6><b>IMMUNIZATION HOLDS</b></h6>
+			  <h6><b>IMMUNIZATION HOLDS</b><% if (Time.now.utc < @immune_module_summer_open  && Time.now.utc >= @immune_module_summer_close &&  @immune_module_summer_term == @term_code_entry) || (Time.now.utc < @immune_module_fall_open  && Time.now.utc >= @immune_module_fall_close &&  @immune_module_fall_term == @term_code_entry) || (Time.now.utc < @immune_module_fall_open  && Time.now.utc >= @immune_module_fall_close &&  @immune_module_fall_term == @term_code_entry ) || (Time.now.utc < @immune_module_spring_open  && Time.now.utc >= @immune_module_spring_close &&  @immune_module_spring_term == @@term_code_entry) || (Time.now.utc >= @immune_module_spring_open  && Time.now.utc >= @immune_module_spring_close &&  @immune_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Immunization Holds') %><% end %></h6>
 			</a>
 		 
 			
@@ -1111,17 +1126,19 @@ Hello, <%= session[:cas_user] %>!
 	   <li class="panel">		  
 		  
 		  <% #if residency_available == 1 %>
-		  <%if (residency_available == 1  || residency_bypass == 1 || residency_complete == 1 )  &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <%if (residency_available == 1  || residency_bypass == 1 || residency_complete == 1 )  &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @residency_module_summer_open  && Time.now.utc <= @residency_module_summer_close &&  @residency_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @residency_module_fall_open  && Time.now.utc <= @residency_module_fall_close &&  @residency_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @residency_module_spring_open  && Time.now.utc <= @residency_module_spring_close &&  @residency_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @residency_module_spring_open  && Time.now.utc <= @residency_module_spring_close &&  @residency_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="residencyhref" href="#step-residency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 		  
 		  <%#if residency_available == 1 %>
-		  <% if (residency_available == 1  || residency_bypass == 1 || residency_complete == 1 )  &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (residency_available == 1  || residency_bypass == 1 || residency_complete == 1 )  &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @residency_module_summer_open  && Time.now.utc <= @residency_module_summer_close &&  @residency_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @residency_module_fall_open  && Time.now.utc <= @residency_module_fall_close &&  @residency_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @residency_module_spring_open  && Time.now.utc <= @residency_module_spring_close &&  @residency_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @residency_module_spring_open  && Time.now.utc <= @residency_module_spring_close &&  @residency_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 			  <div class="number"><!-- Step 7 --> <%= get_statusicon(residency_available, residency_complete, residency_bypass) %> </div>
-		  <% end %>
-			  <h6><b>RESIDENCY VALIDATION</b></h6>
+		   <% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
+		   <% end %>
+			  <h6><b>RESIDENCY VALIDATION</b><% if (Time.now.utc < @residency_module_summer_open  && Time.now.utc >= @residency_module_summer_close &&  @residency_module_summer_term == @term_code_entry) || (Time.now.utc < @residency_module_fall_open  && Time.now.utc >= @residency_module_fall_close &&  @residency_module_fall_term == @term_code_entry) || (Time.now.utc < @residency_module_fall_open  && Time.now.utc >= @residency_module_fall_close &&  @residency_module_fall_term == @term_code_entry ) || (Time.now.utc < @residency_module_spring_open  && Time.now.utc >= @residency_module_spring_close &&  @residency_module_spring_term == @@term_code_entry) || (Time.now.utc >= @residency_module_spring_open  && Time.now.utc >= @residency_module_spring_close &&  @residency_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Residency Validation') %><% end %></h6>
 			</a>			
 			<div id="step-residency" class="collapse">				   
 			  <div class="step-content">			  		
@@ -1188,18 +1205,20 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	<%# if housing_fee_available == 1 %>
-			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || @housing_fee_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || @housing_fee_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1)  && ( (Time.now.utc >= @housing_module_summer_open  && Time.now.utc <= @housing_module_summer_close &&  @housing_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_fall_open  && Time.now.utc <= @housing_module_fall_close &&  @housing_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="housinghref" href="#step-housing" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			<%# if housing_fee_available == 1 %>
-			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || @housing_fee_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || @housing_fee_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1)  && ( (Time.now.utc >= @housing_module_summer_open  && Time.now.utc <= @housing_module_summer_close &&  @housing_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_fall_open  && Time.now.utc <= @housing_module_fall_close &&  @housing_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 			  <div class="number"><!-- Step 8 --> <%= get_statusicon(housing_fee_available, @housing_fee_complete, @housingmealplanbypass) %> </div>
+			 <% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>HOUSING CONTRACT & MEAL PLANS</b></h6>
+			  <h6><b>HOUSING CONTRACT & MEAL PLANS</b><% if (Time.now.utc < @housing_module_summer_open  && Time.now.utc >= @housing_module_summer_close &&  @housing_module_summer_term == @term_code_entry) || (Time.now.utc < @housing_module_fall_open  && Time.now.utc >= @housing_module_fall_close &&  @housing_module_fall_term == @term_code_entry) || (Time.now.utc < @housing_module_fall_open  && Time.now.utc >= @housing_module_fall_close &&  @housing_module_fall_term == @term_code_entry ) || (Time.now.utc < @housing_module_spring_open  && Time.now.utc >= @housing_module_spring_close &&  @housing_module_spring_term == @@term_code_entry) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc >= @housing_module_spring_close &&  @housing_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Housing Contract & Meal Plans') %><% end %></h6>
 			</a>
 			
 			<div id="step-housing" class="collapse">	
@@ -1365,18 +1384,20 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		 <%#if aleks_available == 1 %>
-		  <% if (aleks_available == 1 || aleksbypass == 1 || aleks_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (aleks_available == 1 || aleksbypass == 1 || aleks_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @aleks_module_summer_open  && Time.now.utc <= @aleks_module_summer_close &&  @aleks_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @aleks_module_fall_open  && Time.now.utc <= @aleks_module_fall_close &&  @aleks_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @aleks_module_spring_open  && Time.now.utc <= @aleks_module_spring_close &&  @aleks_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @aleks_module_spring_open  && Time.now.utc <= @aleks_module_spring_close &&  @aleks_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 		    <a id="alekshref" href="#step-aleks" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		  	<a id="alekshref" href="#step-aleks" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		   <%# if aleks_available == 1 %>
-		   <% if (aleks_available == 1 || aleksbypass == 1 || aleks_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		   <% if (aleks_available == 1 || aleksbypass == 1 || aleks_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @aleks_module_summer_open  && Time.now.utc <= @aleks_module_summer_close &&  @aleks_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @aleks_module_fall_open  && Time.now.utc <= @aleks_module_fall_close &&  @aleks_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @aleks_module_spring_open  && Time.now.utc <= @aleks_module_spring_close &&  @aleks_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @aleks_module_spring_open  && Time.now.utc <= @aleks_module_spring_close &&  @aleks_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 			  <div class="number"><!-- Step 10 --> <%= get_statusicon(aleks_available, aleks_complete, aleksbypass) %></div>
+		   <% else %>
+		   	  <div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 		   <% end %>
 
-			  <h6><b>MATH PLACEMENT EXAM - ALEKS</b></h6>
+			  <h6><b>MATH PLACEMENT EXAM - ALEKS</b><% if (Time.now.utc < @aleks_module_summer_open  && Time.now.utc >= @aleks_module_summer_close &&  @aleks_module_summer_term == @term_code_entry) || (Time.now.utc < @aleks_module_fall_open  && Time.now.utc >= @aleks_module_fall_close &&  @aleks_module_fall_term == @term_code_entry) || (Time.now.utc < @aleks_module_fall_open  && Time.now.utc >= @aleks_module_fall_close &&  @aleks_module_fall_term == @term_code_entry ) || (Time.now.utc < @aleks_module_spring_open  && Time.now.utc >= @aleks_module_spring_close &&  @aleks_module_spring_term == @@term_code_entry) || (Time.now.utc >= @aleks_module_spring_open  && Time.now.utc >= @aleks_module_spring_close &&  @aleks_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Math Placement Exam - ALEKS') %><% end %></h6>
 			</a>
 			
 			<div id="step-aleks" class="collapse">				   
@@ -1439,18 +1460,21 @@ Hello, <%= session[:cas_user] %>!
 		  <li class="panel">
 
 		  	<%# if orientation_available == 1 %>
-		   	<% if  (orientation_available == 1 || orientationbypass == 1 || orientation_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		   	<% if  (orientation_available == 1 || orientationbypass == 1 || orientation_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @orientation_module_summer_open  && Time.now.utc <= @orientation_module_summer_close &&  @orientation_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @orientation_module_fall_open  && Time.now.utc <= @orientation_module_fall_close &&  @orientation_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @orientation_module_spring_open  && Time.now.utc <= @orientation_module_spring_close &&  @orientation_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @orientation_module_spring_open  && Time.now.utc <= @orientation_module_spring_close &&  @orientation_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 				<a id="orientationhref" href="#step-orientation" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="orientationhref" href="#step-orientation" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<%# if orientation_available == 1 %>
-			<% if (orientation_available == 1 || orientationbypass == 1 || orientation_complete == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			
+			<% if (orientation_available == 1 || orientationbypass == 1 || orientation_complete == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1)  && ( (Time.now.utc >= @orientation_module_summer_open  && Time.now.utc <= @orientation_module_summer_close &&  @orientation_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @orientation_module_fall_open  && Time.now.utc <= @orientation_module_fall_close &&  @orientation_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @orientation_module_spring_open  && Time.now.utc <= @orientation_module_spring_close &&  @orientation_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @orientation_module_spring_open  && Time.now.utc <= @orientation_module_spring_close &&  @orientation_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 			  <div class="number"><!-- Step 13 --><%= get_statusicon(orientation_available, @orientation_complete, orientationbypass) %></div>
+			<% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>ORIENTATION</b></h6>
+
+			  <h6><b>ORIENTATION</b><% if (@orientation_available == 1 || @orientationbypass == 1) && ( (Time.now.utc < @orientation_module_summer_open  && Time.now.utc >= @orientation_module_summer_close &&  @orientation_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc < @orientation_module_fall_open  && Time.now.utc >= @orientation_module_fall_close &&  @orientation_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc < @orientation_module_spring_open  && Time.now.utc >= @orientation_module_spring_close &&  @orientation_module_spring_term == @current_spring_term_in) || (Time.now.utc < @orientation_module_spring_open  && Time.now.utc >= @orientation_module_spring_close &&  @orientation_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %><%= get_module_open_txt(@term_code_entry,'Orientation') %><% end %></h6>
 			</a>
 			
 			<div id="step-orientation" class="collapse">				   
@@ -1688,18 +1712,20 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		    <%# if oars_available == 1 %>
-		   	<% if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1) %>
+		   	<% if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @oars_module_summer_open  && Time.now.utc <= @oars_module_summer_close &&  @oars_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @oars_module_fall_open  && Time.now.utc <= @oars_module_fall_close &&  @oars_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @oars_module_spring_open  && Time.now.utc <= @oars_module_spring_close &&  @oars_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @oars_module_spring_open  && Time.now.utc <= @oars_module_spring_close &&  @oars_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 				<a id="oarshref" href="#step-oars" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">			
 			<% else %>
 				<a id="oarshref" href="#step-oars" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			 <%# if oars_available == 1 %>
-			<%if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1) %>
+			<%if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @oars_module_summer_open  && Time.now.utc <= @oars_module_summer_close &&  @oars_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @oars_module_fall_open  && Time.now.utc <= @oars_module_fall_close &&  @oars_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @oars_module_spring_open  && Time.now.utc <= @oars_module_spring_close &&  @oars_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @oars_module_spring_open  && Time.now.utc <= @oars_module_spring_close &&  @oars_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 			  <div class="number"><!-- Step 11 --> <%= get_statusicon(oars_available, oars_complete, oars_bypass) %></div>
+			<% else %>
+		   	  <div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>ONLINE ADVISING & RESOURCE SYSTEM - OARS</b></h6>
+			  <h6><b>ONLINE ADVISING & RESOURCE SYSTEM - OARS</b><% if (Time.now.utc < @oars_module_summer_open  && Time.now.utc >= @oars_module_summer_close &&  @oars_module_summer_term == @term_code_entry) || (Time.now.utc < @oars_module_fall_open  && Time.now.utc >= @oars_module_fall_close &&  @oars_module_fall_term == @term_code_entry) || (Time.now.utc < @oars_module_fall_open  && Time.now.utc >= @oars_module_fall_close &&  @oars_module_fall_term == @term_code_entry ) || (Time.now.utc < @oars_module_spring_open  && Time.now.utc >= @oars_module_spring_close &&  @oars_module_spring_term == @@term_code_entry) || (Time.now.utc >= @oars_module_spring_open  && Time.now.utc >= @oars_module_spring_close &&  @oars_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Online Adivision & Resource System - OARS') %><% end %></h6>
 			</a>
 			
 			<div id="step-oars" class="collapse">				   
@@ -1761,7 +1787,7 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 		  
-		   <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1)  &&  (deposit_complete == 1 || deposit_bypass == 1)%>
+		   <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1)  &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @faualert_module_summer_open  && Time.now.utc <= @faualert_module_summer_close &&  @faualert_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @faualert_module_fall_open  && Time.now.utc <= @faualert_module_fall_close &&  @faualert_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @faualert_module_spring_open  && Time.now.utc <= @faualert_module_spring_close &&  @faualert_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @faualert_module_spring_open  && Time.now.utc <= @faualert_module_spring_close &&  @faualert_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 		   
 		    <%# if fau_alert_available == 1 %>
 		   	<a id="alerthref" href="#step-faualert" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
@@ -1769,12 +1795,14 @@ Hello, <%= session[:cas_user] %>!
 		    <a id="alerthref" href="#step-faualert" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		   <% end %>
 
-		    <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		    <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @faualert_module_summer_open  && Time.now.utc <= @faualert_module_summer_close &&  @faualert_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @faualert_module_fall_open  && Time.now.utc <= @faualert_module_fall_close &&  @faualert_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @faualert_module_spring_open  && Time.now.utc <= @faualert_module_spring_close &&  @faualert_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @faualert_module_spring_open  && Time.now.utc <= @faualert_module_spring_close &&  @faualert_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 		    <%# if fau_alert_available == 1 %>
 			  <div class="number"><!-- Step 16 -->  <%= get_statusicon(fau_alert_available, fau_alert_complete, faualertbypass) %></div>
+			<% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>FAU ALERT INFORMATION</b></h6>
+			  <h6><b>FAU ALERT INFORMATION</b><% if (Time.now.utc < @faualert_module_summer_open  && Time.now.utc >= @faualert_module_summer_close &&  @faualert_module_summer_term == @term_code_entry) || (Time.now.utc < @faualert_module_fall_open  && Time.now.utc >= @faualert_module_fall_close &&  @faualert_module_fall_term == @term_code_entry) || (Time.now.utc < @faualert_module_fall_open  && Time.now.utc >= @faualert_module_fall_close &&  @faualert_module_fall_term == @term_code_entry ) || (Time.now.utc < @faualert_module_spring_open  && Time.now.utc >= @faualert_module_spring_close &&  @faualert_module_spring_term == @@term_code_entry) || (Time.now.utc >= @faualert_module_spring_open  && Time.now.utc >= @faualert_module_spring_close &&  @faualert_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'FAU Alert Information') %><% end %></h6>
 			</a>
 			
 			<div id="step-faualert" class="collapse">				   
@@ -1836,7 +1864,7 @@ Hello, <%= session[:cas_user] %>!
 
 		   <li class="panel">
 		   	
-		   	<% if (deposit_complete == 1 || deposit_bypass == 1) %>
+		   	<% if (deposit_complete == 1 || deposit_bypass == 1) && reg_available == 1 && ( (Time.now.utc >= @registration_module_summer_open  && Time.now.utc <= @registration_module_summer_close &&  @registration_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @registration_module_fall_open  && Time.now.utc <= @registration_module_fall_close &&  @registration_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @registration_module_spring_open  && Time.now.utc <= @registration_module_spring_close &&  @registration_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @registration_module_spring_open  && Time.now.utc <= @registration_module_spring_close &&  @registration_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 		   	<%# if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) && ( dep_complete_flag == 1 || account_complete == 1 || oars_complete == 1 || immunization_complete ==1)%>		   	
 		   		<a id="reg_href" href="#step-registration" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		   	<% else %>
@@ -1844,18 +1872,23 @@ Hello, <%= session[:cas_user] %>!
 		   	<% end %>
 
 		   	
-		   	<% if (deposit_complete == 1 || deposit_bypass == 1) %>
-		   	<%# if (reg_available == 1 || registrationbypass == 1 || reg_complete == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
-			  <div class="number">
-				  <% if (dep_complete_flag == 0 || oars_complete == 0 || immunization_complete == 0 ) && registrationbypass == 0 %>
-				    <span class="badge badge-important label label-danger">incomplete <i class='fa fa-times'></i></span>
-				  <% else %>
-				  	<!-- Step 14 --><%= get_statusicon(reg_available, reg_complete, registrationbypass) %>
-				  <% end %>
-			  </div>
-			<% end %>
+		   	<%# if (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @registration_module_summer_open  && Time.now.utc <= @registration_module_summer_close &&  @registration_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @registration_module_fall_open  && Time.now.utc <= @registration_module_fall_close &&  @registration_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @registration_module_spring_open  && Time.now.utc <= @registration_module_spring_close &&  @registration_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @registration_module_spring_open  && Time.now.utc <= @registration_module_spring_close &&  @registration_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
+		   	<%# if (reg_available == 1 || registrationbypass == 1) && ( oars_complete == 1 || oars_bypass == 1 ) %>
+			
+				  
+				  
+				  <% if (Time.now.utc < @registration_module_summer_open  && Time.now.utc >= @registration_module_summer_close &&  @registration_module_summer_term == @term_code_entry) || (Time.now.utc < @registration_module_fall_open  && Time.now.utc >= @registration_module_fall_close &&  @registration_module_fall_term == @term_code_entry) || (Time.now.utc < @registration_module_fall_open  && Time.now.utc >= @registration_module_fall_close &&  @registration_module_fall_term == @term_code_entry ) || (Time.now.utc < @registration_module_spring_open  && Time.now.utc >= @registration_module_spring_close &&  @registration_module_spring_term == @@term_code_entry) || (Time.now.utc >= @registration_module_spring_open  && Time.now.utc >= @registration_module_spring_close &&  @registration_module_spring_term == @term_code_entry) %>
+				  	         <div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>	
+				  <% elsif (dep_complete_flag == 0 || oars_complete == 0 || immunization_complete == 0 ) && registrationbypass == 0 %>
+				     <div class="number"><span class="badge badge-important label label-danger">incomplete <i class='fa fa-times'></i></span></div>
+				  <% else %>	
+				  	  <div class="number"><%= get_statusicon(reg_available, reg_complete, registrationbypass) %></div>		
+				  <% end %>	
+		    <%# else %>
+		    <!-- BALLAH		 -->   
+			<%# end %>
 
-			  <h6><b>REGISTRATION & HOLDS</b></h6>
+			  <h6><b>REGISTRATION & HOLDS</b><% if (Time.now.utc < @registration_module_summer_open  && Time.now.utc >= @registration_module_summer_close &&  @registration_module_summer_term == @term_code_entry) || (Time.now.utc < @registration_module_fall_open  && Time.now.utc >= @registration_module_fall_close &&  @registration_module_fall_term == @term_code_entry) || (Time.now.utc < @registration_module_fall_open  && Time.now.utc >= @registration_module_fall_close &&  @registration_module_fall_term == @term_code_entry ) || (Time.now.utc < @registration_module_spring_open  && Time.now.utc >= @registration_module_spring_close &&  @registration_module_spring_term == @@term_code_entry) || (Time.now.utc >= @registration_module_spring_open  && Time.now.utc >= @registration_module_spring_close &&  @registration_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Registration & Holds') %><% end %></h6>
 			</a>
 			
 			<div id="step-registration" class="collapse">				   
@@ -1983,18 +2016,21 @@ Hello, <%= session[:cas_user] %>!
 		   <li class="panel">
 		  		  
 
-			<% if (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1 || registrationbypass == 1 ) &&  ( deposit_complete == 1 || deposit_bypass == 1) && @reg_complete == 1 %>
+			<% if (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1 || (registrationbypass == 1 || @reg_complete == 1)) &&  ( deposit_complete == 1 || deposit_bypass == 1)  && ( (Time.now.utc >= @tuition_module_summer_open  && Time.now.utc <= @tuition_module_summer_close &&  @tuition_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @tuition_module_fall_open  && Time.now.utc <= @tuition_module_fall_close &&  @tuition_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @tuition_module_spring_open  && Time.now.utc <= @tuition_module_spring_close &&  @tuition_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @tuition_module_spring_open  && Time.now.utc <= @tuition_module_spring_close &&  @tuition_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="tuitionhref" href="#step-tuition" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
 			
-			<% if (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1 || registrationbypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) && @reg_complete == 1 %>
-			  <div class="number"><!-- Step 19 --> <%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></div>
+			<% if (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1 || (registrationbypass == 1 || @reg_complete == 1)) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @tuition_module_summer_open  && Time.now.utc <= @tuition_module_summer_close &&  @tuition_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @tuition_module_fall_open  && Time.now.utc <= @tuition_module_fall_close &&  @tuition_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @tuition_module_spring_open  && Time.now.utc <= @tuition_module_spring_close &&  @tuition_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @tuition_module_spring_open  && Time.now.utc <= @tuition_module_spring_close &&  @tuition_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )
+%>			   <div class="number"><!-- Step 19 --> <%= get_statusicon(tuition_available, tuition_complete, tuition_bypass) %></div>
+			<% else %>
+				 <div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>TUITION PAYMENT</b></h6>
+			  <h6><b>TUITION PAYMENT</b><% if (Time.now.utc < @tuition_module_summer_open  && Time.now.utc >= @tuition_module_summer_close &&  @tuition_module_summer_term == @term_code_entry) || (Time.now.utc < @tuition_module_fall_open  && Time.now.utc >= @tuition_module_fall_close &&  @tuition_module_fall_term == @term_code_entry) || (Time.now.utc < @tuition_module_fall_open  && Time.now.utc >= @tuition_module_fall_close &&  @tuition_module_fall_term == @term_code_entry ) || (Time.now.utc < @tuition_module_spring_open  && Time.now.utc >= @tuition_module_spring_close &&  @tuition_module_spring_term == @@term_code_entry) || (Time.now.utc >= @tuition_module_spring_open  && Time.now.utc >= @tuition_module_spring_close &&  @tuition_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Tuition Payment') %><% end %>
+</h6>
 			</a>
 			
 			<div id="step-tuition" class="collapse">				   
@@ -2065,7 +2101,7 @@ Hello, <%= session[:cas_user] %>!
 							<% cache('tuitionpaytxt') do %>
 							 <p>
 							  	<b>
-								Before paying your tuition you may want to take a look at our  <a id="finaidest" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in=<%@current_summer_term_in%>" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
+								Before paying your tuition you may want to take a look at our  <a id="finaidest" href="https://<%=@sso_url%>/ssomanager/c/SSB?pkg=kwr_finaid_calc.P_ViewAcctTerm&term_in>=%@current_summer_term_in%>" target='_blank'>Financial Aid Disbursement Estimator</a>. The disbursement estimate provided using this calculator does not represent a final determination of financial aid disbursements; it is an estimate based on your enrollment and award status now. 
 								</b>
 							 </p>
 							 <hr>
@@ -2114,18 +2150,20 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 		  
-		  <% if (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @emergency_module_summer_open  && Time.now.utc <= @emergency_module_summer_close &&  @emergency_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @emergency_module_fall_open  && Time.now.utc <= @emergency_module_fall_close &&  @emergency_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @emergency_module_spring_open  && Time.now.utc <= @emergency_module_spring_close &&  @emergency_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @emergency_module_spring_open  && Time.now.utc <= @emergency_module_spring_close &&  @emergency_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 		  	<a id="emergencyhref" href="#step-emergency" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="emergencyhref" href="#step-emergency" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if  (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1)%>
+		  <% if  (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @emergency_module_summer_open  && Time.now.utc <= @emergency_module_summer_close &&  @emergency_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @emergency_module_fall_open  && Time.now.utc <= @emergency_module_fall_close &&  @emergency_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @emergency_module_spring_open  && Time.now.utc <= @emergency_module_spring_close &&  @emergency_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @emergency_module_spring_open  && Time.now.utc <= @emergency_module_spring_close &&  @emergency_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 			  <div class="number"><!-- Step 15 --> <%= get_statusicon(emergency_available, emergency_complete, emergencybypass) %></div>
+		  <% else %>
+		  		<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 		  <% end %>
 
-			  <h6><b>EMERGENCY CONTACTS</b></h6>
+			  <h6><b>EMERGENCY CONTACTS</b><% if (Time.now.utc < @emergency_module_summer_open  && Time.now.utc >= @emergency_module_summer_close &&  @emergency_module_summer_term == @term_code_entry) || (Time.now.utc < @emergency_module_fall_open  && Time.now.utc >= @emergency_module_fall_close &&  @emergency_module_fall_term == @term_code_entry) || (Time.now.utc < @emergency_module_fall_open  && Time.now.utc >= @emergency_module_fall_close &&  @emergency_module_fall_term == @term_code_entry ) || (Time.now.utc < @emergency_module_spring_open  && Time.now.utc >= @emergency_module_spring_close &&  @emergency_module_spring_term == @@term_code_entry) || (Time.now.utc >= @emergency_module_spring_open  && Time.now.utc >= @emergency_module_spring_close &&  @emergency_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Emergency Contacts') %><% end %></h6>
 			</a>
 			
 			<div id="step-emergency" class="collapse">				   
@@ -2174,19 +2212,21 @@ Hello, <%= session[:cas_user] %>!
 		   
 
 		   <li class="panel">
-		    <% if (owlcard_available == 1 || owlcard_bypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		    <% if (owlcard_available == 1 || owlcard_bypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @owlcard_module_summer_open  && Time.now.utc <= @owlcard_module_summer_close &&  @owlcard_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @owlcard_module_fall_open  && Time.now.utc <= @owlcard_module_fall_close &&  @owlcard_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @owlcard_module_spring_open  && Time.now.utc <= @owlcard_module_spring_close &&  @owlcard_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @owlcard_module_spring_open  && Time.now.utc <= @owlcard_module_spring_close &&  @owlcard_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 				<a id="owlcardhref" href="#step-owlcard" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="owlcardhref" href="#step-owlcard" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			<% if (owlcard_available == 1 || owlcard_bypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+			<% if (owlcard_available == 1 || owlcard_bypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @owlcard_module_summer_open  && Time.now.utc <= @owlcard_module_summer_close &&  @owlcard_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @owlcard_module_fall_open  && Time.now.utc <= @owlcard_module_fall_close &&  @owlcard_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @owlcard_module_spring_open  && Time.now.utc <= @owlcard_module_spring_close &&  @owlcard_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @owlcard_module_spring_open  && Time.now.utc <= @owlcard_module_spring_close &&  @owlcard_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 			  <div class="number"><!-- Step 17 -->  <%#= get_statusicon(owlcard_available, owlcard_complete, owlcard_bypass) %>
 			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>			 
 			  </div>
+			<% else %>
+				<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 			<% end %>
 
-			  <h6><b>OWL CARD</b></h6>
+			  <h6><b>OWL CARD</b><% if (Time.now.utc < @owlcard_module_summer_open  && Time.now.utc >= @owlcard_module_summer_close &&  @owlcard_module_summer_term == @term_code_entry) || (Time.now.utc < @owlcard_module_fall_open  && Time.now.utc >= @owlcard_module_fall_close &&  @owlcard_module_fall_term == @term_code_entry) || (Time.now.utc < @owlcard_module_fall_open  && Time.now.utc >= @owlcard_module_fall_close &&  @owlcard_module_fall_term == @term_code_entry ) || (Time.now.utc < @owlcard_module_spring_open  && Time.now.utc >= @owlcard_module_spring_close &&  @owlcard_module_spring_term == @@term_code_entry) || (Time.now.utc >= @owlcard_module_spring_open  && Time.now.utc >= @owlcard_module_spring_close &&  @owlcard_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Owl Card') %><% end %></h6>
 			</a>
 			
 			<div id="step-owlcard" class="collapse">				   
@@ -2246,21 +2286,23 @@ Hello, <%= session[:cas_user] %>!
 
 		  <li class="panel">
 
-		  <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @book_module_summer_open  && Time.now.utc <= @book_module_summer_close &&  @book_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @book_module_fall_open  && Time.now.utc <= @book_module_fall_close &&  @book_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @book_module_spring_open  && Time.now.utc <= @book_module_spring_close &&  @book_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @book_module_spring_open  && Time.now.utc <= @book_module_spring_close &&  @book_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 		   	<a id="bookhref" href="#step-bookadvance" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 		  <% else %>
 		    <a id="bookhref" href="#step-bookadvance" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 		  <% end %>
 
 		  
-		  <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @book_module_summer_open  && Time.now.utc <= @book_module_summer_close &&  @book_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @book_module_fall_open  && Time.now.utc <= @book_module_fall_close &&  @book_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @book_module_spring_open  && Time.now.utc <= @book_module_spring_close &&  @book_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @book_module_spring_open  && Time.now.utc <= @book_module_spring_close &&  @book_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 			  <div class="number"><!-- Step 18 --> 
 			  	<%#= get_statusicon(bookadvance_available, bookadvance_complete, bookadvance_bypass) %>
 			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>
 			  </div>
+		  <% else %>
+		  		<div class="number"><span class="badge badge-important label label-warning">unavailable <i class="fa fa-ban"></i></span></div>
 		  <% end %>
 
-			  <h6><b>BOOK ADVANCE PROGRAM</b></h6>
+			  <h6><b>BOOK ADVANCE PROGRAM</b><% if (Time.now.utc < @book_module_summer_open  && Time.now.utc >= @book_module_summer_close &&  @book_module_summer_term == @term_code_entry) || (Time.now.utc < @book_module_fall_open  && Time.now.utc >= @book_module_fall_close &&  @book_module_fall_term == @term_code_entry) || (Time.now.utc < @book_module_fall_open  && Time.now.utc >= @book_module_fall_close &&  @book_module_fall_term == @term_code_entry ) || (Time.now.utc < @book_module_spring_open  && Time.now.utc >= @book_module_spring_close &&  @book_module_spring_term == @@term_code_entry) || (Time.now.utc >= @book_module_spring_open  && Time.now.utc >= @book_module_spring_close &&  @book_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Book Advance Program') %><% end %></h6>
 			</a>
 			
 			<div id="step-bookadvance" class="collapse">				   
@@ -2316,21 +2358,23 @@ Hello, <%= session[:cas_user] %>!
 		 
 		  <li class="panel">
 		  	
-		  	<% if (vehicle_reg_available == 1  || vehicleregbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) %>
+		  	<% if (vehicle_reg_available == 1  || vehicleregbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @regvehicle_module_summer_open  && Time.now.utc <= @regvehicle_module_summer_close &&  @regvehicle_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @regvehicle_module_fall_open  && Time.now.utc <= @regvehicle_module_fall_close &&  @regvehicle_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @regvehicle_module_spring_open  && Time.now.utc <= @regvehicle_module_spring_close &&  @regvehicle_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @regvehicle_module_spring_open  && Time.now.utc <= @regvehicle_module_spring_close &&  @regvehicle_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 				<a id="vehiclehref" href="#step-vehicle" class="collapsed step-title" data-parent="#checkoutsteps" data-toggle="collapse">
 			<% else %>
 				<a id="vehiclehref" href="#step-vehicle" class="collapsed step-title disabled" data-parent="#checkoutsteps" data-toggle="">
 			<% end %>
 
-			 <% if (vehicle_reg_available == 1  || vehicleregbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1)%>
+			 <% if (vehicle_reg_available == 1  || vehicleregbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @regvehicle_module_summer_open  && Time.now.utc <= @regvehicle_module_summer_close &&  @regvehicle_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @regvehicle_module_fall_open  && Time.now.utc <= @regvehicle_module_fall_close &&  @regvehicle_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @regvehicle_module_spring_open  && Time.now.utc <= @regvehicle_module_spring_close &&  @regvehicle_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @regvehicle_module_spring_open  && Time.now.utc <= @regvehicle_module_spring_close &&  @regvehicle_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 			  <div class="number"><!-- Step 19 --> <%#= get_statusicon(tuition_available, tuition_complete) %>
 			  	<!-- information <i class='fa fa-info'></i> -->
 			  	<%#= get_statusicon(vehicle_reg_available, 1, vehicleregbypass) %>
 			  	<span class="badge badge-important label label-info"> information <i class='fa fa-info'></i></span>
 			  </div>
+			 <% else %>
+		  		<div class="number"><span class="badge badge-important label label-warning">unavailable<i class="fa fa-ban"></i></span></div>
 			 <% end %>
 
-			  <h6><b>REGISTER YOUR VEHICLE</b></h6>
+			  <h6><b>REGISTER YOUR VEHICLE</b><% if (Time.now.utc < @regvehicle_module_summer_open  && Time.now.utc >= @regvehicle_module_summer_close &&  @regvehicle_module_summer_term == @term_code_entry) || (Time.now.utc < @regvehicle_module_fall_open  && Time.now.utc >= @regvehicle_module_fall_close &&  @regvehicle_module_fall_term == @term_code_entry) || (Time.now.utc < @regvehicle_module_fall_open  && Time.now.utc >= @regvehicle_module_fall_close &&  @regvehicle_module_fall_term == @term_code_entry ) || (Time.now.utc < @regvehicle_module_spring_open  && Time.now.utc >= @regvehicle_module_spring_close &&  @regvehicle_module_spring_term == @@term_code_entry) || (Time.now.utc >= @regvehicle_module_spring_open  && Time.now.utc >= @regvehicle_module_spring_close &&  @regvehicle_module_spring_term == @term_code_entry) %><%= get_module_open_txt(@term_code_entry,'Register Your Vehicle') %><% end %></h6>
 			</a>
 			
 			<div id="step-vehicle" class="collapse">				   
@@ -3054,16 +3098,7 @@ Hello, <%= session[:cas_user] %>!
 
 	
     
-	$('#welcomeBut').click(function () {
-	  $('#step-1').collapse('hide');
-	  $('#step-1').prev().addClass('collapsed');
-	  //$('#step-account').collapse('show');
-	  //$('#step-account').prev().removeClass('collapsed');
-	  $('#step-verify').collapse('hide');
-	  $('#step-verify').prev().addClass('collapsed');
-	 
-	  //updateMeter('10');
-	})
+	
 
 	$(function() {
 	 	$('.page-box-content').css('visibility','visible').delay(700).hide().fadeIn(700);
@@ -3129,8 +3164,6 @@ Hello, <%= session[:cas_user] %>!
 	 }
 
     $(window).load(function(){
-    	//alert('DIPLO');
-    	
     	var totalsteps = 16;
         
         var completed = <%=@start %>;
@@ -3213,8 +3246,10 @@ Hello, <%= session[:cas_user] %>!
 	  	  $('#step-visa').collapse('show');
 		  $('#step-visa').prev().removeClass('collapsed');
 	  <% else %>
-		  $('#step-comm').collapse('show');
-		  $('#step-comm').prev().removeClass('collapsed');	 
+	  	  <% if ( (Time.now.utc >= @comm_module_summer_open  && Time.now.utc <= @comm_module_summer_close &&  @comm_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @comm_module_fall_open  && Time.now.utc <= @comm_module_fall_close &&  @comm_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc <= @comm_module_spring_close &&  @comm_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc <= @comm_module_spring_close &&  @comm_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+			  $('#step-comm').collapse('show');
+			  $('#step-comm').prev().removeClass('collapsed');	 
+		  <% end %>
 	  <% end %>
 
 	})
@@ -3331,8 +3366,7 @@ Hello, <%= session[:cas_user] %>!
 	 	*/
 
 	    
-	    if($('#contactByPhone').is(':checked')) {
-	    	 
+	    if($('#contactByPhone').is(':checked')) {  	 
 	    	
 
 	    	//alert( $('#mobilenumber').val().length );
@@ -3348,11 +3382,22 @@ Hello, <%= session[:cas_user] %>!
 	    <% end %>
 	});
 
-
+	<% if ( account_available == 1 && @welcome_available == 1 )%>
+	$('#welcomeBut').click(function () {
+	  $('#step-1').collapse('hide');
+	  $('#step-1').prev().addClass('collapsed');
+	  //$('#step-account').collapse('show');
+	  //$('#step-account').prev().removeClass('collapsed');
+	  $('#step-verify').collapse('hide');
+	  $('#step-verify').prev().addClass('collapsed');
+	 
+	  //updateMeter('10');
+	})
+	<% end %>
 
 	<% if ( account_available == 1 && @welcome_available == 1 )%>
-/* fxn to parse URL params */
-	 if (window.location.href.indexOf("#step-account") > -1) {
+	 /* fxn to parse URL params */
+	  if (window.location.href.indexOf("#step-account") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
@@ -3363,7 +3408,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if (@verify_available == 1 || @verify_bypass == 1) && ( account_available == 1 && account_complete == 1 )%>
+	<% if (@verify_available == 1 || @verify_bypass == 1) && ( (Time.now.utc >= @verify_module_summer_open  && Time.now.utc <= @verify_module_summer_close &&  @verify_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @verify_module_fall_open  && Time.now.utc <= @verify_module_fall_close &&  @verify_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @verify_module_spring_open  && Time.now.utc <= @verify_module_spring_close &&  @verify_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 	/* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-verify") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
@@ -3429,25 +3474,26 @@ Hello, <%= session[:cas_user] %>!
 	<% end %>
 
 
-	<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  (@verify_complete == 1 && @verify_available == 1)  %>
-	/* fxn to parse URL params */
-	 if (window.location.href.indexOf("#step-deposit") > -1) {
-		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
-		    $('div .collapse').removeClass("collapse in").addClass('collapse');
+	<% if  ( @deposit_available == 1 || @deposit_bypass == 1) &&  ( @verify_available == 1) && ( (Time.now.utc >= @deposit_module_summer_open  && Time.now.utc <= @deposit_module_summer_close &&  @deposit_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @deposit_module_fall_open  && Time.now.utc <= @deposit_module_fall_close &&  @deposit_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @deposit_module_spring_open  && Time.now.utc <= @deposit_module_spring_close &&  @deposit_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @deposit_module_spring_open  && Time.now.utc <= @deposit_module_spring_close &&  @deposit_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+		
+		/* fxn to parse URL params */
+		 if (window.location.href.indexOf("#step-deposit") > -1) {
+			    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+			    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
-		    $('#deposithref').removeClass('collapsed step-title').addClass('step-title');
-		    $('#step-deposit').removeClass('collapse').addClass('collapse in');
+			    $('#deposithref').removeClass('collapsed step-title').addClass('step-title');
+			    $('#step-deposit').removeClass('collapse').addClass('collapse in');
 
-		    $('#step-deposit').ScrollTo({
-				    duration: 2000,
-				    durationMode: 'all'
-			});
-
-
+			    $('#step-deposit').ScrollTo({
+					    duration: 2000,
+					    durationMode: 'all'
+				});
 		}
 	<% end %>
 
-	<%# if  (communication_available == 1 || communication_bypass == 1 ) &&  ( account_complete == 1 ) %>
+	
+	<% if (@communication_available == 1 || @communication_bypass == 1) && ( (Time.now.utc >= @comm_module_summer_open  && Time.now.utc <= @comm_module_summer_close &&  @comm_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @comm_module_fall_open  && Time.now.utc <= @comm_module_fall_close &&  @comm_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc <= @comm_module_spring_close &&  @comm_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @comm_module_spring_open  && Time.now.utc <= @comm_module_spring_close &&  @comm_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+
 	 /* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-comm") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
@@ -3461,8 +3507,9 @@ Hello, <%= session[:cas_user] %>!
 				    durationMode: 'all'
 			});
 		}
-	<%# end %>
+	<% end %>
 
+	<% if ( @summer_finaid_available == 1 || @summer_finaid_bypass ==1 ) && ( (Time.now.utc >= @fin_aid_module_summer_open  && Time.now.utc <= @fin_aid_module_summer_close &&  @fin_aid_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) )%>
 	 if (window.location.href.indexOf("#step-finalt") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3476,8 +3523,9 @@ Hello, <%= session[:cas_user] %>!
 			});
 
 		}
+	<% end %>
 
-	<%# if  (finaid_available == 1 || finaid_bypass == 1)  && (residency_available == 1 && residency_complete == 1 || residency_bypass == 1 ) %>
+	 <% if ((Time.now.utc >= @fin_aid_module_fall_open  && Time.now.utc <= @fin_aid_module_fall_close &&  @fin_aid_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @fin_aid_module_spring_open  && Time.now.utc <= @fin_aid_module_spring_close &&  @fin_aid_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @fin_aid_module_spring_open  && Time.now.utc <= @fin_aid_module_spring_close &&  @fin_aid_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
 	 if (window.location.href.indexOf("#step-finaid") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3491,9 +3539,9 @@ Hello, <%= session[:cas_user] %>!
 			});
 
 		}
-	<%# end %>
+	<% end %>
 
-	<% if  (immunization_available == 1 || immunization_bypass == 1)  %>
+	<% if  (immunization_available == 1 || immunization_bypass == 1) && ( (Time.now.utc >= @immune_module_summer_open  && Time.now.utc <= @immune_module_summer_close &&  @immune_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @immune_module_fall_open  && Time.now.utc <= @immune_module_fall_close &&  @immune_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @immune_module_spring_open  && Time.now.utc <= @immune_module_spring_close &&  @immune_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @immune_module_spring_open  && Time.now.utc <= @immune_module_spring_close &&  @immune_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )  %>
 	 /* fxn to parse URL params */
 	 if (window.location.href.indexOf("#step-immunization") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
@@ -3510,7 +3558,8 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if  (residency_available == 1  || residency_bypass == 1)  && (immunization_available == 1 && immunization_complete == 1 || immunization_bypass == 1 ) && (deposit_complete == 1 || deposit_bypass == 1)%>
+	 <% if (residency_available == 1  || residency_bypass == 1 || residency_complete == 1 )  &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @residency_module_summer_open  && Time.now.utc <= @residency_module_summer_close &&  @residency_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @residency_module_fall_open  && Time.now.utc <= @residency_module_fall_close &&  @residency_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @residency_module_spring_open  && Time.now.utc <= @residency_module_spring_close &&  @residency_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @residency_module_spring_open  && Time.now.utc <= @residency_module_spring_close &&  @residency_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
+
 	 if (window.location.href.indexOf("#step-residency") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3528,9 +3577,10 @@ Hello, <%= session[:cas_user] %>!
 
 	
 
-	<% if  (housing_fee_available == 1 || housingfee_bypass == 1) %>
-	if (window.location.href.indexOf("#step-housing") > -1) {
-		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
+	<% if (housing_fee_available == 1 || @housingmealplanbypass == 1 || @housing_fee_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1)  && ( (Time.now.utc >= @housing_module_summer_open  && Time.now.utc <= @housing_module_summer_close &&  @housing_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_fall_open  && Time.now.utc <= @housing_module_fall_close &&  @housing_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @housing_module_spring_open  && Time.now.utc <= @housing_module_spring_close &&  @housing_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+		
+		if (window.location.href.indexOf("#step-housing") > -1) {
+			    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
 		    $('#housinghref').removeClass('collapsed step-title').addClass('step-title');
@@ -3543,7 +3593,8 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if  ( aleks_available == 1 || aleksbypass == 1) %>
+	<% if  ( aleks_available == 1 || aleksbypass == 1) && ( (Time.now.utc >= @aleks_module_summer_open  && Time.now.utc <= @aleks_module_summer_close &&  @aleks_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @aleks_module_fall_open  && Time.now.utc <= @aleks_module_fall_close &&  @aleks_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @aleks_module_spring_open  && Time.now.utc <= @aleks_module_spring_close &&  @aleks_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @aleks_module_spring_open  && Time.now.utc <= @aleks_module_spring_close &&  @aleks_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+
 	if (window.location.href.indexOf("#step-aleks") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3558,8 +3609,10 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if  (orientation_available == 1 || orientationbypass == 1) && (aleks_available == 1 || aleksbypass == 1 ) %>
-	if (window.location.href.indexOf("#step-orientation") > -1) {
+    
+    <% if  (orientation_available == 1 || orientationbypass == 1 || orientation_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @orientation_module_summer_open  && Time.now.utc <= @orientation_module_summer_close &&  @orientation_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @orientation_module_fall_open  && Time.now.utc <= @orientation_module_fall_close &&  @orientation_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @orientation_module_spring_open  && Time.now.utc <= @orientation_module_spring_close &&  @orientation_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @orientation_module_spring_open  && Time.now.utc <= @orientation_module_spring_close &&  @orientation_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+
+	    if (window.location.href.indexOf("#step-orientation") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
@@ -3589,7 +3642,7 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if (oars_available == 1 || oars_bypass == 1) && ( learning_comm_available == 1 && learning_comm_complete == 1  || learning_commbypass == 1 ) %>
+	<% if (oars_available == 1 || oars_bypass == 1 || oars_complete == 1) && (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @oars_module_summer_open  && Time.now.utc <= @oars_module_summer_close &&  @oars_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @oars_module_fall_open  && Time.now.utc <= @oars_module_fall_close &&  @oars_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @oars_module_spring_open  && Time.now.utc <= @oars_module_spring_close &&  @oars_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @oars_module_spring_open  && Time.now.utc <= @oars_module_spring_close &&  @oars_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
 	if (window.location.href.indexOf("#step-oars") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3604,7 +3657,8 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if (reg_available == 1 || registrationbypass == 1) && ( oars_available == 1 && oars_complete == 1 || oars_bypass == 1 ) %>
+	<% if (deposit_complete == 1 || deposit_bypass == 1) && reg_available == 1 && ( (Time.now.utc >= @registration_module_summer_open  && Time.now.utc <= @registration_module_summer_close &&  @registration_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @registration_module_fall_open  && Time.now.utc <= @registration_module_fall_close &&  @registration_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @registration_module_spring_open  && Time.now.utc <= @registration_module_spring_close &&  @registration_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @registration_module_spring_open  && Time.now.utc <= @registration_module_spring_close &&  @registration_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+
 	if (window.location.href.indexOf("#step-registration") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3616,8 +3670,9 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if (tuition_available == 1 || tuition_bypass == 1) && ( reg_available == 1 || registrationbypass == 1 ) %>
-	if (window.location.href.indexOf("#step-tuition") > -1) {
+	<% if (tuition_available == 1 || tuition_bypass == 1 || tuition_complete == 1 || (registrationbypass == 1 || @reg_complete == 1)) &&  ( deposit_complete == 1 || deposit_bypass == 1)  && ( (Time.now.utc >= @tuition_module_summer_open  && Time.now.utc <= @tuition_module_summer_close &&  @tuition_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @tuition_module_fall_open  && Time.now.utc <= @tuition_module_fall_close &&  @tuition_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @tuition_module_spring_open  && Time.now.utc <= @tuition_module_spring_close &&  @tuition_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @tuition_module_spring_open  && Time.now.utc <= @tuition_module_spring_close &&  @tuition_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
+
+		if (window.location.href.indexOf("#step-tuition") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
@@ -3631,8 +3686,9 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 	
-	<% if (emergency_available == 1 || emergencybypass == 1) && ( account_complete == 1 ) %>
-	if (window.location.href.indexOf("#step-emergency") > -1) {
+	 <% if (emergencybypass == 1 || emergency_available == 1 || emergency_complete == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @emergency_module_summer_open  && Time.now.utc <= @emergency_module_summer_close &&  @emergency_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @emergency_module_fall_open  && Time.now.utc <= @emergency_module_fall_close &&  @emergency_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @emergency_module_spring_open  && Time.now.utc <= @emergency_module_spring_close &&  @emergency_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @emergency_module_spring_open  && Time.now.utc <= @emergency_module_spring_close &&  @emergency_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
+
+		if (window.location.href.indexOf("#step-emergency") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
@@ -3646,7 +3702,8 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if (fau_alert_available == 1 || faualertbypass == 1) %>
+	 <% if (fau_alert_available == 1 || faualertbypass == 1 || fau_alert_complete == 1)  &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @faualert_module_summer_open  && Time.now.utc <= @faualert_module_summer_close &&  @faualert_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @faualert_module_fall_open  && Time.now.utc <= @faualert_module_fall_close &&  @faualert_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @faualert_module_spring_open  && Time.now.utc <= @faualert_module_spring_close &&  @faualert_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @faualert_module_spring_open  && Time.now.utc <= @faualert_module_spring_close &&  @faualert_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
+
 	if (window.location.href.indexOf("#step-faualert") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3661,7 +3718,8 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if (owlcard_available == 1 || owlcard_bypass == 1) && ( fau_alert_available == 1 || faualertbypass == 1 ) %>
+	<% if (owlcard_available == 1 || owlcard_bypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @owlcard_module_summer_open  && Time.now.utc <= @owlcard_module_summer_close &&  @owlcard_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @owlcard_module_fall_open  && Time.now.utc <= @owlcard_module_fall_close &&  @owlcard_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @owlcard_module_spring_open  && Time.now.utc <= @owlcard_module_spring_close &&  @owlcard_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @owlcard_module_spring_open  && Time.now.utc <= @owlcard_module_spring_close &&  @owlcard_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+
 	if (window.location.href.indexOf("#step-owlcard") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
@@ -3676,8 +3734,9 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if ( bookadvance_available == 1 || bookadvance_bypass == 1 )&& (owlcard_available == 1 || owlcard_bypass == 1) %>
-	if (window.location.href.indexOf("#step-bookadvance") > -1) {
+	 <% if ( bookadvance_available == 1 || bookadvance_bypass == 1 ) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @book_module_summer_open  && Time.now.utc <= @book_module_summer_close &&  @book_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @book_module_fall_open  && Time.now.utc <= @book_module_fall_close &&  @book_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @book_module_spring_open  && Time.now.utc <= @book_module_spring_close &&  @book_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @book_module_spring_open  && Time.now.utc <= @book_module_spring_close &&  @book_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) ) %>
+
+	 	if (window.location.href.indexOf("#step-bookadvance") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 
@@ -3691,8 +3750,9 @@ Hello, <%= session[:cas_user] %>!
 		}
 	<% end %>
 
-	<% if (vehicle_reg_available == 1  || vehicleregbypass == 1) && ( bookadvance_available == 1  || bookadvance_bypass == 1) %>
-	if (window.location.href.indexOf("#step-vehicle") > -1) {
+	<% if (vehicle_reg_available == 1  || vehicleregbypass == 1) &&  (deposit_complete == 1 || deposit_bypass == 1) && ( (Time.now.utc >= @regvehicle_module_summer_open  && Time.now.utc <= @regvehicle_module_summer_close &&  @regvehicle_module_summer_term == @current_summer_term_in  && @current_summer_term_in == @term_code_entry) || (Time.now.utc >= @regvehicle_module_fall_open  && Time.now.utc <= @regvehicle_module_fall_close &&  @regvehicle_module_fall_term == @current_fall_term_in && @current_fall_term_in == @term_code_entry) || (Time.now.utc >= @regvehicle_module_spring_open  && Time.now.utc <= @regvehicle_module_spring_close &&  @regvehicle_module_spring_term == @current_spring_term_in) || (Time.now.utc >= @regvehicle_module_spring_open  && Time.now.utc <= @regvehicle_module_spring_close &&  @regvehicle_module_spring_term == @current_spring_term_in && @current_spring_term_in == @term_code_entry) )%>
+
+		if (window.location.href.indexOf("#step-vehicle") > -1) {
 		    $('.step-title').removeClass("step-title").addClass('collapsed step-title');
 		    $('div .collapse').removeClass("collapse in").addClass('collapse');
 

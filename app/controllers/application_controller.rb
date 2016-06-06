@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
                   :with => :render_not_found
       rescue_from ActionController::UnknownAction,
                   :with => :render_not_found
+      rescue_from TinyTds::Error,
+                  :with => :render_dberror
   end
 
   def session_config
@@ -488,93 +490,478 @@ class ApplicationController < ActionController::Base
   end
 
 # BEGIN module open dates
-  # def summer_module_opendates
-  #   verify_summer_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_summer_term_in)
+  def summer_module_opendates
+    verify_summer_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_summer_term_in)
     
-  #   if verify_summer_dates.count > 0 
-  #     verify_summer_dates.each do |s|
-  #       @verify_module_summer_open = s.opendate
-  #       @verify_module_summer_close = s.closedate
-  #       @verify_module_summer_term = s.termvalue
-  #     end
-  #   else
-  #       @verify_module_summer_open = 'N/A'
-  #       @verify_module_summer_close ='N/A'
-  #       @verify_module_summer_term = 'N/A' 
-  #   end
+    if verify_summer_dates.count > 0 
+      verify_summer_dates.each do |s|
+        @verify_module_summer_open = s.opendate
+        @verify_module_summer_close = s.closedate
+        @verify_module_summer_term = s.termvalue
+      end   
+    end
     
-  #   comm_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_summer_term_in)
-  #   if verify_summer_dates.count > 0 
-  #     comm_summer_dates.each do |s|
-  #      @comm_module_summer_open = s.opendate
-  #      @comm_module_summer_close = s.closedate
-  #      @comm_module_summer_term = s.termvalue 
-  #     end
-  #   else
-  #      @comm_module_summer_open = 'N/A'
-  #      @comm_module_summer_close = 'N/A'
-  #      @comm_module_summer_term = 'N/A'
-  #   end
-  # end
+     comm_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_summer_term_in)
+     if verify_summer_dates.count > 0 
+       comm_summer_dates.each do |s|
+        @comm_module_summer_open = s.opendate
+        @comm_module_summer_close = s.closedate
+        @comm_module_summer_term = s.termvalue 
+       end
+     end
 
-  # def fall_module_opendates
-  #   verify_fall_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_fall_term_in)
-    
-  #   if verify_fall_dates.count > 0
-  #     verify_fall_dates.each do |f|
-  #       @verify_module_fall_open = f.opendate
-  #       @verify_module_fall_close = f.closedate
-  #       @verify_module_fall_term = f.termvalue
-  #     end
-  #   else
-  #       @verify_module_fall_open = 'N/A'
-  #       @verify_module_fall_close = 'N/A'
-  #       @verify_module_fall_term = 'N/A'
-  #   end
+     deposit_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Pay Deposit' AND termvalue=?", @current_summer_term_in)
+     if deposit_summer_dates.count > 0 
+       deposit_summer_dates.each do |s|
+        @deposit_module_summer_open = s.opendate
+        @deposit_module_summer_close = s.closedate
+        @deposit_module_summer_term = s.termvalue 
+       end
+     end
 
-  #    comm_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_fall_term_in)
-  #    if comm_fall_dates.count > 0
-  #      comm_fall_dates.each do |f|
-  #        @comm_module_fall_open = f.opendate
-  #        @comm_module_fall_close = f.closedate
-  #        @comm_module_fall_term = f.termvalue 
-  #      end
-  #    else
-  #       @comm_module_fall_open = 'N/A'
-  #       @comm_module_fall_close = 'N/A'
-  #       @comm_module_fall_term = 'N/A'
-  #    end
-  # end
+     immunization_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Immunization Holds' AND termvalue=?", @current_summer_term_in)
+     if immunization_summer_dates.count > 0 
+       immunization_summer_dates.each do |s|
+        @immune_module_summer_open = s.opendate
+        @immune_module_summer_close = s.closedate
+        @immune_module_summer_term = s.termvalue 
+       end
+     end
+
+     residency_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Residency Validation' AND termvalue=?", @current_summer_term_in)
+     if residency_summer_dates.count > 0 
+       residency_summer_dates.each do |s|
+        @residency_module_summer_open = s.opendate
+        @residency_module_summer_close = s.closedate
+        @residency_module_summer_term = s.termvalue 
+       end
+     end
+
+     housing_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Housing Contract & Meal Plans' AND termvalue=?", @current_summer_term_in)
+     if housing_summer_dates.count > 0 
+       housing_summer_dates.each do |s|
+        @housing_module_summer_open = s.opendate
+        @housing_module_summer_close = s.closedate
+        @housing_module_summer_term = s.termvalue 
+       end
+     end
+
+    aleks_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Math Placement Exam - ALEKS' AND termvalue=?", @current_summer_term_in)
+     if aleks_summer_dates.count > 0 
+       aleks_summer_dates.each do |s|
+        @aleks_module_summer_open = s.opendate
+        @aleks_module_summer_close = s.closedate
+        @aleks_module_summer_term = s.termvalue 
+       end
+     end
+
+     orientation_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Orientation' AND termvalue=?", @current_summer_term_in)
+     if orientation_summer_dates.count > 0 
+       orientation_summer_dates.each do |s|
+        @orientation_module_summer_open = s.opendate
+        @orientation_module_summer_close = s.closedate
+        @orientation_module_summer_term = s.termvalue 
+       end
+     end
+
+    oars_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Online Adivision & Resource System - OARS' AND termvalue=?", @current_summer_term_in)
+     if oars_summer_dates.count > 0 
+       oars_summer_dates.each do |s|
+        @oars_module_summer_open = s.opendate
+        @oars_module_summer_close = s.closedate
+        @oars_module_summer_term = s.termvalue 
+       end
+     end
+
+     faualert_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'FAU Alert Information' AND termvalue=?", @current_summer_term_in)
+     if faualert_summer_dates.count > 0 
+       faualert_summer_dates.each do |s|
+        @faualert_module_summer_open = s.opendate
+        @faualert_module_summer_close = s.closedate
+        @faualert_module_summer_term = s.termvalue 
+       end
+     end
+
+      registration_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Registration & Holds' AND termvalue=?", @current_summer_term_in)
+     if registration_summer_dates.count > 0 
+       registration_summer_dates.each do |s|
+        @registration_module_summer_open = s.opendate
+        @registration_module_summer_close = s.closedate
+        @registration_module_summer_term = s.termvalue 
+       end
+     end
+
+    tuition_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Tuition Payment' AND termvalue=?", @current_summer_term_in)
+     if tuition_summer_dates.count > 0 
+       tuition_summer_dates.each do |s|
+        @tuition_module_summer_open = s.opendate
+        @tuition_module_summer_close = s.closedate
+        @tuition_module_summer_term = s.termvalue 
+       end
+     end
+
+     emergency_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Emergency Contacts' AND termvalue=?", @current_summer_term_in)
+     if emergency_summer_dates.count > 0 
+       emergency_summer_dates.each do |s|
+        @emergency_module_summer_open = s.opendate
+        @emergency_module_summer_close = s.closedate
+        @emergency_module_summer_term = s.termvalue 
+       end
+     end
+
+    owlcard_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Owl Card' AND termvalue=?", @current_summer_term_in)
+     if owlcard_summer_dates.count > 0 
+       owlcard_summer_dates.each do |s|
+        @owlcard_module_summer_open = s.opendate
+        @owlcard_module_summer_close = s.closedate
+        @owlcard_module_summer_term = s.termvalue 
+       end
+     end
+
+    book_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Book Advance Program' AND termvalue=?", @current_summer_term_in)
+     if book_summer_dates.count > 0 
+       book_summer_dates.each do |s|
+        @book_module_summer_open = s.opendate
+        @book_module_summer_close = s.closedate
+        @book_module_summer_term = s.termvalue 
+       end
+     end
+
+     regvehicle_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Register Your Vehicle' AND termvalue=?", @current_summer_term_in)
+     if regvehicle_summer_dates.count > 0 
+       regvehicle_summer_dates.each do |s|
+        @regvehicle_module_summer_open = s.opendate
+        @regvehicle_module_summer_close = s.closedate
+        @regvehicle_module_summer_term = s.termvalue 
+       end
+     end
+
+     @fin_aid_summer_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Financial Aid' AND termvalue=?", @current_summer_term_in)
+     if @fin_aid_summer_dates.count > 0 
+       @fin_aid_summer_dates.each do |s|
+        @fin_aid_module_summer_open = s.opendate
+        @fin_aid_module_summer_close = s.closedate
+        @fin_aid_module_summer_term = s.termvalue 
+       end
+     end
+
+  end
+
+  def fall_module_opendates
+    verify_fall_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_fall_term_in)
+    
+    if verify_fall_dates.count > 0
+      verify_fall_dates.each do |f|
+        @verify_module_fall_open = f.opendate
+        @verify_module_fall_close = f.closedate
+        @verify_module_fall_term = f.termvalue
+      end
+    end
+
+     comm_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_fall_term_in)
+     if comm_fall_dates.count > 0
+       comm_fall_dates.each do |f|
+         @comm_module_fall_open = f.opendate
+         @comm_module_fall_close = f.closedate
+         @comm_module_fall_term = f.termvalue 
+       end
+     end
+
+     deposit_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Pay Deposit' AND termvalue=?", @current_fall_term_in)
+     if deposit_fall_dates.count > 0 
+       deposit_fall_dates.each do |s|
+        @deposit_module_fall_open = s.opendate
+        @deposit_module_fall_close = s.closedate
+        @deposit_module_fall_term = s.termvalue 
+       end
+     end
+
+     immunization_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Immunization Holds' AND termvalue=?", @current_fall_term_in)
+     if immunization_fall_dates.count > 0 
+       immunization_fall_dates.each do |s|
+        @immune_module_fall_open = s.opendate
+        @immune_module_fall_close = s.closedate
+        @immune_module_fall_term = s.termvalue 
+       end
+     end
+
+      residency_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Residency Validation' AND termvalue=?", @current_fall_term_in)
+     if residency_fall_dates.count > 0 
+       residency_fall_dates.each do |s|
+        @residency_module_fall_open = s.opendate
+        @residency_module_fall_close = s.closedate
+        @residency_module_fall_term = s.termvalue 
+       end
+     end
+
+      housing_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Housing Contract & Meal Plans' AND termvalue=?", @current_fall_term_in)
+     if housing_fall_dates.count > 0 
+       housing_fall_dates.each do |s|
+        @housing_module_fall_open = s.opendate
+        @housing_module_fall_close = s.closedate
+        @housing_module_fall_term = s.termvalue 
+       end
+     end
+     
+     aleks_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Math Placement Exam - ALEKS' AND termvalue=?", @current_fall_term_in)
+     if aleks_fall_dates.count > 0 
+       aleks_fall_dates.each do |s|
+        @aleks_module_fall_open = s.opendate
+        @aleks_module_fall_close = s.closedate
+        @aleks_module_fall_term = s.termvalue 
+       end
+     end
+
+      orientation_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Orientation' AND termvalue=?", @current_fall_term_in)
+     if orientation_fall_dates.count > 0 
+       orientation_fall_dates.each do |s|
+        @orientation_module_fall_open = s.opendate
+        @orientation_module_fall_close = s.closedate
+        @orientation_module_fall_term = s.termvalue 
+       end
+     end
+
+     oars_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Online Adivision & Resource System - OARS' AND termvalue=?", @current_fall_term_in)
+     if oars_fall_dates.count > 0 
+       oars_fall_dates.each do |s|
+        @oars_module_fall_open = s.opendate
+        @oars_module_fall_close = s.closedate
+        @oars_module_fall_term = s.termvalue 
+       end
+     end
+
+     faualert_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'FAU Alert Information' AND termvalue=?", @current_fall_term_in)
+     if faualert_fall_dates.count > 0 
+       faualert_fall_dates.each do |s|
+        @faualert_module_fall_open = s.opendate
+        @faualert_module_fall_close = s.closedate
+        @faualert_module_fall_term = s.termvalue 
+       end
+     end
+
+
+     registration_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Registration & Holds' AND termvalue=?", @current_fall_term_in)
+     if registration_fall_dates.count > 0 
+       registration_fall_dates.each do |s|
+        @registration_module_fall_open = s.opendate
+        @registration_module_fall_close = s.closedate
+        @registration_module_fall_term = s.termvalue 
+       end
+     end
+
+     tuition_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Tuition Payment' AND termvalue=?", @current_fall_term_in)
+     if tuition_fall_dates.count > 0 
+       tuition_fall_dates.each do |s|
+        @tuition_module_fall_open = s.opendate
+        @tuition_module_fall_close = s.closedate
+        @tuition_module_fall_term = s.termvalue 
+       end
+     end
+
+       emergency_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Emergency Contacts' AND termvalue=?", @current_fall_term_in)
+     if emergency_fall_dates.count > 0 
+       emergency_fall_dates.each do |s|
+        @emergency_module_fall_open = s.opendate
+        @emergency_module_fall_close = s.closedate
+        @emergency_module_fall_term = s.termvalue 
+       end
+     end
+
+       owlcard_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Owl Card' AND termvalue=?", @current_fall_term_in)
+     if owlcard_fall_dates.count > 0 
+       owlcard_fall_dates.each do |s|
+        @owlcard_module_fall_open = s.opendate
+        @owlcard_module_fall_close = s.closedate
+        @owlcard_module_fall_term = s.termvalue 
+       end
+     end
+
+     book_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Book Advance Program' AND termvalue=?", @current_fall_term_in)
+     if book_fall_dates.count > 0 
+       book_fall_dates.each do |s|
+        @book_module_fall_open = s.opendate
+        @book_module_fall_close = s.closedate
+        @book_module_fall_term = s.termvalue 
+       end
+     end
+
+     regvehicle_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Register Your Vehicle' AND termvalue=?", @current_fall_term_in)
+     if regvehicle_fall_dates.count > 0 
+       regvehicle_fall_dates.each do |s|
+        @regvehicle_module_fall_open = s.opendate
+        @regvehicle_module_fall_close = s.closedate
+        @regvehicle_module_fall_term = s.termvalue 
+       end
+     end
+
+    @fin_aid_fall_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Financial Aid' AND termvalue=?", @current_fall_term_in)
+     if @fin_aid_fall_dates.count > 0 
+       @fin_aid_fall_dates.each do |s|
+        @fin_aid_module_fall_open = s.opendate
+        @fin_aid_module_fall_close = s.closedate
+        @fin_aid_module_fall_term = s.termvalue 
+       end
+     end
+
+  end
   
 
-  # def spring_module_opendates
-  #   verify_spring_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_spring_term_in)
-  #   if verify_spring_dates.count > 0
-  #     verify_spring_dates.each do |sp|
-  #       @verify_module_spring_open = sp.opendate
-  #       @verify_module_spring_close = sp.closedate
-  #       @verify_module_spring_term = sp.termvalue
-  #     end
-  #   else
-  #     @verify_module_spring_open = 'N/A'
-  #     @verify_module_spring_close = 'N/A'
-  #     @verify_module_spring_term = 'N/A'
-  #   end
+  def spring_module_opendates
+    verify_spring_dates =  Moduledate.select("opendate,closedate,termvalue").where("name = 'Verify Your Information' AND termvalue=?", @current_spring_term_in)
+    if verify_spring_dates.count > 0
+      verify_spring_dates.each do |sp|
+        @verify_module_spring_open = sp.opendate
+        @verify_module_spring_close = sp.closedate
+        @verify_module_spring_term = sp.termvalue
+      end
+     end
 
-  #   comm_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_spring_term_in)
-  #   if comm_spring_dates.count > 0
-  #     comm_spring_dates.each do |sp| 
-  #      @comm_module_spring_open = sp.opendate
-  #      @comm_module_spring_close = sp.closedate
-  #      @comm_module_spring_term = sp.termvalue 
-  #     end
-  #   else
-  #      @comm_module_spring_open = 'N/A'
-  #      @comm_module_spring_close = 'N/A'
-  #      @comm_module_spring_term = 'N/A'
-  #   end
-  # end
-# END open modules
+    comm_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Communication Preference' AND termvalue=?", @current_spring_term_in)
+    if comm_spring_dates.count > 0
+      comm_spring_dates.each do |sp| 
+       @comm_module_spring_open = sp.opendate
+       @comm_module_spring_close = sp.closedate
+       @comm_module_spring_term = sp.termvalue 
+      end
+    end
+
+     deposit_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Pay Deposit' AND termvalue=?", @current_spring_term_in)
+     if deposit_spring_dates.count > 0 
+       deposit_spring_dates.each do |s|
+        @deposit_module_spring_open = s.opendate
+        @deposit_module_spring_close = s.closedate
+        @deposit_module_spring_term = s.termvalue 
+       end
+     end
+
+     immunization_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Immunization Holds' AND termvalue=?", @current_spring_term_in)
+     if immunization_spring_dates.count > 0 
+       immunization_spring_dates.each do |s|
+        @immune_module_spring_open = s.opendate
+        @immune_module_spring_close = s.closedate
+        @immune_module_spring_term = s.termvalue 
+       end
+     end
+
+      residency_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Residency Validation' AND termvalue=?", @current_spring_term_in)
+     if residency_spring_dates.count > 0 
+       residency_spring_dates.each do |s|
+        @residency_module_spring_open = s.opendate
+        @residency_module_spring_close = s.closedate
+        @residency_module_spring_term = s.termvalue 
+       end
+     end
+
+      housing_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Housing Contract & Meal Plans' AND termvalue=?", @current_spring_term_in)
+     if housing_spring_dates.count > 0 
+       housing_spring_dates.each do |s|
+        @housing_module_spring_open = s.opendate
+        @housing_module_spring_close = s.closedate
+        @housing_module_spring_term = s.termvalue 
+       end
+     end
+
+    aleks_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Math Placement Exam - ALEKS' AND termvalue=?", @current_spring_term_in)
+     if aleks_spring_dates.count > 0 
+       aleks_spring_dates.each do |s|
+        @aleks_module_spring_open = s.opendate
+        @aleks_module_spring_close = s.closedate
+        @aleks_module_spring_term = s.termvalue 
+       end
+     end
+
+     orientation_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Orientation' AND termvalue=?", @current_spring_term_in)
+     if orientation_spring_dates.count > 0 
+       orientation_spring_dates.each do |s|
+        @orientation_module_spring_open = s.opendate
+        @orientation_module_spring_close = s.closedate
+        @orientation_module_spring_term = s.termvalue 
+       end
+     end
+
+    oars_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Online Adivision & Resource System - OARS' AND termvalue=?", @current_spring_term_in)
+     if oars_spring_dates.count > 0 
+       oars_spring_dates.each do |s|
+        @oars_module_spring_open = s.opendate
+        @oars_module_spring_close = s.closedate
+        @oars_module_spring_term = s.termvalue 
+       end
+     end
+
+    faualert_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'FAU Alert Information' AND termvalue=?", @current_spring_term_in)
+     if faualert_spring_dates.count > 0 
+       faualert_spring_dates.each do |s|
+        @faualert_module_spring_open = s.opendate
+        @faualert_module_spring_close = s.closedate
+        @faualert_module_spring_term = s.termvalue 
+       end
+     end
+
+     registration_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Registration & Holds' AND termvalue=?", @current_spring_term_in)
+     if registration_spring_dates.count > 0 
+       registration_spring_dates.each do |s|
+        @registration_module_spring_open = s.opendate
+        @registration_module_spring_close = s.closedate
+        @registration_module_spring_term = s.termvalue 
+       end
+     end
+
+     tuition_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Tuition Payment' AND termvalue=?", @current_spring_term_in)
+     if tuition_spring_dates.count > 0 
+       tuition_spring_dates.each do |s|
+        @tuition_module_spring_open = s.opendate
+        @tuition_module_spring_close = s.closedate
+        @tuition_module_spring_term = s.termvalue 
+       end
+     end
+
+     emergency_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Emergency Contacts' AND termvalue=?", @current_spring_term_in)
+     if emergency_spring_dates.count > 0 
+       emergency_spring_dates.each do |s|
+        @emergency_module_spring_open = s.opendate
+        @emergency_module_spring_close = s.closedate
+        @emergency_module_spring_term = s.termvalue 
+       end
+     end
+
+       owlcard_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Owl Card' AND termvalue=?", @current_spring_term_in)
+     if owlcard_spring_dates.count > 0 
+       owlcard_spring_dates.each do |s|
+        @owlcard_module_spring_open = s.opendate
+        @owlcard_module_spring_close = s.closedate
+        @owlcard_module_spring_term = s.termvalue 
+       end
+     end
+
+     book_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Book Advance Program' AND termvalue=?", @current_spring_term_in)
+     if book_spring_dates.count > 0 
+       book_spring_dates.each do |s|
+        @book_module_spring_open = s.opendate
+        @book_module_spring_close = s.closedate
+        @book_module_spring_term = s.termvalue 
+       end
+     end
+
+     regvehicle_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Register Your Vehicle' AND termvalue=?", @current_spring_term_in)
+     if regvehicle_spring_dates.count > 0 
+       regvehicle_spring_dates.each do |s|
+        @regvehicle_module_spring_open = s.opendate
+        @regvehicle_module_spring_close = s.closedate
+        @regvehicle_module_spring_term = s.termvalue 
+       end
+     end
+
+     @fin_aid_spring_dates = Moduledate.select("opendate,closedate,termvalue").where("name = 'Financial Aid' AND termvalue=?", @current_spring_term_in)
+     if @fin_aid_spring_dates.count > 0 
+       @fin_aid_spring_dates.each do |s|
+        @fin_aid_module_spring_open = s.opendate
+        @fin_aid_module_spring_close = s.closedate
+        @fin_aid_module_spring_term = s.termvalue 
+       end
+     end
+
+end
+#END open modules
 
 
   protected
@@ -594,6 +981,14 @@ class ApplicationController < ActionController::Base
         .exception_notification(request.env, exception)
         .deliver
        render :file => 'public/500.html',  :status => :not_found, :layout => false
+
+    end
+
+    def render_dberror(exception)
+      ExceptionNotifier::Notifier
+        .exception_notification(request.env, exception)
+        .deliver
+       render :file => 'public/db.html',  :status => :not_found, :layout => false
 
     end
 

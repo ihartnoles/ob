@@ -555,15 +555,16 @@ module StaticPagesHelper
   	 end
 
      def get_module_open_txt(termcode,modulename)
-        moduleinfo =  Moduledate.select("opendate").where("name=? AND termvalue=?", modulename, termcode).first
+        moduleinfo =  Moduledate.select("opendate,closedate").where("name=? AND termvalue=?", modulename, termcode).first
           #moduleinfo.each do |s|           
-            @module_open_date = moduleinfo.opendate           
+            @module_open_date = moduleinfo.opendate   
+            @module_close_date = moduleinfo.closedate         
           #end
 
           if @module_open_date == 'N/A'
             return "TBA"
           else
-            return "<b>- (opens on  #{@module_open_date.strftime('%m/%d/%Y')})</b>".html_safe
+            return "<b>- (open from  #{@module_open_date.strftime('%m/%d/%Y')} - #{@module_close_date.strftime('%m/%d/%Y')})</b>".html_safe
           end
 
      end
